@@ -24,8 +24,9 @@
         <div class="container">
 
             <?php
-            if () {
-                switch () {
+            $a = 0;
+            if ($a>0) {
+                switch ($a) {
                     case 'home': 
                         break;
 

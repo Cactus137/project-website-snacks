@@ -60,12 +60,10 @@ CREATE TABLE product_variants (
 	id INT(11) NOT NULL AUTO_INCREMENT,
 	id_product INT(11) NOT NULL DEFAULT 1,
 	id_size_product INT(11) NOT NULL DEFAULT 1,
-	id_sauce_type INT(11) NOT NULL DEFAULT 1,
 	total_price INT(11),
     PRIMARY KEY (id),
     FOREIGN KEY (id_product) REFERENCES products(id) ON DELETE CASCADE,
-	FOREIGN KEY (id_size_product) REFERENCES size_products(id) ON DELETE CASCADE,
-	FOREIGN KEY (id_sauce_type) REFERENCES sauce_types(id) ON DELETE CASCADE
+	FOREIGN KEY (id_size_product) REFERENCES size_products(id) ON DELETE CASCADE
 );
 
 -- Tạo bảng bình luận

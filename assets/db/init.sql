@@ -44,16 +44,6 @@ CREATE TABLE products (
     FOREIGN KEY (id_category) REFERENCES categories(id) ON DELETE CASCADE
 );
 
--- Tạo bảng xốt sản phẩm
-CREATE TABLE sauce_types (
-	id INT(11) NOT NULL AUTO_INCREMENT,
-	name VARCHAR(50) ,
-	quantity INT(11) NOT NULL,
-	id_category INT(11) NOT NULL,
-    PRIMARY KEY (id),
-    FOREIGN KEY (id_category) REFERENCES categories(id) ON DELETE CASCADE
-);
-
 -- Tạo bảng kích thước sản phẩm
 CREATE TABLE size_products (
 	id INT(11) NOT NULL AUTO_INCREMENT,
@@ -160,13 +150,7 @@ VALUES 	('Món mới'),
 		('Gà rán'),
 		('Cơm-Mỳ ý'),
 		('Khoai tây'),
-		('Thức uống');
-			
-INSERT INTO sauce_types (name, quantity, id_category)
-VALUES 	('Cay', 100, 4),
-		('Không cay', 150, 4),
-		('Cay', 100, 6),
-		('Không cay', 150, 6);
+		('Thức uống'); 
 
 INSERT INTO size_products (name, price, quantity, id_category)
 VALUES 	('S', 0, 50, 2),

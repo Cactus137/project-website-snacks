@@ -164,5 +164,8 @@ VALUES
 
 INSERT INTO order_status (id, name)
 VALUES 
-(0, 'Chưa thanh toán'),
-(1, 'Đã thanh toán');
+(0, 'Chờ xác nhận'),
+(1, 'Đã xác nhận'),
+(2, 'Đang giao hàng'),
+(3, 'Đã giao hàng'),
+(4, 'Đã hủy');

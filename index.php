@@ -10,9 +10,13 @@
     <!-- Bootstrap CSS v5.2.1 --> 
     
     <!-- CSS thuần -->
-    
+    <link rel="stylesheet" href="./assets/css/styles.user.css">
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <!-- font-awesome -->
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body class="mt-5 pt-5">
@@ -24,12 +28,11 @@
         <div class="container">
 
             <?php
-            $a = 0;
-            if ($a>0) {
-                switch ($a) {
-                    case 'home': 
+            if ($_GET['act']) {
+                switch ($_GET['act']) {
+                    case 'home':
                         break;
-
+                        
                     default: 
                         break;
                 }

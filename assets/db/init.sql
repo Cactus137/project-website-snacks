@@ -29,6 +29,7 @@ CREATE TABLE accounts (
 CREATE TABLE categories (
 	id INT(11) NOT NULL AUTO_INCREMENT,
 	name_cate VARCHAR(255) NOT NULL,
+	image VARCHAR(255),
     PRIMARY KEY (id)
 );
 
@@ -38,6 +39,7 @@ CREATE TABLE products (
 	name VARCHAR(255) NOT NULL,
 	image VARCHAR(255) NOT NULL, 
 	description TEXT,
+	quantity INT(11) NOT NULL,
 	view_product INT(11) NOT NULL DEFAULT 0,
 	id_category INT(11) NOT NULL,
     PRIMARY KEY (id),
@@ -72,7 +74,7 @@ CREATE TABLE comments (
 	content TEXT,
 	id_account INT(11) NOT NULL,  
 	id_product INT(11) NOT NULL, 
-	comment_date DATE NOT NULL,
+	comment_date DATETIME NOT NULL,
     PRIMARY KEY (id),
 	FOREIGN KEY (id_account) REFERENCES accounts(id) ON DELETE CASCADE,
 	FOREIGN KEY (id_product) REFERENCES products(id) ON DELETE CASCADE
@@ -84,7 +86,7 @@ CREATE TABLE discount_codes (
 	code varchar(20) NOT NULL,
 	discount INT(11),
 	quantiny INT(11) NOT NULL,
-	expiration_date DATE NOT NULL,
+	expiration_date DATETIME NOT NULL,
     PRIMARY KEY (id)
 );
 
@@ -142,13 +144,13 @@ VALUES  ('user1', 'password1', 'User One', 'user1@example.com', '123 Main St, Ci
 		('admin', 'adminpassword', 'Administrator', 'admin@example.com', '321 Admin St, AdminCity', '5556667777', 0);
 
 INSERT INTO categories (name_cate)
-VALUES 	('Món mới'),
-		('Burger'),
+VALUES 	('Burger'),
 		('Combo'),
 		('Gà rán'),
 		('Cơm-Mỳ ý'),
 		('Khoai tây'),
 		('Thức uống'); 
+		
 
 INSERT INTO size_products (name, price, quantity, id_category)
 VALUES 	('S', 0, 50, 2),

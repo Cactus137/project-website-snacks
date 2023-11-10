@@ -7,8 +7,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS v5.2.1 --> 
-    
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <!-- CSS thuần -->
     <link rel="stylesheet" href="./assets/css/styles.user.css">
     <!-- Font -->
@@ -21,9 +21,9 @@
 
 <body class="mt-5 pt-5">
     <header>
-        <!-- include  -->
+        <?php include 'user/layout/header.php' ?>
     </header>
-    
+
     <main>
         <div class="container">
 
@@ -32,21 +32,28 @@
                 switch ($_GET['act']) {
                     case 'home':
                         break;
-                        
-                    default: 
+                    case 'login':
+                        include 'user/login.php';
+                        break;
+                    case 'signup':
+                        include 'user/signup.php';
+                        break;
+                    case 'forgot':
+                        include 'user/forgot.php';
+                        break;
+                    default:
                         break;
                 }
-            } else { 
+            } else {
             }
             ?>
         </div>
     </main>
-    
+
     <footer>
-        
+        <?php include 'user/layout/footer.php' ?>
     </footer>
-    <!-- Bootstrap, JavaScript Libraries -->
-    
+
 </body>
 
 </html>

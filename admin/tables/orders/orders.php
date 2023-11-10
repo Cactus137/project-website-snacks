@@ -10,7 +10,7 @@
             <table class="table align-items-center justify-content-between mb-0">
               <thead>
                 <tr>
-                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ID</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">STT</th>
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Product</th>
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">account</th>
                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7">date</th>
@@ -41,11 +41,7 @@
                         <!-- Xem chi tiết -->
                         <a name="detail_btn" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn bg-secondary btn-sm m-0 mx-1" style="display: flex; align-items: center; justify-content: center;" href="">
                           <i class="fa-solid fa-circle-info" style="color: #ffffff;"></i>
-                        </a>
-                        <!-- Sửa -->
-                        <a name="edit_btn" class="btn bg-secondary btn-sm m-0 mx-1" style="display: flex; align-items: center; justify-content: center;" href="#">
-                          <i class="fa-solid fa-pen-to-square" style="color: #ffffff;"></i>
-                        </a>
+                        </a> 
                         <!-- Xóa -->
                         <a name="dlt_btn" class="btn btn-danger btn-sm m-0 mx-1" style=" display: flex; align-items: center; justify-content: center;" onclick="return confirm('Bạn có xác nhận xóa ?');" href="#">
                           <i class="fa fa-trash"></i>

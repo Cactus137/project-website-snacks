@@ -12,7 +12,7 @@
             <table class="table align-items-center justify-content-between mb-0">
               <thead>
                 <tr>
-                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ID</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">STT</th>
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Hình ảnh</th>
                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tên</th>
                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7">Phân loại</th>
@@ -27,9 +27,7 @@
                       <span>1</span>
                     </td>
                     <td class="text-center p-2" style="width: 300px;">
-                      <div>
-                        <img src="assets/img/small-logos/logo-spotify.svg" class="rounded">
-                      </div>
+                      <img src="assets/img/small-logos/logo-spotify.svg" class="me-3" alt="user1" width="100px">
                     </td>
                     <td class=" p-2">
                       <p class="text-sm font-weight-bold mb-0">Burder Italya</p>

@@ -49,6 +49,9 @@ if (isset($_GET['data'])) {
         case 'edit_discount_code':
             include 'discounts_code/edit_discount_code.php';
             break;
+        case 'revenues':
+            include 'revenues/revenues.php';
+            break; 
         default:
             include 'accounts/accounts.php';
             break;

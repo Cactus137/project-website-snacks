@@ -41,11 +41,7 @@
                         <!-- Xem chi tiết -->
                         <a name="detail_btn" class="btn bg-secondary btn-sm m-0 mx-1" style="display: flex; align-items: center; justify-content: center;" href="?action=tables&data=comments_detail">
                           <i class="fa-solid fa-circle-info" style="color: #ffffff;"></i>
-                        </a>
-                        <!-- Sửa -->
-                        <a name="edit_btn" class="btn bg-secondary btn-sm m-0 mx-1" style="display: flex; align-items: center; justify-content: center;" href="#">
-                          <i class="fa-solid fa-pen-to-square" style="color: #ffffff;"></i>
-                        </a>
+                        </a> 
                         <!-- Xóa -->
                         <a name="dlt_btn" class="btn btn-danger btn-sm m-0 mx-1" style=" display: flex; align-items: center; justify-content: center;" onclick="return confirm('Bạn có xác nhận xóa ?');" href="#">
                           <i class="fa fa-trash"></i>

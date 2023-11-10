@@ -38,7 +38,11 @@
                       <p class="text-sm font-weight-bold mb-0">14:00 13/07/2024</p>
                     </td>
                     <td class="align-middle" style="width: 250px;">
-                      <div class="d-flex py-3 float-end"> 
+                      <div class="d-flex py-3 float-end">
+                        <!-- Xem chi tiết -->
+                        <a name="detail_btn" class="btn bg-secondary btn-sm m-0 mx-1" style="display: flex; align-items: center; justify-content: center;" href="#">
+                          <i class="fa-solid fa-circle-info" style="color: #ffffff;"></i>
+                        </a>
                         <!-- Sửa -->
                         <a name="edit_btn" class="btn bg-secondary btn-sm m-0 mx-1" style="display: flex; align-items: center; justify-content: center;" href="?action=tables&data=edit_discount_code">
                           <i class="fa-solid fa-pen-to-square" style="color: #ffffff;"></i>

@@ -42,7 +42,7 @@
                                     <a href="?action=tables&data=discounts_code">
                                         <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Hủy</button>
                                     </a>
-                                    <button type="submit" name="btn_edit" class="btn btn-primary">Xác nhận</button>
+                                    <button type="submit" name="btn_edit" class="btn" style="background-color: #17c1e8;">Xác nhận</button>
                                 </div>
                             </div>
                         </div>

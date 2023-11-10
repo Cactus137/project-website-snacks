@@ -7,26 +7,29 @@
                 </div>
                 <div class="card-body px-0 pt-0 pb-2">
                     <div class="">
-                        <div class="row mt-3 px-5">
-                            <div class="col-md-4 mb-3">
-                                <label for="startDate" class="form-label">Từ ngày:</label>
-                                <input type="date" class="form-control" id="startDate">
+                        <form action="" method="post">
+                            <div class="row mt-3 px-5">
+                                <div class="col-md-4 mb-3">
+                                    <label for="startDate" class="form-label">Từ ngày:</label>
+                                    <input type="date" class="form-control" id="startDate">
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="endDate" class="form-label">Đến ngày:</label>
+                                    <input type="date" class="form-control" id="endDate">
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="category" class="form-label">Danh mục:</label>
+                                    <select class="form-select" id="category">
+                                        <option value="">Tất cả</option>
+                                        <option value="category1">Danh mục 1</option>
+                                        <option value="category2">Danh mục 2</option>
+                                        <!-- Thêm các tùy chọn danh mục khác nếu cần -->
+                                    </select>
+                                </div>
                             </div>
-                            <div class="col-md-4 mb-3">
-                                <label for="endDate" class="form-label">Đến ngày:</label>
-                                <input type="date" class="form-control" id="endDate">
-                            </div>
-                            <div class="col-md-4 mb-3">
-                                <label for="category" class="form-label">Danh mục:</label>
-                                <select class="form-select" id="category">
-                                    <option value="">Tất cả</option>
-                                    <option value="category1">Danh mục 1</option>
-                                    <option value="category2">Danh mục 2</option>
-                                    <!-- Thêm các tùy chọn danh mục khác nếu cần -->
-                                </select>
-                            </div>
-                        </div>
-                        <button class="btn btn-primary mx-5 px-5">Lọc</button>
+                            <button class="btn ms-5 px-5" style="background-color: #17c1e8;">Lọc</button>
+                            <button type="reset" class="btn btn-secondary ms-2 px-4">Mặc định</button>
+                        </form>
                     </div>
 
                     <table class="table align-items-center justify-content-between mb-0">

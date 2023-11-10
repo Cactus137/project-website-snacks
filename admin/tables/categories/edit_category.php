@@ -8,7 +8,7 @@
                 <div class="card-body px-0 pt-0 pb-2">
                     <form action="" method="POST" enctype="multipart/form-data">
                         <div class="row justify-content-center align-items-center h-100 mt-5">
-                            <div class="col-12 col-xl-7"> 
+                            <div class="col-12 col-xl-7">
                                 <div class="row">
                                     <div class="col-12 mb-4 d-flex align-items-center">
                                         <div class="form-outline datepicker w-100">
@@ -16,7 +16,7 @@
                                             <input type="text" name="name_category" class="form-control form-control-sm" value="" placeholder="" id="name_category" />
                                         </div>
                                     </div>
-                                </div> 
+                                </div>
                                 <div class="row">
                                     <div class="col-md-12 mb-4 pb-2">
                                         <div class="form-outline">
@@ -29,7 +29,7 @@
                                     <a href="?action=tables&data=categories">
                                         <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Hủy</button>
                                     </a>
-                                    <button type="submit" name="btn_edit" class="btn btn-primary">Xác nhận</button>
+                                    <button type="submit" name="btn_edit" class="btn" style="background-color: #17c1e8;">Xác nhận</button>
                                 </div>
                             </div>
                         </div>

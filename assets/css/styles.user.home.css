@@ -1,0 +1,45 @@
+
+/* BEGIN MAIN - WRAP-MENU */
+
+main {
+    width: 906px;
+    margin: 0 auto;
+    text-align: center;
+    /* background-color: #97501F; */
+}
+
+
+main .wrap-menu {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 20px;
+}
+
+main .menu-item {
+    text-align: center;
+    padding: 0 auto;
+}
+
+main .menu-item .wrap-img {
+    width: 214px;   
+    height: 214px;
+}
+
+main .menu-item img {
+    width: 180px;   
+    height: 180px;
+    object-fit: cover;
+}
+
+main .menu-item a {
+    text-decoration: none;
+    color: black;
+}
+
+main .menu-item a:hover {
+    text-decoration: underline;
+}
+
+/* END  MAIN*/
+
+

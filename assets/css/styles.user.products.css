@@ -1,0 +1,107 @@
+
+/* BEGIN MAIN  */
+/* BEGIN CATEGORY  */
+
+main {
+    width: 1180px;
+    margin: 0 auto;
+    /* text-align: center; */
+
+}
+
+main .list-category {
+    width: 906px;
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+    margin: 0 auto;
+}
+
+main .category-item{
+    width: 92px;
+    height: 92px;
+}
+
+main .category-item img {
+    width: 66px;
+    height: 67px;
+    object-fit: cover;
+    border-radius: 54px;
+}
+
+main .category-item a {
+    font-size: 14px;
+    color: black;
+    text-decoration: none;
+}
+
+main .category-item a:hover {
+    text-decoration: underline;
+}
+
+/* END CATEGORY */
+/* BEGIN PRODUCT */
+main .section-product {
+    margin-top: 16px;
+    padding: 20px;
+}
+
+main .wrap-list-products {}
+
+main .title-category{
+    margin:0 0 20px 0;
+}
+
+main .title-category h2{
+    display: inline;
+    text-transform: uppercase;
+
+}
+
+main .title-category hr {
+    border: 0;
+    display: inline-block;
+    width: 1000px; /* Đặt chiều rộng của đường kẻ ngang */
+    height: 2px;
+    margin-left: 10px; /* Điều chỉnh khoảng cách giữa h2 và đường kẻ ngang */
+    margin-right: 10px; /* Điều chỉnh khoảng cách giữa h2 và đường kẻ ngang */
+    background-color: #e5e5e5;
+}
+
+main .list-products {
+    margin-bottom: 42px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 30px;
+    grid-column-gap: 20px;
+}
+
+main .item-product {
+    width: 275px;
+    height: 356px;
+    padding: 10px;
+    text-align: center;
+    background-color: #F2E7DB;
+}
+
+main .item-product img {
+    width: 225px;
+    height: 229px;
+    object-fit: cover;
+}
+
+main .item-product a {
+    text-decoration: none;
+    color: black;
+}
+
+main .item-product p {
+    font-weight: 600;
+    color: #FFC501;
+}
+
+main .item-product a:hover {
+    text-decoration: underline;
+}
+
+/* END MAIN */

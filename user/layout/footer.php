@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="./assets/css/styles.user.footer.css">
 <div class="footer-banner">
-    <img src="./user/images/footer-banner2.jpg" alt="">
+    <img src="assets/img/banners/footer-banner2.jpg" alt="">
 </div>
 <footer>
     <div class="box-one">

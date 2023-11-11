@@ -3,39 +3,39 @@
   <!-- LIST CATEGORY -->
   <div class="list-category">
     <div class="category-item">
-      <a href="#mon-moi"><img src="./user/images/cate1.jpg" alt="" /></a>
+      <a href="#mon-moi"><img src="assets/img/categories/cate1.jpg" alt="" /></a>
       <a href="#mon-moi">
-        <h3>Món Mới</h3>
+        <h6>Món Mới</h6>
       </a>
     </div>
     <div class="category-item">
-      <a href="#burger"><img src="./user/images/cate2.jpg" alt="" /></a>
+      <a href="#burger"><img src="assets/img/categories/cate2.jpg" alt="" /></a>
       <a href="#burger">
-        <h3>Burger</h3>
+        <h6>Burger</h6>
       </a>
     </div>
     <div class="category-item">
-      <a href="#ga-ran"><img src="./user/images/cate3.jpg" alt="" /></a>
+      <a href="#ga-ran"><img src="assets/img/categories/cate3.jpg" alt="" /></a>
       <a href="#ga-ran">
-        <h3>Gà Rán</h3>
+        <h6>Gà Rán</h6>
       </a>
     </div>
     <div class="category-item">
-      <a href="#com-mi"><img src="./user/images/cate4.jpg" alt="" /></a>
+      <a href="#com-mi"><img src="assets/img/categories/cate4.jpg" alt="" /></a>
       <a href="#com-mi">
-        <h3>Cơm - Mì Ý</h3>
+        <h6>Cơm - Mì Ý</h6>
       </a>
     </div>
     <div class="category-item">
-      <a href="#khoai-tay"><img src="./user/images/cate5.jpg" alt="" /></a>
+      <a href="#khoai-tay"><img src="assets/img/categories/cate5.jpg" alt="" /></a>
       <a href="#khoai-tay">
-        <h3>Khoai tây</h3>
+        <h6>Khoai tây</h6>
       </a>
     </div>
     <div class="category-item">
-      <a href="#thuc-uong"><img src="./user/images/cate6.jpg" alt="" /></a>
+      <a href="#thuc-uong"><img src="assets/img/categories/cate6.jpg" alt="" /></a>
       <a href="#thuc-uong">
-        <h3>Thức Uống</h3>
+        <h6>Thức Uống</h6>
       </a>
     </div>
   </div>
@@ -47,45 +47,36 @@
       </div>
       <div class="list-products">
         <div class="item-product">
-          <a href="#"><img src="./user/images/product.jpg" alt="" /></a>
+          <a href="?act=product_detail"><img src="assets/img/products/product.jpg" alt="" /></a>
           <div class="info mt-20">
-            <a href="#">
+            <a href="?act=product_detail">
               <h4 class="mb-10">Italian Beef Burger</h4>
             </a>
             <p>50.000 VND</p>
           </div>
         </div>
         <div class="item-product">
-          <a href="#"><img src="./user/images/product.jpg" alt="" /></a>
+          <a href="?act=product_detail"><img src="assets/img/products/product.jpg" alt="" /></a>
           <div class="info mt-20">
-            <a href="#">
+            <a href="?act=product_detail">
               <h4 class="mb-10">Italian Beef Burger</h4>
             </a>
             <p>50.000 VND</p>
           </div>
         </div>
         <div class="item-product">
-          <a href="#"><img src="./user/images/product.jpg" alt="" /></a>
+          <a href="?act=product_detail"><img src="assets/img/products/product.jpg" alt="" /></a>
           <div class="info mt-20">
-            <a href="#">
+            <a href="?act=product_detail">
               <h4 class="mb-10">Italian Beef Burger</h4>
             </a>
             <p>50.000 VND</p>
           </div>
-        </div>
+        </div> 
         <div class="item-product">
-          <a href="#"><img src="./user/images/product.jpg" alt="" /></a>
+          <a href="?act=product_detail"><img src="assets/img/products/product.jpg" alt="" /></a>
           <div class="info mt-20">
-            <a href="#">
-              <h4 class="mb-10">Italian Beef Burger</h4>
-            </a>
-            <p>50.000 VND</p>
-          </div>
-        </div>
-        <div class="item-product">
-          <a href="#"><img src="./user/images/product.jpg" alt="" /></a>
-          <div class="info mt-20">
-            <a href="#">
+            <a href="?act=product_detail">
               <h4 class="mb-10">Italian Beef Burger</h4>
             </a>
             <p>50.000 VND</p>
@@ -97,40 +88,40 @@
     <div class="wrap-list-products" id="burger">
       <div class="title-category">
         <h2>Burger</h2>
-        <hr>
+
       </div>
       <div class="list-products">
         <div class="item-product">
-          <a href="#"><img src="./user/images/product.jpg" alt="" /></a>
+          <a href="?act=product_detail"><img src="assets/img/products/product.jpg" alt="" /></a>
           <div class="info mt-20">
-            <a href="#">
+            <a href="?act=product_detail">
               <h4 class="mb-10">Italian Beef Burger</h4>
             </a>
             <p>50.000 VND</p>
           </div>
         </div>
         <div class="item-product">
-          <a href="#"><img src="./user/images/product.jpg" alt="" /></a>
+          <a href="?act=product_detail"><img src="assets/img/products/product.jpg" alt="" /></a>
           <div class="info mt-20">
-            <a href="#">
+            <a href="?act=product_detail">
               <h4 class="mb-10">Italian Beef Burger</h4>
             </a>
             <p>50.000 VND</p>
           </div>
         </div>
         <div class="item-product">
-          <a href="#"><img src="./user/images/product.jpg" alt="" /></a>
+          <a href="?act=product_detail"><img src="assets/img/products/product.jpg" alt="" /></a>
           <div class="info mt-20">
-            <a href="#">
+            <a href="?act=product_detail">
               <h4 class="mb-10">Italian Beef Burger</h4>
             </a>
             <p>50.000 VND</p>
           </div>
         </div>
         <div class="item-product">
-          <a href="#"><img src="./user/images/product.jpg" alt="" /></a>
+          <a href="?act=product_detail"><img src="assets/img/products/product.jpg" alt="" /></a>
           <div class="info mt-20">
-            <a href="#">
+            <a href="?act=product_detail">
               <h4 class="mb-10">Italian Beef Burger</h4>
             </a>
             <p>50.000 VND</p>
@@ -142,40 +133,40 @@
     <div class="wrap-list-products" id="ga-ran">
       <div class="title-category">
         <h2>Gà Rán</h2>
-        <hr>
+
       </div>
       <div class="list-products">
         <div class="item-product">
-          <a href="#"><img src="./user/images/product.jpg" alt="" /></a>
+          <a href="?act=product_detail"><img src="assets/img/products/product.jpg" alt="" /></a>
           <div class="info mt-20">
-            <a href="#">
+            <a href="?act=product_detail">
               <h4 class="mb-10">Italian Beef Burger</h4>
             </a>
             <p>50.000 VND</p>
           </div>
         </div>
         <div class="item-product">
-          <a href="#"><img src="./user/images/product.jpg" alt="" /></a>
+          <a href="?act=product_detail"><img src="assets/img/products/product.jpg" alt="" /></a>
           <div class="info mt-20">
-            <a href="#">
+            <a href="?act=product_detail">
               <h4 class="mb-10">Italian Beef Burger</h4>
             </a>
             <p>50.000 VND</p>
           </div>
         </div>
         <div class="item-product">
-          <a href="#"><img src="./user/images/product.jpg" alt="" /></a>
+          <a href="?act=product_detail"><img src="assets/img/products/product.jpg" alt="" /></a>
           <div class="info mt-20">
-            <a href="#">
+            <a href="?act=product_detail">
               <h4 class="mb-10">Italian Beef Burger</h4>
             </a>
             <p>50.000 VND</p>
           </div>
         </div>
         <div class="item-product">
-          <a href="#"><img src="./user/images/product.jpg" alt="" /></a>
+          <a href="?act=product_detail"><img src="assets/img/products/product.jpg" alt="" /></a>
           <div class="info mt-20">
-            <a href="#">
+            <a href="?act=product_detail">
               <h4 class="mb-10">Italian Beef Burger</h4>
             </a>
             <p>50.000 VND</p>

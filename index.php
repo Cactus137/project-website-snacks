@@ -24,13 +24,13 @@
     <!-- Start header -->
     <?php include './user/layout/header.php'; ?>
     <!-- End header  -->
-    <main>
+    <main class="d-flex justify-content-center">
         <div class="container">
             <?php
             if ($_GET['act']) {
                 switch ($_GET['act']) {
                     case 'home':
-                        include './user/layout/home.php';
+                        include './user/home.php';
                         break;
                     case 'menu':
                         include './user/products.php';
@@ -44,12 +44,22 @@
                     case 'forgot':
                         include 'user/forgot.php';
                         break;
+                    case 'cart':
+                        include 'user/cart.php';
+                        break;
+                    case 'product_detail':
+                        include 'user/product_detail.php';
+                        break;
+                    case 'order':
+                        include 'user/order.php';
+                        break;
+
                     default:
-                        include './user/layout/home.php';
+                        include './user/home.php';
                         break;
                 }
             } else {
-                include './user/layout/home.php';
+                include './user/home.php';
             }
             ?>
         </div>

@@ -46,7 +46,7 @@
                 include '../model/categories.php';
                 include '../model/products.php';
                 include '../model/orders.php';
-                include '../model/comments.php';http://localhost/project-website-snacks/admin/?action=tables&data=categories
+                include '../model/comments.php';    
                 ?>
                 <div>
                     <?php switch ($_GET['action']) {

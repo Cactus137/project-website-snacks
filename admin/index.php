@@ -38,6 +38,16 @@
                 <header>
                     <?php include './layout/navbar.php'; ?>
                 </header>
+                <!-- include model -->
+                <?php
+                include '../model/pdo.php';
+                include '../model/revenues.php';
+                include '../model/accounts.php';
+                include '../model/categories.php';
+                include '../model/products.php';
+                include '../model/orders.php';
+                include '../model/comments.php';http://localhost/project-website-snacks/admin/?action=tables&data=categories
+                ?>
                 <div>
                     <?php switch ($_GET['action']) {
                         case 'dashboard':
@@ -57,7 +67,7 @@
                 </footer>
             </main>
         </section>
-    </div> 
+    </div>
 
     <!--   Core JS Files   -->
     <script src="assets/js/core/popper.min.js"></script>
@@ -66,12 +76,15 @@
     <script src="assets/js/plugins/smooth-scrollbar.min.js"></script>
     <script src="assets/js/plugins/chartjs.min.js"></script>
     <script>
+        console.log(Jan);
+    </script>
+    <script>
         var ctx = document.getElementById("chart-bars").getContext("2d");
 
         new Chart(ctx, {
             type: "bar",
             data: {
-                labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+                labels: ["Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"],
                 datasets: [{
                     label: "Sales",
                     tension: 0.4,
@@ -79,7 +92,7 @@
                     borderRadius: 4,
                     borderSkipped: false,
                     backgroundColor: "#fff",
-                    data: [450, 200, 100, 220, 500, 100, 400, 230, 500],
+                    data: [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec],
                     maxBarThickness: 6
                 }, ],
             },
@@ -150,9 +163,9 @@
         new Chart(ctx2, {
             type: "line",
             data: {
-                labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+                labels: ["Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"],
                 datasets: [{
-                        label: "Mobile apps",
+                        label: "Năm nay",
                         tension: 0.4,
                         borderWidth: 0,
                         pointRadius: 0,
@@ -160,12 +173,12 @@
                         borderWidth: 3,
                         backgroundColor: gradientStroke1,
                         fill: true,
-                        data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
+                        data: [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec],
                         maxBarThickness: 6
 
                     },
                     {
-                        label: "Websites",
+                        label: "Năm ngoái",
                         tension: 0.4,
                         borderWidth: 0,
                         pointRadius: 0,
@@ -173,7 +186,7 @@
                         borderWidth: 3,
                         backgroundColor: gradientStroke2,
                         fill: true,
-                        data: [30, 90, 40, 140, 290, 290, 340, 230, 400],
+                        data: [oldJan, oldFeb, oldMar, oldApr, oldMay, oldJun, oldJul, oldAug, oldSep, oldOct, oldNov, oldDec],
                         maxBarThickness: 6
                     },
                 ],
@@ -234,7 +247,7 @@
                 },
             },
         });
-    </script> 
+    </script>
     <!-- Github buttons -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->

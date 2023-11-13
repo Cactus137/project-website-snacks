@@ -3,27 +3,12 @@
         <div class="col-12">
             <div class="card mb-4">
                 <div class="card-header pb-0">
-                    <h6>Thêm người dùng</h6>
+                    <h6>Cập nhật đơn hàng</h6>
                 </div>
                 <div class="card-body px-0 pt-0 pb-2">
                     <form action="" method="POST" enctype="multipart/form-data">
                         <div class="row justify-content-center align-items-center h-100 mt-5">
                             <div class="col-12 col-xl-7">
-                                <div class="row">
-                                    <div class="col-md-6 mb-4 d-flex align-items-center">
-                                        <div class="form-outline w-100">
-                                            <label for="username" class="form-label">Tên tài khoản</label>
-                                            <input type="text" name="username" class="form-control form-control-sm" value="" placeholder="" id="username" />
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 mb-4 d-flex align-items-center">
-                                        <div class="form-outline w-100">
-                                            <label class="form-label" for="password">Mật khẩu</label>
-                                            <input type="text" id="password" name="password" value="" placeholder="" class="form-control form-control-sm" />
-                                        </div>
-                                    </div>
-                                </div>
-
                                 <div class="row">
                                     <div class="col-md-6 mb-4 d-flex align-items-center">
                                         <div class="form-outline w-100">
@@ -38,16 +23,6 @@
                                         </div>
                                     </div>
                                 </div>
-
-                                <div class="row">
-                                    <div class="col-12 mb-4 d-flex align-items-center">
-                                        <div class="form-outline datepicker w-100">
-                                            <label for="address" class="form-label">Địa chỉ</label>
-                                            <input type="text" id="address" name="address" value="" placeholder="" class="form-control form-control-sm" />
-                                        </div>
-                                    </div>
-                                </div>
-
                                 <div class="row">
                                     <div class="col-md-6 mb-4 pb-2">
                                         <div class="form-outline">
@@ -56,19 +31,26 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6 mb-4 pb-2">
-                                        <label class="form-label select-label">Vai trò</label>
+                                        <label class="form-label select-label">Trạng thái</label>
                                         <select name="id_role" class="select form-control form-control-sm">
-                                            <?php foreach ($getAllRoles as $key => $value) :?>
-                                                <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
-                                            <?php endforeach; ?>
+                                            <option value="0">Người dùng</option>
+                                            <option value="1">Admin</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-12 mb-4 pb-2">
-                                        <div class="form-outline">
-                                            <label class="form-label" for="avatar">Ảnh đại diện</label>
-                                            <input class="form-control form-control-sm" id="avatar" name="avatar" type="file" />
+                                    <div class="col-12 mb-4 d-flex align-items-center">
+                                        <div class="form-outline datepicker w-100">
+                                            <label for="address" class="form-label">Địa chỉ</label>
+                                            <input type="text" name="address" class="form-control form-control-sm" value="" placeholder="" id="address" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 mb-4 d-flex align-items-center">
+                                        <div class="form-outline datepicker w-100">
+                                            <label for="note" class="form-label">Ghi chú</label>
+                                            <textarea name="note" cols="30" rows="3" class="form-control form-control-sm" id="note"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -76,7 +58,7 @@
                                     <a href="?action=tables&data=accounts">
                                         <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Hủy</button>
                                     </a>
-                                    <button type="submit" name="submit" class="btn" style="background-color: #17c1e8;">Xác nhận</button>
+                                    <button type="submit" name="btn_edit" class="btn" style="background-color: #17c1e8;">Xác nhận</button>
                                 </div>
                             </div>
                         </div>

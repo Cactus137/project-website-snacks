@@ -41,10 +41,10 @@
                         <!-- Xem chi tiết -->
                         <a name="detail_btn" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn bg-secondary btn-sm m-0 mx-1" style="display: flex; align-items: center; justify-content: center;" href="">
                           <i class="fa-solid fa-circle-info" style="color: #ffffff;"></i>
-                        </a> 
-                        <!-- Xóa -->
-                        <a name="dlt_btn" class="btn btn-danger btn-sm m-0 mx-1" style=" display: flex; align-items: center; justify-content: center;" onclick="return confirm('Bạn có xác nhận xóa ?');" href="#">
-                          <i class="fa fa-trash"></i>
+                        </a>
+                        <!-- Sửa -->
+                        <a name="edit_btn" class="btn bg-secondary btn-sm m-0 mx-1" style="display: flex; align-items: center; justify-content: center;" href="?action=tables&data=edit_order">
+                          <i class="fa-solid fa-pen-to-square" style="color: #ffffff;"></i>
                         </a>
                       </div>
                     </td>
@@ -143,10 +143,10 @@
             <!-- Cột bên phải (1/3) -->
             <div class="col-md-4 px-5">
               <div class="row border border-light rounded-3 mb-3">
-                <!-- User --> 
+                <!-- User -->
                 <div class="d-flex p-3">
                   <div>
-                    <img src="assets/img/team-2.jpg" class="avatar me-3" >
+                    <img src="assets/img/team-2.jpg" class="avatar me-3">
                   </div>
                   <div class="d-flex flex-column justify-content-center">
                     <h6 class="mb-0 text-sm">John Michael</h6>

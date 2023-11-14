@@ -17,9 +17,7 @@
                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7">Status</th>
                   <th></th>
                 </tr>
-              </thead>
-              <tbody>
-                <?php for ($i = 0; $i < 9; $i++) : ?>
+              
                   <tr>
                     <td class="text-center p-2" style="width: 25px;">
                       <span>1</span>
@@ -49,8 +47,8 @@
                       </div>
                     </td>
                   </tr>
-                <?php endfor; ?>
-              </tbody>
+                
+             
             </table>
           </div>
         </div>

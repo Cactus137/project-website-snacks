@@ -14,9 +14,9 @@ CREATE TABLE accounts (
 	id INT(11) NOT NULL AUTO_INCREMENT,
 	username VARCHAR(255) NOT NULL,
 	password VARCHAR(255) NOT NULL,
-	fullname VARCHAR(255) NOT NULL,
+	fullname VARCHAR(255),
 	avatar VARCHAR(255) NOT NULL DEFAULT 'default_avatar.jpg',
-	email VARCHAR(255),
+	email VARCHAR(255) NOT NULL,
 	address TEXT,
 	tel VARCHAR(10),
     id_role INT(11),
@@ -172,3 +172,76 @@ VALUES
 (3, 'Đang giao hàng'),
 (4, 'Đã giao hàng'),
 (5, 'Đã hủy');
+
+INSERT INTO products (name, image, description, quantity, view_product, id_category)
+VALUES 
+('Burger 1', 'burger1.jpg', 'Mô tả burger 1', 50, 0, 1),
+('Combo 1', 'combo1.jpg', 'Mô tả combo 1', 100, 0, 2),
+('Gà rán 1', 'garam1.jpg', 'Mô tả gà rán 1', 75, 0, 3),
+('Cơm-Mỳ ý 1', 'commyy1.jpg', 'Mô tả cơm-mỳ ý 1', 50, 0, 4),
+('Khoai tây 1', 'khoaitay1.jpg', 'Mô tả khoai tây 1', 100, 0, 5),
+('Thức uống 1', 'thucuong1.jpg', 'Mô tả thức uống 1', 50, 0, 6);
+
+INSERT INTO product_variants (id_product, id_size_product, total_price)
+VALUES 
+(1, 2, 10000),
+(2, 3, 20000),
+(3, 1, 0),
+(4, 5, 10000),
+(5, 2, 10000),
+(6, 3, 20000);
+
+INSERT INTO comments (content, id_account, id_product, comment_date)
+VALUES 
+('Bình luận sản phẩm 1', 1, 1, NOW()),
+('Bình luận sản phẩm 2', 2, 2, NOW()),
+('Bình luận sản phẩm 3', 3, 3, NOW());
+
+INSERT INTO cart (id_product_variants, price, quantiny)
+VALUES 
+(1, 10000, 2),
+(3, 20000, 1),
+(5, 10000, 3);
+
+
+INSERT INTO orders (order_date, id_status, id_account)
+VALUES 
+(NOW(), 4, 1),
+(NOW(), 4, 2),
+(NOW(), 4, 3),
+(NOW(), 4, 1),
+(NOW(), 4, 2),
+(NOW(), 4, 3),
+(NOW(), 4, 1),
+(NOW(), 4, 2),
+(NOW(), 4, 3),
+(NOW(), 4, 1),
+(NOW(), 4, 2),
+(NOW(), 4, 3),
+(NOW(), 4, 1),
+(NOW(), 4, 2),
+(NOW(), 4, 3),
+(NOW(), 4, 1),
+(NOW(), 4, 2),
+(NOW(), 4, 3);
+
+INSERT INTO order_details (id_order, id_product_variants, quantity, discount, total_amount, notes)
+VALUES 
+(1, 1, 2, NULL, 20000, 'Ghi chú đơn hàng 1'),
+(2, 2, 1, 1, 18000, 'Ghi chú đơn hàng 2'),
+(3, 3, 3, 2, 27000, 'Ghi chú đơn hàng 3'),
+(4, 1, 2, NULL, 20000, 'Ghi chú đơn hàng 4'),
+(5, 2, 1, 1, 18000, 'Ghi chú đơn hàng 5'),
+(6, 3, 3, 2, 27000, 'Ghi chú đơn hàng 6'),
+(7, 1, 1, NULL, 10000, 'Ghi chú đơn hàng 7'),
+(8, 2, 2, 1, 36000, 'Ghi chú đơn hàng 8'),
+(9, 3, 1, 2, 12000, 'Ghi chú đơn hàng 9'),
+(10, 1, 2, NULL, 20000, 'Ghi chú đơn hàng 10'),
+(11, 2, 1, 1, 18000, 'Ghi chú đơn hàng 11'),
+(12, 3, 3, 2, 27000, 'Ghi chú đơn hàng 12'),
+(13, 1, 1, NULL, 10000, 'Ghi chú đơn hàng 13'),
+(14, 2, 2, 1, 36000, 'Ghi chú đơn hàng 14'),
+(15, 3, 1, 2, 12000, 'Ghi chú đơn hàng 15'),
+(16, 1, 2, NULL, 20000, 'Ghi chú đơn hàng 16'),
+(17, 2, 1, 1, 18000, 'Ghi chú đơn hàng 17'),
+(18, 3, 3, 2, 27000, 'Ghi chú đơn hàng 18');

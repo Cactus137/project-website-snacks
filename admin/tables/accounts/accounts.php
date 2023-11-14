@@ -5,7 +5,7 @@
       <div class="card mb-4">
         <div class="card-header pb-0">
           <h6>Người dùng</h6>
-        </div>
+        </div> 
         <div class="card-body px-0 pt-0 pb-2">
           <div class="table-responsive p-0">
             <table class="table align-items-center mb-0">
@@ -21,7 +21,9 @@
                 </tr>
               </thead>
               <tbody>
-                <?php for ($i = 0; $i < 9; $i++) : ?>
+                <?php foreach ($getAccounts as $account):
+                  extract($account); 
+                ?>
                   <tr>
                     <td class="text-center" style="width: 15px;">
                       <span>1</span>
@@ -29,25 +31,25 @@
                     <td>
                       <div class="d-flex px-2 py-1">
                         <div>
-                          <img src="assets/img/team-2.jpg" class="avatar avatar-sm me-3" alt="user1">
+                          <img src="<?= $pathImg . $avatar ?>" class="avatar avatar-sm me-3" alt="user1">
                         </div>
                         <div class="d-flex flex-column justify-content-center">
-                          <h6 class="mb-0 text-sm">John Michael</h6>
-                          <p class="text-xs text-secondary mb-0">john@creative-tim.com</p>
+                          <h6 class="mb-0 text-sm"><?= $username ?></h6>
+                          <p class="text-xs text-secondary mb-0"><?= $email ?></p>
                         </div>
                       </div>
                     </td>
                     <td>
-                      <p class="text-xs font-weight-bold mb-0">Le Van Thanh</p>
+                      <p class="text-xs font-weight-bold mb-0"><?= $fullname ?></p>
                     </td>
                     <td>
-                      <p class="text-xs font-weight-bold mb-0 px-3 text-truncate" style="width: 400px;">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Porro autem laboriosam, dignissimos, alias a architecto molestiae saepe repellat accusantium soluta quidem? Odit ea pariatur dolore exercitationem culpa. Nihil magnam, accusantium iusto quis deserunt aut hic perferendis velit necessitatibus veniam. Vitae cupiditate facere praesentium hic culpa delectus. Obcaecati animi voluptatum labore, consectetur dolores officiis cum eveniet voluptatibus molestiae beatae, tenetur aliquid? Obcaecati, rerum quas qui nulla consequatur quod magnam at modi molestiae ducimus non facere perferendis quia officia voluptatum beatae, sunt tempora. Doloribus quis fugiat libero aspernatur, unde accusantium iste nulla exercitationem. Accusantium debitis a ducimus, quo officia distinctio consequuntur numquam!</p>
+                      <p class="text-xs font-weight-bold mb-0 px-3 text-truncate" style="width: 400px;"><?= $address ?></p>
                     </td>
                     <td class="align-middle">
-                      <span class="text-secondary text-xs font-weight-bold  px-3">0123456789</span>
+                      <span class="text-secondary text-xs font-weight-bold  px-3"><?= $tel ?></span>
                     </td>
                     <td class="align-middle text-sm">
-                      <span class="badge badge-sm bg-gradient-success px-3">User</span>
+                      <span class="badge badge-sm bg-<?= $role_name == "Admin" ? "danger" : "warning"?> px-3"><?= $role_name ?></span>
                     </td>
                     <td class="align-middle d-flex py-4"> 
                       <!-- Sửa -->
@@ -60,7 +62,7 @@
                       </a>
                     </td>
                   </tr>
-                <?php endfor; ?>
+                <?php endforeach; ?>
               </tbody>
             </table>
           </div>

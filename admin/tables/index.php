@@ -1,14 +1,34 @@
 <?php
-// Include Model 
- 
-
 if (isset($_GET['data'])) {
     switch ($_GET['data']) {
         case 'accounts':
+            $getAccounts = getAllAccounts();
+            $pathImg = "assets/img/accounts/";
             include 'accounts/accounts.php';
             break;
 
         case 'add_account':
+            $getAllRoles = getAllRoles();
+            if (isset($_POST['submit'])) {
+                $username = $_POST['username'];
+                $password = $_POST['password'];
+                $fullname = $_POST['fullname'];
+                $email = $_POST['email'];
+                $address = $_POST['address'];
+                $tel = $_POST['tel'];
+                $id_role = $_POST['id_role'];
+
+                if ($_FILES['avatar']['name'] != "") {
+                    $avatar = $_FILES['avatar']['name'];
+                    $target_dir = "assets/img/accounts/";
+                    $target_file = $target_dir . basename($_FILES["avatar"]["name"]);
+                    move_uploaded_file($_FILES["avatar"]["tmp_name"], $target_file);
+                } else {
+                    $avatar = "profile.png";
+                }
+                addAccount($username, $password, $fullname, $avatar, $email, $address, $tel, $id_role);
+                header('location: ?action=tables&data=accounts');
+            }
             include 'accounts/add_account.php';
             break;
 
@@ -88,6 +108,9 @@ if (isset($_GET['data'])) {
         case 'orders':
             include 'orders/orders.php';
             break;
+        case 'edit_order':
+            include 'orders/edit_order.php';
+            break;
         case 'comments':
             include 'comments/comments.php';
             break;
@@ -105,7 +128,7 @@ if (isset($_GET['data'])) {
             break;
         case 'revenues':
             include 'revenues/revenues.php';
-            break; 
+            break;
         default:
             include 'accounts/accounts.php';
             break;

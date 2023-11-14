@@ -1,3 +1,28 @@
+<?php
+$countOrdersByStatus = countOrdersByStatus();
+$getCountAccounts = getCountAccounts();
+$getLoyalCustomers = getLoyalCustomers();
+
+$year = date('Y');
+$oldYear = $year - 1;
+$getRevenuesByNewMonth = getRevenuesByMonth($year);
+
+$name_months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+foreach ($name_months as $index => $name_months) {
+    ${$name_months} = $getRevenuesByNewMonth[$index]['total_revenue'] ?? 0;
+    echo "<script> var " . $name_months . " = " . ${$name_months} . ";</script>";
+}
+
+$getRevenuesByOldMonth = getRevenuesByMonth($oldYear);
+
+$name_old_months = ['oldJan', 'oldFeb', 'oldMar', 'oldApr', 'oldMay', 'oldJun', 'oldJul', 'oldAug', 'oldSep', 'oldOct', 'oldNov', 'oldDec'];
+
+foreach ($name_old_months as $index => $name_old_months) {
+    ${$name_old_months} = $getRevenuesByOldMonth[$index]['total_revenue'] ?? 0;
+    echo "<script> var " . $name_old_months . " = " . ${$name_old_months} . ";</script>";
+}
+?>
 <div class="container-fluid py-4 pb-0">
     <div class="row">
         <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
@@ -8,7 +33,7 @@
                             <div class="numbers">
                                 <p class="text-sm mb-0 text-capitalize font-weight-bold">Khách hàng</p>
                                 <h5 class="font-weight-bolder mb-0">
-                                    $53,000
+                                    <?= $getCountAccounts['count']; ?>
                                 </h5>
                             </div>
                         </div>
@@ -99,7 +124,7 @@
                         <div class="row">
                             <div class="col-12 py-3 ps-0">
                                 <div class="progress w-100">
-                                    <div class="progress-bar bg-dark w-100" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                                    <div class="progress-bar bg-dark w-100" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
                             </div>
                         </div>
@@ -110,7 +135,7 @@
         <div class="col-lg-7">
             <div class="card z-index-2">
                 <div class="card-header pb-0 text-center text-uppercase mt-3">
-                    <h6>So sánh doanh thu năm trước</h6> 
+                    <h6>So sánh doanh thu năm trước</h6>
                 </div>
                 <div class="card-body p-3">
                     <div class="chart">
@@ -142,66 +167,70 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>
-                                        <div class="d-flex px-2 py-1">
-                                            <div>
-                                                <img src="assets/img/team-2.jpg" class="avatar avatar-sm me-3" alt="xd">
-                                            </div>
-                                            <div class="d-flex flex-column justify-content-center">
-                                                <h6 class="mb-0 text-sm">Le Van Thanh</h6>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="align-middle text-center text-sm">
-                                        <span class="text-xs font-weight-bold"> $14,000 </span>
-                                    </td>
-                                    <td class="align-middle text-center text-sm">
-                                        <span class="text-xs font-weight-bold"> Vàng </span>
-                                    </td>
-                                    <td class="align-middle">
-                                        <div class="progress-wrapper w-50 mx-auto">
-                                            <div class="progress-info">
-                                                <div class="progress-percentage">
-                                                    <span class="text-xs font-weight-bold">60%</span>
+                                <?php
+                                foreach ($getLoyalCustomers as $loyalCustomer) :
+                                    extract($loyalCustomer);
+                                ?>
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex px-2 py-1">
+                                                <div>
+                                                    <img src="assets/img/team-2.jpg" class="avatar avatar-sm me-3" alt="xd">
+                                                </div>
+                                                <div class="d-flex flex-column justify-content-center">
+                                                    <h6 class="mb-0 text-sm"><?= $username ?></h6>
                                                 </div>
                                             </div>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-gradient-info w-60" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="d-flex px-2 py-1">
-                                            <div>
-                                                <img src="assets/img/team-2.jpg" class="avatar avatar-sm me-3" alt="xd">
-                                            </div>
-                                            <div class="d-flex flex-column justify-content-center">
-                                                <h6 class="mb-0 text-sm">Le Van Thanh</h6>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="align-middle text-center text-sm">
-                                        <span class="text-xs font-weight-bold"> $14,000 </span>
-                                    </td>
-                                    <td class="align-middle text-center text-sm">
-                                        <span class="text-xs font-weight-bold"> Vàng </span>
-                                    </td>
-                                    <td class="align-middle">
-                                        <div class="progress-wrapper w-50 mx-auto">
-                                            <div class="progress-info">
-                                                <div class="progress-percentage">
-                                                    <span class="text-xs font-weight-bold">100%</span>
+                                        </td>
+                                        <td class="align-middle text-center text-sm">
+                                            <span class="text-xs font-weight-bold"><?= number_format($total_amount) . " VND" ?></span>
+                                        </td>
+                                        <td class="align-middle text-center text-sm">
+                                            <span class="text-xs font-weight-bold">
+                                                <?php
+                                                    if($total_amount > 10000000) echo "Kim cương"; 
+                                                    else if($total_amount > 5000000) echo "Vàng";
+                                                    else if($total_amount > 1000000) echo "Bạc";
+                                                    else echo "Đồng";
+                                                ?>
+                                            </span>
+                                        </td>
+                                        <td class="align-middle">
+                                            <div class="progress-wrapper w-50 mx-auto">
+                                                <div class="progress-info">
+                                                    <div class="progress-percentage">
+                                                        <span class="text-xs font-weight-bold">
+                                                            <?php 
+                                                                $percentDiamond = 
+                                                                $percentGold = $total_amount / 5000000 * 100;
+                                                                $percentSilver = $total_amount / 1000000 * 100;
+                                                                $percentBronze = $total_amount / 1000000 * 100;
+
+                                                                if($total_amount > 10000000) {
+                                                                    $percent = $total_amount / 10000000 * 100;
+                                                                }
+                                                                else if($total_amount > 5000000) {
+                                                                    $percent = $total_amount / 5000000 * 100;
+                                                                }
+                                                                else if($total_amount > 1000000) {
+                                                                    $percent = $total_amount / 1000000 * 100;
+                                                                }
+                                                                else {
+                                                                    $percent = $total_amount / 1000000 * 100;
+                                                                }
+
+                                                                echo round($percent, 2) . "%";
+                                                            ?>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="progress">
+                                                    <div class="progress-bar bg-gradient-info w-<?= round($percent, 2) ?>" role="progressbar" aria-valuenow="<?= round($percent, 2) ?>" aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
                                             </div>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-gradient-success w-100" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
+                                        </td>
+                                    </tr> 
+                                <?php endforeach; ?>
                             </tbody>
                         </table>
                     </div>
@@ -213,55 +242,72 @@
                 <div class="card-header pb-0">
                     <h6>Trạng thái đơn hàng</h6>
                 </div>
-                <div class="card-body p-3">
-                    <div class="timeline timeline-one-side">
-                        <div class="timeline-block mb-3">
-                            <span class="timeline-step">
-                                <i class="fa-solid fa-check" style="color: #00ff00;"></i>
-                            </span>
-                            <div class="timeline-content">
-                                <h6 class="text-dark text-sm font-weight-bold mb-0">Đã giao hàng</h6>
-                                <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">20 Sản phẩm</p>
+                <?php for ($i = 0; $i < count($countOrdersByStatus); $i++) : ?>
+                    <div class="card-body p-3">
+                        <div class="timeline timeline-one-side">
+                            <div class="timeline-block mb-3">
+                                <span class="timeline-step">
+                                    <i class="fa-solid fa-check" style="color: #00ff00;"></i>
+                                </span>
+                                <div class="timeline-content">
+                                    <h6 class="text-dark text-sm font-weight-bold mb-0"><?= $countOrdersByStatus[$i]['status_name'] ?></h6>
+                                    <p class="text-secondary font-weight-bold text-xs mt-1 mb-0"><?= $countOrdersByStatus[$i]['order_count'];
+                                                                                                    $i++; ?> Sản phẩm</p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="timeline-block mb-3">
-                            <span class="timeline-step">
-                            <i class="fa-solid fa-truck" style="color: #00e1ff;"></i>
-                            </span>
-                            <div class="timeline-content">
-                                <h6 class="text-dark text-sm font-weight-bold mb-0">Đang giao hàng</h6>
-                                <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">20 Sản phẩm</p>
+                            <div class="timeline-block mb-3">
+                                <span class="timeline-step">
+                                    <i class="fa-solid fa-truck" style="color: #00e1ff;"></i>
+                                </span>
+                                <div class="timeline-content">
+                                    <h6 class="text-dark text-sm font-weight-bold mb-0"><?= $countOrdersByStatus[$i]['status_name'] ?></h6>
+                                    <p class="text-secondary font-weight-bold text-xs mt-1 mb-0"><?= $countOrdersByStatus[$i]['order_count'];
+                                                                                                    $i++; ?> Sản phẩm</p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="timeline-block mb-3">
-                            <span class="timeline-step">
-                            <i class="fa-solid fa-box" style="color: #ff8800;"></i>
-                            </span>
-                            <div class="timeline-content">
-                                <h6 class="text-dark text-sm font-weight-bold mb-0">Đang đóng gói</h6>
-                                <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">20 Sản phẩm</p>
+                            <div class="timeline-block mb-3">
+                                <span class="timeline-step">
+                                    <i class="fa-solid fa-box" style="color: #ff8800;"></i>
+                                </span>
+                                <div class="timeline-content">
+                                    <h6 class="text-dark text-sm font-weight-bold mb-0"><?= $countOrdersByStatus[$i]['status_name'] ?></h6>
+                                    <p class="text-secondary font-weight-bold text-xs mt-1 mb-0"><?= $countOrdersByStatus[$i]['order_count'];
+                                                                                                    $i++; ?> Sản phẩm</p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="timeline-block mb-3">
-                            <span class="timeline-step">
-                            <i class="fa-solid fa-circle-check" style="color: #00ff00;"></i>
-                            </span>
-                            <div class="timeline-content">
-                                <h6 class="text-dark text-sm font-weight-bold mb-0">Đã xác nhận</h6>
-                                <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">20 Sản phẩm</p>
+                            <div class="timeline-block mb-3">
+                                <span class="timeline-step">
+                                    <i class="fa-solid fa-circle-check" style="color: #00ff00;"></i>
+                                </span>
+                                <div class="timeline-content">
+                                    <h6 class="text-dark text-sm font-weight-bold mb-0"><?= $countOrdersByStatus[$i]['status_name'] ?></h6>
+                                    <p class="text-secondary font-weight-bold text-xs mt-1 mb-0"><?= $countOrdersByStatus[$i]['order_count'];
+                                                                                                    $i++; ?> Sản phẩm</p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="timeline-block">
-                            <span class="timeline-step">
-                                <i class="fas fa-clock"></i>
-                            </span>
-                            <div class="timeline-content">
-                                <h6 class="text-dark text-sm font-weight-bold mb-0">Chờ xác nhận</h6>
-                                <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">20 Sản phẩm</p>
+                            <div class="timeline-block">
+                                <span class="timeline-step">
+                                    <i class="fas fa-clock"></i>
+                                </span>
+                                <div class="timeline-content">
+                                    <h6 class="text-dark text-sm font-weight-bold mb-0"><?= $countOrdersByStatus[$i]['status_name'] ?></h6>
+                                    <p class="text-secondary font-weight-bold text-xs mt-1 mb-0"><?= $countOrdersByStatus[$i]['order_count'];
+                                                                                                    $i++; ?> Sản phẩm</p>
+                                </div>
+                            </div>
+                            <div class="timeline-block">
+                                <span class="timeline-step">
+                                    <i class="fa-solid fa-ban" style="color: #ff0000;"></i>
+                                </span>
+                                <div class="timeline-content">
+                                    <h6 class="text-dark text-sm font-weight-bold mb-0"><?= $countOrdersByStatus[$i]['status_name'] ?></h6>
+                                    <p class="text-secondary font-weight-bold text-xs mt-1 mb-0"><?= $countOrdersByStatus[$i]['order_count'];
+                                                                                                    $i++; ?> Sản phẩm</p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                <?php endfor; ?>
             </div>
         </div>
     </div>

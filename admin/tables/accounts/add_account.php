@@ -10,18 +10,20 @@
                         <div class="row justify-content-center align-items-center h-100 mt-5">
                             <div class="col-12 col-xl-7">
                                 <div class="row">
-                                    <div class="col-md-6 mb-4 d-flex align-items-center">
+                                    <div class="col-md-6 mb-2 d-flex align-items-center">
                                         <div class="form-outline w-100">
                                             <label for="username" class="form-label">Tên tài khoản</label>
                                             <input type="text" name="username" class="form-control form-control-sm" value="" placeholder="" id="username" />
                                         </div>
                                     </div>
-                                    <div class="col-md-6 mb-4 d-flex align-items-center">
+                                    <div class="col-md-6 mb-2 d-flex align-items-center">
                                         <div class="form-outline w-100">
                                             <label class="form-label" for="password">Mật khẩu</label>
                                             <input type="text" id="password" name="password" value="" placeholder="" class="form-control form-control-sm" />
                                         </div>
                                     </div>
+                                    <span class="text-danger error col-md-6 mb-4 d-flex align-items-centercol-md-6 mb-4 d-flex align-items-center" id="check-validate-username"></span>
+                                    <span class="text-danger error col-md-6 mb-4 d-flex align-items-centercol-md-6 mb-4 d-flex align-items-center" id="check-validate-password"></span>
                                 </div>
 
                                 <div class="row">
@@ -34,9 +36,11 @@
                                     <div class="col-md-6 mb-4 d-flex align-items-center">
                                         <div class="form-outline w-100">
                                             <label class="form-label" for="email">Email</label>
-                                            <input type="email" id="email" name="email" value="" placeholder="" class="form-control form-control-sm" />
+                                            <input type="text" id="email" name="email" value="" placeholder="" class="form-control form-control-sm" />
                                         </div>
                                     </div>
+                                    <span class="text-danger error col-md-6 mb-4 d-flex align-items-centercol-md-6 mb-4 d-flex align-items-center" id=""></span>
+                                    <span class="text-danger error col-md-6 mb-4 d-flex align-items-centercol-md-6 mb-4 d-flex align-items-center" id="check-validate-email"></span>
                                 </div>
 
                                 <div class="row">
@@ -58,7 +62,7 @@
                                     <div class="col-md-6 mb-4 pb-2">
                                         <label class="form-label select-label">Vai trò</label>
                                         <select name="id_role" class="select form-control form-control-sm">
-                                            <?php foreach ($getAllRoles as $key => $value) :?>
+                                            <?php foreach ($getAllRoles as $key => $value) : ?>
                                                 <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
                                             <?php endforeach; ?>
                                         </select>
@@ -85,3 +89,14 @@
             </div>
         </div>
     </div>
+    <?php
+    echo "<script> var arrayCheckValidate = " . $check_validate . "</script>";
+    ?>
+    <script>
+        var checkValidateUsername = document.getElementById("check-validate-username");
+        var checkValidatePassword = document.getElementById("check-validate-password");
+        var checkValidateEmail = document.getElementById("check-validate-email");
+        checkValidateEmail.innerHTML = arrayCheckValidate['email'];
+        checkValidateUsername.innerHTML = arrayCheckValidate['username'];
+        checkValidatePassword.innerHTML = arrayCheckValidate['password'];
+    </script>

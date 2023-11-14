@@ -188,10 +188,10 @@ foreach ($name_old_months as $index => $name_old_months) {
                                         <td class="align-middle text-center text-sm">
                                             <span class="text-xs font-weight-bold">
                                                 <?php
-                                                    if($total_amount > 10000000) echo "Kim cương"; 
-                                                    else if($total_amount > 5000000) echo "Vàng";
-                                                    else if($total_amount > 1000000) echo "Bạc";
-                                                    else echo "Đồng";
+                                                if ($total_amount > 10000000) echo "Kim cương";
+                                                else if ($total_amount > 5000000) echo "Vàng";
+                                                else if ($total_amount > 1000000) echo "Bạc";
+                                                else echo "Đồng";
                                                 ?>
                                             </span>
                                         </td>
@@ -200,26 +200,23 @@ foreach ($name_old_months as $index => $name_old_months) {
                                                 <div class="progress-info">
                                                     <div class="progress-percentage">
                                                         <span class="text-xs font-weight-bold">
-                                                            <?php 
-                                                                $percentDiamond = 
+                                                            <?php
+                                                            $percentDiamond =
                                                                 $percentGold = $total_amount / 5000000 * 100;
-                                                                $percentSilver = $total_amount / 1000000 * 100;
-                                                                $percentBronze = $total_amount / 1000000 * 100;
+                                                            $percentSilver = $total_amount / 1000000 * 100;
+                                                            $percentBronze = $total_amount / 1000000 * 100;
 
-                                                                if($total_amount > 10000000) {
-                                                                    $percent = $total_amount / 10000000 * 100;
-                                                                }
-                                                                else if($total_amount > 5000000) {
-                                                                    $percent = $total_amount / 5000000 * 100;
-                                                                }
-                                                                else if($total_amount > 1000000) {
-                                                                    $percent = $total_amount / 1000000 * 100;
-                                                                }
-                                                                else {
-                                                                    $percent = $total_amount / 1000000 * 100;
-                                                                }
+                                                            if ($total_amount > 10000000) {
+                                                                $percent = $total_amount / 10000000 * 100;
+                                                            } else if ($total_amount > 5000000) {
+                                                                $percent = $total_amount / 5000000 * 100;
+                                                            } else if ($total_amount > 1000000) {
+                                                                $percent = $total_amount / 1000000 * 100;
+                                                            } else {
+                                                                $percent = $total_amount / 1000000 * 100;
+                                                            }
 
-                                                                echo round($percent, 2) . "%";
+                                                            echo round($percent, 2) . "%";
                                                             ?>
                                                         </span>
                                                     </div>
@@ -229,7 +226,7 @@ foreach ($name_old_months as $index => $name_old_months) {
                                                 </div>
                                             </div>
                                         </td>
-                                    </tr> 
+                                    </tr>
                                 <?php endforeach; ?>
                             </tbody>
                         </table>
@@ -311,3 +308,173 @@ foreach ($name_old_months as $index => $name_old_months) {
             </div>
         </div>
     </div>
+    <script>
+        var ctx = document.getElementById("chart-bars").getContext("2d");
+
+        new Chart(ctx, {
+            type: "bar",
+            data: {
+                labels: ["Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"],
+                datasets: [{
+                    label: "Sales",
+                    tension: 0.4,
+                    borderWidth: 0,
+                    borderRadius: 4,
+                    borderSkipped: false,
+                    backgroundColor: "#fff",
+                    data: [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec],
+                    maxBarThickness: 6
+                }, ],
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false,
+                    }
+                },
+                interaction: {
+                    intersect: false,
+                    mode: 'index',
+                },
+                scales: {
+                    y: {
+                        grid: {
+                            drawBorder: false,
+                            display: false,
+                            drawOnChartArea: false,
+                            drawTicks: false,
+                        },
+                        ticks: {
+                            suggestedMin: 0,
+                            suggestedMax: 500,
+                            beginAtZero: true,
+                            padding: 15,
+                            font: {
+                                size: 14,
+                                family: "Open Sans",
+                                style: 'normal',
+                                lineHeight: 2
+                            },
+                            color: "#fff"
+                        },
+                    },
+                    x: {
+                        grid: {
+                            drawBorder: false,
+                            display: false,
+                            drawOnChartArea: false,
+                            drawTicks: false
+                        },
+                        ticks: {
+                            display: false
+                        },
+                    },
+                },
+            },
+        });
+
+
+        var ctx2 = document.getElementById("chart-line").getContext("2d");
+
+        var gradientStroke1 = ctx2.createLinearGradient(0, 230, 0, 50);
+
+        gradientStroke1.addColorStop(1, 'rgba(203,12,159,0.2)');
+        gradientStroke1.addColorStop(0.2, 'rgba(72,72,176,0.0)');
+        gradientStroke1.addColorStop(0, 'rgba(203,12,159,0)'); //purple colors
+
+        var gradientStroke2 = ctx2.createLinearGradient(0, 230, 0, 50);
+
+        gradientStroke2.addColorStop(1, 'rgba(20,23,39,0.2)');
+        gradientStroke2.addColorStop(0.2, 'rgba(72,72,176,0.0)');
+        gradientStroke2.addColorStop(0, 'rgba(20,23,39,0)'); //purple colors
+
+        new Chart(ctx2, {
+            type: "line",
+            data: {
+                labels: ["Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"],
+                datasets: [{
+                        label: "Năm nay",
+                        tension: 0.4,
+                        borderWidth: 0,
+                        pointRadius: 0,
+                        borderColor: "#cb0c9f",
+                        borderWidth: 3,
+                        backgroundColor: gradientStroke1,
+                        fill: true,
+                        data: [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec],
+                        maxBarThickness: 6
+
+                    },
+                    {
+                        label: "Năm ngoái",
+                        tension: 0.4,
+                        borderWidth: 0,
+                        pointRadius: 0,
+                        borderColor: "#3A416F",
+                        borderWidth: 3,
+                        backgroundColor: gradientStroke2,
+                        fill: true,
+                        data: [oldJan, oldFeb, oldMar, oldApr, oldMay, oldJun, oldJul, oldAug, oldSep, oldOct, oldNov, oldDec],
+                        maxBarThickness: 6
+                    },
+                ],
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false,
+                    }
+                },
+                interaction: {
+                    intersect: false,
+                    mode: 'index',
+                },
+                scales: {
+                    y: {
+                        grid: {
+                            drawBorder: false,
+                            display: true,
+                            drawOnChartArea: true,
+                            drawTicks: false,
+                            borderDash: [5, 5]
+                        },
+                        ticks: {
+                            display: true,
+                            padding: 10,
+                            color: '#b2b9bf',
+                            font: {
+                                size: 11,
+                                family: "Open Sans",
+                                style: 'normal',
+                                lineHeight: 2
+                            },
+                        }
+                    },
+                    x: {
+                        grid: {
+                            drawBorder: false,
+                            display: false,
+                            drawOnChartArea: false,
+                            drawTicks: false,
+                            borderDash: [5, 5]
+                        },
+                        ticks: {
+                            display: true,
+                            color: '#b2b9bf',
+                            padding: 20,
+                            font: {
+                                size: 11,
+                                family: "Open Sans",
+                                style: 'normal',
+                                lineHeight: 2
+                            },
+                        }
+                    },
+                },
+            },
+        });
+    </script>

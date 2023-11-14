@@ -1,3 +1,6 @@
+<?php 
+    session_start();
+?>
 <!doctype html>
 <html lang="en">
 
@@ -51,36 +54,70 @@
                 ?>
                 <div>
                     <?php switch ($_GET['action']) {
-
                         case 'dashboard':
                             include "./dashboard.php";
                             break;
                         case 'accounts':
                             $getAccounts = getAllAccounts();
-                            $pathImg = "assets/img/accounts/";
+                            $pathImg = "../assets/img/accounts/";
                             include 'tables/accounts/accounts.php';
                             break;
                         case 'add_account':
+                            unset($_SESSION['error']);
                             $getAllRoles = getAllRoles();
-                            if (isset($_POST['submit'])) {
-                                $username = $_POST['username'];
-                                $password = $_POST['password'];
-                                $fullname = $_POST['fullname'];
-                                $email = $_POST['email'];
-                                $address = $_POST['address'];
-                                $tel = $_POST['tel'];
+                            $getAccounts = getAllAccounts();
+
+                            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                                $username =$_POST['username'];
+                                $password =$_POST['password'];
+                                $fullname =$_POST['fullname'];
+                                $email =$_POST['email'];
+                                $address =$_POST['address'];
+                                $tel =$_POST['tel'];
                                 $id_role = $_POST['id_role'];
 
                                 if ($_FILES['avatar']['name'] != "") {
                                     $avatar = $_FILES['avatar']['name'];
-                                    $target_dir = "assets/img/accounts/";
+                                    $target_dir = "../assets/img/accounts/";
                                     $target_file = $target_dir . basename($_FILES["avatar"]["name"]);
                                     move_uploaded_file($_FILES["avatar"]["tmp_name"], $target_file);
                                 } else {
-                                    $avatar = "profile.png";
+                                    $avatar = "profile.jpg";
                                 }
-                                addAccount($username, $password, $fullname, $avatar, $email, $address, $tel, $id_role);
-                                header('location: ?action=tables&data=accounts');
+
+                                $check_validate = [];
+                                foreach ($getAccounts as $key => $value) {
+                                    if ($value['username'] == $username) {
+                                        $check_validate['username'] = "Tên tài khoản đã tồn tại";
+                                        break;
+                                    }else {
+                                        $check_validate['username'] = "";
+                                    }
+                                }
+                                if (!isset($username) || $username == "") {
+                                    $check_validate['username'] = "Tên tài khoản không được để trống";
+                                }else {
+                                    $check_validate['username'] = "";
+                                }
+                                if (strlen($password) < 10) {
+                                    $check_validate['password'] = "Mật khẩu phải có ít nhất 10 ký tự";
+                                }else {
+                                    $check_validate['password'] = "";
+                                }
+                                $regex_email = "/^[a-z0-9!#$%&'*+\\/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+\\/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/";
+                                if (!preg_match($regex_email, $email)) {
+                                    $check_validate['email'] = "Email không hợp lệ";
+                                }else {
+                                    $check_validate['email'] = "";
+                                }
+
+                                $check_validate = json_encode($check_validate); 
+
+                                // {
+                                //     addAccount($username, $password, $fullname, $avatar, $email, $address, $tel, $id_role);
+                                //     header('location: index.php?action=accounts');
+                                // } 
+
                             }
                             include 'tables/accounts/add_account.php';
                             break;
@@ -226,184 +263,12 @@
     <script src="assets/js/core/bootstrap.min.js"></script>
     <script src="assets/js/plugins/perfect-scrollbar.min.js"></script>
     <script src="assets/js/plugins/smooth-scrollbar.min.js"></script>
-    <script src="assets/js/plugins/chartjs.min.js"></script>
-    <script>
-        console.log(Jan);
-    </script>
-    <script>
-        var ctx = document.getElementById("chart-bars").getContext("2d");
+    <script src="assets/js/plugins/chartjs.min.js"></script> 
 
-        new Chart(ctx, {
-            type: "bar",
-            data: {
-                labels: ["Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"],
-                datasets: [{
-                    label: "Sales",
-                    tension: 0.4,
-                    borderWidth: 0,
-                    borderRadius: 4,
-                    borderSkipped: false,
-                    backgroundColor: "#fff",
-                    data: [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec],
-                    maxBarThickness: 6
-                }, ],
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        display: false,
-                    }
-                },
-                interaction: {
-                    intersect: false,
-                    mode: 'index',
-                },
-                scales: {
-                    y: {
-                        grid: {
-                            drawBorder: false,
-                            display: false,
-                            drawOnChartArea: false,
-                            drawTicks: false,
-                        },
-                        ticks: {
-                            suggestedMin: 0,
-                            suggestedMax: 500,
-                            beginAtZero: true,
-                            padding: 15,
-                            font: {
-                                size: 14,
-                                family: "Open Sans",
-                                style: 'normal',
-                                lineHeight: 2
-                            },
-                            color: "#fff"
-                        },
-                    },
-                    x: {
-                        grid: {
-                            drawBorder: false,
-                            display: false,
-                            drawOnChartArea: false,
-                            drawTicks: false
-                        },
-                        ticks: {
-                            display: false
-                        },
-                    },
-                },
-            },
-        });
-
-
-        var ctx2 = document.getElementById("chart-line").getContext("2d");
-
-        var gradientStroke1 = ctx2.createLinearGradient(0, 230, 0, 50);
-
-        gradientStroke1.addColorStop(1, 'rgba(203,12,159,0.2)');
-        gradientStroke1.addColorStop(0.2, 'rgba(72,72,176,0.0)');
-        gradientStroke1.addColorStop(0, 'rgba(203,12,159,0)'); //purple colors
-
-        var gradientStroke2 = ctx2.createLinearGradient(0, 230, 0, 50);
-
-        gradientStroke2.addColorStop(1, 'rgba(20,23,39,0.2)');
-        gradientStroke2.addColorStop(0.2, 'rgba(72,72,176,0.0)');
-        gradientStroke2.addColorStop(0, 'rgba(20,23,39,0)'); //purple colors
-
-        new Chart(ctx2, {
-            type: "line",
-            data: {
-                labels: ["Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"],
-                datasets: [{
-                        label: "Năm nay",
-                        tension: 0.4,
-                        borderWidth: 0,
-                        pointRadius: 0,
-                        borderColor: "#cb0c9f",
-                        borderWidth: 3,
-                        backgroundColor: gradientStroke1,
-                        fill: true,
-                        data: [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec],
-                        maxBarThickness: 6
-
-                    },
-                    {
-                        label: "Năm ngoái",
-                        tension: 0.4,
-                        borderWidth: 0,
-                        pointRadius: 0,
-                        borderColor: "#3A416F",
-                        borderWidth: 3,
-                        backgroundColor: gradientStroke2,
-                        fill: true,
-                        data: [oldJan, oldFeb, oldMar, oldApr, oldMay, oldJun, oldJul, oldAug, oldSep, oldOct, oldNov, oldDec],
-                        maxBarThickness: 6
-                    },
-                ],
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        display: false,
-                    }
-                },
-                interaction: {
-                    intersect: false,
-                    mode: 'index',
-                },
-                scales: {
-                    y: {
-                        grid: {
-                            drawBorder: false,
-                            display: true,
-                            drawOnChartArea: true,
-                            drawTicks: false,
-                            borderDash: [5, 5]
-                        },
-                        ticks: {
-                            display: true,
-                            padding: 10,
-                            color: '#b2b9bf',
-                            font: {
-                                size: 11,
-                                family: "Open Sans",
-                                style: 'normal',
-                                lineHeight: 2
-                            },
-                        }
-                    },
-                    x: {
-                        grid: {
-                            drawBorder: false,
-                            display: false,
-                            drawOnChartArea: false,
-                            drawTicks: false,
-                            borderDash: [5, 5]
-                        },
-                        ticks: {
-                            display: true,
-                            color: '#b2b9bf',
-                            padding: 20,
-                            font: {
-                                size: 11,
-                                family: "Open Sans",
-                                style: 'normal',
-                                lineHeight: 2
-                            },
-                        }
-                    },
-                },
-            },
-        });
-    </script>
     <!-- Github buttons -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
-    <script src="assets/js/soft-ui-dashboard.min.js?v=1.0.7"></script>
+    <!-- <script src="assets/js/soft-ui-dashboard.min.js?v=1.0.7"></script> -->
 </body>
 
 </html>

@@ -1,6 +1,9 @@
+<?php
+    include '../model/pdo.php';
+    include '../model/categories.php';
+?>
 <!doctype html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -40,6 +43,11 @@
                 </header>
                 <div>
                     <?php switch ($_GET['action']) {
+
+                        case 'categories':
+                            include '../tables/categories/categories.php';
+                            break;
+
                         case 'dashboard':
                             include "./dashboard.php";
                             break;

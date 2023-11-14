@@ -29,8 +29,17 @@
                                     <a href="?action=tables&data=categories">
                                         <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Hủy</button>
                                     </a>
-                                    <button type="submit" name="btn_edit" class="btn" style="background-color: #17c1e8;">Xác nhận</button>
+                                    <input type="submit" name="btn_edit" class="btn" style="background-color: #17c1e8;" value="Xác nhận">
                                 </div>
+                                <?php
+                                    if(isset($notificationERROR) && ($notificationERROR != "")){
+                                        echo $notificationERROR;
+                                    }
+
+                                    if(isset($notification) && ($notification != '')){
+                                        echo $notification;
+                                    }
+                                ?>
                             </div>
                         </div>
                     </form>

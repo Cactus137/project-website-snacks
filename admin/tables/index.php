@@ -26,6 +26,7 @@ if (isset($_GET['data'])) {
                     $avatar = "profile.png";
                 }
                 addAccount($username, $password, $fullname, $avatar, $email, $address, $tel, $id_role);
+                header('location: ?action=tables&data=accounts');
             }
             include 'accounts/add_account.php';
             break;

@@ -27,6 +27,7 @@
     <main class="d-flex justify-content-center">
         <div class="container">
             <?php
+
             if ($_GET['act']) {
                 switch ($_GET['act']) {
                     case 'home':

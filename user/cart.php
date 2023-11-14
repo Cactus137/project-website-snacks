@@ -24,7 +24,7 @@
                         </div>
                         <div class="icon-delete">
                             <!-- <a href=""><img src="img/trash-bin 1.png" alt="" ></a> -->
-                            <a href="#"><i class="fa-solid fa-trash-can"></i></a>
+                            <a href="index.php?act=delcart"><i class="fa-solid fa-trash-can"></i></a>
                         </div>
                     </div>
                 </div>

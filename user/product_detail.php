@@ -38,7 +38,7 @@
                                 <button class="btn-plus" type="button" disabled>+</button>
                             </div>
                             <div class="add">
-                                <a href="#"><input type="button" value="Thêm vào giỏ hàng" class="add-pro"></a>
+                                <a href="index.php?act=addtocart"><input type="button" value="Thêm vào giỏ hàng" class="add-pro"></a>
                             </div>
                         </div>
                     </div>

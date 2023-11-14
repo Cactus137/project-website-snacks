@@ -51,7 +51,7 @@
                                     </div>
                                 </div>
                                 <div class="button">
-                                    <a href="?action=tables&data=products">
+                                    <a href="?action=products">
                                         <button class="btn btn-secondary" style="background-color: #17c1e8;" type="button" data-bs-dismiss="modal">Hủy</button>
                                     </a>
                                     <button type="submit" name="btn_edit" class="btn"  style="background-color: #17c1e8;">Xác nhận</button>

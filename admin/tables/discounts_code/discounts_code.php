@@ -1,5 +1,5 @@
 <div class="container-fluid py-4">
-  <a class="btn btn-sm btn-info mb-2" href="index.php?action=tables&data=add_discount_code"><input type="button" value="Thêm mã giảm giá"></a>
+  <a class="btn btn-sm btn-info mb-2" href="?action=add_discount_code">Thêm sản phẩm</a>
   <div class="row">
     <div class="col-12">
       <div class="card mb-4">
@@ -42,11 +42,11 @@
                     <td class="align-middle" style="width: 250px;">
                       <div class="d-flex py-3 float-end"> 
                         <!-- Sửa -->
-                        <a name="edit_btn" class="btn bg-secondary btn-sm m-0 mx-1" style="display: flex; align-items: center; justify-content: center;" href="index.php?action=tables&data=update_discount_code&id=<?php echo $discounts_code['id'] ?> ">
+                        <a name="edit_btn" class="btn bg-secondary btn-sm m-0 mx-1" style="display: flex; align-items: center; justify-content: center;" href="index.php?action=update_discount_code&id=<?php echo $discounts_code['id'] ?> ">
                           <i class="fa-solid fa-pen-to-square" style="color: #ffffff;"></i>
                         </a>
                         <!-- Xóa -->
-                        <a name="dlt_btn" class="btn btn-danger btn-sm m-0 mx-1" style=" display: flex; align-items: center; justify-content: center;" onclick="return confirm('Bạn có xác nhận xóa ?');" href="index.php?action=tables&data=delete_discount_code&id=<?php echo $discounts_code['id'] ?> ">
+                        <a name="dlt_btn" class="btn btn-danger btn-sm m-0 mx-1" style=" display: flex; align-items: center; justify-content: center;" onclick="return confirm('Bạn có xác nhận xóa ?');" href="index.php?action=delete_discount_code&id=<?php echo $discounts_code['id'] ?> ">
                           <i class="fa fa-trash"></i>
                         </a>
                       </div>

@@ -1,5 +1,5 @@
   <div class="container-fluid py-4">
-    <a class="btn btn-sm btn-info mb-2" href="?action=tables&data=add_category">Thêm danh mục</a>
+    <a class="btn btn-sm btn-info mb-2" href="?action=add_category">Thêm danh mục</a>
     <div class="row">
       <div class="col-12">
         <div class="card mb-4">
@@ -38,11 +38,11 @@
                       <td class="align-middle">
                         <div class="d-flex py-5 float-end">
                           <!-- Sửa -->
-                          <a name="edit_btn" class="btn bg-secondary btn-sm m-0 mx-1" style="display: flex; align-items: center; justify-content: center;" href="?action=tables&data=fix_category&id=<?php echo $id ?>">
+                          <a name="edit_btn" class="btn bg-secondary btn-sm m-0 mx-1" style="display: flex; align-items: center; justify-content: center;" href="?action=fix_category&id=<?php echo $id ?>">
                             <i class="fa-solid fa-pen-to-square" style="color: #ffffff;"></i>
                           </a>
                           <!-- Xóa -->
-                          <a name="dlt_btn" class="btn btn-danger btn-sm m-0 mx-1" style=" display: flex; align-items: center; justify-content: center;" onclick="return confirm('Bạn có xác nhận xóa ?');" href="?action=tables&data=dlt_category&id=<?php echo $id ?>">
+                          <a name="dlt_btn" class="btn btn-danger btn-sm m-0 mx-1" style=" display: flex; align-items: center; justify-content: center;" onclick="return confirm('Bạn có xác nhận xóa ?');" href="?action=dlt_category&id=<?php echo $id ?>">
                             <i class="fa fa-trash"></i>
                           </a>
                         </div>

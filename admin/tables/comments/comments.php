@@ -39,7 +39,7 @@
                     <td class="align-middle" style="width: 250px;">
                       <div class="d-flex py-3 float-end">
                         <!-- Xem chi tiết -->
-                        <a name="detail_btn" class="btn bg-secondary btn-sm m-0 mx-1" style="display: flex; align-items: center; justify-content: center;" href="?action=tables&data=comments_detail">
+                        <a name="detail_btn" class="btn bg-secondary btn-sm m-0 mx-1" style="display: flex; align-items: center; justify-content: center;" href="?action=comments_detail">
                           <i class="fa-solid fa-circle-info" style="color: #ffffff;"></i>
                         </a> 
                         <!-- Xóa -->

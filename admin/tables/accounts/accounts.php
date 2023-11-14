@@ -1,5 +1,5 @@
 <div class="container-fluid py-4">
-  <a class="btn btn-sm btn-info mb-2" href="?action=tables&data=add_account">Thêm tài khoản</a>
+  <a class="btn btn-sm btn-info mb-2" href="?action=add_account">Thêm tài khoản</a>
   <div class="row">
     <div class="col-12">
       <div class="card mb-4">
@@ -53,7 +53,7 @@
                     </td>
                     <td class="align-middle d-flex py-4"> 
                       <!-- Sửa -->
-                      <a name="edit_btn" class="btn bg-secondary btn-sm m-0 mx-1" style="display: flex; align-items: center; justify-content: center;" href="?action=tables&data=edit_account">
+                      <a name="edit_btn" class="btn bg-secondary btn-sm m-0 mx-1" style="display: flex; align-items: center; justify-content: center;" href="?action=edit_account">
                         <i class="fa-solid fa-pen-to-square" style="color: #ffffff;"></i>
                       </a>
                       <!-- Xóa -->

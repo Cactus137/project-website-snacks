@@ -26,7 +26,7 @@
                                     </div>
                                 </div>
                                 <div class="button">
-                                    <a href="?action=tables&data=categories">
+                                    <a href="?action=categories">
                                         <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Hủy</button>
                                     </a>
                                     <input type="submit" name="btn_edit" class="btn" style="background-color: #17c1e8;" value="Xác nhận">

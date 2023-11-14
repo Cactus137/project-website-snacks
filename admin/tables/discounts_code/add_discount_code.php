@@ -6,7 +6,7 @@
                     <h6>Thêm mã giảm giá</h6>
                 </div>
                 <div class="card-body px-0 pt-0 pb-2">
-                    <form action="index.php?action=tables&data=add_discount_code" method="POST" enctype="multipart/form-data">
+                    <form action="index.php?action=add_discount_code" method="POST" enctype="multipart/form-data">
                         <div class="row justify-content-center align-items-center h-100 mt-5">
                             <div class="col-12 col-xl-7">
                                 <div class="row">
@@ -39,7 +39,7 @@
                                     </div>
                                 </div>
                                 <div class="button">
-                                    <a href="index.php?action=tables&data=discounts_code">
+                                    <a href="index.php?action=discounts_code">
                                         <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Hủy</button>
                                     </a>
                                     

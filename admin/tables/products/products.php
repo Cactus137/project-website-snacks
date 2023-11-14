@@ -1,5 +1,5 @@
 <div class="container-fluid py-4">
-  <a class="btn btn-sm btn-info mb-2" href="?action=tables&data=add_product">Thêm sản phẩm</a>
+  <a class="btn btn-sm btn-info mb-2" href="?action=add_product">Thêm sản phẩm</a>
 
   <div class="row">
     <div class="col-12">
@@ -41,7 +41,7 @@
                     <td class="align-middle">
                       <div class="d-flex py-5 float-end">
                         <!-- Sửa -->
-                        <a name="edit_btn" class="btn bg-secondary btn-sm m-0 mx-1" style="display: flex; align-items: center; justify-content: center;" href="?action=tables&data=edit_product">
+                        <a name="edit_btn" class="btn bg-secondary btn-sm m-0 mx-1" style="display: flex; align-items: center; justify-content: center;" href="?action=edit_product">
                           <i class="fa-solid fa-pen-to-square" style="color: #ffffff;"></i>
                         </a>
                         <!-- Xóa -->

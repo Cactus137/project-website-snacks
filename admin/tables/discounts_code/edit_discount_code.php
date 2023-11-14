@@ -6,7 +6,7 @@
                     <h6>Cập nhật mã giảm giá</h6>
                 </div>
                 <div class="card-body px-0 pt-0 pb-2">
-                    <form action="index.php?action=tables&data=edit_discount_code" method="POST" enctype="multipart/form-data">
+                    <form action="index.php?action=edit_discount_code" method="POST" enctype="multipart/form-data">
                         <div class="row justify-content-center align-items-center h-100 mt-5">
                             <div class="col-12 col-xl-7">
                                 <div class="row">
@@ -40,7 +40,7 @@
                                 </div>
                                 <div class="button">
                                 <input type="hidden" name="id" id="" value="<?php echo $code['id'] ?>">
-                                    <a href="?action=tables&data=discounts_code">
+                                    <a href="?action=discounts_code">
                                         <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Hủy</button>
                                     </a>
                                     <input type="submit" name="btn_edit" class="btn" style="background-color: #17c1e8;" value="Xác nhận">

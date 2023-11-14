@@ -13,7 +13,7 @@
                     <h6>Sửa danh mục</h6>
                 </div>
                 <div class="card-body px-0 pt-0 pb-2">
-                    <form action="?action=tables&data=update_category" method="POST" enctype="multipart/form-data">
+                    <form action="?action=update_category" method="POST" enctype="multipart/form-data">
                         <div class="row justify-content-center align-items-center h-100 mt-5">
                             <div class="col-12 col-xl-7">
                                 <div class="row">
@@ -35,7 +35,7 @@
                                     </div>
                                 </div>
                                 <div class="button">
-                                    <a href="?action=tables&data=categories">
+                                    <a href="?action=categories">
                                         <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Hủy</button>
                                     </a>
                                     <input type="hidden" name="id" value=" <?= $id?>">

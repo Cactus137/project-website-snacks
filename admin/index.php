@@ -57,7 +57,7 @@ session_start();
                         case 'dashboard':
                             include "./dashboard.php";
                             break;
-                        case 'accounts':
+                        case 'accounts': 
                             $getAccounts = getAllAccounts();
                             $pathImg = "../assets/img/accounts/";
                             include 'tables/accounts/accounts.php';

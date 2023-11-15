@@ -3,7 +3,7 @@
 function pdo_connect()
 {
     $host = 'localhost';
-    $dbname = 'web2041';
+    $dbname = 'project_website_snacks';
     $username = 'root';
     $password = '';
 

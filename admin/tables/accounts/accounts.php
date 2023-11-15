@@ -2,7 +2,7 @@
   <a class="btn btn-sm btn-info mb-2" href="?action=add_account">Thêm tài khoản</a>
   <div class="row">
     <div class="col-12">
-      <div class="card mb-4"> 
+      <div class="card mb-4">
         <div class="card-header pb-0">
           <h6>Người dùng</h6>
         </div>
@@ -68,7 +68,7 @@
               </tbody>
             </table>
           </div>
-        </div>
+        </div> 
       </div>
     </div>
   </div>

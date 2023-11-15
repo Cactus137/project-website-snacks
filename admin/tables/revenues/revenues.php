@@ -42,10 +42,12 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php for ($i = 0; $i < 9; $i++) : ?>
-                                <tr>
+                            <?php foreach ($getRevenuesByProduct as $revenueProduct) :
+                                extract($revenueProduct);
+                            ?>
+                                <tr>    
                                     <td class="text-center p-2" style="width: 25px;">
-                                        <span>1</span>
+                                        <span><?= $product_id ?></span>
                                     </td>
                                     <td>
                                         <div class="d-flex px-2 py-1">
@@ -53,16 +55,16 @@
                                                 <img src="assets/img/small-logos/logo-spotify.svg" class="me-3" alt="user1" width="70px">
                                             </div>
                                             <div class="d-flex flex-column justify-content-center">
-                                                <h6 class="mb-0 text-sm text-truncate" style="width: 400px;">John Michael Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cum debitis ea provident ut iure, quasi optio quam non dignissimos eveniet tempore nobis soluta molestias quo sunt porro ab aliquid deleniti expedita delectus? Deleniti provident voluptatibus odit, suscipit beatae esse libero laborum accusantium accusamus autem eligendi repellendus ea! Laudantium ducimus enim voluptatum quis sit nihil labore dolorum rem laborum asperiores ipsam fugiat dolorem aliquam tempore harum qui quibusdam, totam maxime nulla vero architecto eos ad magni consequuntur. In quibusdam magnam obcaecati tenetur assumenda sequi voluptatibus quia architecto, sapiente quas possimus, ullam ducimus labore minus. Libero repellendus dignissimos cum dolore aliquid quasi.</h6>
+                                                <h6 class="mb-0 text-sm text-truncate" style="width: 400px;"><?= $product_name ?></h6>
                                             </div>
                                         </div>
                                     </td>
 
                                     <td class="text-center p-2">
-                                        <p class="text-sm font-weight-bold mb-0">50.000.000 VNĐ</p>
+                                        <p class="text-sm font-weight-bold mb-0"><?= $total_revenue ?></p>
                                     </td>
                                 </tr>
-                            <?php endfor; ?>
+                            <?php endforeach; ?>
                         </tbody>
                     </table>
                 </div>

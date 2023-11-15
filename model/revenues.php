@@ -3,6 +3,7 @@ function getRevenuesByProduct()
 {
     try {
         $sql = "SELECT
+        p.id AS product_id,
         p.name AS product_name,
         SUM(od.total_amount) AS total_revenue
     FROM

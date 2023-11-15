@@ -2,9 +2,7 @@
 function getAllAccounts()
 {
     try {
-        $sql = "SELECT accounts.*, roles.name as role_name  FROM accounts 
-        JOIN roles ON accounts.id_role = roles.id
-        ORDER BY id DESC;";
+        $sql = " SELECT * FROM accounts ORDER BY id DESC;";
         return pdo_query($sql);
     } catch (Exception $e) {
         echo $e->getMessage();
@@ -63,7 +61,8 @@ function deleteAccount($id)
     }
 }
 
-function getAllRoles() {
+function getAllRoles()
+{
     try {
         $sql = "SELECT * FROM roles;";
         return pdo_query($sql);
@@ -132,9 +131,9 @@ function getLoyalCustomers()
         ORDER BY 
             total_amount DESC
         LIMIT 10;";
-        
+
         return pdo_query($sql);
     } catch (Exception $e) {
         echo $e->getMessage();
     }
-} 
+}

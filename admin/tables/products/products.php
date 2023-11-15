@@ -16,7 +16,9 @@
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Hình ảnh</th>
                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tên</th>
                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7">Phân loại</th>
-                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7">Số lượt xem</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7">Size S</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7">Size M</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7">Size L</th>
                   <th></th>
                 </tr>
               </thead>
@@ -34,6 +36,12 @@
                     </td>
                     <td class=" p-2">
                       <p class="text-center text-sm font-weight-bold mb-0">Burder</p>
+                    </td>
+                    <td class=" p-2">
+                      <p class="text-center text-sm font-weight-bold mb-0">100</p>
+                    </td>
+                    <td class=" p-2">
+                      <p class="text-center text-sm font-weight-bold mb-0">100</p>
                     </td>
                     <td class=" p-2">
                       <p class="text-center text-sm font-weight-bold mb-0">100</p>

@@ -17,6 +17,23 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <div class="col-md-6 mb-4">
+                                        <div class="form-outline">
+                                            <label class="form-label" for="image">Hình ảnh</label>
+                                            <input class="form-control form-control-sm" id="image" name="image" type="file" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-4 d-flex align-items-center">
+                                        <div class="form-outline datepicker w-100">
+                                            <label class="form-label select-label">Loại sản phẩm</label>
+                                            <select name="id_category" class="select form-control form-control-sm">
+                                                <option value="0">Burger</option>
+                                                <option value="1">Gà rán</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
 
                                 <div class="row">
                                     <div class="col-12 mb-4 d-flex align-items-center">
@@ -26,30 +43,63 @@
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="row">
-                                    <div class="col-md-6 mb-4 pb-2">
-                                        <label class="form-label select-label">Phân loại</label>
-                                        <select name="id_category" class="select form-control form-control-sm">
-                                            <option value="0">Người dùng</option>
-                                            <option value="1">Admin</option>
-                                        </select>
+                                    <div class="col-md-2 d-flex align-items-center">
+                                            <label class="form-label" for="quantity">Size S</label>
                                     </div>
-                                    <div class="col-md-6 mb-4 d-flex align-items-center">
+
+                                    <div class="col-md-5 mb-4 d-flex align-items-center">
                                         <div class="form-outline w-100">
                                             <label class="form-label" for="quantity">Số lượng</label>
                                             <input type="number" id="quantity" name="quantity" value="" placeholder="" class="form-control form-control-sm" />
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12 mb-4 pb-2">
-                                        <div class="form-outline">
-                                            <label class="form-label" for="image">Hình ảnh</label>
-                                            <input class="form-control form-control-sm" id="image" name="image" type="file" />
+
+                                    <div class="col-md-5 mb-4 d-flex align-items-center">
+                                        <div class="form-outline w-100">
+                                            <label class="form-label" for="quantity">Giá</label>
+                                            <input type="number" id="quantity" name="quantity" value="" placeholder="" class="form-control form-control-sm" />
                                         </div>
                                     </div>
-                                </div>
+                                </div>  
+                                <div class="row">
+                                    <div class="col-md-2 d-flex align-items-center">
+                                            <label class="form-label" for="quantity">Size M</label>
+                                    </div>
+
+                                    <div class="col-md-5 mb-4 d-flex align-items-center">
+                                        <div class="form-outline w-100">
+                                            <label class="form-label" for="quantity">Số lượng</label>
+                                            <input type="number" id="quantity" name="quantity" value="" placeholder="" class="form-control form-control-sm" />
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-5 mb-4 d-flex align-items-center">
+                                        <div class="form-outline w-100">
+                                            <label class="form-label" for="quantity">Giá</label>
+                                            <input type="number" id="quantity" name="quantity" value="" placeholder="" class="form-control form-control-sm" />
+                                        </div>
+                                    </div>
+                                </div> 
+                                <div class="row">
+                                    <div class="col-md-2 d-flex align-items-center">
+                                            <label class="form-label" for="quantity">Size L</label>
+                                    </div>
+
+                                    <div class="col-md-5 mb-4 d-flex align-items-center">
+                                        <div class="form-outline w-100">
+                                            <label class="form-label" for="quantity">Số lượng</label>
+                                            <input type="number" id="quantity" name="quantity" value="" placeholder="" class="form-control form-control-sm" />
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-5 mb-4 d-flex align-items-center">
+                                        <div class="form-outline w-100">
+                                            <label class="form-label" for="quantity">Giá</label>
+                                            <input type="number" id="quantity" name="quantity" value="" placeholder="" class="form-control form-control-sm" />
+                                        </div>
+                                    </div>
+                                </div> 
                                 <div class="button">
                                     <a href="?action=products">
                                         <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Hủy</button>

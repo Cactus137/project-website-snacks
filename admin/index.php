@@ -1,5 +1,5 @@
-<?php 
-    session_start();
+<?php
+session_start();
 ?>
 <!doctype html>
 <html lang="en">
@@ -68,12 +68,12 @@
                             $getAccounts = getAllAccounts();
 
                             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                                $username =$_POST['username'];
-                                $password =$_POST['password'];
-                                $fullname =$_POST['fullname'];
-                                $email =$_POST['email'];
-                                $address =$_POST['address'];
-                                $tel =$_POST['tel'];
+                                $username = $_POST['username'];
+                                $password = $_POST['password'];
+                                $fullname = $_POST['fullname'];
+                                $email = $_POST['email'];
+                                $address = $_POST['address'];
+                                $tel = $_POST['tel'];
                                 $id_role = $_POST['id_role'];
 
                                 if ($_FILES['avatar']['name'] != "") {
@@ -86,43 +86,93 @@
                                 }
 
                                 $check_validate = [];
+                                $check_validate['check'] = true;
+                                if (!isset($username) || $username == "") {
+                                    $check_validate['username'] = "Tên tài khoản không được để trống";
+                                    $check_validate['check'] = false;
+                                }
                                 foreach ($getAccounts as $key => $value) {
                                     if ($value['username'] == $username) {
                                         $check_validate['username'] = "Tên tài khoản đã tồn tại";
+                                        $check_validate['check'] = false;
                                         break;
-                                    }else {
-                                        $check_validate['username'] = "";
                                     }
                                 }
-                                if (!isset($username) || $username == "") {
-                                    $check_validate['username'] = "Tên tài khoản không được để trống";
-                                }else {
-                                    $check_validate['username'] = "";
+                                if (strlen($password) < 8) {
+                                    $check_validate['password'] = "Mật khẩu phải có ít nhất 8 ký tự";
+                                    $check_validate['check'] = false;
                                 }
-                                if (strlen($password) < 10) {
-                                    $check_validate['password'] = "Mật khẩu phải có ít nhất 10 ký tự";
-                                }else {
-                                    $check_validate['password'] = "";
-                                }
-                                $regex_email = "/^[a-z0-9!#$%&'*+\\/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+\\/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/";
+                                $regex_email = "/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/";
                                 if (!preg_match($regex_email, $email)) {
                                     $check_validate['email'] = "Email không hợp lệ";
-                                }else {
-                                    $check_validate['email'] = "";
+                                    $check_validate['check'] = false;
                                 }
 
-                                $check_validate = json_encode($check_validate); 
-
-                                // {
-                                //     addAccount($username, $password, $fullname, $avatar, $email, $address, $tel, $id_role);
-                                //     header('location: index.php?action=accounts');
-                                // } 
-
+                                if ($check_validate['check'] == true) {
+                                    addAccount($username, $password, $fullname, $avatar, $email, $address, $tel, $id_role);
+                                    echo "<script>window.location.href = '?action=accounts';</script>";
+                                }
                             }
                             include 'tables/accounts/add_account.php';
                             break;
                         case 'edit_account':
+                            unset($_SESSION['error']);
+                            $getAllRoles = getAllRoles();
+                            $getAccountById = getAccountById($_GET['acc_id']);
+
+                            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                                $username = $_POST['username'];
+                                $password = $_POST['password'];
+                                $fullname = $_POST['fullname'];
+                                $email = $_POST['email'];
+                                $address = $_POST['address'];
+                                $tel = $_POST['tel'];
+                                $id_role = $_POST['id_role'];
+
+                                if ($_FILES['avatar']['name'] != "") {
+                                    $avatar = $_FILES['avatar']['name'];
+                                    $target_dir = "../assets/img/accounts/";
+                                    $target_file = $target_dir . basename($_FILES["avatar"]["name"]);
+                                    move_uploaded_file($_FILES["avatar"]["tmp_name"], $target_file);
+                                } else {
+                                    $avatar = $getAccountById['avatar'];
+                                }
+
+                                $check_validate = [];
+                                $check_validate['check'] = true;
+                                if (!isset($username) || $username == "") {
+                                    $check_validate['username'] = "Tên tài khoản không được để trống";
+                                    $check_validate['check'] = false;
+                                }
+                                foreach ($getAccounts as $key => $value) {
+                                    if ($value['username'] == $username) {
+                                        if ($getAccountById['username'] != $username) {
+                                            $check_validate['username'] = "Tên tài khoản đã tồn tại";
+                                            $check_validate['check'] = false;
+                                            break;
+                                        }
+                                    }
+                                }
+                                if (strlen($password) < 8) {
+                                    $check_validate['password'] = "Mật khẩu phải có ít nhất 8 ký tự";
+                                    $check_validate['check'] = false;
+                                }
+                                $regex_email = "/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/";
+                                if (!preg_match($regex_email, $email)) {
+                                    $check_validate['email'] = "Email không hợp lệ";
+                                    $check_validate['check'] = false;
+                                }
+
+                                if ($check_validate['check'] == true) {
+                                    editAccount($_GET['acc_id'], $username, $password, $fullname, $avatar, $email, $address, $tel, $id_role);
+                                    echo "<script>window.location.href = '?action=accounts';</script>";
+                                }
+                            }
                             include 'tables/accounts/edit_account.php';
+                            break;
+                        case 'delete_account':
+                            deleteAccount($_GET['acc_id']);
+                            echo "<script>window.location.href = '?action=accounts';</script>";
                             break;
                         case 'categories':
                             $list_categories = load_all_category();
@@ -263,7 +313,7 @@
     <script src="assets/js/core/bootstrap.min.js"></script>
     <script src="assets/js/plugins/perfect-scrollbar.min.js"></script>
     <script src="assets/js/plugins/smooth-scrollbar.min.js"></script>
-    <script src="assets/js/plugins/chartjs.min.js"></script> 
+    <script src="assets/js/plugins/chartjs.min.js"></script>
 
     <!-- Github buttons -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>

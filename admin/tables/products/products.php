@@ -16,27 +16,48 @@
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Hình ảnh</th>
                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tên</th>
                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7">Phân loại</th>
-                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7">Số lượt xem</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7">Size S</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7">Size M</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7">Size L</th>
                   <th></th>
                 </tr>
               </thead>
               <tbody>
-                <?php for ($i = 0; $i < 9; $i++) : ?>
+                <?php 
+                    foreach($list_all_product as $row){
+                        extract($row);
+                        $img_path = './assets/img/'.$image;
+                        
+                ?>
                   <tr>
                     <td class="text-center p-2" style="width: 25px;">
-                      <span>1</span>
+                      <span><?php echo $id?></span>
                     </td>
                     <td class="text-center p-2" style="width: 300px;">
-                      <img src="assets/img/small-logos/logo-spotify.svg" class="me-3" alt="user1" width="100px">
+                      <img src="<?php echo $img_path?>" class="me-3" alt="user1" width="100px">
                     </td>
                     <td class=" p-2">
-                      <p class="text-sm font-weight-bold mb-0">Burder Italya</p>
+                      <p class="text-sm font-weight-bold mb-0"><?php echo $name_product?></p>
                     </td>
                     <td class=" p-2">
-                      <p class="text-center text-sm font-weight-bold mb-0">Burder</p>
+                      <p class="text-center text-sm font-weight-bold mb-0"><?php echo $name_category ?></p>
+                    </td>
+                    <?php
+                        $quantity = 1;
+                        $id_pro = $id;
+                        $list_quantity =  quantity($id_pro,$quantity);
+                        foreach ($list_quantity as $value){
+                            extract($value);
+
+                    ?>
+                    <td class=" p-2">
+                      <p class="text-center text-sm font-weight-bold mb-0"><?php echo $quantity?></p>
                     </td>
                     <td class=" p-2">
-                      <p class="text-center text-sm font-weight-bold mb-0">100</p>
+                      <p class="text-center text-sm font-weight-bold mb-0">2</p>
+                    </td>
+                    <td class=" p-2">
+                      <p class="text-center text-sm font-weight-bold mb-0">3</p>
                     </td>
                     <td class="align-middle">
                       <div class="d-flex py-5 float-end">
@@ -51,7 +72,10 @@
                       </div>
                     </td>
                   </tr>
-                <?php endfor; ?>
+                <?php 
+                                                }
+                    }    
+                ?>
               </tbody>
             </table>
           </div>

@@ -2,30 +2,11 @@ CREATE DATABASE project_website_snacks;
 
 USE project_website_snacks;
 
--- phpMyAdmin SQL Dump
--- version 5.2.1
--- https://www.phpmyadmin.net/
---
--- Máy chủ: localhost
--- Thời gian đã tạo: Th10 15, 2023 lúc 04:25 AM
--- Phiên bản máy phục vụ: 10.4.28-MariaDB
--- Phiên bản PHP: 8.2.4
+ 
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Cơ sở dữ liệu: `project_website_snacks`
---
-
--- --------------------------------------------------------
+SET time_zone = "+00:00"; 
 
 --
 -- Cấu trúc bảng cho bảng `accounts`
@@ -50,7 +31,7 @@ CREATE TABLE `accounts` (
 INSERT INTO `accounts` (`id`, `username`, `password`, `fullname`, `avatar`, `email`, `address`, `tel`, `id_role`) VALUES
 (1, 'user1', 'password1', 'User One', 'profile.jpg	', 'user1@example.com', '123 Main St, City', '1234567890', 1),
 (2, 'user2', 'password2', 'User Two', 'testtestc.jpg', 'user2@example.com', '456 Elm St, Town', '9876543210', 0),
-(28, 'zthanh13', 'matkhau2004', 'Le Van Thanh', 'testtestc.jpg', 'Blackwhilee04@gmail.com', '7 ngách 126 Ng. 14 P. Mễ Trì Hạ, Mễ Trì, Từ Liêm, Hà Nội, Việt Nam', '234234', 0);
+(28, 'zthanh13', 'matkhau2004', 'Le Van Thanh', 'testtestc.jpg', 'Blackwhilee04@gmail.com', '7 ngách 126 Ng. 14 P. Mễ Trì Hạ, Mễ Trì, Từ Liêm, Hà Nội, Việt Nam', '234234', 1);
 
 -- --------------------------------------------------------
 
@@ -91,7 +72,6 @@ CREATE TABLE `categories` (
 
 INSERT INTO `categories` (`id`, `name_cate`, `image`) VALUES
 (1, 'Burger', NULL),
-(2, 'Combo', NULL),
 (3, 'Gà rán', NULL),
 (4, 'Cơm-Mỳ ý', NULL),
 (5, 'Khoai tây', NULL),
@@ -116,8 +96,7 @@ CREATE TABLE `comments` (
 --
 
 INSERT INTO `comments` (`id`, `content`, `id_account`, `id_product`, `comment_date`) VALUES
-(1, 'Bình luận sản phẩm 1', 1, 1, '2023-11-12 23:26:19'),
-(2, 'Bình luận sản phẩm 2', 2, 2, '2023-11-12 23:26:19');
+(1, 'Bình luận sản phẩm 1', 1, 1, '2023-11-12 23:26:19');
 
 -- --------------------------------------------------------
 
@@ -194,15 +173,10 @@ CREATE TABLE `order_details` (
 
 INSERT INTO `order_details` (`id`, `id_order`, `id_product_variants`, `quantity`, `discount`, `total_amount`, `notes`) VALUES
 (1, 1, 1, 2, NULL, 20000, 'Ghi chú đơn hàng 1'),
-(2, 2, 2, 1, 1, 18000, 'Ghi chú đơn hàng 2'),
 (7, 7, 1, 1, NULL, 10000, 'Ghi chú đơn hàng 7'),
-(8, 8, 2, 2, 1, 36000, 'Ghi chú đơn hàng 8'),
 (10, 10, 1, 2, NULL, 20000, 'Ghi chú đơn hàng 10'),
-(11, 11, 2, 1, 1, 18000, 'Ghi chú đơn hàng 11'),
 (13, 13, 1, 1, NULL, 10000, 'Ghi chú đơn hàng 13'),
-(14, 14, 2, 2, 1, 36000, 'Ghi chú đơn hàng 14'),
-(16, 16, 1, 2, NULL, 20000, 'Ghi chú đơn hàng 16'),
-(17, 17, 2, 1, 1, 18000, 'Ghi chú đơn hàng 17');
+(16, 16, 1, 2, NULL, 20000, 'Ghi chú đơn hàng 16');
 
 -- --------------------------------------------------------
 
@@ -246,8 +220,7 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `name`, `image`, `description`, `id_category`) VALUES
-(1, 'Burger Italia', 'burger1.jpg', 'Mô tả burger 1', 1),
-(2, 'Combo 1', 'combo1.jpg', 'Mô tả combo 1', 2),
+(1, 'Burger Italia', '1-canh-ga-bbq.jpg', '1-canh-ga-bbq.jpg', 1),
 (3, 'Gà rán 1', 'garam1.jpg', 'Mô tả gà rán 1', 3),
 (4, 'Cơm-Mỳ ý 1', 'commyy1.jpg', 'Mô tả cơm-mỳ ý 1', 4),
 (5, 'Khoai tây 1', 'khoaitay1.jpg', 'Mô tả khoai tây 1', 5),
@@ -273,9 +246,7 @@ CREATE TABLE `product_variants` (
 
 INSERT INTO `product_variants` (`id`, `id_product`, `id_size`, `price`, `quantity`) VALUES
 (1, 1, 1, 50000, 10),
-(2, 1, 2, 60000, 10),
-(3, 1, 3, 70000, 10);
-
+(3, 1, 3, 70000, 10); 
 -- --------------------------------------------------------
 
 --
@@ -512,8 +483,4 @@ ALTER TABLE `products`
 ALTER TABLE `product_variants`
   ADD CONSTRAINT `id_product` FOREIGN KEY (`id_product`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `id_size` FOREIGN KEY (`id_size`) REFERENCES `sizes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+COMMIT; 

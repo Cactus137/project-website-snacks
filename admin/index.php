@@ -302,7 +302,18 @@ session_start();
                             include 'tables/discounts_code/discounts_code.php';
                             break;
                         case 'revenues':
-                            $getRevenuesByProduct = getRevenuesByProduct();
+                            // $getRevenues = getRevenues();
+                            $pathImg = "../assets/img/products/";
+                            $getCategories = load_all_category();
+
+                            if (isset($_POST['filter'])) {
+                                $start = $_POST['startDate'];
+                                $end = $_POST['endDate'];
+                                $categoryId = $_POST['id_category']; 
+                                $getRevenues = getRevenues($start, $end, $categoryId);
+                            } else {
+                                $getRevenues = getRevenues();
+                            }
 
                             include 'tables/revenues/revenues.php';
                             break;

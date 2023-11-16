@@ -19,22 +19,42 @@
             pdo_execute($sql);
     }
 
-    function load_all_product_category_variant(){
-        $sql = "SELECT products.id AS id ,products.image AS image ,products.name AS name_product, categories.name_category
-        FROM products 
-        INNER JOIN categories ON products.id_category = categories.id
-        ORDER BY products.id DESC";
-        $list_all_product = pdo_query($sql);
-        return $list_all_product;
-    }
+    // function load_all_product_category_variant(){
+    //     $sql = "SELECT products.id AS id ,products.image AS image ,products.name AS name_product, categories.name_category
+    //     FROM products 
+    //     INNER JOIN categories ON products.id_category = categories.id
+    //     ORDER BY products.id DESC";
+    //     $list_all_product = pdo_query($sql);
+    //     return $list_all_product;
+    // }
 
     
-    function quantity($id_pro,$id_size){
-        $sql = "SELECT quantity FROM product_variants WHERE id_product = $id_pro AND  id_size = $id_size";
-        $quantity = pdo_query_one($sql);
-        return $quantity;
+    // function quantity($id_pro,$id_size){
+    //     $sql = "SELECT quantity FROM product_variants WHERE id_product = $id_pro AND  id_size = $id_size";
+    //     $quantity = pdo_query_one($sql);
+    //     return $quantity;
+    // }
+
+    function getAllProducts() {
+        try {
+            $sql = "SELECT p.id, p.name, p.image, p.description, c.name_cate
+            FROM products p
+            JOIN categories c ON p.id_category = c.id
+            ORDER BY id DESC";
+            return pdo_query($sql);
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
     }
 
+    function getQuantitySizeProduct($id_quantity, $id_size) {
+        try {
+            $sql = "SELECT quantity FROM product_variants WHERE id_product = $id_quantity AND id_size = $id_size";
+            return pdo_query_one($sql);
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+    }
 
 
 

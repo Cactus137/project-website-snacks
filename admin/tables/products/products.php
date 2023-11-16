@@ -24,40 +24,30 @@
               </thead>
               <tbody>
                 <?php 
-                    foreach($list_all_product as $row){
-                        extract($row);
-                        $img_path = './assets/img/'.$image;
-                        
+                    foreach($getAllProducts as $product):
+                        extract($product);
                 ?>
                   <tr>
                     <td class="text-center p-2" style="width: 25px;">
                       <span><?php echo $id?></span>
                     </td>
                     <td class="text-center p-2" style="width: 300px;">
-                      <img src="<?php echo $img_path?>" class="me-3" alt="user1" width="100px">
+                      <img src="<?php echo $pathImg . $image ?>" class="me-3" alt="user1" width="100px">
                     </td>
                     <td class=" p-2">
-                      <p class="text-sm font-weight-bold mb-0"><?php echo $name_product?></p>
+                      <p class="text-sm font-weight-bold mb-0"><?php echo $name?></p>
                     </td>
                     <td class=" p-2">
-                      <p class="text-center text-sm font-weight-bold mb-0"><?php echo $name_category ?></p>
-                    </td>
-                    <?php
-                        $quantity = 1;
-                        $id_pro = $id;
-                        $list_quantity =  quantity($id_pro,$quantity);
-                        foreach ($list_quantity as $value){
-                            extract($value);
-
-                    ?>
+                      <p class="text-center text-sm font-weight-bold mb-0"><?php echo $name_cate ?></p>
+                    </td> 
                     <td class=" p-2">
-                      <p class="text-center text-sm font-weight-bold mb-0"><?php echo $quantity?></p>
+                      <p class="text-center text-sm font-weight-bold mb-0"><?php echo getQuantitySizeProduct($id, 1)['quantity']; ?></p>
                     </td>
                     <td class=" p-2">
-                      <p class="text-center text-sm font-weight-bold mb-0">2</p>
+                      <p class="text-center text-sm font-weight-bold mb-0"><?php echo getQuantitySizeProduct($id, 2)['quantity']; ?></p>
                     </td>
                     <td class=" p-2">
-                      <p class="text-center text-sm font-weight-bold mb-0">3</p>
+                      <p class="text-center text-sm font-weight-bold mb-0"><?php echo getQuantitySizeProduct($id, 3)['quantity']; ?></p>
                     </td>
                     <td class="align-middle">
                       <div class="d-flex py-5 float-end">
@@ -72,10 +62,7 @@
                       </div>
                     </td>
                   </tr>
-                <?php 
-                                                }
-                    }    
-                ?>
+                <?php endforeach;?>
               </tbody>
             </table>
           </div>

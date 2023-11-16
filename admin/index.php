@@ -227,16 +227,12 @@ session_start();
                             $list_categories = load_all_category();
                             include 'tables/categories/categories.php';
                             break;
-
                         case 'products':
-                            $list_all_product = load_all_product_category_variant();
-
-                            
-
+                            // $list_all_product = load_all_product_category_variant();
+                            $getAllProducts = getAllProducts();
+                            $pathImg = "../assets/img/products/";
                             include 'tables/products/products.php';
                             break;
-                            
-
                         case 'add_product':
                             if(isset($_POST['btn_edit']) && $_POST['btn_edit']){
                                 // Products
@@ -249,14 +245,11 @@ session_start();
                                 $image_maxsize = 4 * 1024 * 1024;
                                 // Product_Variant
                                 $quantityS = $_POST['quantityS'];
-                                $priceS = $_POST['priceS'];
-                                $id_sizeS = 1;
+                                $priceS = $_POST['priceS']; 
                                 $quantityM = $_POST['quantityM'];
-                                $priceM = $_POST['priceM'];
-                                $id_sizeM = 2;
+                                $priceM = $_POST['priceM']; 
                                 $quantityL = $_POST['quantityL'];
-                                $priceL = $_POST['priceL'];
-                                $id_sizeL = 3;
+                                $priceL = $_POST['priceL']; 
                                 $getLatestProductsIdData = getLatestProductsId();
                                 if($image_size > $image_maxsize){
                                     $notification = 'File ảnh quá lớn vui lòng thử lại';
@@ -265,9 +258,9 @@ session_start();
                                     insert_products($name,$description,$id_category,$image);
                                     if($getLatestProductsIdData){
                                         $getLatestProductsIdData = $getLatestProductsIdData['id'];
-                                        insert_product_variant($getLatestProductsIdData,$id_sizeM,$priceS,$quantityS);
-                                        insert_product_variant($getLatestProductsIdData,$id_sizeM,$priceM,$quantityM);
-                                        insert_product_variant($getLatestProductsIdData,$id_sizeL,$priceL,$quantityL);
+                                        insert_product_variant($getLatestProductsIdData, 1, $priceS, $quantityS);
+                                        insert_product_variant($getLatestProductsIdData, 2, $priceM, $quantityM);
+                                        insert_product_variant($getLatestProductsIdData, 3, $priceL, $quantityL);
                                     }
                                     $notification = 'Thêm thành công';
                                 }

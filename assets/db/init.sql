@@ -2,9 +2,30 @@ CREATE DATABASE project_website_snacks;
 
 USE project_website_snacks;
 
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Máy chủ: localhost
+-- Thời gian đã tạo: Th10 17, 2023 lúc 04:54 AM
+-- Phiên bản máy phục vụ: 10.4.28-MariaDB
+-- Phiên bản PHP: 8.2.4
+
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
-SET time_zone = "+00:00"; 
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Cơ sở dữ liệu: `project_website_snacks`
+--
+
+-- --------------------------------------------------------
 
 --
 -- Cấu trúc bảng cho bảng `accounts`
@@ -26,17 +47,19 @@ CREATE TABLE `accounts` (
 -- Đang đổ dữ liệu cho bảng `accounts`
 --
 
-INSERT INTO `accounts` (`id`, `username`, `password`, `fullname`, `avatar`, `email`, `address`, `tel`, `id_role`)
-VALUES 
-  (1, 'john_doe', 'password123', 'John Doe', 'profile.jpg', 'john.doe@email.com', '123 Main St, CityA', '1234567890', 1),
-  (2, 'zthanh13', 'matkhau123', 'Jane Smith', 'profile.jpg', 'jane.smith@email.com', '456 Oak St, CityB', '9876543210', 0),
-  (3, 'bob_jones', 'pass789', 'Bob Jones', 'profile.jpg', 'bob.jones@email.com', '789 Pine St, CityC', '5551234567', 1),
-  (4, 'alice_wonder', 'alice_pass', 'Alice Wonderland', 'profile.jpg', 'alice.wonder@email.com', '321 Elm St, CityD', '9998887777', 1),
-  (5, 'charlie_brown', 'charlie_pass', 'Charlie Brown', 'profile.jpg', 'charlie.brown@email.com', '654 Birch St, CityE', '1112223333', 1);
+INSERT INTO `accounts` (`id`, `username`, `password`, `fullname`, `avatar`, `email`, `address`, `tel`, `id_role`) VALUES
+(1, 'john_doe', 'password123', 'John Doe', 'profile.jpg', 'john.doe@email.com', '123 Main St, CityA', '1234567890', 1),
+(2, 'zthanh13', 'matkhau123', 'Jane Smith', 'profile.jpg', 'jane.smith@email.com', '456 Oak St, CityB', '9876543210', 0),
+(3, 'bob_jones', 'pass789', 'Bob Jones', 'profile.jpg', 'bob.jones@email.com', '789 Pine St, CityC', '5551234567', 1),
+(4, 'alice_wonder', 'alice_pass', 'Alice Wonderland', 'profile.jpg', 'alice.wonder@email.com', '321 Elm St, CityD', '9998887777', 1),
+(5, 'charlie_brown', 'charlie_pass', 'Charlie Brown', 'profile.jpg', 'charlie.brown@email.com', '654 Birch St, CityE', '1112223333', 1);
+
+-- --------------------------------------------------------
 
 --
 -- Cấu trúc bảng cho bảng `cart`
--- 
+--
+
 CREATE TABLE `cart` (
   `id` int(11) NOT NULL,
   `id_account` int(11) NOT NULL,
@@ -45,20 +68,22 @@ CREATE TABLE `cart` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `accounts`
+-- Đang đổ dữ liệu cho bảng `cart`
 --
- 
-INSERT INTO `cart` (`id`, `id_account`, `id_product_variants`, `quantity`)
-VALUES
-  (1, 1, 1, 2),
-  (2, 1, 3, 1),
-  (3, 2, 5, 3),
-  (4, 3, 2, 2),
-  (5, 4, 8, 1);
+
+INSERT INTO `cart` (`id`, `id_account`, `id_product_variants`, `quantity`) VALUES
+(1, 1, 1, 2),
+(2, 1, 3, 1),
+(3, 2, 5, 3),
+(4, 3, 2, 2),
+(5, 4, 8, 1);
+
+-- --------------------------------------------------------
 
 --
 -- Cấu trúc bảng cho bảng `categories`
 --
+
 CREATE TABLE `categories` (
   `id` int(11) NOT NULL,
   `name_cate` varchar(255) NOT NULL,
@@ -76,6 +101,8 @@ INSERT INTO `categories` (`id`, `name_cate`, `image`) VALUES
 (4, 'Khoai tây', NULL),
 (5, 'Thức uống', NULL);
 
+-- --------------------------------------------------------
+
 --
 -- Cấu trúc bảng cho bảng `comments`
 --
@@ -86,19 +113,20 @@ CREATE TABLE `comments` (
   `id_account` int(11) NOT NULL,
   `id_product` int(11) NOT NULL,
   `comment_date` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;  
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `categories`
--- 
+-- Đang đổ dữ liệu cho bảng `comments`
+--
 
-INSERT INTO `comments` (`id`, `content`, `id_account`, `id_product`, `comment_date`)
-VALUES
-  (1, 'Great product!', 1, 1, '2023-11-17 08:30:00'),
-  (2, 'I love this item!', 2, 2, '2023-11-17 10:45:00'),
-  (3, 'Awesome service!', 3, 1, '2023-11-17 12:15:00'),
-  (4, 'Nice quality.', 4, 3, '2023-11-17 14:20:00'),
-  (5, 'Fast shipping!', 5, 2, '2023-11-17 16:40:00');
+INSERT INTO `comments` (`id`, `content`, `id_account`, `id_product`, `comment_date`) VALUES
+(1, 'Great product!', 1, 1, '2023-11-17 08:30:00'),
+(2, 'I love this item!', 2, 2, '2023-11-17 10:45:00'),
+(3, 'Awesome service!', 3, 1, '2023-11-17 12:15:00'),
+(4, 'Nice quality.', 4, 3, '2023-11-17 14:20:00'),
+(5, 'Fast shipping!', 5, 2, '2023-11-17 16:40:00');
+
+-- --------------------------------------------------------
 
 --
 -- Cấu trúc bảng cho bảng `discount_codes`
@@ -118,7 +146,9 @@ CREATE TABLE `discount_codes` (
 
 INSERT INTO `discount_codes` (`id`, `code`, `discount`, `quantiny`, `expiration_date`) VALUES
 (1, 'DISCOUNT10', 10, 50, '2023-12-31 00:00:00'),
-(2, 'SALE20', 20, 30, '2023-11-30 00:00:00'); 
+(2, 'SALE20', 20, 30, '2023-11-30 00:00:00');
+
+-- --------------------------------------------------------
 
 --
 -- Cấu trúc bảng cho bảng `orders`
@@ -129,20 +159,25 @@ CREATE TABLE `orders` (
   `order_date` datetime NOT NULL,
   `id_status` int(11) DEFAULT 1,
   `id_account` int(11) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci; 
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-INSERT INTO `orders` (`id`, `order_date`, `id_status`, `id_account`)
-VALUES
-  (1, '2023-11-17 09:00:00', 1, 1),
-  (2, '2023-11-17 10:30:00', 2, 2),
-  (3, '2023-11-17 12:45:00', 0, 3),
-  (4, '2023-11-17 14:00:00', 3, 4),
-  (5, '2023-11-17 16:20:00', 1, 5),
-  (6, '2023-11-17 18:45:00', 4, 1),
-  (7, '2023-11-17 20:00:00', 4, 3),
-  (8, '2023-11-17 22:15:00', 4, 2),
-  (9, '2023-11-17 23:30:00', 4, 4),
-  (10, '2023-11-18 01:45:00', 4, 5);
+--
+-- Đang đổ dữ liệu cho bảng `orders`
+--
+
+INSERT INTO `orders` (`id`, `order_date`, `id_status`, `id_account`) VALUES
+(1, '2023-11-17 09:00:00', 1, 1),
+(2, '2023-11-17 10:30:00', 2, 2),
+(3, '2023-11-17 12:45:00', 0, 3),
+(4, '2023-11-17 14:00:00', 3, 4),
+(5, '2023-11-17 16:20:00', 1, 5),
+(6, '2023-11-17 18:45:00', 4, 1),
+(7, '2023-11-17 20:00:00', 4, 3),
+(8, '2023-11-17 22:15:00', 4, 2),
+(9, '2023-11-17 23:30:00', 4, 4),
+(10, '2023-11-18 01:45:00', 4, 5);
+
+-- --------------------------------------------------------
 
 --
 -- Cấu trúc bảng cho bảng `order_details`
@@ -156,20 +191,25 @@ CREATE TABLE `order_details` (
   `discount` int(11) DEFAULT NULL,
   `total_amount` int(11) DEFAULT NULL,
   `notes` text DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci; 
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-INSERT INTO `order_details` (`id`, `id_order`, `id_product_variants`, `quantity`, `discount`, `total_amount`, `notes`)
-VALUES
-  (1, 1, 1, 2, 1, 10.99, 'Special request: No onions'),
-  (2, 1, 3, 1, NULL, 8.99, NULL),
-  (3, 2, 5, 3, 2, 27.99, 'Gift wrap required'),
-  (4, 3, 2, 2, NULL, 21.99, NULL),
-  (5, 4, 8, 1, 3, 12.99, 'Express shipping'),
-  (6, 5, 1, 2, 1, 11.99, NULL),
-  (7, 6, 4, 1, NULL, 14.99, NULL),
-  (8, 7, 6, 2, 2, 23.99, 'Include a gift card'),
-  (9, 8, 3, 2, NULL, 17.99, NULL),
-  (10, 9, 9, 1, 1, 9.99, NULL);
+--
+-- Đang đổ dữ liệu cho bảng `order_details`
+--
+
+INSERT INTO `order_details` (`id`, `id_order`, `id_product_variants`, `quantity`, `discount`, `total_amount`, `notes`) VALUES
+(1, 1, 1, 2, 1, 11, 'Special request: No onions'),
+(2, 1, 3, 1, NULL, 9, NULL),
+(3, 2, 5, 3, 2, 28, 'Gift wrap required'),
+(4, 3, 2, 2, NULL, 22, NULL),
+(5, 4, 8, 1, 3, 13, 'Express shipping'),
+(6, 5, 1, 2, 1, 12, NULL),
+(7, 6, 4, 1, NULL, 15, NULL),
+(8, 7, 6, 2, 2, 24, 'Include a gift card'),
+(9, 8, 3, 2, NULL, 18, NULL),
+(10, 9, 9, 1, 1, 10, NULL);
+
+-- --------------------------------------------------------
 
 --
 -- Cấu trúc bảng cho bảng `order_status`
@@ -209,14 +249,15 @@ CREATE TABLE `products` (
 --
 -- Đang đổ dữ liệu cho bảng `products`
 --
- 
-INSERT INTO `products` (`id`, `name`, `image`, `description`, `id_category`)
-VALUES
-  (1, 'Burger Gà', 'burger_ga.jpg', 'Mô tả cho Burger Gà', 1),
-  (2, 'Gà Rán Kentucky', 'ga_ran_kentucky.jpg', 'Mô tả cho Gà Rán Kentucky', 2),
-  (3, 'Spaghetti Bolognese', 'spaghetti_bolognese.jpg', 'Mô tả cho Spaghetti Bolognese', 3),
-  (4, 'Khoai Tây Chiên', 'khoai_tay_chien.jpg', 'Mô tả cho Khoai Tây Chiên', 4),
-  (5, 'Nước Ngọt Coca-Cola', 'nuoc_ngot_coca_cola.jpg', 'Mô tả cho Nước Ngọt Coca-Cola', 5);
+
+INSERT INTO `products` (`id`, `name`, `image`, `description`, `id_category`) VALUES
+(1, 'Burger Gà', 'burger_ga.jpg', 'Mô tả cho Burger Gà', 1),
+(2, 'Gà Rán Kentucky', 'ga_ran_kentucky.jpg', 'Mô tả cho Gà Rán Kentucky', 2),
+(3, 'Spaghetti Bolognese', 'spaghetti_bolognese.jpg', 'Mô tả cho Spaghetti Bolognese', 3),
+(4, 'Khoai Tây Chiên', 'khoai_tay_chien.jpg', 'Mô tả cho Khoai Tây Chiên', 4),
+(5, 'Nước Ngọt Coca-Cola', 'nuoc_ngot_coca_cola.jpg', 'Mô tả cho Nước Ngọt Coca-Cola', 5);
+
+-- --------------------------------------------------------
 
 --
 -- Cấu trúc bảng cho bảng `product_variants`
@@ -233,19 +274,19 @@ CREATE TABLE `product_variants` (
 --
 -- Đang đổ dữ liệu cho bảng `product_variants`
 --
- 
-INSERT INTO `product_variants` (`id`, `id_product`, `id_size`, `price`, `quantity`)
-VALUES
-  (1, 1, 1, 5.99, 10),
-  (2, 1, 2, 6.99, 15),
-  (3, 1, 3, 7.99, 20),
-  (4, 2, 1, 8.99, 12),
-  (5, 2, 2, 9.99, 18),
-  (6, 3, 1, 10.99, 8),
-  (7, 3, 2, 11.99, 25),
-  (8, 3, 3, 12.99, 30),
-  (9, 4, 2, 13.99, 14),
-  (10, 5, 1, 14.99, 22);
+
+INSERT INTO `product_variants` (`id`, `id_product`, `id_size`, `price`, `quantity`) VALUES
+(1, 1, 1, 6, 10),
+(2, 1, 2, 7, 15),
+(3, 1, 3, 8, 20),
+(4, 2, 1, 9, 12),
+(5, 2, 2, 10, 18),
+(6, 3, 1, 11, 8),
+(7, 3, 2, 12, 25),
+(8, 3, 3, 13, 30),
+(9, 4, 2, 14, 14),
+(10, 5, 1, 15, 22);
+
 -- --------------------------------------------------------
 
 --
@@ -264,6 +305,8 @@ CREATE TABLE `roles` (
 INSERT INTO `roles` (`id`, `name`) VALUES
 (0, 'Admin'),
 (1, 'Client');
+
+-- --------------------------------------------------------
 
 --
 -- Cấu trúc bảng cho bảng `sizes`
@@ -300,7 +343,8 @@ ALTER TABLE `accounts`
 --
 ALTER TABLE `cart`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `id_product_variants` (`id_product_variants`);
+  ADD KEY `id_product_variants` (`id_product_variants`),
+  ADD KEY `id_account` (`id_account`);
 
 --
 -- Chỉ mục cho bảng `categories`
@@ -370,7 +414,12 @@ ALTER TABLE `roles`
 -- Chỉ mục cho bảng `sizes`
 --
 ALTER TABLE `sizes`
-  ADD PRIMARY KEY (`id`); 
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT cho các bảng đã đổ
+--
+
 --
 -- AUTO_INCREMENT cho bảng `accounts`
 --
@@ -381,7 +430,7 @@ ALTER TABLE `accounts`
 -- AUTO_INCREMENT cho bảng `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT cho bảng `categories`
@@ -393,7 +442,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT cho bảng `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT cho bảng `discount_codes`
@@ -423,54 +472,60 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT cho bảng `product_variants`
 --
 ALTER TABLE `product_variants`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7; 
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- Các ràng buộc cho các bảng đã đổ
+--
 
 --
 -- Các ràng buộc cho bảng `accounts`
 --
 ALTER TABLE `accounts`
-  ADD CONSTRAINT `accounts_ibfk_1` FOREIGN KEY (`id_role`) REFERENCES `roles` (`id`) ON DELETE SET NULL;
+  ADD CONSTRAINT `id_role` FOREIGN KEY (`id_role`) REFERENCES `roles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Các ràng buộc cho bảng `cart`
 --
 ALTER TABLE `cart`
-  ADD CONSTRAINT `cart_ibfk_1` FOREIGN KEY (`id_product_variants`) REFERENCES `product_variants` (`id`) ON DELETE CASCADE,
-  ADD  CONSTRAINT `id_account` FOREIGN KEY (`id_account`) REFERENCES `accounts`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `id_account` FOREIGN KEY (`id_account`) REFERENCES `accounts` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `id_product_variants` FOREIGN KEY (`id_product_variants`) REFERENCES `product_variants` (`id`);
 
 --
 -- Các ràng buộc cho bảng `comments`
 --
 ALTER TABLE `comments`
-  ADD CONSTRAINT `comments_ibfk_1` FOREIGN KEY (`id_account`) REFERENCES `accounts` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `comments_ibfk_2` FOREIGN KEY (`id_product`) REFERENCES `products` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `id_account1` FOREIGN KEY (`id_account`) REFERENCES `accounts` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `id_product` FOREIGN KEY (`id_product`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Các ràng buộc cho bảng `orders`
 --
 ALTER TABLE `orders`
-  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`id_status`) REFERENCES `order_status` (`id`) ON DELETE SET NULL,
-  ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`id_account`) REFERENCES `accounts` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `id_account2` FOREIGN KEY (`id_account`) REFERENCES `accounts` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `id_status` FOREIGN KEY (`id_status`) REFERENCES `order_status` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Các ràng buộc cho bảng `order_details`
 --
 ALTER TABLE `order_details`
-  ADD CONSTRAINT `order_details_ibfk_1` FOREIGN KEY (`id_order`) REFERENCES `orders` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `order_details_ibfk_2` FOREIGN KEY (`id_product_variants`) REFERENCES `product_variants` (`id`) ON DELETE CASCADE;
---   ADD CONSTRAINT `order_details_ibfk_3` FOREIGN KEY (`discount`) REFERENCES `discount_codes` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `id_order` FOREIGN KEY (`id_order`) REFERENCES `orders` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `id_product_variants1` FOREIGN KEY (`id_product_variants`) REFERENCES `product_variants` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Các ràng buộc cho bảng `products`
 --
 ALTER TABLE `products`
-  ADD CONSTRAINT `products_ibfk_1` FOREIGN KEY (`id_category`) REFERENCES `categories` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `id_category` FOREIGN KEY (`id_category`) REFERENCES `categories` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Các ràng buộc cho bảng `product_variants`
 --
 ALTER TABLE `product_variants`
-  ADD CONSTRAINT `id_product` FOREIGN KEY (`id_product`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `id_product2` FOREIGN KEY (`id_product`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `id_size` FOREIGN KEY (`id_size`) REFERENCES `sizes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-COMMIT; 
- 
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

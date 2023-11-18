@@ -54,7 +54,9 @@
                     case 'order':
                         include 'user/order.php';
                         break;
-
+                    case 'profile':
+                        include 'user/profile.php';
+                        break;
                     default:
                         include './user/home.php';
                         break;

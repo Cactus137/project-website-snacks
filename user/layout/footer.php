@@ -1,7 +1,5 @@
 <link rel="stylesheet" href="./assets/css/styles.user.footer.css">
-<div class="footer-banner">
-    <img src="assets/img/banners/footer-banner2.jpg" alt="">
-</div>
+
 <footer>
     <div class="box-one">
         <h2 style="color: #fff; text-transform: uppercase; font-family:'passion one', sans-serif">Fast Food</h2> <br>

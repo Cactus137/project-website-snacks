@@ -309,7 +309,7 @@ session_start();
                             if (isset($_POST['filter'])) {
                                 $start = $_POST['startDate'];
                                 $end = $_POST['endDate'];
-                                $categoryId = $_POST['id_category']; 
+                                $categoryId = $_POST['id_category'];
                                 $getRevenues = getRevenues($start, $end, $categoryId);
                             } else {
                                 $getRevenues = getRevenues();
@@ -508,8 +508,7 @@ session_start();
     </script>
     <!-- Github buttons -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
-    <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
-    <!-- <script src="assets/js/soft-ui-dashboard.min.js?v=1.0.7"></script> -->
+    <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc --> 
 </body>
 
 </html>

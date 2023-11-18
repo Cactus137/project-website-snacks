@@ -73,18 +73,3 @@ header i {
   font-size: 18px;
 }
 
-/* END HEADER */
-/* BEGIN BANNER */
-
-.banner {
-  width: 100%;
-  height: auto;
-}
-
-.banner img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* END BANNER */

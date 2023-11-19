@@ -1,0 +1,33 @@
+<?php
+    function load_all_comment(){
+        $sql = "SELECT  products.id AS id ,products.name AS name, COUNT(comments.id) AS quantity_comments,
+        MAX(comments.comment_date) AS latest_date, MIN(comments.comment_date) AS oldest_day
+        FROM comments
+        INNER JOIN products ON products.id = comments.id_product
+		GROUP BY products.id, products.name
+        ORDER BY products.id DESC";
+        $load_all_comments = pdo_query($sql);
+        return $load_all_comments;
+    }
+
+    function delete_comments($id){
+        $sql = "DELETE FROM `comments` WHERE id_product = $id";
+        pdo_execute($sql);
+    }
+
+    function load_all_comment_detail($id){
+        $sql = "SELECT comments.id AS id, accounts.fullname, 
+        comments.content, comments.comment_date, comments.id AS id_comment
+        FROM comments 
+        INNER JOIN accounts ON accounts.id = comments.id_account 
+        WHERE id_product =$id
+        ORDER BY comments.id DESC";
+        $load_all_comment_detail = pdo_query($sql);
+        return $load_all_comment_detail;
+    }
+
+    function delete_comment_detail($id){
+        $sql = "DELETE  FROM comments WHERE id=$id";
+        pdo_execute($sql);
+    }
+?>

@@ -29,29 +29,49 @@
     }
 
     
-    function quantity($id_pro,$id_size){
-        $sql = "SELECT quantity FROM product_variants WHERE id_product = $id_pro AND  id_size = $id_size";
-        $quantity = pdo_query_one($sql);
+    function quantity($id_pro){
+        $sql = "SELECT * FROM product_variants 
+        INNER JOIN products ON product_variants.id_product = products.id
+        INNER JOIN sizes ON product_variants.id_size = sizes.id
+        WHERE id_product = $id_pro ";
+        $quantity = pdo_query($sql);
         return $quantity;
     }
 
+    function load_one_product($id){
+        $sql = "SELECT products.id AS id_product, products.id_category AS id_category, 
+        products.name AS name, products.image AS image, products.description AS description, 
+        product_variants.quantity AS quantity, product_variants.price, sizes.name AS size FROM `products` 
+        INNER JOIN product_variants ON product_variants.id_product = products.id 
+        INNER JOIN sizes ON sizes.id = product_variants.id_size WHERE products.id=$id 
+        ORDER BY sizes.id ASC";
+        $load_one_product = pdo_query($sql);
+        return $load_one_product;
+    } 
 
+    function update_product($id,$name,$id_category,$description,$image){
+        if($image !=  ''){
+            $sql = "UPDATE products SET name='$name', image='$image', description='$description', id_category='$id_category' WHERE id=".$id;
+        }else{
+            $sql = "UPDATE products SET name='$name', description='$description', id_category='$id_category' WHERE id=".$id;
+        }
+        pdo_query($sql);
+    }
 
+    function update_product_variants($id,$id_size,$price,$quantity){
+        $sql = "UPDATE product_variants SET quantity='$quantity', price='$price' WHERE id_product=$id AND id_size=".$id_size;
+        pdo_query($sql);
+    }
 
-    
-    // function load_quantity_size($id_pro,$quantiny){
-    //     $sql = "SELECT product_variants.quantity 
-    //     FROM product_variants 
-    //     INNER JOIN products ON products.id = product_variants.id_product
-    //     INNER JOIN size ON product_variants.id_size = sizes.id
-    //     WHERE $id_pro = product_variants.id_product AND  product_variants.id_size = $quantiny";
-    //     $list_quantity = pdo_query($sql);
-    //     return $list_quantity;
-    // }
-    
-    // -- GROUP BY  products.id, categories.id
-    // -- INNER JOIN product_variants ON products.id = product_variants.id_product
-    // -- INNER JOIN sizes ON product_variants.id_size = sizes.id 
+    function delete_product($id){
+        $sql = "DELETE FROM products WHERE id=".$id;
+        pdo_execute($sql);
+    }
+
+    function delete_product_variants($id,$id_size){
+        $sql = "DELETE FROM product_variants WHERE id=$id AND id_size=".$id_size;
+        pdo_execute($sql);
+    }
 ?>
 
 

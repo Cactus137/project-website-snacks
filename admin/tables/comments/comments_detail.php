@@ -18,30 +18,37 @@
                 </tr>
               </thead>
               <tbody>
-                <?php for ($i = 0; $i < 9; $i++) : ?>
+                <?php foreach ($load_all_comment_detail as $row){
+                        extract($row);
+                 ?>
                   <tr>
                     <td class="text-center p-2" style="width: 25px;">
-                      <span>1</span>
+                      <span><?php echo $id ?></span>
                     </td>
                     <td class="text-center px-4">
-                      <p class="text-sm font-weight-bold mb-0">Burder Italya</p>
+                      <p class="text-sm font-weight-bold mb-0"><?php echo $fullname ?></p>
                     </td>
                     <td class="text-center px-4">
-                      <p class="text-sm font-weight-bold mb-0">Tạm chấp nhận</p>
+                      <p class="text-sm font-weight-bold mb-0"><?php echo $content ?></p>
                     </td> 
                     <td class="text-center p-2">
-                      <p class="text-sm font-weight-bold mb-0">14:00 13/07/2024</p>
+                      <p class="text-sm font-weight-bold mb-0"><?php echo $comment_date ?></p>
                     </td> 
                     <td class="align-middle" style="width: 50px;">
                       <div class="d-flex py-3 float-end">
                         <!-- Xóa -->
-                        <a name="dlt_btn" class="btn btn-danger btn-sm m-0 mx-1" style=" display: flex; align-items: center; justify-content: center;" onclick="return confirm('Bạn có xác nhận xóa ?');" href="#">
+                        <a name="dlt_btn" class="btn btn-danger btn-sm m-0 mx-1" style=" display: flex; align-items: center; justify-content: center;" onclick="return confirm('Bạn có xác nhận xóa ?');"
+                         href="?action=dlt_comment_detail&id=<?php echo $id_comment ?>">
                           <i class="fa fa-trash"></i>
                         </a>
+                        <!-- <form action="?action=dlt_comment_detail&id=<?php echo $id_comment ?>" method="POST">
+                          <input type="text" name="id_product" id="" value="<?=$_GET['id']?>">
+                          <input type="submit" value="Xoa" name="submit">
+                        </form> -->
                       </div>
                     </td>
                   </tr>
-                <?php endfor; ?>
+                <?php } ?>
               </tbody>
             </table>
           </div>

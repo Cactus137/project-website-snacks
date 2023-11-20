@@ -33,10 +33,10 @@
                       <span><?php echo $id?></span>
                     </td>
                     <td class="text-center p-2" style="width: 300px;">
-                      <img src="<?php echo $img_path?>" class="me-3" alt="user1" width="100px">
+                      <img src="<?php echo $pathImg . $image ?>" class="me-3" alt="user1" width="100px">
                     </td>
                     <td class=" p-2">
-                      <p class="text-sm font-weight-bold mb-0"><?php echo $name_product?></p>
+                      <p class="text-sm font-weight-bold mb-0"><?php echo $name?></p>
                     </td>
                     <td class=" p-2">
                       <p class="text-center text-sm font-weight-bold mb-0"><?php echo $name_category ?></p>
@@ -53,6 +53,16 @@
                     ?>
                     <td class=" p-2">
                       <p class="text-center text-sm font-weight-bold mb-0"><?=$value['quantity'] ?></p>
+                      <p class="text-center text-sm font-weight-bold mb-0"><?php echo $name_cate ?></p>
+                    </td> 
+                    <td class=" p-2">
+                      <p class="text-center text-sm font-weight-bold mb-0"><?php echo getQuantitySizeProduct($id, 1)['quantity']; ?></p>
+                    </td>
+                    <td class=" p-2">
+                      <p class="text-center text-sm font-weight-bold mb-0"><?php echo getQuantitySizeProduct($id, 2)['quantity']; ?></p>
+                    </td>
+                    <td class=" p-2">
+                      <p class="text-center text-sm font-weight-bold mb-0"><?php echo getQuantitySizeProduct($id, 3)['quantity']; ?></p>
                     </td>
                     <?php
                           }

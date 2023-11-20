@@ -229,6 +229,8 @@ session_start();
                             break;
                         case 'products':
                             $list_all_product = load_all_product_category_variant();
+                            $getAllProducts = getAllProducts();
+                            $pathImg = "../assets/img/products/";
                             include 'tables/products/products.php';
                             break;
                         case 'add_product':
@@ -259,9 +261,9 @@ session_start();
                                     $id_sizeL = 3;
                                     if ($getLatestProductsIdData) {
                                         $getLatestProductsIdData = $getLatestProductsIdData['id'];
-                                        insert_product_variant($getLatestProductsIdData, $id_sizeS, $priceS, $quantityS);
-                                        insert_product_variant($getLatestProductsIdData, $id_sizeM, $priceM, $quantityM);
-                                        insert_product_variant($getLatestProductsIdData, $id_sizeL, $priceL, $quantityL);
+                                        insert_product_variant($getLatestProductsIdData, 1, $priceS, $quantityS);
+                                        insert_product_variant($getLatestProductsIdData, 2, $priceM, $quantityM);
+                                        insert_product_variant($getLatestProductsIdData, 3, $priceL, $quantityL);
                                     }
                                     $notification = 'Thêm thành công';
                                 }

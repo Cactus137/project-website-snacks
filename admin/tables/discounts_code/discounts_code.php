@@ -1,5 +1,5 @@
 <div class="container-fluid py-4">
-  <a class="btn btn-sm btn-info mb-2" href="?action=add_discount_code">Thêm sản phẩm</a>
+  <a class="btn btn-sm btn-info mb-2" href="?action=add_discount_code">Thêm mã giảm giá</a>
   <div class="row">
     <div class="col-12">
       <div class="card mb-4">

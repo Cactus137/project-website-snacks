@@ -149,11 +149,40 @@
                         case 'edit_product':
                             include 'tables/products/edit_product.php';
                             break;
+
                         case 'orders':
+                            $listorder = getAll_order();
                             include 'tables/orders/orders.php';
                             break;
+                        case 'order_variants':
+                            if (isset($_GET['id_order']) && ($_GET['id_order'] > 0)) {
+                                $id = $_GET['id_order'];
+                                $one_order =  loadone_order($id);
+                                include 'tables/orders/order_variants.php';
+                            } else {
+                                include 'tables/orders/orders.php';
+                            }
+
+
+                            break;
+                        case 'update_order':
+                            if (isset($_GET['id']) && ($_GET['id']) > 0) {
+                                $order = loadone_order($_GET['id']);
+                            }
+                            include "tables/orders/edit_order.php";
                         case 'edit_order':
-                            include 'tables/orders/edit_order.php';
+                            if (isset($_POST['btn_edit']) && ($_POST['btn_edit'])) {
+                                $id_order = $_POST['id_order'];
+                                $username = $_POST['fullname'];
+                                $email = $_POST['email'];
+                                $tel = $_POST['tel'];
+                                $address = $_POST['address'];
+                                $id_status = $_POST['id_status'];
+                                $notes = $_POST['notes'];
+                                order_update($id_order, $username, $email, $tel, $address, $id_status, $notes);
+                            }
+                            $listorder = getAll_order();
+                            include 'tables/orders/orders.php';
                             break;
                         case 'comments':
                             include 'tables/comments/comments.php';

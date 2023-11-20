@@ -17,6 +17,7 @@
         left: -30px;
         top: 30px;
     }
+
     .dropdown-content a {
         color: #70472b;
         padding: 12px 16px;
@@ -53,7 +54,7 @@
                 <a class="dropdown-item m-0 p-0" href="index.php?act=login"><i class="fa-solid fa-user pe-2"></i>Đăng nhập</a>
                 <a class="dropdown-item m-0 p-0" href="index.php?act=profile"><i class="fa-solid fa-gear pe-2"></i>Tài khoản của tôi</a>
                 <a class="dropdown-item m-0 p-0" href="index.php?act=order"><i class="fa-solid fa-bag-shopping pe-2"></i>Đơn hàng</a>
-                <a class="dropdown-item m-0 p-0" href="index.php?act=logout"><i class="fa-solid fa-right-from-bracket pe-2"></i>Đăng xuất</a>
+                <a class="dropdown-item m-0 p-0" href="index.php?act=logout" onclick="return confirm('Bạn có chắc chắn muốn đăng xuất không?')"><i class="fa-solid fa-right-from-bracket pe-2"></i>Đăng xuất</a>
             </div>
         </div>
     </div>

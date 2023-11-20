@@ -2,8 +2,8 @@
 
 <div class="d-flex justify-content-between">
     <div class="col-md-3 shadow text-center">
-        <div class="user">
-            <img src="https://i.pinimg.com/736x/bb/02/d9/bb02d9f76bcbc4ac80fc8d162273f5d8.jpg" alt="" style="width: 200px; height: 200px">
+        <div class="user pt-5 mt-5">
+            <img width="250px" height="250px" style="background-position: center;" class="rounded-circle object-fit-cover" src="assets/img/accounts/profile.jpg" id="photo" alt="photo">
             <p class="text-uppercase my-3">Nguyễn Văn A</p>
         </div>
         <div class="status">
@@ -61,8 +61,8 @@
                         </div>
                     </div>
                 </div>
-            <?php endfor; ?>
             </div>
+        <?php endfor; ?>
     </div>
 </div>
 </section>

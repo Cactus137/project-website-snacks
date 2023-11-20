@@ -23,36 +23,22 @@
                 </tr>
               </thead>
               <tbody>
-                <?php 
-                    foreach($list_all_product as $row){
-                        extract($row);
-                        $img_path = './assets/img/products/'.$image;    
+                <?php
+                foreach ($getAllProducts as $row) {
+                  extract($row);
+                  $img_path = '../assets/img/products/' . $image;
                 ?>
                   <tr>
                     <td class="text-center p-2" style="width: 25px;">
-                      <span><?php echo $id?></span>
+                      <span><?php echo $id ?></span>
                     </td>
                     <td class="text-center p-2" style="width: 300px;">
                       <img src="<?php echo $pathImg . $image ?>" class="me-3" alt="user1" width="100px">
                     </td>
                     <td class=" p-2">
-                      <p class="text-sm font-weight-bold mb-0"><?php echo $name?></p>
+                      <p class="text-sm font-weight-bold mb-0"><?php echo $name ?></p>
                     </td>
                     <td class=" p-2">
-                      <p class="text-center text-sm font-weight-bold mb-0"><?php echo $name_category ?></p>
-                    </td>
-                    <?php
-                        
-                        $id_pro = $row['id'];
-                        $list_quantity =  quantity($id_pro);
-                        foreach ($list_quantity as $value){
-                          // echo '<pre>';
-                          //     print_r ($value);
-                          //   echo '</pre>';
-                          // // } 
-                    ?>
-                    <td class=" p-2">
-                      <p class="text-center text-sm font-weight-bold mb-0"><?=$value['quantity'] ?></p>
                       <p class="text-center text-sm font-weight-bold mb-0"><?php echo $name_cate ?></p>
                     </td> 
                     <td class=" p-2">
@@ -64,26 +50,21 @@
                     <td class=" p-2">
                       <p class="text-center text-sm font-weight-bold mb-0"><?php echo getQuantitySizeProduct($id, 3)['quantity']; ?></p>
                     </td>
-                    <?php
-                          }
-                    ?>
                     <td class="align-middle">
                       <div class="d-flex py-5 float-end">
                         <!-- Sửa -->
-                        <a name="edit_btn" class="btn bg-secondary btn-sm m-0 mx-1" style="display: flex; align-items: center; justify-content: center;" href="?action=fix_product&id=<?php echo $id ?>">
+                        <a name="edit_btn" class="btn bg-secondary btn-sm m-0 mx-1" style="display: flex; align-items: center; justify-content: center;" href="?action=update_products&id=<?php echo $id ?>">
                           <i class="fa-solid fa-pen-to-square" style="color: #ffffff;"></i>
                         </a>
                         <!-- Xóa -->
-                        <a name="dlt_btn" class="btn btn-danger btn-sm m-0 mx-1" style=" display: flex; align-items: center; justify-content: center;" onclick="return confirm('Bạn có xác nhận xóa ?');"
-                         href="?action=dlt_product&id=<?php echo $id ?>">
+                        <a name="dlt_btn" class="btn btn-danger btn-sm m-0 mx-1" style=" display: flex; align-items: center; justify-content: center;" onclick="return confirm('Bạn có xác nhận xóa ?');" href="?action=dlt_product&id=<?php echo $id ?>">
                           <i class="fa fa-trash"></i>
                         </a>
                       </div>
                     </td>
                   </tr>
-                <?php 
-                        
-                    }    
+                <?php
+                }
                 ?>
               </tbody>
             </table>

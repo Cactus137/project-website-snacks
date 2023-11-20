@@ -188,8 +188,9 @@ session_start();
                             include 'tables/categories/categories.php';
                             break;
                         case 'add_category':
-                            if (isset($_POST['btn_edit']) && $_POST['btn_edit']) {
+                            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 $name_category = $_POST['name_category'];
+
                                 $image = $_FILES['image']['name'];
                                 $image_tmp = $_FILES['image']['tmp_name'];
                                 $image_size = $_FILES['image']['size'];
@@ -197,37 +198,35 @@ session_start();
                                 if ($image_size > $image_maxsize) {
                                     $notificationERROR = 'File ảnh quá lớn vui lòng thử lại';
                                 } else {
-                                    move_uploaded_file($image_tmp, './assets/img/' . $image);
+                                    move_uploaded_file($image_tmp, '../assets/img/categories/' . $image);
                                     insert_category($name_category, $image);
                                     $notification = 'Thêm thành công';
                                 }
                             }
                             include 'tables/categories/add_category.php';
                             break;
-                        case 'fix_category':
-                            if (isset($_GET['id']) && $_GET['id'] > 0) {
-                                $one_category = load_one_category($_GET['id']);
+                        case 'update_category':
+                            $one_category = load_one_category($_GET['id']); 
+
+                            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                                $id = $_GET['id'];
+                                $name_category = $_POST['name_category']; 
+
+                                if ($_FILES['image']['name'] != "") {
+                                    $image = $_FILES['image']['name'];
+                                    $image_size = $_FILES['image']['size'];
+                                    $image_maxsize = 4 * 1024 * 1024;
+                                    if ($image_size > $image_maxsize) {
+                                        $notificationERROR = 'File ảnh quá lớn vui lòng thử lại';
+                                    } else {
+                                        move_uploaded_file($_FILES['image']['tmp_name'], './assets/img/categories/' . $image);
+                                    }
+                                } else {
+                                    $image = $one_category['image'];
+                                }
+                                update_category($id, $name_category, $image);
                             }
                             include 'tables/categories/edit_category.php';
-                            break;
-                        case 'update_category':
-                            if (isset($_POST['btn_edit']) && ($_POST['btn_edit'])) {
-                                $id = $_POST['id'];
-                                $name_category = $_POST['name_category'];
-                                $image = $_FILES['image']['name'];
-                                $image_tmp = $_FILES['image']['tmp_name'];
-                                $image_size = $_FILES['image']['size'];
-                                $image_maxsize = 4 * 1024 * 1024;
-                                if ($image_size > $image_maxsize) {
-                                    $notificationERROR = 'File ảnh quá lớn vui lòng thử lại';
-                                } else {
-                                    move_uploaded_file($image_tmp, './assets/img/' . $image);
-                                    update_category($id, $name_category, $image);
-                                    $notification = 'Thêm thành công';
-                                }
-                                $list_categories = load_all_category();
-                                include 'tables/categories/categories.php';
-                            }
                             break;
                         case 'dlt_category':
                             if (isset($_GET['id']) && ($_GET['id'] >= 1)) {
@@ -237,14 +236,136 @@ session_start();
                             include 'tables/categories/categories.php';
                             break;
                         case 'products':
+                            // $list_all_product = getAllProducts();
+                            $getAllProducts = getAllProducts();
+                            $pathImg = "../assets/img/products/";
                             include 'tables/products/products.php';
                             break;
                         case 'add_product':
+                            $list_categories = load_all_category();
+                            if (isset($_POST['btn_edit']) && $_POST['btn_edit']) {
+                                // Products
+                                $name = $_POST['name'];
+                                $description = $_POST['description'];
+                                $id_category = $_POST['id_category'];
+                                $image = $_FILES['image']['name'];
+                                $image_size = $_FILES['image']['size'];
+                                $image_maxsize = 4 * 1024 * 1024;
+
+                                $quantityS = $_POST['quantityS'];
+                                $priceS = $_POST['priceS'];
+                                $quantityM = $_POST['quantityM'];
+                                $priceM = $_POST['priceM'];
+                                $quantityL = $_POST['quantityL'];
+                                $priceL = $_POST['priceL'];
+
+                                if ($quantityS == "") {
+                                    $quantityS = 0;
+                                }
+                                if ($priceS == "") {
+                                    $priceS = 0;
+                                }
+                                if ($quantityM == "") {
+                                    $quantityM = 0;
+                                }
+                                if ($priceM == "") {
+                                    $priceM = 0;
+                                }
+                                if ($quantityL == "") {
+                                    $quantityL = 0;
+                                }
+                                if ($priceL == "") {
+                                    $priceL = 0;
+                                }
+
+                                if ($image_size > $image_maxsize) {
+                                    $notification = 'File ảnh quá lớn vui lòng thử lại';
+                                } else {
+                                    move_uploaded_file($_FILES['image']['tmp_name'], '../assets/img/products/' . $image);
+                                    insert_products($name, $description, $id_category, $image);
+                                    $getLatestProductsIdData = getLatestProductsId();
+                                    if ($getLatestProductsIdData) {
+                                        $getLatestProductsIdData = $getLatestProductsIdData['id'];
+                                        insert_product_variant($getLatestProductsIdData, 1, $priceS, $quantityS);
+                                        insert_product_variant($getLatestProductsIdData, 2, $priceM, $quantityM);
+                                        insert_product_variant($getLatestProductsIdData, 3, $priceL, $quantityL);
+                                    }
+                                }
+                            }
                             include 'tables/products/add_product.php';
                             break;
-                        case 'edit_product':
+
+                        case 'update_products':
+                            $load_one_product = load_one_product($_GET['id']);
+                            $sizeL = getQuantitySizeProduct($_GET['id'], 3);
+                            $sizeM = getQuantitySizeProduct($_GET['id'], 2);
+                            $sizeS = getQuantitySizeProduct($_GET['id'], 1);
+
+                            $list_categories = load_all_category();
+
+                            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                                $name = $_POST['name'];
+                                $id_category = $_POST['id_category'];
+                                $description = $_POST['description'];
+                                $quantityS = $_POST['quantityS'];
+                                $priceS = $_POST['priceS'];
+                                $quantityM = $_POST['quantityM'];
+                                $priceM = $_POST['priceM'];
+                                $quantityL = $_POST['quantityL'];
+                                $priceL = $_POST['priceL'];
+
+                                if ($quantityS == "") {
+                                    $quantityS = 0;
+                                }
+                                if ($priceS == "") {
+                                    $priceS = 0;
+                                }
+                                if ($quantityM == "") {
+                                    $quantityM = 0;
+                                }
+                                if ($priceM == "") {
+                                    $priceM = 0;
+                                }
+                                if ($quantityL == "") {
+                                    $quantityL = 0;
+                                }
+                                if ($priceL == "") {
+                                    $priceL = 0;
+                                }
+
+                                if ($_FILES['image']['name'] != "") {
+                                    $image = $_FILES['image']['name'];
+                                    $image_size = $_FILES['image']['size'];
+                                    $image_maxsize = 4 * 1024 * 1024;
+                                    if ($image_size > $image_maxsize) {
+                                        $notificationERROR = 'File ảnh quá lớn vui lòng thử lại';
+                                    } else {
+                                        move_uploaded_file($_FILES['image']['tmp_name'], './assets/img/products/' . $image);
+                                    }
+                                } else {
+                                    $image = $load_one_product['image'];
+                                }
+                                update_product($_GET['id'], $name, $id_category, $description, $image);
+                                update_product_variants($_GET['id'], 1, $priceS, $quantityS);
+                                update_product_variants($_GET['id'], 2, $priceM, $quantityM);
+                                update_product_variants($_GET['id'], 3, $priceL, $quantityL);
+                            }
                             include 'tables/products/edit_product.php';
                             break;
+                        case 'dlt_product':
+                            if (isset($_GET['id']) && ($_GET['id'] >= 1)) {
+                                delete_product($_GET['id']);
+                                $id_sizeS = 1;
+                                $id_sizeM = 2;
+                                $id_sizeL = 3;
+                                delete_product_variants($_GET['id'], $id_sizeS);
+                                delete_product_variants($_GET['id'], $id_sizeM);
+                                delete_product_variants($_GET['id'], $id_sizeL);
+                            }
+                            $list_all_product = load_all_product_category_variant();
+
+                            break;
+
                         case 'orders':
                             include 'tables/orders/orders.php';
                             break;
@@ -252,12 +373,29 @@ session_start();
                             include 'tables/orders/edit_order.php';
                             break;
                         case 'comments':
+                            $load_all_comments = load_all_comment();
+                            include 'tables/comments/comments.php';
+                            break;
+                        case 'dlt_comments':
+                            if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+                                delete_comments($_GET['id']);
+                            }
+                            $load_all_comments = load_all_comment();
                             include 'tables/comments/comments.php';
                             break;
                         case 'comments_detail':
+                            if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+                                $load_all_comment_detail = load_all_comment_detail($_GET['id']);
+                            }
                             include 'tables/comments/comments_detail.php';
                             break;
-
+                        case 'dlt_comment_detail':
+                            if (isset($_GET['id']) && $_GET['id'] > 0) {
+                                delete_comment_detail($_GET['id']);
+                            }
+                            $load_all_comments = load_all_comment();
+                            include 'tables/comments/comments.php';
+                            break;
                         case 'add_discount_code':
                             if (isset($_POST['newpro']) && ($_POST['newpro'])) {
                                 $code_name = $_POST['code'];

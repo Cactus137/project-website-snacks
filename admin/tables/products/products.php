@@ -23,43 +23,49 @@
                 </tr>
               </thead>
               <tbody>
-                <?php for ($i = 0; $i < 9; $i++) : ?>
+                <?php
+                foreach ($getAllProducts as $row) {
+                  extract($row);
+                  $img_path = '../assets/img/products/' . $image;
+                ?>
                   <tr>
                     <td class="text-center p-2" style="width: 25px;">
-                      <span>1</span>
+                      <span><?php echo $id ?></span>
                     </td>
                     <td class="text-center p-2" style="width: 300px;">
-                      <img src="assets/img/small-logos/logo-spotify.svg" class="me-3" alt="user1" width="100px">
+                      <img src="<?php echo $pathImg . $image ?>" class="me-3" alt="user1" width=" " height="100px">
                     </td>
                     <td class=" p-2">
-                      <p class="text-sm font-weight-bold mb-0">Burder Italya</p>
+                      <p class="text-sm font-weight-bold mb-0"><?php echo $name ?></p>
                     </td>
                     <td class=" p-2">
-                      <p class="text-center text-sm font-weight-bold mb-0">Burder</p>
+                      <p class="text-center text-sm font-weight-bold mb-0"><?php echo $name_cate ?></p>
+                    </td> 
+                    <td class=" p-2">
+                      <p class="text-center text-sm font-weight-bold mb-0"><?php echo getQuantitySizeProduct($id, 1)['quantity']; ?></p>
                     </td>
                     <td class=" p-2">
-                      <p class="text-center text-sm font-weight-bold mb-0">100</p>
+                      <p class="text-center text-sm font-weight-bold mb-0"><?php echo getQuantitySizeProduct($id, 2)['quantity']; ?></p>
                     </td>
                     <td class=" p-2">
-                      <p class="text-center text-sm font-weight-bold mb-0">100</p>
-                    </td>
-                    <td class=" p-2">
-                      <p class="text-center text-sm font-weight-bold mb-0">100</p>
+                      <p class="text-center text-sm font-weight-bold mb-0"><?php echo getQuantitySizeProduct($id, 3)['quantity']; ?></p>
                     </td>
                     <td class="align-middle">
                       <div class="d-flex py-5 float-end">
                         <!-- Sửa -->
-                        <a name="edit_btn" class="btn bg-secondary btn-sm m-0 mx-1" style="display: flex; align-items: center; justify-content: center;" href="?action=edit_product">
+                        <a name="edit_btn" class="btn bg-secondary btn-sm m-0 mx-1" style="display: flex; align-items: center; justify-content: center;" href="?action=update_products&id=<?php echo $id ?>">
                           <i class="fa-solid fa-pen-to-square" style="color: #ffffff;"></i>
                         </a>
                         <!-- Xóa -->
-                        <a name="dlt_btn" class="btn btn-danger btn-sm m-0 mx-1" style=" display: flex; align-items: center; justify-content: center;" onclick="return confirm('Bạn có xác nhận xóa ?');" href="#">
+                        <a name="dlt_btn" class="btn btn-danger btn-sm m-0 mx-1" style=" display: flex; align-items: center; justify-content: center;" onclick="return confirm('Bạn có xác nhận xóa ?');" href="?action=dlt_product&id=<?php echo $id ?>">
                           <i class="fa fa-trash"></i>
                         </a>
                       </div>
                     </td>
                   </tr>
-                <?php endfor; ?>
+                <?php
+                }
+                ?>
               </tbody>
             </table>
           </div>
@@ -67,3 +73,4 @@
       </div>
     </div>
   </div>
+  

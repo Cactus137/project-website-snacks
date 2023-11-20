@@ -55,7 +55,7 @@
                                 <p>15/03/2023</p>
                                 <p>There are many variations of passages of lorem Ipum available theresu anything embarrassing It’s a long established fact that a reader will be looking at its layout. </p>
                             </span>
-                        </div> 
+                        </div>
                         <div class="add-comment">
                             <div class="text-comments">
                                 <input type="text" name="" id="" placeholder="Viết bình luận..." class="text-1">
@@ -66,46 +66,46 @@
                     <div class="related-products">
                         <h4 class="pro-cx">Sản phẩm liên quan</h4>
                         <div class="sum-relad">
-                                <div class="related-2">
-                                    <div class="relad-img">
-                                        <img src="img/Rectangle 16.png" alt="" class="rel-img">
-                                    </div>
-                                    <div class="text-relad">
-                                        <p class="title-product">Italian Beef Burger</p>
-                                        <p>Italian Beef Burger</p>
-                                        <p class="prices">50.000VND</p>
-                                    </div>
+                            <div class="related-2">
+                                <div class="relad-img">
+                                    <img src="img/Rectangle 16.png" alt="" class="rel-img">
                                 </div>
-                                <div class="related-1">
-                                    <div class="relad-img">
-                                        <img src="img/Rectangle 16.png" alt="" class="rel-img">
-                                    </div>
-                                    <div class="text-relad">
-                                        <p class="title-product">Italian Beef Burger</p>
-                                        <p>Italian Beef Burger</p>
-                                        <p class="prices">50.000VND</p>
-                                    </div>
+                                <div class="text-relad">
+                                    <p class="title-product">Italian Beef Burger</p>
+                                    <p>Italian Beef Burger</p>
+                                    <p class="prices">50.000VND</p>
                                 </div>
-                                <div class="related-1">
-                                    <div class="relad-img">
-                                        <img src="img/Rectangle 16.png" alt="" class="rel-img">
-                                    </div>
-                                    <div class="text-relad">
-                                        <p class="title-product">Italian Beef Burger</p>
-                                        <p>Italian Beef Burger</p>
-                                        <p class="prices">50.000VND</p>
-                                    </div>
+                            </div>
+                            <div class="related-1">
+                                <div class="relad-img">
+                                    <img src="img/Rectangle 16.png" alt="" class="rel-img">
                                 </div>
-                                <div class="related-1">
-                                    <div class="relad-img">
-                                        <img src="img/Rectangle 16.png" alt="" class="rel-img">
-                                    </div>
-                                    <div class="text-relad">
-                                        <p class="title-product">Italian Beef Burger</p>
-                                        <p>Italian Beef Burger</p>
-                                        <p class="prices">50.000VND</p>
-                                    </div>
+                                <div class="text-relad">
+                                    <p class="title-product">Italian Beef Burger</p>
+                                    <p>Italian Beef Burger</p>
+                                    <p class="prices">50.000VND</p>
                                 </div>
+                            </div>
+                            <div class="related-1">
+                                <div class="relad-img">
+                                    <img src="img/Rectangle 16.png" alt="" class="rel-img">
+                                </div>
+                                <div class="text-relad">
+                                    <p class="title-product">Italian Beef Burger</p>
+                                    <p>Italian Beef Burger</p>
+                                    <p class="prices">50.000VND</p>
+                                </div>
+                            </div>
+                            <div class="related-1">
+                                <div class="relad-img">
+                                    <img src="img/Rectangle 16.png" alt="" class="rel-img">
+                                </div>
+                                <div class="text-relad">
+                                    <p class="title-product">Italian Beef Burger</p>
+                                    <p>Italian Beef Burger</p>
+                                    <p class="prices">50.000VND</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

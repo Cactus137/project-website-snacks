@@ -15,10 +15,10 @@ function getLatestProductsId()
     }
 }
 
-function insert_product_variant($getLatestProductsIdData, $id_size, $price, $quantity)
+function insert_product_variant($id, $id_size, $price, $quantity)
 {
     $sql = "INSERT INTO product_variants(id_product,id_size,price,quantity)
-            VALUES('$getLatestProductsIdData','$id_size','$price','$quantity')";
+            VALUES('$id','$id_size','$price','$quantity')";
     pdo_execute($sql);
 }
 
@@ -53,14 +53,18 @@ function getAllProducts()
 
 function load_one_product($id)
 {
-    $sql = "SELECT * FROM products WHERE id=" . $id;
-    $load_one_product = pdo_query($sql);
-    return $load_one_product;
+    try {
+        $sql = "SELECT * FROM products WHERE id= $id; ";
+        return pdo_query($sql);
+    } catch (Exception $e) {
+        echo $e->getMessage();
+    }
 }
 
 
 
-function load_all_product_category_variant(){
+function load_all_product_category_variant()
+{
     $sql = "SELECT products.id AS id ,products.image AS image ,products.name AS name_product, categories.name_category
     FROM products 
     INNER JOIN categories ON products.id_category = categories.id
@@ -69,10 +73,10 @@ function load_all_product_category_variant(){
     return $list_all_product;
 }
 
-function getQuantitySizeProduct($id_quantity, $id_size)
+function getQuantitySizeProduct($id_product, $id_size)
 {
     try {
-        $sql = "SELECT * FROM product_variants WHERE id_product = $id_quantity AND id_size = $id_size";
+        $sql = "SELECT * FROM product_variants WHERE id_product = $id_product AND id_size = $id_size";
         return pdo_query_one($sql);
     } catch (Exception $e) {
         echo $e->getMessage();
@@ -81,18 +85,14 @@ function getQuantitySizeProduct($id_quantity, $id_size)
 
 function update_product($id, $name, $id_category, $description, $image)
 {
-    if ($image !=  '') {
-        $sql = "UPDATE products SET name='$name', image='$image', description='$description', id_category='$id_category' WHERE id=" . $id;
-    } else {
-        $sql = "UPDATE products SET name='$name', description='$description', id_category='$id_category' WHERE id=" . $id;
-    }
+    $sql = "UPDATE products SET name='$name', image='$image', description='$description', id_category='$id_category' WHERE id = $id";
     pdo_query($sql);
 }
 
 function update_product_variants($id, $id_size, $price, $quantity)
 {
-    $sql = "UPDATE product_variants SET quantity='$quantity', price='$price' WHERE id_product=$id AND id_size=" . $id_size;
-    pdo_query($sql);
+    $sql = "UPDATE product_variants SET price='$price', quantity='$quantity' WHERE id_product = $id AND id_size = $id_size";
+    pdo_query($sql);    
 }
 
 function delete_product($id)

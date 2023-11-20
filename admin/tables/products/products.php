@@ -33,7 +33,7 @@
                       <span><?php echo $id ?></span>
                     </td>
                     <td class="text-center p-2" style="width: 300px;">
-                      <img src="<?php echo $pathImg . $image ?>" class="me-3" alt="user1" width="100px">
+                      <img src="<?php echo $pathImg . $image ?>" class="me-3" alt="user1" width=" " height="100px">
                     </td>
                     <td class=" p-2">
                       <p class="text-sm font-weight-bold mb-0"><?php echo $name ?></p>
@@ -73,3 +73,4 @@
       </div>
     </div>
   </div>
+  

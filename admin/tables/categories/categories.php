@@ -11,17 +11,16 @@
               <table class="table align-items-center justify-content-between mb-0">
                 <thead>
                   <tr>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">STT</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ID</th>
                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Hình ảnh</th>
                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tên danh mục</th>
                     <th></th>
                   </tr>
                 </thead>
                 <tbody>
-                  <?php 
-                  foreach($list_categories as $row){
-                            extract($row);
-                            $img_path = './assets/img/'.$image;
+                  <?php
+                  foreach ($list_categories as $row) {
+                    extract($row); 
                   ?>
                     <tr>
                       <td class="text-center p-2" style="width: 25px;">
@@ -29,16 +28,16 @@
                       </td>
                       <td class="text-center p-2" style="width: 300px;">
                         <div>
-                          <img src="<?php echo $img_path?>" class="rounded" width="100px">
+                          <img src="<?php echo "../assets/img/categories/" . $image ?>" class="rounded" width="100px">
                         </div>
                       </td>
                       <td class=" p-2">
-                        <p class="text-sm font-weight-bold mb-0"><?php echo $name_category ?></p>
+                        <p class="text-sm font-weight-bold mb-0"><?php echo $name_cate ?></p>
                       </td>
                       <td class="align-middle">
                         <div class="d-flex py-5 float-end">
                           <!-- Sửa -->
-                          <a name="edit_btn" class="btn bg-secondary btn-sm m-0 mx-1" style="display: flex; align-items: center; justify-content: center;" href="?action=fix_category&id=<?php echo $id ?>">
+                          <a name="edit_btn" class="btn bg-secondary btn-sm m-0 mx-1" style="display: flex; align-items: center; justify-content: center;" href="?action=update_category&id=<?php echo $id ?>">
                             <i class="fa-solid fa-pen-to-square" style="color: #ffffff;"></i>
                           </a>
                           <!-- Xóa -->

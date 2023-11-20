@@ -9,7 +9,7 @@
                     <?php foreach ($load_one_product as $row) :
                         extract($row);
                     ?>
-                        <form action="?action=update_products" method="POST" enctype="multipart/form-data">
+                        <form action="" method="POST" enctype="multipart/form-data">
                             <div class="row justify-content-center align-items-center h-100 mt-5">
                                 <div class="col-12 col-xl-7">
                                     <div class="row">
@@ -23,8 +23,8 @@
                                     <div class="row">
                                         <div class="col-md-6 mb-4">
                                             <div class="form-outline">
-                                                <label class="form-label" for="image">Hình ảnh</label> <br>
-                                                <input class="form-control form-control-sm" id="image" name="image" value="<?php echo $image ?>" type="file" />
+                                                <label class="form-label" for="image">Hình ảnh</label>
+                                                <input class="form-control form-control-sm" id="image" name="image" type="file" />
                                             </div>
                                         </div>
                                         <div class="col-md-6 mb-4 d-flex align-items-center">
@@ -59,14 +59,14 @@
                                         <div class="col-md-5 mb-4 d-flex align-items-center">
                                             <div class="form-outline w-100">
                                                 <label class="form-label" for="quantityS">Số lượng</label>
-                                                <input type="number" id="quantityS" name="quantityS" value="<?php echo getQuantitySizeProduct($id, 1)['quantity']; ?>" placeholder="" class="form-control form-control-sm" />
+                                                <input type="number" id="quantityS" name="quantityS" value="<?php echo $sizeS['quantity']; ?>" placeholder="" class="form-control form-control-sm" />
                                             </div>
                                         </div>
 
                                         <div class="col-md-5 mb-4 d-flex align-items-center">
                                             <div class="form-outline w-100">
                                                 <label class="form-label" for="priceS">Giá</label>
-                                                <input type="number" id="priceS" name="priceS" value="<?php echo getQuantitySizeProduct($id, 1)['price']; ?>" placeholder="" class="form-control form-control-sm" />
+                                                <input type="number" id="priceS" name="priceS" value="<?php echo $sizeS['price']; ?>" placeholder="" class="form-control form-control-sm" />
                                             </div>
                                         </div>
                                     </div>
@@ -78,14 +78,14 @@
                                         <div class="col-md-5 mb-4 d-flex align-items-center">
                                             <div class="form-outline w-100">
                                                 <label class="form-label" for="quantityM">Số lượng</label>
-                                                <input type="number" id="quantityM" name="quantityM" value="<?php echo getQuantitySizeProduct($id, 2)['quantity']; ?>" placeholder="" class="form-control form-control-sm" />
+                                                <input type="number" id="quantityM" name="quantityM" value="<?php echo $sizeM['quantity']; ?>" placeholder="" class="form-control form-control-sm" />
                                             </div>
                                         </div>
 
                                         <div class="col-md-5 mb-4 d-flex align-items-center">
                                             <div class="form-outline w-100">
                                                 <label class="form-label" for="priceM">Giá</label>
-                                                <input type="number" id="priceM" name="priceM" value="<?php echo getQuantitySizeProduct($id, 1)['price']; ?>" placeholder="" class="form-control form-control-sm" />
+                                                <input type="number" id="priceM" name="priceM" value="<?php echo $sizeM['price']; ?>" placeholder="" class="form-control form-control-sm" />
                                             </div>
                                         </div>
                                     </div>
@@ -97,22 +97,21 @@
                                         <div class="col-md-5 mb-4 d-flex align-items-center">
                                             <div class="form-outline w-100">
                                                 <label class="form-label" for="quantityL">Số lượng</label>
-                                                <input type="number" id="quantityL" name="quantityL" value="<?php echo getQuantitySizeProduct($id, 3)['quantity']; ?>" placeholder="" class="form-control form-control-sm" />
+                                                <input type="number" id="quantityL" name="quantityL" value="<?php echo $sizeL['quantity']; ?>" placeholder="" class="form-control form-control-sm" />
                                             </div>
                                         </div>
 
                                         <div class="col-md-5 mb-4 d-flex align-items-center">
                                             <div class="form-outline w-100">
                                                 <label class="form-label" for="priceL">Giá</label>
-                                                <input type="number" id="priceL" name="priceL" value="<?php echo getQuantitySizeProduct($id, 1)['price']; ?>" placeholder="" class="form-control form-control-sm" />
+                                                <input type="number" id="priceL" name="priceL" value="<?php echo $sizeL['quantity']; ?>" placeholder="" class="form-control form-control-sm" />
                                             </div>
                                         </div>
                                     </div>
                                     <div class="button">
                                         <a href="?action=products">
-                                            <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Hủy</button>
+                                            <button class="btn btn-secondary" type="button">Hủy</button>
                                         </a>
-                                        <input type="hidden" name="id" value="">
                                         <input type="submit" name="btn_edit" class="btn" style="background-color: #17c1e8;" value="Xác nhận">
                                     </div>
                                     <?php

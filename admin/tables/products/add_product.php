@@ -56,7 +56,7 @@
                                     <div class="col-md-5 mb-4 d-flex align-items-center">
                                         <div class="form-outline w-100">
                                             <label class="form-label" for="quantityS">Số lượng</label>
-                                            <input type="number" id="quantity" name="quantityS" value="1"  placeholder="" class="form-control form-control-sm" />
+                                            <input type="number" id="quantity" name="quantityS" value="0"  placeholder="" class="form-control form-control-sm" />
                                         </div>
                                     </div>
 
@@ -75,7 +75,7 @@
                                     <div class="col-md-5 mb-4 d-flex align-items-center">
                                         <div class="form-outline w-100">
                                             <label class="form-label" for="quantityM">Số lượng</label>
-                                            <input type="number" id="quantity" name="quantityM" value="1" placeholder="" class="form-control form-control-sm" />
+                                            <input type="number" id="quantity" name="quantityM" value="0" placeholder="" class="form-control form-control-sm" />
                                         </div>
                                     </div>
 
@@ -94,7 +94,7 @@
                                     <div class="col-md-5 mb-4 d-flex align-items-center">
                                         <div class="form-outline w-100">
                                             <label class="form-label" for="quantityL">Số lượng</label>
-                                            <input type="number" id="quantity" name="quantityL" value="1" placeholder="" class="form-control form-control-sm" />
+                                            <input type="number" id="quantity" name="quantityL" value="0" placeholder="" class="form-control form-control-sm" />
                                         </div>
                                     </div>
 
@@ -129,6 +129,6 @@
     <script>
         var quantity_product = document.querySelector('#quantity');
         quantity_product.addEventListener('change', function(){
-            if(quantity_product.value < 0) quantity_product.value = 1;
+            if(quantity_product.value < 0) quantity_product.value = 0;
         });
     </script>

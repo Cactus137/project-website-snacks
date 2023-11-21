@@ -34,8 +34,12 @@
                                     <div class="col-md-6 mb-4 pb-2">
                                         <label class="form-label select-label">Trạng thái</label>
                                         <select name="id_status" class="select form-control form-control-sm">
-                                            <option  value="0" <?=($order['id_status'] == 0)?'selected':'' ?>>Chưa thanh toán</option>
-                                            <option value="1"<?=($order['id_status'] == 1)?'selected':'' ?>>Đã thanh toán</option>
+                                            <option  value="0" <?=($order['id_status'] == 0)?'selected':'' ?>>Chờ xác nhận</option>
+                                            <option value="1"<?=($order['id_status'] == 1)?'selected':'' ?>>Đã xác nhận</option>
+                                            <option value="2"<?=($order['id_status'] == 2)?'selected':'' ?>>Đang đóng gói</option>
+                                            <option value="3"<?=($order['id_status'] == 3)?'selected':'' ?>>Đang giao hàng</option>
+                                            <option value="4"<?=($order['id_status'] == 4)?'selected':'' ?>>Đã giao hàng</option>
+                                            <option value="5"<?=($order['id_status'] == 5)?'selected':'' ?>>Đã hủy</option>
                                         </select>
                                     </div>
                                 </div>

@@ -155,15 +155,14 @@
                             include 'tables/orders/orders.php';
                             break;
                         case 'order_variants':
-                            if (isset($_GET['id_order']) && ($_GET['id_order'] > 0)) {
-                                $id = $_GET['id_order'];
-                                $one_order =  loadone_order($id);
-                                include 'tables/orders/order_variants.php';
-                            } else {
-                                include 'tables/orders/orders.php';
-                            }
+                            if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+                                $id = $_GET['id'];
+                                $order_details =loadone_order_details($id);
+                                extract($order_details);
+                               
+                           }
 
-
+                             include 'tables/orders/order_variants.php';
                             break;
                         case 'update_order':
                             if (isset($_GET['id']) && ($_GET['id']) > 0) {

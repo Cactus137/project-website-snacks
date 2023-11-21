@@ -3,7 +3,7 @@
      <h5 class="text-uppercase text-center modal-title d-flex justify-content-center" id="exampleModalLabel">Chi tiết đơn hàng</h5>
    </div>
    <?php
-    var_dump($one_order);
+    var_dump($order_details);
     ?>
    <div class="modal-body">
      <div class="row d-flex justify-content-center pt-2 pb-4">
@@ -19,25 +19,22 @@
                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Số lượng</th>
                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7">Giá</th>
                </tr>
-               <?php
-                foreach ($one_order as $key => $value) {
-                ?>
+               
                  <tr>
                    <td class="p-1 d-flex align-items-center">
                      <img class="border rounded" src="https://i.pinimg.com/564x/ae/2d/65/ae2d65d73a98f127fdc0b320b2482c8b.jpg" alt="" height="50px">
-                     <p class="text-sm font-weight-bold mb-0 ps-2"><?= $value['name_pro'] ?></p>
+                     <p class="text-sm font-weight-bold mb-0 ps-2"><?= $name_pr?></p>
                    </td>
                    <td class="text-center p-1">
-                     <p class="text-sm font-weight-bold mb-0"><?= $value['size_pro'] ?></p>
+                     <p class="text-sm font-weight-bold mb-0"><?= $size_name?></p>
                    </td>
                    <td class="text-center p-1">
-                     <p class="text-sm font-weight-bold mb-0"><?= $value['quantity'] ?></p>
+                     <p class="text-sm font-weight-bold mb-0"><?= $slg_pr?></p>
                    </td>
                    <td class="text-center p-1">
-                     <p class="text-sm font-weight-bold mb-0"><?= $value['price_pro'] ?></p>
+                     <p class="text-sm font-weight-bold mb-0"><?= $prc_pro?></p>
                    </td>
                  </tr>
-
 
 
            </table>
@@ -50,31 +47,31 @@
              <tr>
                <th class="text-secondary text-xxs font-weight-bolder opacity-7">Họ và tên</th>
                <td class="p-2">
-                 <p class="text-sm font-weight-bold mb-0 text-end"><?= $name_user ?></p>
+                 <p class="text-sm font-weight-bold mb-0 text-end"><?= $user_fullname?></p>
                </td>
              </tr>
              <tr>
                <th class="text-secondary text-xxs font-weight-bolder opacity-7">Email</th>
                <td class="p-2">
-                 <p class="text-sm font-weight-bold mb-0 text-end"><?= $email_ac ?></p>
+                 <p class="text-sm font-weight-bold mb-0 text-end"><?= $mail_acc?></p>
                </td>
              </tr>
              <tr>
                <th class="text-secondary text-xxs font-weight-bolder opacity-7">Số điện thoại</th>
                <td class="p-2">
-                 <p class="text-sm font-weight-bold mb-0 text-end"><?= $phone ?></p>
+                 <p class="text-sm font-weight-bold mb-0 text-end"><?= $tel_phone?></p>
                </td>
              </tr>
              <tr>
                <th class="text-secondary text-xxs font-weight-bolder opacity-7">Địa chỉ</th>
                <td class="p-2">
-                 <p class="text-sm font-weight-bold mb-0 text-end">50000VND</p>
+                 <p class="text-sm font-weight-bold mb-0 text-end"><?= $adress?></p>
                </td>
              </tr>
              <tr>
                <th class="text-secondary text-xxs font-weight-bolder opacity-7">Ghi chú đơn hàng </th>
                <td class="p-2">
-                 <p class="text-sm font-weight-bold mb-0 text-end">ABCXYZ Như nào cũng được</p>
+                 <p class="text-sm font-weight-bold mb-0 text-end"><?= $note?></p>
                </td>
              </tr>
 
@@ -90,7 +87,7 @@
                <img src="assets/img/team-2.jpg" class="avatar me-3">
              </div>
              <div class="d-flex flex-column justify-content-center">
-               <h6 class="mb-0 text-sm">John Michael</h6>
+               <h6 class="mb-0 text-sm"><?= $user_fullname?></h6>
              </div>
            </div>
          </div>
@@ -101,25 +98,20 @@
                <tr>
                  <th class="text-secondary text-xxs font-weight-bolder opacity-7">Ngày mua hàng</th>
                  <td>
-                   <p class="text-sm font-weight-bold mb-0 text-end">13-07-2004</p>
+                   <p class="text-sm font-weight-bold mb-0 text-end"><?= $date_ord?></p>
                  </td>
                </tr>
                <tr>
                  <th class="text-secondary text-xxs font-weight-bolder opacity-7">Tạm tính</th>
                  <td>
-                   <p class="text-sm font-weight-bold mb-0 text-end">M</p>
+                   <p class="text-sm font-weight-bold mb-0 text-end"><?= $prc_pro?></p>
                  </td>
                </tr>
-               <tr>
-                 <th class="text-secondary text-xxs font-weight-bolder opacity-7">Phí vận chuyển</th>
-                 <td>
-                   <p class="text-sm font-weight-bold mb-0 text-end">12</p>
-                 </td>
-               </tr>
+               
                <tr>
                  <th class="text-secondary text-xxs font-weight-bolder opacity-7">Giảm giá</th>
                  <td>
-                   <p class="text-sm font-weight-bold mb-0 text-end">5000000VND</p>
+                   <p class="text-sm font-weight-bold mb-0 text-end"></p>
                  </td>
                </tr>
              </tbody>
@@ -132,15 +124,14 @@
                <tr>
                  <th class="text-secondary text-xxs font-weight-bolder opacity-7">Tổng thanh toán</th>
                  <td>
-                   <p class="text-sm font-weight-bold mb-0 text-end">100000</p>
+                   <p class="text-sm font-weight-bold mb-0 text-end"><?= $total_price?></p>
                  </td>
                </tr>
-             </tbody>
+               
            </table>
          </div>
        </div> 
-   <?php
-                }
-    ?>
+       
    </div>
  </div>
+ 

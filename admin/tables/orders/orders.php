@@ -44,7 +44,7 @@
                           <i class="fa-solid fa-circle-info" style="color: #ffffff;"></i>
                         </a> -->
                         <!-- Sửa -->
-                        <a name="edit_btn" class="btn bg-secondary btn-sm m-0 mx-1" style="display: flex; align-items: center; justify-content: center;" href="index.php?action=order_variants&id_order=<?php echo $orders['id'] ?> ">
+                        <a name="edit_btn" class="btn bg-secondary btn-sm m-0 mx-1" style="display: flex; align-items: center; justify-content: center;" href="index.php?action=order_variants&id=<?php echo $orders['id'] ?> ">
                           <i class="fa-solid fa-pen-to-square" style="color: #ffffff;"></i>
                         </a>
                         <!-- Sửa -->

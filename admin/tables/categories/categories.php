@@ -28,7 +28,7 @@
                     </td>
                     <td class="text-center p-2" style="width: 300px;">
                       <div>
-                        <img src="<?php echo "./assets/img/categories/" . $image ?>" class="rounded" width="100px">
+                        <img src="<?php echo "../assets/img/categories/" . $image ?>" class="rounded" width="100px">
                       </div>
                     </td>
                     <td class=" p-2">

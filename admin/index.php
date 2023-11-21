@@ -188,7 +188,7 @@ session_start();
                                 if ($image_size > $image_maxsize) {
                                     $notificationERROR = 'File ảnh quá lớn vui lòng thử lại';
                                 } else {
-                                    move_uploaded_file($image_tmp, './assets/img/categories/' . $image);
+                                    move_uploaded_file($image_tmp, '../assets/img/categories/' . $image);
                                     insert_category($name_category, $image);
                                     $notification = 'Thêm thành công';
                                 }
@@ -212,7 +212,7 @@ session_start();
                                 if ($image_size > $image_maxsize) {
                                     $notificationERROR = 'File ảnh quá lớn vui lòng thử lại';
                                 } else {
-                                    move_uploaded_file($image_tmp, './assets/img/categories/' . $image);
+                                    move_uploaded_file($image_tmp, '../assets/img/categories/' . $image);
                                     update_category($id, $name_category, $image);
                                     $notification = 'Thêm thành công';
                                 }
@@ -251,7 +251,7 @@ session_start();
                                 if ($image_size > $image_maxsize) {
                                     $notification = 'File ảnh quá lớn vui lòng thử lại';
                                 } else {
-                                    move_uploaded_file($image_tmp, './assets/img/products/' . $image);
+                                    move_uploaded_file($image_tmp, '../assets/img/products/' . $image);
                                     insert_products($name, $description, $id_category, $image);
                                     $getLatestProductsIdData = getLatestProductsId();
                                     $id_sizeS = 1;
@@ -296,7 +296,7 @@ session_start();
                                 if ($image_size > $image_maxsize) {
                                     $notificationERROR = 'File ảnh quá lớn vui lòng thử lại';
                                 } else {
-                                    move_uploaded_file($image_tmp, './assets/img/products/' . $image);
+                                    move_uploaded_file($image_tmp, '../assets/img/products/' . $image);
                                     $update_product = update_product($id, $name, $id_category, $description, $image);
                                     $id_sizeS = 1;
                                     $id_sizeM = 2;

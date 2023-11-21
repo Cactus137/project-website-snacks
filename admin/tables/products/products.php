@@ -26,14 +26,14 @@
                 <?php 
                     foreach($list_all_product as $row){
                         extract($row);
-                        $img_path = './assets/img/products/'.$image;    
+                        $img_path = '../assets/img/products';    
                 ?>
                   <tr>
                     <td class="text-center p-2" style="width: 25px;">
                       <span><?php echo $id?></span>
                     </td>
                     <td class="text-center p-2" style="width: 300px;">
-                      <img src="<?php echo $img_path?>" class="me-3" alt="user1" width="100px">
+                      <img src="<?php echo $img_path . $image ?>" class="me-3" alt="user1" width="100px">
                     </td>
                     <td class=" p-2">
                       <p class="text-sm font-weight-bold mb-0"><?php echo $name_product?></p>

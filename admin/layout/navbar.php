@@ -26,7 +26,7 @@
                             </a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="?act=setting">
+                            <a class="dropdown-item" href="../index.php?act=profile">
                                 <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400 me-2"></i>
                                 Cài đặt
                             </a>

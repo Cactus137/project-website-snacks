@@ -31,6 +31,7 @@
             if ($_GET['act']) {
                 switch ($_GET['act']) {
                     case 'home':
+                        
                         include './user/home.php';
                         break;
                     case 'menu￼itsquannguyn'./user/products.php';

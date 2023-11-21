@@ -55,6 +55,7 @@ session_start();
                 <div>
                     <?php switch ($_GET['action']) {
                         case 'dashboard':
+                            
                             include "./dashboard.php";
                             break;
                         case 'accounts':

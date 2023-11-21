@@ -33,8 +33,7 @@
                     case 'home':
                         include './user/home.php';
                         break;
-                    case 'menu':
-                        include './user/products.php';
+                    case 'menu￼itsquannguyn'./user/products.php';
                         break;
                     case 'login':
                         include 'user/login.php';

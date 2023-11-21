@@ -2,6 +2,9 @@
 $countOrdersByStatus = countOrdersByStatus();
 $getCountAccounts = getCountAccounts();
 $getLoyalCustomers = getLoyalCustomers();
+$getCountCategories = count(load_all_category());
+$getCountProduct = count(getAllProducts());
+$getCountOrders = count(getAllOrders());
 
 $year = date('Y');
 $oldYear = $year - 1;
@@ -54,7 +57,7 @@ foreach ($name_old_months as $index => $name_old_months) {
                             <div class="numbers">
                                 <p class="text-sm mb-0 text-capitalize font-weight-bold">Danh mục</p>
                                 <h5 class="font-weight-bolder mb-0">
-                                    2,300
+                                    <?= $getCountCategories; ?>
                                 </h5>
                             </div>
                         </div>
@@ -75,7 +78,7 @@ foreach ($name_old_months as $index => $name_old_months) {
                             <div class="numbers">
                                 <p class="text-sm mb-0 text-capitalize font-weight-bold">Sản phẩm</p>
                                 <h5 class="font-weight-bolder mb-0">
-                                    +3,462
+                                    <?= $getCountProduct; ?>
                                 </h5>
                             </div>
                         </div>
@@ -96,7 +99,7 @@ foreach ($name_old_months as $index => $name_old_months) {
                             <div class="numbers">
                                 <p class="text-sm mb-0 text-capitalize font-weight-bold">Đơn hàng</p>
                                 <h5 class="font-weight-bolder mb-0">
-                                    $103,430
+                                    <?= $getCountOrders; ?>
                                 </h5>
                             </div>
                         </div>

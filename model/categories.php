@@ -29,4 +29,4 @@ function delete_category($id)
 {
     $sql = "DELETE FROM categories WHERE id=" . $id;
     pdo_execute($sql);
-}
+} 

@@ -28,7 +28,7 @@
                                     <div class="col-md-6 mb-4 d-flex align-items-center">
                                         <div class="form-outline w-100">
                                             <label for="quantity-sl" class="form-label">Số lượng</label>
-                                            <input type="number" name="quantiny" class="form-control form-control-sm" value="" placeholder="" />
+                                            <input type="number" name="quantiny" class="form-control form-control-sm" value="1" placeholder="" />
                                         </div>
                                     </div>
                                     <div class="col-md-6 mb-4 d-flex align-items-center">

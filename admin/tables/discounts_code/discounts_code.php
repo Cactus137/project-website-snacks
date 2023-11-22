@@ -34,7 +34,7 @@
                       <p class="text-sm font-weight-bold mb-0"><?php echo $discounts_code['discount'] ?></p>
                     </td>
                     <td class="text-center px-4">
-                      <p class="text-sm font-weight-bold mb-0"><?php echo $discounts_code['quantiny'] ?></p>
+                      <p class="text-sm font-weight-bold mb-0"><?php echo $discounts_code['quantity'] ?></p>
                     </td>
                     <td class="text-center p-2">
                       <p class="text-sm font-weight-bold mb-0"><?php echo $discounts_code['expiration_date'] ?></p>

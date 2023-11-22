@@ -1,4 +1,13 @@
 <?php
+function getAllProducts() {
+    try {
+        $sql = "SELECT * FROM products;";
+        return pdo_query($sql);
+    } catch (Exception $e) {
+        echo $e->getMessage();
+    }
+}
+
 function insert_products($name, $description, $id_category, $image)
 {
     $sql = "INSERT INTO products(name,image,description,id_category) VALUES('$name','$image','$description','$id_category')";

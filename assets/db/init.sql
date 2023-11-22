@@ -17,7 +17,7 @@ CREATE TABLE `accounts` (
   `email` varchar(255) NOT NULL,
   `address` text DEFAULT NULL,
   `tel` varchar(10) DEFAULT NULL,
-  `id_role` int(11) DEFAULT NULL
+  `id_role` int(11) DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci; 
 -- Dumping data for table `accounts` 
 INSERT INTO `accounts` (`id`, `username`, `password`, `fullname`, `avatar`, `email`, `address`, `tel`, `id_role`) VALUES

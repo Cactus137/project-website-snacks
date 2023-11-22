@@ -69,31 +69,12 @@ function getAllRoles()
     } catch (Exception $e) {
         echo $e->getMessage();
     }
-}
-
-function login($username, $password)
-{
-    try {
-        $user = getAccountByUsername($username);
-        if ($user) {
-            if ($user['password'] == $password) {
-                $_SESSION['user'] = $user;
-                return true;
-            } else {
-                return false;
-            }
-        } else {
-            return false;
-        }
-    } catch (Exception $e) {
-        echo $e->getMessage();
-    }
-}
+} 
 
 function signup($username, $email, $password)
 {
     try {
-        $sql = "INSERT INTO accounts (username, email, password) VALUES ('$username', '$email', '$password');";
+        $sql = "INSERT INTO accounts (username, email, password) VALUES ('$username', '$email', '$password');"; 
         pdo_execute($sql);
     } catch (Exception $e) {
         echo $e->getMessage();

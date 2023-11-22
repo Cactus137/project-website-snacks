@@ -11,7 +11,7 @@
             </div>
             <ul class="navbar-nav justify-content-end">
                 <li class="nav-item d-flex align-items-center">
-                    <a class="btn btn-outline-primary btn-sm mb-0 me-3" target="_blank" href="../index.php">Trang sản phẩm</a>
+                    <a class="btn btn-outline-primary btn-sm mb-0 me-3" href="../index.php">Trang sản phẩm</a>
                 </li>  
                 <li class="nav-item dropdown mx-3">
                     <a class="nav-link dropdown-toggle" href="#" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">

@@ -1,3 +1,6 @@
+<?php
+session_start(); 
+?>
 <!doctype html>
 <html lang="en">
 
@@ -27,21 +30,117 @@
     <main class="d-flex justify-content-center">
         <div class="container">
             <?php
+            include './model/pdo.php';
+            include './model/accounts.php';
 
             if ($_GET['act']) {
                 switch ($_GET['act']) {
                     case 'home':
-                        
                         include './user/home.php';
                         break;
                     case 'menu':
                         include './user/products.php';
                         break;
                     case 'login':
+                        // xóa session error
+                        unset($_SESSION['error']);
+                        // kiểm tra phương thức gửi form đi
+                        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                            $username = $_POST['username'];
+                            $password = $_POST['password'];
+                            // kiểm tra dữ liệu
+                            if (empty($username)) {
+                                $_SESSION['error']['username'] = 'Bạn chưa nhập tên đăng nhập';
+                            } else {
+                                if (strlen($username) < 6) {
+                                    $_SESSION['error']['username'] = 'Tên đăng nhập phải có ít nhất 6 ký tự';
+                                }
+                            }
+                            if (empty($password)) {
+                                $_SESSION['error']['password'] = 'Bạn chưa nhập mật khẩu';
+                            } else {
+                                if (strlen($password) < 6) {
+                                    $_SESSION['error']['password'] = 'Mật khẩu phải có ít nhất 6 ký tự';
+                                }
+                            }
+                            if (empty($_SESSION['error'])) {
+                                $check_login = getAccountByUsername($username);
+                                if ($username == $check_login['username'] && $password == $check_login['password']) {
+                                    $_SESSION['user'] = $check_login; 
+                                    if ($check_login['role'] == 0) {
+                                        echo "<script>window.location.href = 'admin/index.php';</script>";
+                                    } else {
+                                        echo "<script>window.location.href = '?act=home';</script>";
+                                    }
+                                } else {
+                                    $_SESSION['error']['login'] = 'Tên đăng nhập hoặc mật khẩu không chính xác';
+                                } 
+                            }
+                        }
                         include 'user/login.php';
                         break;
                     case 'signup':
+                        // xóa session error
+                        unset($_SESSION['error']);
+                        // kiểm tra phương thức gửi form đi
+                        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                            $username = $_POST['username'];
+                            $email = $_POST['email'];
+                            $password = $_POST['password'];
+                            $re_password = $_POST['re_password'];
+                            $access_policy = $_POST['access_policy'];
+                            // kiểm tra dữ liệu
+                            if (empty($username)) {
+                                $_SESSION['error']['username'] = 'Bạn chưa nhập tên đăng nhập';
+                            } else {
+                                if (strlen($username) < 6) {
+                                    $_SESSION['error']['username'] = 'Tên đăng nhập phải có ít nhất 6 ký tự';
+                                } else {
+                                    $user_check = getAllAccounts();
+                                    foreach ($user_check as $key => $value) {
+                                        if ($value['username'] == $username) {
+                                            $_SESSION['error']['username'] = 'Tên đăng nhập đã tồn tại';
+                                        }
+                                    }
+                                }
+                            }
+                            if (empty($email)) {
+                                $_SESSION['error']['email'] = 'Bạn chưa nhập email';
+                            } else {
+                                $regex_email = "/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/";
+                                if (!preg_match($regex_email, $email)) {
+                                    $_SESSION['error']['email'] = 'Email không hợp lệ';
+                                }
+                            }
+                            if (empty($password)) {
+                                $_SESSION['error']['password'] = 'Bạn chưa nhập mật khẩu';
+                            } else {
+                                if (strlen($password) < 6) {
+                                    $_SESSION['error']['password'] = 'Mật khẩu phải có ít nhất 6 ký tự';
+                                }
+                            }
+                            if (empty($re_password)) {
+                                $_SESSION['error']['re_password'] = 'Bạn chưa nhập lại mật khẩu';
+                            } else {
+                                if ($password != $re_password) {
+                                    $_SESSION['error']['re_password'] = 'Mật khẩu nhập lại không khớp';
+                                }
+                            }
+                            if (empty($access_policy)) {
+                                $_SESSION['error']['access_policy'] = 'Bạn chưa đồng ý với điều khoản sử dụng';
+                            }
+                            if (empty($_SESSION['error'])) {
+                                signup($username, $email, $password);
+                                $_SESSION['success'] = 'Đăng ký thành công';
+                                echo "<script>window.location.href = '?act=login';</script>";
+                            }
+                        }
                         include 'user/signup.php';
+                        break;
+                    case 'logout':
+                        // xóa session user
+                        unset($_SESSION['user']);
+                        echo "<script>window.location.href = '?act=home';</script>";
                         break;
                     case 'forgot':
                         include 'user/forgot.php';

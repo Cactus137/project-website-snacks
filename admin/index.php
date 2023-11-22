@@ -1,5 +1,8 @@
 <?php
 session_start();
+    if (isset($_SESSION['user']) && $_SESSION['user']['id_role'] == 1) {
+        echo "<script>window.location.href = '../index.php';</script>";
+    }else { 
 ?>
 <!doctype html>
 <html lang="en">
@@ -630,3 +633,4 @@ session_start();
 </body>
 
 </html>
+<?php } ?>

@@ -24,8 +24,7 @@ function loadone_order_details($id){
     join products on product_variants.id_product = products.id
     join sizes on product_variants.id_size = sizes.id
 
-    where orders.id = '".$id."'
-   ";
+    where orders.id = '".$id."'";
     $order_details=pdo_query_one($sql);
     return $order_details;
 }

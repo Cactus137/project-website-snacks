@@ -297,13 +297,13 @@ session_start();
                                     $notificationERROR = 'File ảnh quá lớn vui lòng thử lại';
                                 } else {
                                     move_uploaded_file($image_tmp, '../assets/img/products/' . $image);
-                                    $update_product = update_product($id, $name, $id_category, $description, $image);
+                                    update_product($id, $name, $id_category, $description, $image);
                                     $id_sizeS = 1;
                                     $id_sizeM = 2;
                                     $id_sizeL = 3;
-                                    $update_product_variants = update_product_variants($id, $id_sizeS, $priceS, $quantityS);
-                                    $update_product_variants = update_product_variants($id, $id_sizeM, $priceM, $quantityM);
-                                    $update_product_variants = update_product_variants($id, $id_sizeL, $priceL, $quantityL);
+                                    update_product_variants($id, $id_sizeS, $priceS, $quantityS);
+                                    update_product_variants($id, $id_sizeM, $priceM, $quantityM);
+                                    update_product_variants($id, $id_sizeL, $priceL, $quantityL);
                                 }
                                 $list_categories = load_all_category();
                                 $list_all_product = load_all_product_category_variant();

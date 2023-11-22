@@ -62,13 +62,13 @@ function update_product($id, $name, $id_category, $description, $image)
     } else {
         $sql = "UPDATE products SET name='$name', description='$description', id_category='$id_category' WHERE id=" . $id;
     }
-    pdo_query($sql);
+    pdo_execute($sql);
 }
 
 function update_product_variants($id, $id_size, $price, $quantity)
 {
     $sql = "UPDATE product_variants SET quantity='$quantity', price='$price' WHERE id_product=$id AND id_size=" . $id_size;
-    pdo_query($sql);
+    pdo_execute($sql);
 }
 
 function delete_product($id)

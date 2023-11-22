@@ -26,7 +26,7 @@
                 <?php 
                     foreach($list_all_product as $row){
                         extract($row);
-                        $img_path = '../assets/img/products';    
+                        $img_path = '../assets/img/products/';    
                 ?>
                   <tr>
                     <td class="text-center p-2" style="width: 25px;">
@@ -45,11 +45,7 @@
                         
                         $id_pro = $row['id'];
                         $list_quantity =  quantity($id_pro);
-                        foreach ($list_quantity as $value){
-                          // echo '<pre>';
-                          //     print_r ($value);
-                          //   echo '</pre>';
-                          // // } 
+                        foreach ($list_quantity as $value){ 
                     ?>
                     <td class=" p-2">
                       <p class="text-center text-sm font-weight-bold mb-0"><?=$value['quantity'] ?></p>

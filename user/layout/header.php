@@ -54,9 +54,9 @@
                 <?php if (is_null($_SESSION['user'])) { ?>
                     <a class="dropdown-item  mx-0 my-1 p-0" href="index.php?act=login"><i class="fa-solid fa-user pe-2"></i>Đăng nhập</a>
                 <?php } ?>
+                <?php if (!is_null($_SESSION['user'])){ ?>
                 <a class="dropdown-item  mx-0 my-1 p-0" href="index.php?act=profile"><i class="fa-solid fa-gear pe-2"></i>Tài khoản của tôi</a>
                 <a class="dropdown-item  mx-0 my-1 p-0" href="index.php?act=order"><i class="fa-solid fa-bag-shopping pe-2"></i>Đơn hàng</a>
-                <?php if (!is_null($_SESSION['user'])){ ?>
                 <a class="dropdown-item  mx-0 my-1 p-0" href="index.php?act=logout" onclick="return confirm('Bạn có chắc chắn muốn đăng xuất không?')"><i class="fa-solid fa-right-from-bracket pe-2"></i>Đăng xuất</a>
                 <?php } ?>
             </div>

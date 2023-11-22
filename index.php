@@ -1,5 +1,5 @@
 <?php
-session_start(); 
+session_start();
 ?>
 <!doctype html>
 <html lang="en">
@@ -66,7 +66,7 @@ session_start();
                             if (empty($_SESSION['error'])) {
                                 $check_login = getAccountByUsername($username);
                                 if ($username == $check_login['username'] && $password == $check_login['password']) {
-                                    $_SESSION['user'] = $check_login; 
+                                    $_SESSION['user'] = $check_login;
                                     if ($check_login['role'] == 0) {
                                         echo "<script>window.location.href = 'admin/index.php';</script>";
                                     } else {
@@ -74,7 +74,7 @@ session_start();
                                     }
                                 } else {
                                     $_SESSION['error']['login'] = 'Tên đăng nhập hoặc mật khẩu không chính xác';
-                                } 
+                                }
                             }
                         }
                         include 'user/login.php';
@@ -143,6 +143,36 @@ session_start();
                         echo "<script>window.location.href = '?act=home';</script>";
                         break;
                     case 'forgot':
+                        // xóa session error
+                        unset($_SESSION['error']);
+                        unset($_SESSION['success']);
+                        // kiểm tra phương thức gửi form đi
+                        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                            $email = $_POST['email'];
+                            // kiểm tra dữ liệu
+                            if (empty($email)) {
+                                $_SESSION['error'] = 'Bạn chưa nhập email';
+                            } else {
+                                $regex_email = "/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/";
+                                if (!preg_match($regex_email, $email)) {
+                                    $_SESSION['error'] = 'Email không hợp lệ';
+                                }
+                            }
+                            if (empty($_SESSION['error'])) {
+                                $getAllAccounts = getAllAccounts();
+                                foreach ($getAllAccounts as $key => $value) {
+                                    if (strtolower($value['email']) == strtolower($email)) {
+                                        $password = $value['password'];
+                                        forgotPassword($value['username'], $email, $password);
+                                        $_SESSION['success'] = 'Mật khẩu mới đã được gửi vào email của bạn';
+                                        unset($_SESSION['error']);
+                                        break;
+                                    } else {
+                                        $_SESSION['error'] = 'Email không tồn tại';
+                                    }
+                                }
+                            }
+                        }
                         include 'user/forgot.php';
                         break;
                     case 'cart':

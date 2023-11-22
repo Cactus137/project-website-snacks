@@ -14,13 +14,13 @@
                                     <div class="col-md-6 mb-4 d-flex align-items-center">
                                         <div class="form-outline w-100">
                                             <label for="fullname" class="form-label">Họ và tên</label>
-                                            <input type="text" name="fullname" class="form-control form-control-sm" value="<?php echo $order['fullname']?>" placeholder="" id="fullname" />
+                                            <input readonly type="text" name="fullname" class="form-control form-control-sm" value="<?php echo $order['fullname']?>" placeholder="" id="fullname" />
                                         </div>
                                     </div>
                                     <div class="col-md-6 mb-4 d-flex align-items-center">
                                         <div class="form-outline w-100">
                                             <label class="form-label" for="email">Email</label>
-                                            <input type="email" id="email" name="email" value="<?=$order['email'] ?>" placeholder="" class="form-control form-control-sm" />
+                                            <input readonly type="email" id="email" name="email" value="<?=$order['email'] ?>" placeholder="" class="form-control form-control-sm" />
                                         </div>
                                     </div>
                                 </div>
@@ -28,7 +28,7 @@
                                     <div class="col-md-6 mb-4 pb-2">
                                         <div class="form-outline">
                                             <label class="form-label" for="tel">Số điện thoại</label>
-                                            <input type="text" id="tel" name="tel" value="<?=$order['tel'] ?>" placeholder="" class="form-control form-control-sm" />
+                                            <input readonly type="text" id="tel" name="tel" value="<?=$order['tel'] ?>" placeholder="" class="form-control form-control-sm" />
                                         </div>
                                     </div>
                                     <div class="col-md-6 mb-4 pb-2">
@@ -47,7 +47,7 @@
                                     <div class="col-12 mb-4 d-flex align-items-center">
                                         <div class="form-outline datepicker w-100">
                                             <label for="address" class="form-label">Địa chỉ</label>
-                                            <input type="text" name="address" class="form-control form-control-sm" value="<?=$order['address'] ?>" placeholder="" id="address" />
+                                            <input readonly type="text" name="address" class="form-control form-control-sm" value="<?=$order['address'] ?>" placeholder="" id="address" />
                                         </div>
                                     </div>
                                 </div>
@@ -55,7 +55,7 @@
                                     <div class="col-12 mb-4 d-flex align-items-center">
                                         <div class="form-outline datepicker w-100">
                                             <label for="notet" class="form-label">Ghi chú</label>
-                                            <textarea name="notes" cols="30" rows="3" class="form-control form-control-sm" ><?=$order['notes'] ?></textarea>
+                                            <textarea readonly name="notes" cols="30" rows="3" class="form-control form-control-sm" ><?=$order['notes'] ?></textarea>
                                         </div>
                                     </div>
                                 </div>

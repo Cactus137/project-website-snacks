@@ -35,17 +35,29 @@
                       <p class="text-sm font-weight-bold mb-0"><?= $date_or ?></p>
                     </td>
                     <td class="text-center p-2" style="width: 300px;">
-                      <span class="badge badge-sm bg-gradient-success px-3"><?= $name_status ?></span>
+                      <span class="badge badge-sm 
+                      <?php 
+                      if($id_status == 0){
+                        echo "bg-warning";
+                      }elseif($id_status == 1){
+                        echo "bg-secondary";
+                      }elseif($id_status == 2){
+                        echo "bg-info";
+                      }elseif($id_status == 3){
+                        echo "bg-dark";
+                      }elseif($id_status == 4){
+                        echo "bg-success";
+                      }elseif($id_status == 5){
+                        echo "bg-danger";
+                      }
+                      ?> 
+                      px-3"><?= $name_status ?></span>
                     </td>
                     <td class="align-middle" style="width: 250px;">
                       <div class="d-flex py-3 float-end">
-                        <!-- Xem chi tiết -->
-                        <!-- <a name="detail_btn" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn bg-secondary btn-sm m-0 mx-1" style="display: flex; align-items: center; justify-content: center;" href="index.php?action=update_variants&id=<?php echo $orders['id'] ?>">
-                          <i class="fa-solid fa-circle-info" style="color: #ffffff;"></i>
-                        </a> -->
-                        <!-- Sửa -->
+                        <!-- Xem chi tiết --> 
                         <a name="edit_btn" class="btn bg-secondary btn-sm m-0 mx-1" style="display: flex; align-items: center; justify-content: center;" href="index.php?action=order_variants&id=<?php echo $orders['id'] ?> ">
-                          <i class="fa-solid fa-pen-to-square" style="color: #ffffff;"></i>
+                          <i class="fa-solid fa-info" style="color: #ffffff;"></i>
                         </a>
                         <!-- Sửa -->
                         <a name="edit_btn" class="btn bg-secondary btn-sm m-0 mx-1" style="display: flex; align-items: center; justify-content: center;" href="index.php?action=update_order&id=<?php echo $orders['id'] ?> ">
@@ -54,7 +66,6 @@
                       </div>
                     </td>
                   </tr>
-                 
              <?php
              }
              ?>

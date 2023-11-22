@@ -6,7 +6,7 @@
                     <h6>Cập nhật mã giảm giá</h6>
                 </div>
                 <div class="card-body px-0 pt-0 pb-2">
-                    <form action="index.php?action=edit_discount_code" method="POST" enctype="multipart/form-data">
+                    <form action="" method="POST" enctype="multipart/form-data">
                         <div class="row justify-content-center align-items-center h-100 mt-5">
                             <div class="col-12 col-xl-7">
                                 <div class="row">
@@ -28,13 +28,13 @@
                                     <div class="col-md-6 mb-4 d-flex align-items-center">
                                         <div class="form-outline w-100">
                                             <label for="quantity-sl" class="form-label">Số lượng</label>
-                                            <input type="number" name="quantiny" class="form-control form-control-sm" value="<?php echo $code['quantiny'] ?>"  />
+                                            <input type="number" name="quantity" class="form-control form-control-sm" value="<?php echo $code['quantity'] ?>"  />
                                         </div>
                                     </div>
                                     <div class="col-md-6 mb-4 d-flex align-items-center">
                                         <div class="form-outline w-100">
                                             <label class="form-label" for="exp_date">Ngày hết hạn</label>
-                                            <input type="datetime-local" id="exp_date" name="expiration_date" value="<?php echo $code['expiration_date'] ?>" placeholder="" class="form-control form-control-sm" />
+                                            <input type="date" id="exp_date" name="expiration_date" value="<?php echo $code['expiration_date'] ?>" placeholder="" class="form-control form-control-sm" />
                                         </div>
                                     </div>
                                 </div>

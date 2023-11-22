@@ -1,10 +1,7 @@
  <div class="modal-content">
    <div class="text-center modal-header d-flex justify-content-center">
      <h5 class="text-uppercase text-center modal-title d-flex justify-content-center" id="exampleModalLabel">Chi tiết đơn hàng</h5>
-   </div>
-   <?php
-    var_dump($order_details);
-    ?>
+   </div> 
    <div class="modal-body">
      <div class="row d-flex justify-content-center pt-2 pb-4">
        <!-- Cột bên trái (2/3) -->

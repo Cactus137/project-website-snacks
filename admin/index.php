@@ -55,7 +55,7 @@ session_start();
                 <div>
                     <?php switch ($_GET['action']) {
                         case 'dashboard':
-                            
+
                             include "./dashboard.php";
                             break;
                         case 'accounts':
@@ -286,9 +286,6 @@ session_start();
                             $list_categories = load_all_category();
                             include 'tables/products/edit_product.php';
                             break;
-
-
-
                         case 'update_products':
                             if (isset($_POST['btn_edit']) && ($_POST['btn_edit'])) {
                                 $id = $_POST['id'];
@@ -336,7 +333,6 @@ session_start();
                             $list_all_product = load_all_product_category_variant();
                             include 'tables/products/products.php';
                             break;
-
                         case 'orders':
                             $listorder = getAll_order();
                             include 'tables/orders/orders.php';
@@ -344,12 +340,11 @@ session_start();
                         case 'order_variants':
                             if (isset($_GET['id']) && ($_GET['id'] > 0)) {
                                 $id = $_GET['id'];
-                                $order_details =loadone_order_details($id);
+                                $order_details = loadone_order_details($id);
                                 extract($order_details);
-                               
-                           }
+                            }
 
-                             include 'tables/orders/order_variants.php';
+                            include 'tables/orders/order_variants.php';
                             break;
                         case 'update_order':
                             if (isset($_GET['id']) && ($_GET['id']) > 0) {
@@ -358,17 +353,12 @@ session_start();
                             include "tables/orders/edit_order.php";
                         case 'edit_order':
                             if (isset($_POST['btn_edit']) && ($_POST['btn_edit'])) {
-                                $id_order = $_POST['id_order'];
-                                $username = $_POST['fullname'];
-                                $email = $_POST['email'];
-                                $tel = $_POST['tel'];
-                                $address = $_POST['address'];
-                                $id_status = $_POST['id_status'];
-                                $notes = $_POST['notes'];
-                                order_update($id_order, $username, $email, $tel, $address, $id_status, $notes);
+                                $id_order = $_POST['id_order']; 
+                                $id_status = $_POST['id_status']; 
+                                order_update($id_order, $id_status);
+                                echo "<script>window.location.href = '?action=orders';</script>";
                             }
                             $listorder = getAll_order();
-                            include 'tables/orders/orders.php';
                             break;
                         case 'comments':
                             $load_all_comments = load_all_comment();
@@ -394,19 +384,19 @@ session_start();
                             $load_all_comments = load_all_comment();
                             include 'tables/comments/comments.php';
                             break;
+                        case 'discounts_code':
+                            $listcode = loadall_code();
+                            include 'tables/discounts_code/discounts_code.php';
+                            break;
                         case 'add_discount_code':
                             if (isset($_POST['newpro']) && ($_POST['newpro'])) {
                                 $code_name = $_POST['code'];
                                 $discount = $_POST['discount'];
-                                $quantiny = $_POST['quantiny'];
+                                $quantity = $_POST['quantity'];
                                 $expiration_date = $_POST['expiration_date'];
-                                insert_code($code_name, $discount, $quantiny, $expiration_date);
+                                insert_code($code_name, $discount, $quantity, $expiration_date);
                             }
                             include 'tables/discounts_code/add_discount_code.php';
-                            break;
-                        case 'discounts_code':
-                            $listcode = loadall_code();
-                            include 'tables/discounts_code/discounts_code.php';
                             break;
                         case 'delete_discount_code':
                             if (isset($_GET['id']) && ($_GET['id'] > 0)) {
@@ -418,24 +408,16 @@ session_start();
 
                             break;
                         case 'update_discount_code':
-                            if (isset($_GET['id']) && ($_GET['id']) > 0) {
-                                $code = loadone_code($_GET['id']);
-                            }
-                            $listcode = loadall_code();
-                            include "tables/discounts_code/edit_discount_code.php";
-                            break;
-                        case 'edit_discount_code':
-                            if (isset($_POST['btn_edit']) && ($_POST['btn_edit'])) {
-                                $id = $_POST['id'];
+                            $code = loadone_code($_GET['id']);
+                            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 $code_name = $_POST['code'];
                                 $discount = $_POST['discount'];
-                                $quantiny = $_POST['quantiny'];
+                                $quantity = $_POST['quantity'];
                                 $expiration_date = $_POST['expiration_date'];
-
-                                update_code($id, $code_name, $discount, $quantiny, $expiration_date);
+                                update_code($_GET['id'], $code_name, $discount, $quantity, $expiration_date);
+                                echo "<script>window.location.href = '?action=discounts_code';</script>";
                             }
-                            $listcode = loadall_code();
-                            include 'tables/discounts_code/discounts_code.php';
+                            include "tables/discounts_code/edit_discount_code.php";
                             break;
                         case 'revenues':
                             // $getRevenues = getRevenues();
@@ -644,7 +626,7 @@ session_start();
     </script>
     <!-- Github buttons -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
-    <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc --> 
+    <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
 </body>
 
 </html>

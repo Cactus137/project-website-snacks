@@ -61,7 +61,7 @@ function update_product($id, $name, $id_category, $description, $image)
         $sql = "UPDATE products SET name='$name', image='$image', description='$description', id_category='$id_category' WHERE id=" . $id;
     } else {
         $sql = "UPDATE products SET name='$name', description='$description', id_category='$id_category' WHERE id=" . $id;
-    }
+    } 
     pdo_execute($sql);
 }
 

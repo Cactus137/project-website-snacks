@@ -44,9 +44,9 @@
                                                     foreach ($list_categories as $row){
                                                         extract($row);
                                                         if($load_one_product[0]['id_category'] == $id){
-                                                            echo "<option value='.$id.' selected>$name_category</option>";
+                                                            echo "<option value='$id' selected>$name_category</option>";
                                                         }else{
-                                                            echo "<option value='.$id.'>$name_category</option>";
+                                                            echo "<option value='$id'>$name_category</option>";
                                                         }
                                                     }
                                                 ?>

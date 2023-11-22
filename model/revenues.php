@@ -61,7 +61,7 @@ function getRevenues($start = "", $end = "", $categoryId = 0)
             $sql .= " AND o.order_date <= '$end'";
         }
 
-        $sql .= " GROUP BY c.name_cate, p.name ORDER BY total_revenue DESC;"; 
+        $sql .= " GROUP BY c.name_category, p.name ORDER BY total_revenue DESC;"; 
         
         return pdo_query($sql);
     } catch (Exception $e) {

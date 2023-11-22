@@ -22,7 +22,7 @@
                                     <select class="form-select" name="id_category">
                                         <option value="0">Tất cả</option>
                                         <?php foreach ($getCategories as $category) : extract($category); ?>
-                                            <option value="<?= $id ?>"><?= $name_cate ?></option>
+                                            <option value="<?= $id ?>"><?= $name_category ?></option>
                                         <?php endforeach; ?>
                                     </select>
                                 </div>

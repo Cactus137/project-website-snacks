@@ -1,7 +1,7 @@
 <?php
 function insert_category($name_category, $image)
 {
-    $sql = "INSERT INTO categories(name_cate, image) VALUES ('$name_category','$image')";
+    $sql = "INSERT INTO categories(name_category, image) VALUES ('$name_category','$image')";
     pdo_execute($sql);
 }
 
@@ -19,9 +19,13 @@ function load_one_category($id)
     return $one_category;
 }
 
-function update_category($id, $name_category, $image)
+function update_category($id,$name_category,$image)
 {
-    $sql = "UPDATE categories SET name_cate='$name_category', image='$image' WHERE id = $id";
+    if($image != ''){
+        $sql = "UPDATE categories SET name_category='$name_category', image='$image' WHERE id=".$id;
+    }else{
+        $sql = "UPDATE categories SET name_category='$name_category' WHERE id=".$id;
+    }
     pdo_execute($sql);
 }
 

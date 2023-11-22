@@ -45,11 +45,11 @@ INSERT INTO `cart` (`id`, `id_product_variants`, `id_account`, `quantity`) VALUE
 -- Table structure for table `categories` 
 CREATE TABLE `categories` (
   `id` int(11) NOT NULL,
-  `name_cate` varchar(255) NOT NULL,
+  `name_category` varchar(255) NOT NULL,
   `image` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci; 
 -- Dumping data for table `categories` 
-INSERT INTO `categories` (`id`, `name_cate`, `image`) VALUES
+INSERT INTO `categories` (`id`, `name_category`, `image`) VALUES
 (1, 'Burger', 'cate1.jpg'),
 (2, 'Combo', 'cate1.jpg'),
 (3, 'Gà rán', 'cate1.jpg'),

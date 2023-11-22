@@ -2,9 +2,7 @@
 function getAllAccounts()
 {
     try {
-        $sql = "SELECT accounts.*, roles.name as role_name  FROM accounts 
-        JOIN roles ON accounts.id_role = roles.id
-        ORDER BY id DESC;";
+        $sql = " SELECT * FROM accounts ORDER BY id DESC;";
         return pdo_query($sql);
     } catch (Exception $e) {
         echo $e->getMessage();
@@ -63,7 +61,8 @@ function deleteAccount($id)
     }
 }
 
-function getAllRoles() {
+function getAllRoles()
+{
     try {
         $sql = "SELECT * FROM roles;";
         return pdo_query($sql);
@@ -132,9 +131,49 @@ function getLoyalCustomers()
         ORDER BY 
             total_amount DESC
         LIMIT 10;";
-        
+
         return pdo_query($sql);
     } catch (Exception $e) {
         echo $e->getMessage();
     }
-} 
+}
+
+function forgotPassword($user, $email, $password)
+{
+    require './assets//PHPMailer/src/Exception.php';
+    require './assets//PHPMailer/src/PHPMailer.php';
+    require './assets//PHPMailer/src/SMTP.php';
+
+    $mail = new PHPMailer\PHPMailer\PHPMailer(true);
+
+    try {
+        //Server settings
+        $mail->SMTPDebug = PHPMailer\PHPMailer\SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+        $mail->isSMTP();                                            //Send using SMTP
+        $mail->Host       = 'smtp.google.com';                     //Set the SMTP server to send through
+        $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+        $mail->Username   = 'thanhlvph39393@fpt.edu.vn';                     //SMTP username
+        $mail->Password   = 'egjw ampt quer qtga';                               //SMTP password
+        $mail->SMTPSecure = PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
+        $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+
+        //Recipients
+        $mail->setFrom('thanhlvph39393@fpt.edu.vn', 'Mailer');
+        $mail->addAddress($email, $user);     //Add a recipient  
+
+        //Attachments
+        $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
+        $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
+
+        //Content
+        $mail->isHTML(true);                                  //Set email format to HTML
+        $mail->Subject = 'Test gui mat khau';
+        $mail->Body    = 'This is the HTML message body <b>in bold!</b>';
+        $mail->AltBody = 'Day la mat khau cua ban:' . $password ;
+
+        $mail->send();
+        echo 'Gui email thanh cong';
+    } catch (Exception $e) {
+        echo "Loi gui email. Mailer Error: {$mail->ErrorInfo}";
+    }
+}

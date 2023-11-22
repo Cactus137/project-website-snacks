@@ -5,6 +5,17 @@
   font-family: "Lexend Deca", sans-serif;
 }
 
+.banner {
+  width: 100%;
+  background-image: url("../img/banner.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 main {
   width: 906px;
   margin: 0 auto;
@@ -40,4 +51,17 @@ main .menu-item a {
 
 main .menu-item a:hover {
   text-decoration: underline;
-} 
+}
+.map-container {
+  overflow: hidden;
+  padding-bottom: 56.25%;
+  position: relative;
+  height: 0;
+}
+.map-container iframe {
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}

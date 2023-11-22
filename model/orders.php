@@ -52,5 +52,14 @@ function order_update($id_order, $username, $email, $tel, $address, $id_status ,
     join sizes on product_variants.id_size = sizes.id   SET accounts.fullname= '$username', accounts.email =' $email', accounts.tel =' $tel', accounts.address = '$address', orders.id_status = ' $id_status' ,order_details.notes = '$notes'   WHERE id_order='$id_order' ";
     pdo_execute($sql);
 }
-
+function getAllOrders()
+{
+    try {
+        $sql = "SELECT * FROM orders;";
+        return pdo_query($sql);
+    } catch (Exception $e) {
+        echo $e->getMessage();
+    }
+}
 ?>
+

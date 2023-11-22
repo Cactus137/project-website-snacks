@@ -11,8 +11,8 @@
             </div>
             <ul class="navbar-nav justify-content-end">
                 <li class="nav-item d-flex align-items-center">
-                    <a class="btn btn-outline-primary btn-sm mb-0 me-3" target="_blank" href="#">Trang sản phẩm</a>
-                </li>
+                    <a class="btn btn-outline-primary btn-sm mb-0 me-3" target="_blank" href="../index.php">Trang sản phẩm</a>
+                </li>  
                 <li class="nav-item dropdown mx-3">
                     <a class="nav-link dropdown-toggle" href="#" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
                         <span class="mr-2 d-none d-lg-inline text-gray-600 small pe-2">Le Van Thanh</span>
@@ -26,7 +26,7 @@
                             </a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="?act=setting">
+                            <a class="dropdown-item" href="../index.php?act=profile">
                                 <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400 me-2"></i>
                                 Cài đặt
                             </a>
@@ -46,7 +46,7 @@
                                 Đăng xuất
                             </a>
                         </li>
-                    </ul> 
+                    </ul>
                 </li>
 
                 <li class="nav-item d-xl-none px-5 d-flex align-items-center">

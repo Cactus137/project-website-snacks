@@ -2,6 +2,9 @@
 $countOrdersByStatus = countOrdersByStatus();
 $getCountAccounts = getCountAccounts();
 $getLoyalCustomers = getLoyalCustomers();
+$getCountCategories = count(load_all_category());
+$getCountProduct = count(getAllProducts());
+$getCountOrders = count(getAllOrders());
 
 $year = date('Y');
 $oldYear = $year - 1;
@@ -54,7 +57,7 @@ foreach ($name_old_months as $index => $name_old_months) {
                             <div class="numbers">
                                 <p class="text-sm mb-0 text-capitalize font-weight-bold">Danh mục</p>
                                 <h5 class="font-weight-bolder mb-0">
-                                    2,300
+                                    <?= $getCountCategories; ?>
                                 </h5>
                             </div>
                         </div>
@@ -75,7 +78,7 @@ foreach ($name_old_months as $index => $name_old_months) {
                             <div class="numbers">
                                 <p class="text-sm mb-0 text-capitalize font-weight-bold">Sản phẩm</p>
                                 <h5 class="font-weight-bolder mb-0">
-                                    +3,462
+                                    <?= $getCountProduct; ?>
                                 </h5>
                             </div>
                         </div>
@@ -96,7 +99,7 @@ foreach ($name_old_months as $index => $name_old_months) {
                             <div class="numbers">
                                 <p class="text-sm mb-0 text-capitalize font-weight-bold">Đơn hàng</p>
                                 <h5 class="font-weight-bolder mb-0">
-                                    $103,430
+                                    <?= $getCountOrders; ?>
                                 </h5>
                             </div>
                         </div>
@@ -188,10 +191,10 @@ foreach ($name_old_months as $index => $name_old_months) {
                                         <td class="align-middle text-center text-sm">
                                             <span class="text-xs font-weight-bold">
                                                 <?php
-                                                    if($total_amount > 10000000) echo "Kim cương"; 
-                                                    else if($total_amount > 5000000) echo "Vàng";
-                                                    else if($total_amount > 1000000) echo "Bạc";
-                                                    else echo "Đồng";
+                                                if ($total_amount > 10000000) echo "Kim cương";
+                                                else if ($total_amount > 5000000) echo "Vàng";
+                                                else if ($total_amount > 1000000) echo "Bạc";
+                                                else echo "Đồng";
                                                 ?>
                                             </span>
                                         </td>
@@ -200,26 +203,23 @@ foreach ($name_old_months as $index => $name_old_months) {
                                                 <div class="progress-info">
                                                     <div class="progress-percentage">
                                                         <span class="text-xs font-weight-bold">
-                                                            <?php 
-                                                                $percentDiamond = 
+                                                            <?php
+                                                            $percentDiamond =
                                                                 $percentGold = $total_amount / 5000000 * 100;
-                                                                $percentSilver = $total_amount / 1000000 * 100;
-                                                                $percentBronze = $total_amount / 1000000 * 100;
+                                                            $percentSilver = $total_amount / 1000000 * 100;
+                                                            $percentBronze = $total_amount / 1000000 * 100;
 
-                                                                if($total_amount > 10000000) {
-                                                                    $percent = $total_amount / 10000000 * 100;
-                                                                }
-                                                                else if($total_amount > 5000000) {
-                                                                    $percent = $total_amount / 5000000 * 100;
-                                                                }
-                                                                else if($total_amount > 1000000) {
-                                                                    $percent = $total_amount / 1000000 * 100;
-                                                                }
-                                                                else {
-                                                                    $percent = $total_amount / 1000000 * 100;
-                                                                }
+                                                            if ($total_amount > 10000000) {
+                                                                $percent = $total_amount / 10000000 * 100;
+                                                            } else if ($total_amount > 5000000) {
+                                                                $percent = $total_amount / 5000000 * 100;
+                                                            } else if ($total_amount > 1000000) {
+                                                                $percent = $total_amount / 1000000 * 100;
+                                                            } else {
+                                                                $percent = $total_amount / 1000000 * 100;
+                                                            }
 
-                                                                echo round($percent, 2) . "%";
+                                                            echo round($percent, 2) . "%";
                                                             ?>
                                                         </span>
                                                     </div>
@@ -229,7 +229,7 @@ foreach ($name_old_months as $index => $name_old_months) {
                                                 </div>
                                             </div>
                                         </td>
-                                    </tr> 
+                                    </tr>
                                 <?php endforeach; ?>
                             </tbody>
                         </table>

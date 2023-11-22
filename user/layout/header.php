@@ -1,4 +1,35 @@
 <link rel="stylesheet" href="./assets/css/styles.user.header.css">
+<style>
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        padding: 12px 16px;
+        z-index: 1;
+        margin-right: 30px;
+        left: -30px;
+        top: 30px;
+    }
+
+    .dropdown-content a {
+        color: #70472b;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        font-size: 14px;
+    }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+</style>
 <header>
     <div class="wrap-img">
         <a href="trangchu.html"><img src="assets/img/logo/logo5.png" alt=""></a>
@@ -17,6 +48,15 @@
             </button>
         </div>
         <a href="index.php?act=cart"><i class="fa-solid fa-cart-shopping"></i></a>
-        <a href="index.php?act=signup"><i class="fa-solid fa-user"></i></a>
+        <div class="dropdown">
+            <a href=""><i class="fa-solid fa-user"></i></a>
+            <div class="dropdown-content">
+                <a class="dropdown-item m-0 p-0" href="index.php?act=login"><i class="fa-solid fa-user pe-2"></i>Đăng nhập</a>
+                <a class="dropdown-item m-0 p-0" href="index.php?act=profile"><i class="fa-solid fa-gear pe-2"></i>Tài khoản của tôi</a>
+                <a class="dropdown-item m-0 p-0" href="index.php?act=order"><i class="fa-solid fa-bag-shopping pe-2"></i>Đơn hàng</a>
+                <a class="dropdown-item m-0 p-0" href="index.php?act=logout" onclick="return confirm('Bạn có chắc chắn muốn đăng xuất không?')"><i class="fa-solid fa-right-from-bracket pe-2"></i>Đăng xuất</a>
+            </div>
+        </div>
     </div>
+
 </header>

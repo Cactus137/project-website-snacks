@@ -34,7 +34,7 @@
                                     <div class="col-md-6 mb-4 d-flex align-items-center">
                                         <div class="form-outline w-100">
                                             <label class="form-label" for="exp_date">Ngày hết hạn</label>
-                                            <input type="datetime-local" name="expiration_date" value="" placeholder="" class="form-control form-control-sm" />
+                                            <input type="date" name="expiration_date" value="" placeholder="" class="form-control form-control-sm" />
                                         </div>
                                     </div>
                                 </div>

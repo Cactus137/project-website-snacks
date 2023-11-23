@@ -58,7 +58,6 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['id_role'] != 0) {
                 <div>
                     <?php switch ($_GET['action']) {
                         case 'dashboard':
-
                             include "./dashboard.php";
                             break;
                         case 'accounts':
@@ -337,6 +336,7 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['id_role'] != 0) {
                             include 'tables/products/products.php';
                             break;
                         case 'orders':
+                            $getAllStatusOrder = getAllStatusOrder(); 
                             $listorder = getAll_order();
                             include 'tables/orders/orders.php';
                             break;
@@ -356,8 +356,8 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['id_role'] != 0) {
                             include "tables/orders/edit_order.php";
                         case 'edit_order':
                             if (isset($_POST['btn_edit']) && ($_POST['btn_edit'])) {
-                                $id_order = $_POST['id_order']; 
-                                $id_status = $_POST['id_status']; 
+                                $id_order = $_POST['id_order'];
+                                $id_status = $_POST['id_status'];
                                 order_update($id_order, $id_status);
                                 echo "<script>window.location.href = '?action=orders';</script>";
                             }
@@ -438,6 +438,11 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['id_role'] != 0) {
 
                             include 'tables/revenues/revenues.php';
                             break;
+                        case 'logout':
+                            // xóa session user
+                            unset($_SESSION['user']);
+                            echo "<script>window.location.href = '../index.php';</script>";
+                            break;
                         default:
                             include "./dashboard.php";
                             break;
@@ -456,180 +461,9 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['id_role'] != 0) {
     <script src="assets/js/core/bootstrap.min.js"></script>
     <script src="assets/js/plugins/perfect-scrollbar.min.js"></script>
     <script src="assets/js/plugins/smooth-scrollbar.min.js"></script>
-    <script src="assets/js/plugins/chartjs.min.js"></script>
-    <script>
-        var ctx = document.getElementById("chart-bars").getContext("2d");
-
-        new Chart(ctx, {
-            type: "bar",
-            data: {
-                labels: ["Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"],
-                datasets: [{
-                    label: "Sales",
-                    tension: 0.4,
-                    borderWidth: 0,
-                    borderRadius: 4,
-                    borderSkipped: false,
-                    backgroundColor: "#fff",
-                    data: [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec],
-                    maxBarThickness: 6
-                }, ],
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        display: false,
-                    }
-                },
-                interaction: {
-                    intersect: false,
-                    mode: 'index',
-                },
-                scales: {
-                    y: {
-                        grid: {
-                            drawBorder: false,
-                            display: false,
-                            drawOnChartArea: false,
-                            drawTicks: false,
-                        },
-                        ticks: {
-                            suggestedMin: 0,
-                            suggestedMax: 500,
-                            beginAtZero: true,
-                            padding: 15,
-                            font: {
-                                size: 14,
-                                family: "Open Sans",
-                                style: 'normal',
-                                lineHeight: 2
-                            },
-                            color: "#fff"
-                        },
-                    },
-                    x: {
-                        grid: {
-                            drawBorder: false,
-                            display: false,
-                            drawOnChartArea: false,
-                            drawTicks: false
-                        },
-                        ticks: {
-                            display: false
-                        },
-                    },
-                },
-            },
-        });
-
-
-        var ctx2 = document.getElementById("chart-line").getContext("2d");
-
-        var gradientStroke1 = ctx2.createLinearGradient(0, 230, 0, 50);
-
-        gradientStroke1.addColorStop(1, 'rgba(203,12,159,0.2)');
-        gradientStroke1.addColorStop(0.2, 'rgba(72,72,176,0.0)');
-        gradientStroke1.addColorStop(0, 'rgba(203,12,159,0)'); //purple colors
-
-        var gradientStroke2 = ctx2.createLinearGradient(0, 230, 0, 50);
-
-        gradientStroke2.addColorStop(1, 'rgba(20,23,39,0.2)');
-        gradientStroke2.addColorStop(0.2, 'rgba(72,72,176,0.0)');
-        gradientStroke2.addColorStop(0, 'rgba(20,23,39,0)'); //purple colors
-
-        new Chart(ctx2, {
-            type: "line",
-            data: {
-                labels: ["Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"],
-                datasets: [{
-                        label: "Năm nay",
-                        tension: 0.4,
-                        borderWidth: 0,
-                        pointRadius: 0,
-                        borderColor: "#cb0c9f",
-                        borderWidth: 3,
-                        backgroundColor: gradientStroke1,
-                        fill: true,
-                        data: [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec],
-                        maxBarThickness: 6
-
-                    },
-                    {
-                        label: "Năm ngoái",
-                        tension: 0.4,
-                        borderWidth: 0,
-                        pointRadius: 0,
-                        borderColor: "#3A416F",
-                        borderWidth: 3,
-                        backgroundColor: gradientStroke2,
-                        fill: true,
-                        data: [oldJan, oldFeb, oldMar, oldApr, oldMay, oldJun, oldJul, oldAug, oldSep, oldOct, oldNov, oldDec],
-                        maxBarThickness: 6
-                    },
-                ],
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        display: false,
-                    }
-                },
-                interaction: {
-                    intersect: false,
-                    mode: 'index',
-                },
-                scales: {
-                    y: {
-                        grid: {
-                            drawBorder: false,
-                            display: true,
-                            drawOnChartArea: true,
-                            drawTicks: false,
-                            borderDash: [5, 5]
-                        },
-                        ticks: {
-                            display: true,
-                            padding: 10,
-                            color: '#b2b9bf',
-                            font: {
-                                size: 11,
-                                family: "Open Sans",
-                                style: 'normal',
-                                lineHeight: 2
-                            },
-                        }
-                    },
-                    x: {
-                        grid: {
-                            drawBorder: false,
-                            display: false,
-                            drawOnChartArea: false,
-                            drawTicks: false,
-                            borderDash: [5, 5]
-                        },
-                        ticks: {
-                            display: true,
-                            color: '#b2b9bf',
-                            padding: 20,
-                            font: {
-                                size: 11,
-                                family: "Open Sans",
-                                style: 'normal',
-                                lineHeight: 2
-                            },
-                        }
-                    },
-                },
-            },
-        });
-    </script>
     <!-- Github buttons -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
 </body>
 
-</html> 
+</html>

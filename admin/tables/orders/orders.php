@@ -8,9 +8,9 @@
         <div class="card-body px-0 pt-0 pb-2">
           <div class="">
             <form action="" method="post">
-              <div class="row mt-3 px-5 d-flex">
+              <div class="row my-3 px-2 d-flex">
                 <div  class="col-md-4 mb-3">
-                  <label for="category" class="form-label">Trạng thái</label>
+                  <label for="status" class="form-label">Trạng thái</label>
                   <select class="form-select" name="id_category">
                     <option value="0">Tất cả</option>
                     <?php foreach ($getAllStatusOrder as $status) : extract($status); ?>
@@ -20,7 +20,7 @@
                 </div>
                 <div class="col-md-4 mb-3 d-flex align-items-end">
                   <button name="filter" type="submit" class="btn mx-1 my-0 px-5" style="background-color: #17c1e8;">Lọc</button>
-                  <a href="?action=revenues"><button class="btn mx-1 my-0 btn-secondary px-4">Mặc định</button></a>
+                  <a href="?action=orders"><button class="btn mx-1 my-0 btn-secondary px-4">Mặc định</button></a>
                 </div>
               </div>
             </form>
@@ -30,7 +30,6 @@
 
               <tr>
                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">STT</th>
-                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Product</th>
                 <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">account</th>
                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7">date</th>
                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7">Status</th>
@@ -42,16 +41,13 @@
               ?>
                 <tr>
                   <td class="text-center p-2" style="width: 25px;">
-                    <span><?= $orders['id'] ?></span>
-                  </td>
-                  <td class="p-4">
-                    <p class="text-sm font-weight-bold mb-0"><?= $name_pro ?></p>
-                  </td>
+                    <span><?= $id ?></span>
+                  </td> 
                   <td class="text-center p-4">
-                    <p class="text-sm font-weight-bold mb-0"><?= $name_user ?></p>
+                    <p class="text-sm font-weight-bold mb-0"><?= $username ?></p>
                   </td>
                   <td class="text-center p-2">
-                    <p class="text-sm font-weight-bold mb-0"><?= $date_or ?></p>
+                    <p class="text-sm font-weight-bold mb-0"><?= $order_date ?></p>
                   </td>
                   <td class="text-center p-2" style="width: 300px;">
                     <span class="badge badge-sm 
@@ -75,11 +71,11 @@
                   <td class="align-middle" style="width: 250px;">
                     <div class="d-flex py-3 float-end">
                       <!-- Xem chi tiết -->
-                      <a name="edit_btn" class="btn bg-secondary btn-sm m-0 mx-1" style="display: flex; align-items: center; justify-content: center;" href="index.php?action=order_variants&id=<?php echo $orders['id'] ?> ">
+                      <a name="edit_btn" class="btn bg-secondary btn-sm m-0 mx-1" style="display: flex; align-items: center; justify-content: center;" href="index.php?action=order_variants&id=<?php echo $id ?> ">
                         <i class="fa-solid fa-info" style="color: #ffffff;"></i>
                       </a>
                       <!-- Sửa -->
-                      <a name="edit_btn" class="btn bg-secondary btn-sm m-0 mx-1" style="display: flex; align-items: center; justify-content: center;" href="index.php?action=update_order&id=<?php echo $orders['id'] ?> ">
+                      <a name="edit_btn" class="btn bg-secondary btn-sm m-0 mx-1" style="display: flex; align-items: center; justify-content: center;" href="index.php?action=update_order&id=<?php echo $id ?> ">
                         <i class="fa-solid fa-pen-to-square" style="color: #ffffff;"></i>
                       </a>
                     </div>

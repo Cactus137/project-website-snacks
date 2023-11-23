@@ -336,15 +336,23 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['id_role'] != 0) {
                             include 'tables/products/products.php';
                             break;
                         case 'orders':
-                            $getAllStatusOrder = getAllStatusOrder(); 
+                            $getAllStatusOrder = getAllStatusOrder();
+                            
                             $listorder = getAll_order();
+
+                            // if (isset($_POST['filter'])) { 
+                            //     $status = $_POST['status'];
+                            //     $getRevenues = getRevenues($start, $end, $categoryId);
+                            // } else {
+                            // }
+
                             include 'tables/orders/orders.php';
                             break;
                         case 'order_variants':
+
                             if (isset($_GET['id']) && ($_GET['id'] > 0)) {
                                 $id = $_GET['id'];
-                                $order_details = loadone_order_details($id);
-                                extract($order_details);
+                                $order_details = loadone_order_details($id);  
                             }
 
                             include 'tables/orders/order_variants.php';

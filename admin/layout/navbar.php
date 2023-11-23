@@ -41,7 +41,7 @@
                             <div class="dropdown-divider"></div>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="?action=logout" data-toggle="modal" data-target="#logoutModal">
+                            <a class="dropdown-item" href="?action=logout" data-toggle="modal" data-target="#logoutModal" onclick="return confirm('Bạn có chắc chắn muốn đăng xuất không?')">
                                 <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400 me-2"></i>
                                 Đăng xuất
                             </a>

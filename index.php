@@ -33,6 +33,12 @@ session_start();
             include './model/pdo.php';
             include './model/accounts.php';
             include './model/products.php';
+            include './model/categories.php';
+            include './model/product_variants.php';
+            include './model/orders.php';
+            include './model/cart.php';
+            include './model/comments.php';
+            include './model/discount_code.php';
 
             if ($_GET['act']) {
                 switch ($_GET['act']) {
@@ -183,6 +189,15 @@ session_start();
                         include 'user/product_detail.php';
                         break;
                     case 'order':
+                        $getOrdersByAccount = getOrdersByAccount($_SESSION['user']['id']);
+                        $getAllStatusOrder = getAllStatusOrder();
+                        if (isset($_GET['status'])) {
+                            $id_status = $_GET['status'];
+                            $getOrdersByAccount = getOrdersByAccount($_SESSION['user']['id'], $_GET['status']);
+                        }else {
+                            $id_status = null;
+                            $getOrdersByAccount = getOrdersByAccount($_SESSION['user']['id'], $_GET['status']);
+                        }
                         include 'user/order.php';
                         break;
                     case 'profile':

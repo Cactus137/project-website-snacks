@@ -116,12 +116,4 @@ function getStatusOrder($id)
     }
 }
 
-function getAllStatusOrder () {
-    try {
-        $sql = "SELECT * FROM order_status;";
 
-        return pdo_query($sql);
-    } catch (Exception $e) {
-        echo $e->getMessage();
-    }
-}

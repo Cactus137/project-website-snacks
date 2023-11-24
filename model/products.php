@@ -47,7 +47,7 @@ function quantity($id_pro)
     $sql = "SELECT * FROM product_variants 
         INNER JOIN products ON product_variants.id_product = products.id
         INNER JOIN sizes ON product_variants.id_size = sizes.id
-        WHERE id_product = $id_pro ";
+        WHERE id_product = $id_pro";
     $quantity = pdo_query($sql);
     return $quantity;
 }

@@ -11,7 +11,7 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['id_role'] != 0) {
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
-    <link rel="icon" type="image/png" href="assets/img/favicon.png">
+    <link rel="icon" type="image/png" href="assets/img/logos/logo.png">
     <title>
         Trang quản trị
     </title>
@@ -335,16 +335,15 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['id_role'] != 0) {
                             $list_all_product = load_all_product_category_variant();
                             include 'tables/products/products.php';
                             break;
-                        case 'orders':
+                        case 'orders': 
                             $getAllStatusOrder = getAllStatusOrder();
                             
-                            $listorder = getAll_order();
-
-                            // if (isset($_POST['filter'])) { 
-                            //     $status = $_POST['status'];
-                            //     $getRevenues = getRevenues($start, $end, $categoryId);
-                            // } else {
-                            // }
+                            if (isset($_POST['filter'])) { 
+                                $status = $_POST['status'];
+                                $listorder = fitterOrder($status); 
+                            } else {
+                                $listorder = getAll_order();
+                            }
 
                             include 'tables/orders/orders.php';
                             break;
@@ -455,7 +454,6 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['id_role'] != 0) {
                             include "./dashboard.php";
                             break;
                     } ?>
-
                 </div>
                 <footer>
                     <?php include './layout/footer.php'; ?>

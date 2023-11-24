@@ -50,12 +50,12 @@ CREATE TABLE `categories` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci; 
 -- Dumping data for table `categories` 
 INSERT INTO `categories` (`id`, `name_category`, `image`) VALUES
-(1, 'Burger', 'cate1.jpg'),
-(2, 'Combo', 'cate1.jpg'),
-(3, 'Gà rán', 'cate1.jpg'),
-(4, 'Cơm-Mỳ ý', 'cate1.jpg'),
-(5, 'Khoai tây', 'cate1.jpg'),
-(6, 'Thức uống', 'cate1.jpg'); 
+(1, 'Burger', 'burger_cate.png'),
+(2, 'Combo', 'combo_cate.png'),
+(3, 'Gà rán', 'chicken_fried_cate.png'),
+(4, 'Cơm-Mỳ ý', 'pasta_cate.png'),
+(5, 'Khoai tây', 'potato_fried_cate.png'),
+(6, 'Thức uống', 'drinks_cate.png');
 -- -------------------------------------------------------- 
 -- Table structure for table `comments` 
 CREATE TABLE `comments` (

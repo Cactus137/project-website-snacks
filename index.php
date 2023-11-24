@@ -32,6 +32,7 @@ session_start();
             <?php
             include './model/pdo.php';
             include './model/accounts.php';
+            include './model/products.php';
 
             if ($_GET['act']) {
                 switch ($_GET['act']) {

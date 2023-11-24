@@ -32,7 +32,7 @@
                         <div class="qty">
                             <div class="q-inner">
                                 <button class="btn-minute" type="button" disabled>-</button>
-                                <span class="number">1</span>
+                                <span name="number" class="number">1</span>
                                 <button class="btn-plus" type="button">+</button>
                             </div>
                             <div class="add">

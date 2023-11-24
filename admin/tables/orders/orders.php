@@ -9,10 +9,10 @@
           <div class="">
             <form action="" method="post">
               <div class="row my-3 px-2 d-flex">
-                <div  class="col-md-4 mb-3">
+                <div class="col-md-4 mb-3">
                   <label for="status" class="form-label">Trạng thái</label>
-                  <select class="form-select" name="id_category">
-                    <option value="0">Tất cả</option>
+                  <select name="status" class="form-select" name="id_category">
+                    <option value="">Tất cả</option>
                     <?php foreach ($getAllStatusOrder as $status) : extract($status); ?>
                       <option value="<?= $id ?>"><?= $name ?></option>
                     <?php endforeach; ?>
@@ -42,7 +42,7 @@
                 <tr>
                   <td class="text-center p-2" style="width: 25px;">
                     <span><?= $id ?></span>
-                  </td> 
+                  </td>
                   <td class="text-center p-4">
                     <p class="text-sm font-weight-bold mb-0"><?= $username ?></p>
                   </td>
@@ -72,7 +72,7 @@
                     <div class="d-flex py-3 float-end">
                       <!-- Xem chi tiết -->
                       <a name="edit_btn" class="btn bg-secondary btn-sm m-0 mx-1" style="display: flex; align-items: center; justify-content: center;" href="index.php?action=order_variants&id=<?php echo $id ?> ">
-                        <i class="fa-solid fa-info" style="color: #ffffff;"></i>
+                        <i class="fa-solid fa-circle-info" style="color: #ffffff;"></i>
                       </a>
                       <!-- Sửa -->
                       <a name="edit_btn" class="btn bg-secondary btn-sm m-0 mx-1" style="display: flex; align-items: center; justify-content: center;" href="index.php?action=update_order&id=<?php echo $id ?> ">

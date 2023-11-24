@@ -64,7 +64,7 @@ function loadone_order_details($id)
     JOIN order_status os ON o.id_status = os.id 
     JOIN sizes s ON s.id = pv.id_size
     JOIN discount_codes dc ON dc.id = od.discount
-    where o.id = '$id'"; 
+    where o.id = '$id'";
     $order_details = pdo_query($sql);
     return $order_details;
 }
@@ -98,21 +98,27 @@ function order_update($id_order, $id_status)
     pdo_execute($sql);
 }
 
-function fitterOrder($status = 0)
+function fitterOrder($status = null)
 {
     try {
-        $sql = "select orders.*, orders.order_date as date_or, accounts.fullname as name_user, order_status.name as name_status, products.name as name_pro, products.image as imgpro, sizes.name as size_pro, product_variants.quantity as sl_quantity, product_variants.price as price_pro,
-        accounts.email as email_ac, accounts.address as adres, accounts.tel as phone, order_details.notes as note
-        from orders join accounts on orders.id_account = accounts.id
-        join order_status on orders.id_status = order_status.id
-        join order_details on orders.id = order_details.id_order
-        join product_variants on order_details.id_product_variants = product_variants.id
-        join products on product_variants.id_product = products.id
-        join sizes on product_variants.id_size = sizes.id
-        where orders.id_status = $status
-        order by id desc;";
-
-        return pdo_query($sql);
+        $sql = "SELECT 
+        o.id as id, 
+        p.name,
+        a.username,
+        o.order_date,
+        os.id as id_status,
+        os.name as name_status
+    FROM orders o 
+    JOIN order_details od ON o.id = od.id_order
+    JOIN product_variants pv ON od.id_product_variants = pv.id
+    JOIN products p ON p.id = pv.id_product
+    JOIN accounts a ON a.id = o.id_account
+    JOIN order_status os ON o.id_status = os.id";
+    if ($status != null) {
+        $sql .= " WHERE os.id = $status";
+    }
+    $sql .= " GROUP BY id;";
+    return pdo_query($sql);
     } catch (Exception $e) {
         echo $e->getMessage();
     }

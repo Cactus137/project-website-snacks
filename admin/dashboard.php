@@ -177,7 +177,7 @@ foreach ($name_old_months as $index => $name_old_months) {
                                         <td>
                                             <div class="d-flex px-2 py-1">
                                                 <div>
-                                                    <img src="assets/img/team-2.jpg" class="avatar avatar-sm me-3" alt="xd">
+                                                    <img src="./assets/img/team-2.jpg" class="avatar avatar-sm me-3" alt="xd">
                                                 </div>
                                                 <div class="d-flex flex-column justify-content-center">
                                                     <h6 class="mb-0 text-sm"><?= $username ?></h6>

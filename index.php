@@ -189,19 +189,34 @@ session_start();
                         include 'user/product_detail.php';
                         break;
                     case 'order':
-                        $getOrdersByAccount = getOrdersByAccount($_SESSION['user']['id']);
-                        $getAllStatusOrder = getAllStatusOrder();
-                        if (isset($_GET['status'])) {
-                            $id_status = $_GET['status'];
-                            $getOrdersByAccount = getOrdersByAccount($_SESSION['user']['id'], $_GET['status']);
+                        if (isset($_SESSION['user'])){
+                            $getOrdersByAccount = getOrdersByAccount($_SESSION['user']['id']);
+                            $getAllStatusOrder = getAllStatusOrder();
+                            if (isset($_GET['status'])) {
+                                $id_status = $_GET['status'];
+                                $getOrdersByAccount = getOrdersByAccount($_SESSION['user']['id'], $_GET['status']);
+                            }else {
+                                $id_status = null;
+                                $getOrdersByAccount = getOrdersByAccount($_SESSION['user']['id'], $_GET['status']);
+                            }
+                            include 'user/order.php';
                         }else {
-                            $id_status = null;
-                            $getOrdersByAccount = getOrdersByAccount($_SESSION['user']['id'], $_GET['status']);
+                            echo "<script>window.location.href = '?act=login';</script>";
                         }
-                        include 'user/order.php';
+                        break;
+                    case 'pay':
+                        if (isset($_SESSION['user'])) {
+                            include 'user/pay.php';
+                        }else {
+                            echo "<script>window.location.href = '?act=login';</script>";
+                        }
                         break;
                     case 'profile':
-                        include 'user/profile.php';
+                        if (isset($_SESSION['user'])) {
+                            include 'user/profile.php';
+                        }else {
+                            echo "<script>window.location.href = '?act=login';</script>";
+                        }
                         break;
                     default:
                         include './user/home.php';

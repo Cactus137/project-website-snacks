@@ -59,6 +59,7 @@ main .section-pay {
   width: 100%;
   display: flex;
   justify-content: space-between; 
+  margin-bottom: 50px;
 }
 
 main .section-pay h3 {
@@ -189,6 +190,12 @@ main .confirm-oder input[type="submit"] {
 
 main .letf-confirm {
   background-color: #999999;
+  padding: 0 20px;
+  text-decoration: none;
+  color: white;
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
 }
 
 main .letf-confirm:hover {

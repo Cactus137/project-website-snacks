@@ -25,8 +25,7 @@
           <div class="row mb-20">
             Ghi chú <br />
             <textarea name="notes"></textarea>
-          </div>
-          <!-- <textarea name="post_content" cols="30" rows="10"></textarea> -->
+          </div> 
         </div>
       </div>
       <div class="box-right">
@@ -82,8 +81,8 @@
         </div>
       </div>
     </div>
-    <div class="confirm-oder mt-20">
-      <input type="submit" value="Tiếp tục mua hàng" class="letf-confirm">
+    <div class="confirm-oder mt-20"> 
+      <a href="?act=menu" class="letf-confirm" >Tiếp tục mua hàng</a>
       <input type="submit" value="Xác nhận mua hàng" class="right-confirm">
     </div>
   </form>

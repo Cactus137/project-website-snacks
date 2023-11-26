@@ -28,8 +28,7 @@
                                     </span>
                                     <button class="btn-plus" type="button" disabled>+</button>
                                 </div>
-                                <div class="icon-delete">
-                                    <!-- <a href=""><img src="img/trash-bin 1.png" alt="" ></a> -->
+                                <div class="icon-delete"> 
                                     <a href="index.php?act=delcart"><i class="fa-solid fa-trash-can"></i></a>
                                 </div>
                             </div>

@@ -37,7 +37,7 @@
     <ul class="menu-nav m-0">
         <li><a href="index.php?act=home">Trang chủ</a></li>
         <li><a href="index.php?act=menu">Thực đơn</a></li>
-        <li><a href="index.php?act=pay">Tin tức</a></li>
+        <li><a href="index.php?act=pay">Mã giảm giá</a></li>
         <li><a href="">Giới thiệu</a></li>
         <li><a href="">Liên hệ</a></li>
     </ul>
@@ -50,7 +50,9 @@
                 </form>
             </button>
         </div>
-        <a href="index.php?act=cart"><i class="fa-solid fa-cart-shopping"></i></a>
+        <?php if (!is_null($_SESSION['user'])) { ?>
+            <a href="index.php?act=cart"><i class="fa-solid fa-cart-shopping"></i></a>
+        <?php } ?>
         <div class="dropdown">
             <a href=""><i class="fa-solid fa-user"></i></a>
             <div class="dropdown-content">

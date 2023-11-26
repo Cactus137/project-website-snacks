@@ -26,3 +26,10 @@ function loadone_code($id)
     $code = pdo_query_one($sql);
     return $code;
 }
+
+function checkCodeDiscount($code)
+{
+    $sql = "select * from discount_codes where code='$code'";
+    $code = pdo_query_one($sql);
+    return $code;
+}

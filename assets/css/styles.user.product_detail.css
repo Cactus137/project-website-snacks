@@ -90,6 +90,11 @@ h4 {
   width: 1080px;
   padding-top: 20px;
 }
+
+.add-comment h4{
+  color: red;
+}
+
 .text-1 {
   padding-left: 10px;
   border-radius: 10px;
@@ -239,9 +244,7 @@ input:checked + label {
   border: 1px solid #ffc501;
   border-radius: 10px;
 }
-.name-user {
-  font-weight: bold;
-}
+ 
 .prices {
   font-size: 18px;
   padding-top: 25px;

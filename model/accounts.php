@@ -71,25 +71,6 @@ function getAllRoles()
     }
 }
 
-function login($username, $password)
-{
-    try {
-        $user = getAccountByUsername($username);
-        if ($user) {
-            if ($user['password'] == $password) {
-                $_SESSION['user'] = $user;
-                return true;
-            } else {
-                return false;
-            }
-        } else {
-            return false;
-        }
-    } catch (Exception $e) {
-        echo $e->getMessage();
-    }
-}
-
 function signup($username, $email, $password)
 {
     try {
@@ -148,32 +129,53 @@ function forgotPassword($user, $email, $password)
 
     try {
         //Server settings
-        $mail->SMTPDebug = PHPMailer\PHPMailer\SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+        $mail->SMTPDebug = PHPMailer\PHPMailer\SMTP::DEBUG_OFF;                      //Enable verbose debug output
         $mail->isSMTP();                                            //Send using SMTP
-        $mail->Host       = 'smtp.google.com';                     //Set the SMTP server to send through
+        $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
         $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-        $mail->Username   = 'thanhlvph39393@fpt.edu.vn';                     //SMTP username
-        $mail->Password   = 'egjw ampt quer qtga';                               //SMTP password
+        $mail->Username   = 'anhdo13072004@gmail.com';                     //SMTP username
+        $mail->Password   = 'jfoh cejs vmjp hdop';                               //SMTP password
         $mail->SMTPSecure = PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
         $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
         //Recipients
-        $mail->setFrom('thanhlvph39393@fpt.edu.vn', 'Mailer');
+        $mail->setFrom('anhdo13072004@gmail.com', 'Mailer');
         $mail->addAddress($email, $user);     //Add a recipient  
 
         //Attachments
-        $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
-        $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
+        // $mail->addAttachment('user/form_forgot_password.php');         //Add attachments
+        // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
 
         //Content
         $mail->isHTML(true);                                  //Set email format to HTML
-        $mail->Subject = 'Test gui mat khau';
-        $mail->Body    = 'This is the HTML message body <b>in bold!</b>';
-        $mail->AltBody = 'Day la mat khau cua ban:' . $password ;
+        $mail->Subject = '=?UTF-8?B?' . base64_encode('[FastFood] Khôi phục mật khẩu') . '?=';
+        $mail->Body = '   
+      <h1>Fass Food</h1>
+      <h2>Khôi phục mật khẩu</h2>
+      <hr>
+      <p>Xin chào ' . $user . '</p>
+      <p>Mật khẩu khôi phục của bạn là: <strong>' . $password . '</strong></p>
+      <p>
+        Vui lòng <a href="#">bấm vào đây</a> để đăng nhập vào tài khoản
+        FastFood của bạn bằng mật khẩu này
+      </p>
+      <p>Trân trọng</p>  
+        ';
+        // $mail->AltBody = 'Day la mat khau cua ban:' . $password;
 
         $mail->send();
-        echo 'Gui email thanh cong';
+        // echo 'Gui email thanh cong';
     } catch (Exception $e) {
         echo "Loi gui email. Mailer Error: {$mail->ErrorInfo}";
+    }
+}
+
+function updateProfile($id, $username, $email, $fullname, $avatar, $address, $tel)
+{
+    try {
+        $sql = "UPDATE accounts SET username = '$username', email = '$email', fullname = '$fullname', avatar = '$avatar', address = '$address', tel = '$tel' WHERE id = $id";
+        pdo_execute($sql);
+    } catch (Exception $e) {
+        echo $e->getMessage();
     }
 }

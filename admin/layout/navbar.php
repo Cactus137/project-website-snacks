@@ -11,7 +11,7 @@
             </div>
             <ul class="navbar-nav justify-content-end">
                 <li class="nav-item d-flex align-items-center">
-                    <a class="btn btn-outline-primary btn-sm mb-0 me-3" target="_blank" href="../index.php">Trang sản phẩm</a>
+                    <a class="btn btn-outline-primary btn-sm mb-0 me-3" target="_blank" href="../index.php?act=home">Trang sản phẩm</a>
                 </li>  
                 <li class="nav-item dropdown mx-3">
                     <a class="nav-link dropdown-toggle" href="#" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
@@ -20,19 +20,19 @@
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
                         <li>
-                            <a class="dropdown-item" href="#">
+                            <a class="dropdown-item" href="../index.php?act=profile">
                                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400 me-2"></i>
                                 Trang cá nhân
                             </a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="../index.php?act=profile">
+                            <a class="dropdown-item text-decoration-line-through" href="../index.php?act=profile">
                                 <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400 me-2"></i>
                                 Cài đặt
                             </a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="#">
+                            <a class="dropdown-item text-decoration-line-through" href="#">
                                 <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400 me-2"></i>
                                 Nhật ký đăng nhập
                             </a>
@@ -41,7 +41,7 @@
                             <div class="dropdown-divider"></div>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                            <a class="dropdown-item" href="?action=logout" data-toggle="modal" data-target="#logoutModal" onclick="return confirm('Bạn có chắc chắn muốn đăng xuất không?')">
                                 <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400 me-2"></i>
                                 Đăng xuất
                             </a>

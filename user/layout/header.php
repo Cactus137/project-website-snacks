@@ -32,7 +32,7 @@
 </style>
 <header>
     <div class="wrap-img">
-        <a href="trangchu.html"><img src="assets/img/logo/logo5.png" alt=""></a>
+        <a href="trangchu.html"><img src="assets/img/logo/logo.png" alt=""></a>
     </div>
     <ul class="menu-nav m-0">
         <li><a href="index.php?act=home">Trang chủ</a></li>
@@ -44,19 +44,28 @@
     <div class="icon-nav d-flex justify-content-between align-items-center">
         <div class="input-group me-3">
             <button class="rounded-pill border-0 d-flex" type="button" id="search-icon">
-                <input type="text" class="form-control rounded-pill" placeholder="Search..." aria-label="Search" aria-describedby="search-icon">
+                <form action="?act=list_search_products" method="POST">
+                    <input type="text" class="search" name="keyw" placeholder="Search..." aria-label="Search" aria-describedby="search-icon">
+                    <input type="submit" value="Tìm" name="btn_search" class="search">
+                </form>
             </button>
         </div>
         <a href="index.php?act=cart"><i class="fa-solid fa-cart-shopping"></i></a>
         <div class="dropdown">
             <a href=""><i class="fa-solid fa-user"></i></a>
             <div class="dropdown-content">
-                <a class="dropdown-item m-0 p-0" href="index.php?act=login"><i class="fa-solid fa-user pe-2"></i>Đăng nhập</a>
-                <a class="dropdown-item m-0 p-0" href="index.php?act=profile"><i class="fa-solid fa-gear pe-2"></i>Tài khoản của tôi</a>
-                <a class="dropdown-item m-0 p-0" href="index.php?act=order"><i class="fa-solid fa-bag-shopping pe-2"></i>Đơn hàng</a>
-                <a class="dropdown-item m-0 p-0" href="index.php?act=logout" onclick="return confirm('Bạn có chắc chắn muốn đăng xuất không?')"><i class="fa-solid fa-right-from-bracket pe-2"></i>Đăng xuất</a>
+                <?php if (is_null($_SESSION['user'])) { ?>
+                    <a class="dropdown-item  mx-0 my-1 p-0" href="index.php?act=login"><i class="fa-solid fa-user pe-2"></i>Đăng nhập</a>
+                <?php } ?>
+                <?php if (!is_null($_SESSION['user'])) {
+                    if ($_SESSION['user']['role'] == 0) { ?>
+                        <a class="dropdown-item  mx-0 my-1 p-0" href="./admin"><i class="fa-solid fa-toolbox pe-2"></i>Trang quản trị</a>
+                    <?php } ?>
+                    <a class="dropdown-item  mx-0 my-1 p-0" href="index.php?act=profile"><i class="fa-solid fa-gear pe-2"></i>Tài khoản của tôi</a>
+                    <a class="dropdown-item  mx-0 my-1 p-0" href="index.php?act=order"><i class="fa-solid fa-bag-shopping pe-2"></i>Đơn hàng</a>
+                    <a class="dropdown-item  mx-0 my-1 p-0" href="index.php?act=logout" onclick="return confirm('Bạn có chắc chắn muốn đăng xuất không?')"><i class="fa-solid fa-right-from-bracket pe-2"></i>Đăng xuất</a>
+                <?php } ?>
             </div>
         </div>
     </div>
-
 </header>

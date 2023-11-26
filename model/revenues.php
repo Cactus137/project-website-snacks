@@ -61,8 +61,8 @@ function getRevenues($start = "", $end = "", $categoryId = 0)
             $sql .= " AND o.order_date <= '$end'";
         }
 
-        $sql .= " GROUP BY c.name_category, p.name ORDER BY total_revenue DESC;"; 
-        
+        $sql .= " GROUP BY c.name_category, p.name ORDER BY total_revenue DESC;";
+
         return pdo_query($sql);
     } catch (Exception $e) {
         echo $e->getMessage();
@@ -98,7 +98,7 @@ function getRevenuesByMonth($year)
     }
 }
 
-function countOrdersByStatus()
+function getStatusOrder($id)
 {
     try {
         $sql = "SELECT
@@ -108,13 +108,12 @@ function countOrdersByStatus()
             order_status os
         LEFT JOIN
             orders o ON os.id = o.id_status
-        GROUP BY
-            os.name
-        ORDER BY
-            order_count DESC;";
+            WHERE os.id = $id;";
 
-        return pdo_query($sql);
+        return pdo_query_one($sql);
     } catch (Exception $e) {
         echo $e->getMessage();
     }
 }
+
+

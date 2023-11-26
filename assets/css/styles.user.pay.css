@@ -34,7 +34,7 @@ main .category-item img {
 }
 
 main .category-item a {
-  font-size: 14px;
+  font-size: 16px;
   color: black;
   text-decoration: none;
 }
@@ -58,7 +58,8 @@ main .title-pay {
 main .section-pay {
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; 
+  margin-bottom: 50px;
 }
 
 main .section-pay h3 {
@@ -67,22 +68,23 @@ main .section-pay h3 {
 }
 
 .section-pay .box-left {
-  min-width: 50%;
+  min-width: 55%;
   border: 1px solid #acacac;
 }
 
 .section-pay .letf-bottom {
   padding: 0 20px 20px 20px;
+  margin: 0 10px;
 }
 
 .section-pay .box-left input[type="text"],
-.section-pay .box-left input[type="email"],
-.section-pay .box-left input[type="number"],
+.section-pay .box-left input[type="email"], 
 .section-pay .box-left textarea {
   width: 100%;
   padding: 5px;
   margin-top: 6px;
   border: 1px solid #ccc;
+  /* padding: 5px 10px; */
 }
 
 .section-pay .box-left textarea {
@@ -91,7 +93,7 @@ main .section-pay h3 {
 }
 
 .section-pay .box-right {
-  min-width: 45%;
+  min-width: 40%;
 }
 
 .section-pay .box-right > h3 {
@@ -112,13 +114,13 @@ main .section-pay h3 {
 
 .section-pay .right-top th {
   padding: 10px;
-  font-size: 14px;
+  font-size: 16px;
   background-color: #eee5da;
 }
 
 .section-pay .right-top td {
   padding: 10px;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .section-pay .color-price {
@@ -137,19 +139,14 @@ main .section-pay h3 {
   border-left: 1px solid #acacac;
 }
 
-.section-pay .order-detail {
-  font-size: 14px;
+.section-pay .order-detail { 
   display: flex;
   justify-content: space-between;
 }
 
-.section-pay .right-bottom h4 {
-  padding: 10px 0;
-}
-
-.section-pay .right-bottom p {
-  padding: 10px 0;
-}
+.section-pay .right-bottom .total-price p {
+  font-size: 16px;  
+} 
 
 .section-pay .discount {
   width: 100%;
@@ -181,10 +178,7 @@ main .section-pay h3 {
 main .confirm-oder {
   width: 100%;
   display: flex;
-  justify-content: space-evenly;
-  /* justify-items: center;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 30px; */
+  justify-content: space-evenly; 
 }
 
 main .confirm-oder input[type="submit"] {
@@ -196,6 +190,12 @@ main .confirm-oder input[type="submit"] {
 
 main .letf-confirm {
   background-color: #999999;
+  padding: 0 20px;
+  text-decoration: none;
+  color: white;
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
 }
 
 main .letf-confirm:hover {

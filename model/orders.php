@@ -11,34 +11,62 @@ function getAllOrders()
 }
 function getAll_order()
 {
-    $sql = "select orders.*, orders.order_date as date_or, accounts.fullname as name_user, order_status.name as name_status, products.name as name_pro, products.image as imgpro, sizes.name as size_pro, product_variants.quantity as sl_quantity, product_variants.price as price_pro,
-    accounts.email as email_ac, accounts.address as adres, accounts.tel as phone, order_details.notes as note
-    from orders join accounts on orders.id_account = accounts.id
-    join order_status on orders.id_status = order_status.id
-    join order_details on orders.id = order_details.id_order
-    join product_variants on order_details.id_product_variants = product_variants.id
-    join products on product_variants.id_product = products.id
-    join sizes on product_variants.id_size = sizes.id
-    order by id desc;";
+    $sql = "SELECT 
+        o.id as id, 
+        p.name,
+        a.username,
+        o.order_date,
+        os.id as id_status,
+        os.name as name_status
+    FROM orders o 
+    JOIN order_details od ON o.id = od.id_order
+    JOIN product_variants pv ON od.id_product_variants = pv.id
+    JOIN products p ON p.id = pv.id_product
+    JOIN accounts a ON a.id = o.id_account
+    JOIN order_status os ON o.id_status = os.id
+    GROUP BY id;";
     $listorder = pdo_query($sql);
     return $listorder;
+}
+function getOrder()
+{
+    try {
+        $sql = "SELECT * FROM orders;";
+        return pdo_query($sql);
+    } catch (Exception $e) {
+        echo $e->getMessage();
+    }
 }
 
 
 function loadone_order_details($id)
 {
-    $sql = "select order_details.*, products.name as name_pr, product_variants.price as prc_pro, product_variants.quantity as slg_pr, sizes.name as size_name,
-    accounts.fullname as user_fullname, accounts.email as mail_acc, accounts.tel as tel_phone, accounts.address as adress,  order_details.notes as note,
-    orders.order_date as date_ord,sum(product_variants.quantity * product_variants.price) as 'total_price'
-    from order_details join orders on order_details.id_order = orders.id
-    join accounts on orders.id_account = accounts.id
-    join product_variants on order_details.id_product_variants = product_variants.id
-    join products on product_variants.id_product = products.id
-    join sizes on product_variants.id_size = sizes.id
-
-    where orders.id = '" . $id . "'
-   ";
-    $order_details = pdo_query_one($sql);
+    $sql = "SELECT 
+    p.image AS image_product,
+	p.name AS name_product,
+   	s.name AS name_size,
+    od.quantity,
+    od.total_amount,
+    a.username,
+    a.fullname,
+    a.email,
+    a.tel,
+    a.address,
+    od.notes,
+    o.order_date,
+    pv.price,
+    dc.discount
+    
+    FROM orders o 
+    JOIN order_details od ON o.id = od.id_order
+    JOIN product_variants pv ON od.id_product_variants = pv.id
+    JOIN products p ON p.id = pv.id_product
+    JOIN accounts a ON a.id = o.id_account
+    JOIN order_status os ON o.id_status = os.id 
+    JOIN sizes s ON s.id = pv.id_size
+    JOIN discount_codes dc ON dc.id = od.discount
+    where o.id = '$id'";
+    $order_details = pdo_query($sql);
     return $order_details;
 }
 function loadone_order($id)
@@ -70,4 +98,110 @@ function order_update($id_order, $id_status)
     join sizes on product_variants.id_size = sizes.id   
     SET orders.id_status = '$id_status' WHERE id_order='$id_order'";
     pdo_execute($sql);
+}
+
+function fitterOrder($status = null)
+{
+    try {
+        $sql = "SELECT 
+        o.id as id, 
+        p.name,
+        a.username,
+        o.order_date,
+        os.id as id_status,
+        os.name as name_status
+    FROM orders o 
+    JOIN order_details od ON o.id = od.id_order
+    JOIN product_variants pv ON od.id_product_variants = pv.id
+    JOIN products p ON p.id = pv.id_product
+    JOIN accounts a ON a.id = o.id_account
+    JOIN order_status os ON o.id_status = os.id";
+        if ($status != null) {
+            $sql .= " WHERE os.id = $status";
+        }
+        $sql .= " GROUP BY id;";
+        return pdo_query($sql);
+    } catch (Exception $e) {
+        echo $e->getMessage();
+    }
+}
+
+function getOrdersByAccount($id_account, $id_status)
+{
+    try {
+        $sql = "SELECT 
+        o.id AS id_order,   
+        od.quantity AS quantity, 
+        pv.price AS price,
+        od.total_amount AS total_amount, 
+        dc.discount AS discount,
+        os.name AS name_status,
+        os.id AS id_status
+    FROM orders o 
+    JOIN order_details od ON o.id = od.id_order
+    JOIN product_variants pv ON od.id_product_variants = pv.id
+    JOIN products p ON p.id = pv.id_product
+    JOIN categories c ON c.id = p.id_category
+    JOIN sizes s ON s.id = pv.id_size
+    JOIN accounts a ON a.id = o.id_account
+    JOIN order_status os ON o.id_status = os.id
+    JOIN discount_codes dc ON dc.id = od.discount
+        WHERE o.id_account = $id_account";
+        if ($id_status != null) {
+            $sql .= " AND o.id_status = $id_status";
+        }
+        $sql .= " GROUP BY id_order;";
+        return pdo_query($sql);
+    } catch (Exception $e) {
+        echo $e->getMessage();
+    }
+}
+
+function getOrderDetailByAccount($id_order)
+{
+    try {
+        $sql = "SELECT  
+        p.image AS image_product,
+        p.name AS name_product,
+        s.name AS name_size,
+        od.quantity AS quantity 
+    FROM orders o 
+    JOIN order_details od ON o.id = od.id_order
+    JOIN product_variants pv ON od.id_product_variants = pv.id
+    JOIN products p ON p.id = pv.id_product
+    JOIN categories c ON c.id = p.id_category
+    JOIN sizes s ON s.id = pv.id_size
+    JOIN accounts a ON a.id = o.id_account
+    JOIN order_status os ON o.id_status = os.id
+    JOIN discount_codes dc ON dc.id = od.discount
+    WHERE o.id = $id_order 
+    ORDER BY o.order_date ASC;";
+        return pdo_query($sql);
+    } catch (Exception $e) {
+        echo $e->getMessage();
+    }
+}
+
+
+function getAllStatusOrder()
+{
+    try {
+        $sql = "SELECT * FROM order_status;";
+
+        return pdo_query($sql);
+    } catch (Exception $e) {
+        echo $e->getMessage();
+    }
+}
+
+function cancelOrder($id_order)
+{
+    try {
+        $sql = "UPDATE orders SET id_status = 5 WHERE id = $id_order;";
+        // var_dump($sql);
+        // die;
+        return pdo_execute($sql);
+    } catch (Exception $e) {
+        echo $e->getMessage();
+    }
 }

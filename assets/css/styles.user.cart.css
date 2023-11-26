@@ -1,7 +1,6 @@
 * {
   margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  padding: 0; 
   font-family: "Lexend Deca", sans-serif;
 }
 
@@ -11,6 +10,10 @@ form {
 }
 .main {
   display: block;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .container {
   width: 100%;
@@ -23,110 +26,7 @@ form {
 .mb-10 {
   margin-bottom: 10px;
 }
-
-/* BEGIN HEADER */
-
-header {
-  background-color: #ffc501;
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-}
-
-header .wrap-img {
-  width: 136px;
-  height: 100px;
-}
-
-header .wrap-img img {
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
-}
-
-header .menu-nav {
-  font-size: 18px;
-  text-transform: uppercase;
-}
-
-header .menu-nav li {
-  display: inline-block;
-  padding: 10px;
-  list-style-type: none;
-  /* font-family:'passion one', sans-serif; */
-}
-
-header a {
-  text-decoration: none;
-  color: #70472b;
-  padding: 10px;
-  font-family: "Lexend Deca", sans-serif;
-  font-weight: 700;
-}
-
-header a:hover {
-  color: #97501f;
-}
-
-header i {
-  font-size: 18px;
-}
-
-/* END HEADER */
-
-/* BEGIN  FOOTER*/
-.footer-banner {
-  margin-top: 80px;
-  width: 100%;
-  height: 200px;
-}
-
-.footer-banner .bane {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-footer {
-  width: 100%;
-  height: 280px;
-  background: #53483e;
-  display: flex;
-  justify-content: space-evenly;
-  /* align-items: center; */
-  padding-top: 44px;
-}
-
-footer h3 {
-  color: #fff;
-  margin-bottom: 20px;
-}
-
-footer .box-two i {
-  padding: 10px;
-  color: #fff;
-}
-
-footer .contact-info {
-  width: 300px;
-}
-
-footer .item-info {
-  display: flex;
-  margin-bottom: 14px;
-  line-height: 20px;
-}
-
-footer .item-info i {
-  padding-right: 10px;
-}
-
-footer .item-info {
-  color: #fff;
-  text-align: left;
-  font-size: 14px;
-}
-
+ 
 h4 {
   font-size: 20px;
   padding-top: 60px;
@@ -138,7 +38,7 @@ h4 {
 }
 
 .main .viewcart {
-  padding-left: 200px;
+  margin-bottom: 50px;
 }
 .product-category-detail {
   box-shadow: 0 0 5px 5px rgb(135, 126, 126);
@@ -170,10 +70,9 @@ h4 {
   padding-top: 30px;
   width: 200px;
 }
-.cart {
-  padding-left: 200px;
-  padding-top: 50px;
-  padding-bottom: 30px;
+.cart { 
+  margin-top: 50px; 
+  margin-bottom: 50px; 
 }
 .product-category-detail .field-content {
   overflow: visible;

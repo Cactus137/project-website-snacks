@@ -71,7 +71,7 @@
                     <li>
                         <div class="pr-nametong">Tổng thanh toán</div>
                         <div class="inner">
-                            <span class="pricee3"><?php $total_amount = ($total_price + $fee) - $discount; echo number_format($total_amount) ?>đ</span>
+                            <span class="price3"><?php $total_amount = ($total_price + $fee) - $discount; echo number_format($total_amount) ?>đ</span>
                         </div>
                     </li>
 

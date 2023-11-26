@@ -7,11 +7,11 @@
     <div class="wrap-menu mb-10">
         <?php
         foreach ($list_category_home as $category) {
-            extract($category);
+            extract($category); 
         ?>
             <div class="menu-item">
                 <a href="?act=menu&name=#<?php echo $name_category ?>">
-                    <img src="<?php echo '../assets/img/categories/' . $image ?>" alt="">
+                    <img src="<?php echo 'assets/img/categories/' . $image ?>" alt="">
                 </a>
                 <a href="?act=menu&name=#<?php echo $name_category ?>">
                     <h3><?php echo $name_category ?></h3>

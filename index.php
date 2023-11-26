@@ -189,32 +189,78 @@ session_start();
                         include 'user/product_detail.php';
                         break;
                     case 'order':
-                        if (isset($_SESSION['user'])){
+                        if (isset($_SESSION['user'])) {
                             $getOrdersByAccount = getOrdersByAccount($_SESSION['user']['id']);
                             $getAllStatusOrder = getAllStatusOrder();
                             if (isset($_GET['status'])) {
                                 $id_status = $_GET['status'];
                                 $getOrdersByAccount = getOrdersByAccount($_SESSION['user']['id'], $_GET['status']);
-                            }else {
+                            } else {
                                 $id_status = null;
                                 $getOrdersByAccount = getOrdersByAccount($_SESSION['user']['id'], $_GET['status']);
                             }
                             include 'user/order.php';
-                        }else {
+                        } else {
                             echo "<script>window.location.href = '?act=login';</script>";
                         }
                         break;
+                    case 'cancel_order':
+                        $id_order = $_GET['id_order'];
+                        cancelOrder($id_order);
+                        echo "<script>window.location.href = '?act=order';</script>";
+                        break;
                     case 'pay':
-                        if (isset($_SESSION['user'])) {
-                            include 'user/pay.php';
-                        }else {
-                            echo "<script>window.location.href = '?act=login';</script>";
+                        $getAccountById = getAccountById($_SESSION['user']['id']);
+
+                        if (isset($_POST['submit_order'])) {
+                            // Kiểm tra có nhập đủ thông tin không
+                            // Kiểm tra có thay đổi thông tin không (nếu có thì cập nhật lại thông tin)
+
+                            // Code discount
+
+                            $date = new DateTime(); 
+                            date_default_timezone_set('Asia/Ho_Chi_Minh');
+
+                            // Tạo một đối tượng DateTime
+                            $ngay_hien_tai = new DateTime();
+
+                            // Lấy ra ngày tháng năm ở định dạng Y-m-d
+                            $order_date = $ngay_hien_tai->format('Y-m-d');
+                            $id_status = 0;
+                            $id_account = $_SESSION['user']['id'];
+                            // Add order   ngày, status, id_account
+
+
+                            // Add order_detail id_order, id_product_variants, số lượng, giảm giá, tổng giá, notes.
+
                         }
+
+                        include 'user/pay.php';
                         break;
                     case 'profile':
                         if (isset($_SESSION['user'])) {
+                            $getAccountById = getAccountById($_SESSION['user']['id']);
+                            if (isset($_POST['btn_edit'])) {
+                                $id = $_SESSION['user']['id'];
+                                $username = $_POST['username'];
+                                $email = $_POST['email'];
+                                $fullname = $_POST['fullname'];
+                                $tel = $_POST['tel'];
+                                $address = $_POST['address'];
+
+                                if ($_FILES['avatar']['name'] != "") {
+                                    $avatar = $_FILES['avatar']['name'];
+                                    $target_dir = "assets/img/accounts/";
+                                    $target_file = $target_dir . basename($_FILES["avatar"]["name"]);
+                                    move_uploaded_file($_FILES["avatar"]["tmp_name"], $target_file);
+                                } else {
+                                    $avatar = $getAccountById['avatar'];
+                                }
+                                updateProfile($id, $username, $email, $fullname, $avatar, $address, $tel);
+                                echo "<script>window.location.href = '?act=profile';</script>";
+                            }
                             include 'user/profile.php';
-                        }else {
+                        } else {
                             echo "<script>window.location.href = '?act=login';</script>";
                         }
                         break;

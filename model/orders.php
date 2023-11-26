@@ -128,10 +128,12 @@ function getOrdersByAccount($id_account, $id_status = null)
 {
     try {
         $sql = "SELECT 
+        o.id AS id_order,
         p.image AS image_product,
         p.name AS name_product,
         s.name AS name_size,
-        od.quantity AS quantity,
+        od.quantity AS quantity, 
+        pv.price AS price,
         od.total_amount AS total_amount,
         c.name_category AS name_category, 
         dc.discount AS discount,
@@ -163,6 +165,18 @@ function getAllStatusOrder()
         $sql = "SELECT * FROM order_status;";
 
         return pdo_query($sql);
+    } catch (Exception $e) {
+        echo $e->getMessage();
+    }
+}
+
+function cancelOrder($id_order)
+{
+    try {
+        $sql = "UPDATE orders SET id_status = 5 WHERE id = $id_order;";
+        // var_dump($sql);
+        // die;
+        return pdo_execute($sql);
     } catch (Exception $e) {
         echo $e->getMessage();
     }

@@ -169,3 +169,13 @@ function forgotPassword($user, $email, $password)
         echo "Loi gui email. Mailer Error: {$mail->ErrorInfo}";
     }
 }
+
+function updateProfile($id, $username, $email, $fullname, $avatar, $address, $tel)
+{
+    try {
+        $sql = "UPDATE accounts SET username = '$username', email = '$email', fullname = '$fullname', avatar = '$avatar', address = '$address', tel = '$tel' WHERE id = $id";
+        pdo_execute($sql);
+    } catch (Exception $e) {
+        echo $e->getMessage();
+    }
+}

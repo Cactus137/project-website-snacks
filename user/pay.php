@@ -4,23 +4,23 @@
   <form action="" method="post">
     <div class="section-pay">
       <div class="box-left">
-        <h3>Thông tin đặt hàng</h3>
+        <h3>Thông tin đặt hàng</h3> 
         <div class="letf-bottom">
           <div class="row mb-20">
             Họ và tên* <br />
-            <input type="text" name="fullname" required />
+            <input type="text" name="fullname" value="<?= $getAccountById['fullname']?>" required />
           </div>
           <div class="row mb-20">
             Email* <br />
-            <input type="email" name="email" required />
+            <input type="email" name="email" value="<?= $getAccountById['email']?>" required />
           </div>
           <div class="row mb-20">
             Số điện thoại* <br />
-            <input type="text" name="tel" required />
+            <input type="text" name="tel" value="<?= $getAccountById['tel']?>" required />
           </div>
           <div class="row mb-20">
             Địa chỉ* <br />
-            <input type="text" name="address" required />
+            <input type="text" name="address" value="<?= $getAccountById['address']?>" required />
           </div>
           <div class="row mb-20">
             Ghi chú <br />
@@ -83,7 +83,7 @@
     </div>
     <div class="confirm-oder mt-20"> 
       <a href="?act=menu" class="letf-confirm" >Tiếp tục mua hàng</a>
-      <input type="submit" value="Xác nhận mua hàng" class="right-confirm">
+      <input type="submit" name="submit_order" value="Xác nhận mua hàng" class="right-confirm">
     </div>
   </form>
 </main>

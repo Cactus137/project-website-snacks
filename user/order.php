@@ -22,7 +22,8 @@
         font-size: 17px;
         text-decoration: none;
     }
-    div.nothing-order { 
+
+    div.nothing-order {
         margin-top: 100px;
         justify-content: center;
         align-items: center;
@@ -74,26 +75,26 @@
                         <div class="col">
                             <div class="row d-flex justify-content-between">
                                 <div class="price_temp col text-start">Tổng tiền hàng</div>
-                                <div class="price_temp col text-end">50.000 VND</div>
+                                <div class="price_temp col text-end"><?php $price_product = $price + $quantity; echo number_format($price_product); ?> VND</div>
                             </div>
                             <div class="row">
                                 <div class="price_temp col text-start">Phí vận chuyển</div>
-                                <div class="price_temp col text-end">50.000 VND</div>
+                                <div class="price_temp col text-end"><?php $fee = 50000; echo number_format($fee); ?> VND</div>
                             </div>
                             <div class="row">
                                 <div class="price_temp col text-start">Giảm giá</div>
-                                <div class="price_temp col text-end">50.000 VND</div>
+                                <div class="price_temp col text-end"><?php $discount_product = ($discount/100) * ($price + $quantity);  echo number_format($discount_product); ?> VND</div>
                             </div>
                         </div>
                         <div class="col d-flex justify-content-between align-items-center mt-2">
                             <div class="col text-start fw-bold">Thành tiền</div>
-                            <div class="col text-end fw-bold">50.000 VND</div>
+                            <div class="col text-end fw-bold"><?= number_format($total_amount) ?> VND</div>
                         </div>
                         <?php
                         if ($id_status == 0) :
                         ?>
                             <div class="col text-end text-bottom align-text-bottom mt-3">
-                                <a name="cancel_order" id="" class="btn" style="background-color: #ffc501; color: white" href="#" role="button">Hủy đơn hàng</a>
+                                <a name="cancel_order" id="cancelOrderBtn" class="btn" style="background-color: #ffc501; color: white" href="?act=cancel_order&id_order=<?= $id_order ?>" role="button" onclick="return confirm('Bạn có chắc chắn muốn hủy đơn hàng này?')">Hủy đơn hàng</a>
                             </div>
                         <?php endif; ?>
                     </div>

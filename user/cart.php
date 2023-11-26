@@ -6,12 +6,16 @@
             <div class="product-category-detail">
                 <div class="field-img">
                     <img src="img/Rectangle 17.png" alt="" class="image">
+                    
                 </div>
                 <div class="content">
                     <div class="field-content">
                         <h4>Italian Beef Burger</h4>
+                       
                         <a href="">Xem chi tiết</a>
+                        
                         <p class="price">50.000VND</p>
+                       
 
                     </div>
                     <div class="qty">
@@ -46,12 +50,7 @@
 
                         </div>
                     </li>
-                    <li>
-                        <div class="pr-name">Phí vận chuyển</div>
-                        <div class="inner">
-                            <span class="pricee1">20.000đ</span>
-                        </div>
-                    </li>
+                  
                     <li>
                         <div class="pr-name">Giảm giá</div>
                         <div class="inner">
@@ -69,7 +68,7 @@
                 <hr>
 
                 <div class="thanhtoan">
-                    <a href="#" class="ttoan"><input type="submit" name="" id="" value="Thanh toán" class="tt"></a>
+                    <a href="#" class="ttoan"><input type="submit" name="bill" id="" value="Thanh toán" class="tt"></a>
                 </div>
             </div>
 

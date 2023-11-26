@@ -49,6 +49,9 @@
                     case 'cart':
                         include 'user/cart.php';
                         break;
+                    case'addtocart':
+                      include 'user/cart.php';
+                      break;
                     case 'product_detail':
                         include 'user/product_detail.php';
                         break;

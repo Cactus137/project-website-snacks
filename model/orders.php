@@ -61,7 +61,8 @@ function loadall_order_variants($id_order)
 }
 function order_update($id_order, $id_status)
 {
-    $sql = " UPDATE orders  join order_status on orders.id_status = order_status.id
+    $sql = " UPDATE orders 
+    join order_status on orders.id_status = order_status.id
     join order_details on orders.id = order_details.id_order
     join product_variants on order_details.id_product_variants = product_variants.id
     join products on product_variants.id_product = products.id

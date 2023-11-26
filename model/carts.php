@@ -8,7 +8,6 @@ function load_card($id)
         echo $e->getMessage();
     }
 }
-
 function addToCard($id_account, $id_product_variants, $quantity)
 {
     try {
@@ -58,3 +57,4 @@ function deleteCart($id)
         echo $e->getMessage();
     }
 } 
+?>

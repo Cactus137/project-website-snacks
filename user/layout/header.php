@@ -43,9 +43,12 @@
     </ul>
     <div class="icon-nav d-flex justify-content-between align-items-center">
         <div class="input-group me-3">
-            <form action="" method="post">
-                <input type="text" class="form-control rounded-pill" placeholder="Search..." aria-label="Search" aria-describedby="search-icon">
-            </form>
+            <button class="rounded-pill border-0 d-flex" type="button" id="search-icon">
+                <form action="?act=list_search_products" method="POST">
+                    <input type="text" class="search" name="keyw" placeholder="Search..." aria-label="Search" aria-describedby="search-icon">
+                    <input type="submit" value="Tìm" name="btn_search" class="search">
+                </form>
+            </button>
         </div>
         <a href="index.php?act=cart"><i class="fa-solid fa-cart-shopping"></i></a>
         <div class="dropdown">

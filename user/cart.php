@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="./assets/css/styles.user.cart.css">
-<form action="" method="post" enctype="multipart/form-data">
-    <main class="main">
-        <h2 class="cart">GIỎ HÀNG CỦA TÔI</h2>
+<h2 class="cart ">GIỎ HÀNG CỦA TÔI</h2>
+<section class="main">
+    <form action="" method="post" enctype="multipart/form-data">
         <div class="viewcart">
             <div class="product-category-detail">
                 <div class="field-img">
@@ -71,8 +71,9 @@
                 <div class="thanhtoan">
                     <a href="#" class="ttoan"><input type="submit" name="" id="" value="Thanh toán" class="tt"></a>
                 </div>
-            </div>
+    </form>
 
-        </div>
-    </main>
-</form>
+    </div>
+
+    </div>
+</main>

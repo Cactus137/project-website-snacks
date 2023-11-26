@@ -52,43 +52,63 @@
         <div class="row my-5">
             <h4>Đơn hàng của tôi</h4>
         </div>
-        <?php foreach ($getOrdersByAccount as $order) :
-            extract($order);
-        ?>
-            <div>
-                <div class="row shadow p-3 mb-5 d-flex justify-content-between" style="border-radius: 12px;">
-                    <div class="col-6 p-0 d-flex">
-                        <div class="col-5">
-                            <img src="<?= 'assets/img/products/' . $image ?>" alt="" style="width: 170px; height: 170px">
+        <div>
+            <?php
+            foreach ($getOrdersByAccount as $order) :
+                $getOrderDetailByAccount = getOrderDetailByAccount($order['id_order']);
+                extract($order);
+                $price_product += ($price + $quantity);
+                $fee = 50000;
+                $discount_product = ($discount / 100) * $price_product;
+                $total_amount += $total_amount;
+            ?>
+                <div class="row shadow p-3 mb-5" style="border-radius: 12px;">
+                    <div class="d-flex justify-content-between mt-1">
+                        <div class="col-6 p-0">
+                            <?php foreach ($getOrderDetailByAccount as $orderDetail) :
+                                extract($orderDetail);
+                            ?>
+                                <div class="d-flex pb-3">
+                                    <div class="col-3">
+                                        <img src="<?= 'assets/img/products/' . $image_product ?>" alt="" style="height: 100px">
+                                    </div>
+                                    <div class="col-9 ms-2 mt-4">
+                                        <div class="name pb-2 pt-0"><?= $name_product; ?> - Size: <?= $name_size ?></div>
+                                        <div class="quantity">x<?= $quantity; ?> </div>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
                         </div>
-                        <div class="col-8 ms-3">
-                            <div class="name pb-2 pt-0"><?= $name_product; ?></div>
-                            <div class="category">Phân loại: <?= $name_category; ?></div>
-                            <div class="size">Size: <?= $name_size ?></div>
-                            <div class="quantity">x<?= $quantity; ?></div>
-                            <div class="col align-text-bottom">
-                                <div class="status pt-4 mt-1 text-success"><?= $name_status ?></div>
+                        <div class="col-1 d-flex justity-content-center align-items-center">
+                            <div class="border-end h-100 ms-5" style="width: 2px;"></div>
+                        </div>
+                        <div class=" col-5 mt-3 align-items-center">
+                            <div class="box">
+                                <div class="col">
+                                    <div class="row d-flex justify-content-between">
+                                        <div class="price_temp col text-start">Tổng tiền hàng</div>
+                                        <div class="price_temp col text-end"><?= number_format($price_product); ?> VND</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="price_temp col text-start">Phí vận chuyển</div>
+                                        <div class="price_temp col text-end"><?= number_format($fee); ?> VND</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="price_temp col text-start">Giảm giá</div>
+                                        <div class="price_temp col text-end"><?= number_format($discount_product); ?> VND</div>
+                                    </div>
+                                </div>
+                                <div class="col d-flex justify-content-between align-items-center mt-2">
+                                    <div class="col text-start fw-bold">Thành tiền</div>
+                                    <div class="col text-end fw-bold"><?= number_format($total_amount) ?> VND</div>
+                                </div>
+
                             </div>
                         </div>
                     </div>
-                    <div class="col-5 align-items-between">
-                        <div class="col">
-                            <div class="row d-flex justify-content-between">
-                                <div class="price_temp col text-start">Tổng tiền hàng</div>
-                                <div class="price_temp col text-end"><?php $price_product = $price + $quantity; echo number_format($price_product); ?> VND</div>
-                            </div>
-                            <div class="row">
-                                <div class="price_temp col text-start">Phí vận chuyển</div>
-                                <div class="price_temp col text-end"><?php $fee = 50000; echo number_format($fee); ?> VND</div>
-                            </div>
-                            <div class="row">
-                                <div class="price_temp col text-start">Giảm giá</div>
-                                <div class="price_temp col text-end"><?php $discount_product = ($discount/100) * ($price + $quantity);  echo number_format($discount_product); ?> VND</div>
-                            </div>
-                        </div>
-                        <div class="col d-flex justify-content-between align-items-center mt-2">
-                            <div class="col text-start fw-bold">Thành tiền</div>
-                            <div class="col text-end fw-bold"><?= number_format($total_amount) ?> VND</div>
+                    <div class="d-flex justify-content-between my-1">
+                        <div class="col align-text-bottom">
+                            <div class="status pt-2 mt-1 text-success"><?= $name_status ?></div>
                         </div>
                         <?php
                         if ($id_status == 0) :
@@ -99,8 +119,8 @@
                         <?php endif; ?>
                     </div>
                 </div>
-            </div>
-        <?php endforeach; ?>
+            <?php endforeach; ?>
+        </div>
         <?php
         if (!$getOrdersByAccount) { ?>
             <div class="nothing-order row">

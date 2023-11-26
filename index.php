@@ -189,8 +189,7 @@ session_start();
                         include 'user/product_detail.php';
                         break;
                     case 'order':
-                        if (isset($_SESSION['user'])) {
-                            $getOrdersByAccount = getOrdersByAccount($_SESSION['user']['id']);
+                        if (isset($_SESSION['user'])) { 
                             $getAllStatusOrder = getAllStatusOrder();
                             if (isset($_GET['status'])) {
                                 $id_status = $_GET['status'];

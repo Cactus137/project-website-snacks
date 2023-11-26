@@ -124,18 +124,14 @@ function fitterOrder($status = null)
     }
 }
 
-function getOrdersByAccount($id_account, $id_status = null)
+function getOrdersByAccount($id_account, $id_status)
 {
     try {
         $sql = "SELECT 
-        o.id AS id_order,
-        p.image AS image_product,
-        p.name AS name_product,
-        s.name AS name_size,
+        o.id AS id_order,   
         od.quantity AS quantity, 
         pv.price AS price,
-        od.total_amount AS total_amount,
-        c.name_category AS name_category, 
+        od.total_amount AS total_amount, 
         dc.discount AS discount,
         os.name AS name_status,
         os.id AS id_status
@@ -148,16 +144,42 @@ function getOrdersByAccount($id_account, $id_status = null)
     JOIN accounts a ON a.id = o.id_account
     JOIN order_status os ON o.id_status = os.id
     JOIN discount_codes dc ON dc.id = od.discount
-    WHERE id_account = $id_account";
+        WHERE o.id_account = $id_account";
         if ($id_status != null) {
-            $sql .= " AND os.id = $id_status";
+            $sql .= " AND o.id_status = $id_status";
         }
-        $sql .= " ORDER BY o.order_date ASC;";
+        $sql .= " GROUP BY id_order;";
         return pdo_query($sql);
     } catch (Exception $e) {
         echo $e->getMessage();
     }
 }
+
+function getOrderDetailByAccount($id_order)
+{
+    try {
+        $sql = "SELECT  
+        p.image AS image_product,
+        p.name AS name_product,
+        s.name AS name_size,
+        od.quantity AS quantity 
+    FROM orders o 
+    JOIN order_details od ON o.id = od.id_order
+    JOIN product_variants pv ON od.id_product_variants = pv.id
+    JOIN products p ON p.id = pv.id_product
+    JOIN categories c ON c.id = p.id_category
+    JOIN sizes s ON s.id = pv.id_size
+    JOIN accounts a ON a.id = o.id_account
+    JOIN order_status os ON o.id_status = os.id
+    JOIN discount_codes dc ON dc.id = od.discount
+    WHERE o.id = $id_order 
+    ORDER BY o.order_date ASC;";
+        return pdo_query($sql);
+    } catch (Exception $e) {
+        echo $e->getMessage();
+    }
+}
+
 
 function getAllStatusOrder()
 {

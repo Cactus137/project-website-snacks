@@ -1,3 +1,10 @@
+<?php
+include './model/pdo.php';
+include './model/categories.php';
+include './model/products.php';
+
+$list_category_home = load_all_category_home();
+?>
 <!doctype html>
 <html lang="en">
 
@@ -24,14 +31,16 @@
     <!-- Start header -->
     <?php include './user/layout/header.php'; ?>
     <!-- End header  -->
+
     <main class="d-flex justify-content-center">
+
         <div class="container">
             <?php
 
             if ($_GET['act']) {
                 switch ($_GET['act']) {
                     case 'home':
-                        
+
                         include './user/home.php';
                         break;
                     case 'menu':
@@ -49,9 +58,27 @@
                     case 'cart':
                         include 'user/cart.php';
                         break;
+                    case 'list_search_products':
+                        if (isset($_POST['keyw']) && ($_POST['keyw'] != '')) {
+                            $keyw = $_POST['keyw'];
+                        } else {
+                            $keyw = '';
+                        }
+                        $list_search_products = list_search_products($keyw);
+                        include 'user/products_list_search.php';
+                        break;
                     case 'product_detail':
+                        if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+                            $id = $_GET['id'];
+                            $one_product =  load_one_product($id);
+                            extract($one_product);
+                            $id_category = $one_product[0]['id_category'];
+                            $top4_product_similar = top4_similar($id_category);
+                        }
                         include 'user/product_detail.php';
                         break;
+
+
                     case 'order':
                         include 'user/order.php';
                         break;

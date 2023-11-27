@@ -50,16 +50,16 @@
                 </form>
             </button>
         </div>
-        <?php if (!is_null($_SESSION['user'])) { ?>
+        <?php if (isset($_SESSION['user'])) { ?>
             <a href="index.php?act=cart"><i class="fa-solid fa-cart-shopping"></i></a>
         <?php } ?>
         <div class="dropdown">
             <a href=""><i class="fa-solid fa-user"></i></a>
             <div class="dropdown-content">
-                <?php if (is_null($_SESSION['user'])) { ?>
+                <?php if (!isset($_SESSION['user'])) { ?>
                     <a class="dropdown-item  mx-0 my-1 p-0" href="index.php?act=login"><i class="fa-solid fa-user pe-2"></i>Đăng nhập</a>
                 <?php } ?>
-                <?php if (!is_null($_SESSION['user'])) {
+                <?php if (isset($_SESSION['user'])) {
                     if ($_SESSION['user']['role'] == 0) { ?>
                         <a class="dropdown-item  mx-0 my-1 p-0" href="./admin"><i class="fa-solid fa-toolbox pe-2"></i>Trang quản trị</a>
                     <?php } ?>

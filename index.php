@@ -29,7 +29,7 @@ session_start();
     <?php include './user/layout/header.php'; ?>
     <!-- End header  -->
 
-    <main class="d-flex justify-content-center">
+    <main class="d-flex justify-content-center w-100">
 
         <div class="container">
             <?php

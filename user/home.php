@@ -1,13 +1,48 @@
 <link rel="stylesheet" href="./assets/css/styles.user.home.css">
-<div class="banner">
-    <img src="assets/img/banners/banner1.png" alt="">
-</div>
-<main class="mt-20 mb-5 pb-5">
+<main class="mb-5 pb-5" style="width: 100%;">
+    <div class="CSSgal">
+
+        <!-- Don't wrap targets in parent -->
+        <s id="s1"></s>
+        <s id="s2"></s>
+        <s id="s3"></s>
+        <s id="s4"></s>
+
+        <div class="slider">
+            <div style="background:#5b8;">
+                <img src="assets/img/banners/banner1.png" alt="">
+            </div>
+            <div style="background:#85b;">
+                <img src="assets/img/banners/banner1.png" alt="">
+            </div>
+            <div style="background:#e95;">
+                <img src="assets/img/banners/banner1.png" alt="">
+            </div>
+            <div style="background:#e59;">
+                <img src="assets/img/banners/banner1.png" alt="">
+            </div>
+        </div>
+
+        <div class="prevNext">
+            <div><a href="#s4"></a><a href="#s2"></a></div>
+            <div><a href="#s1"></a><a href="#s3"></a></div>
+            <div><a href="#s2"></a><a href="#s4"></a></div>
+            <div><a href="#s3"></a><a href="#s1"></a></div>
+        </div>
+
+        <div class="bullets">
+            <a href="#s1">1</a>
+            <a href="#s2">2</a>
+            <a href="#s3">3</a>
+            <a href="#s4">4</a>
+        </div>
+
+    </div>
     <h1>Menu của chúng tôi</h1>
     <div class="wrap-menu mb-10">
         <?php
         foreach ($list_category_home as $category) {
-            extract($category); 
+            extract($category);
         ?>
             <div class="menu-item">
                 <a href="?act=menu&name=#<?php echo $name_category ?>">

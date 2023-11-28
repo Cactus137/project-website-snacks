@@ -94,6 +94,7 @@ main .section-pay h3 {
 
 .section-pay .box-right {
   min-width: 40%;
+  margin: 0 20px;
 }
 
 .section-pay .box-right > h3 {
@@ -103,8 +104,7 @@ main .section-pay h3 {
 
 .section-pay table {
   width: 100%;
-  height: 180px;
-  text-align: center;
+  height: 180px; 
   border-collapse: collapse;
 }
 
@@ -113,14 +113,12 @@ main .section-pay h3 {
 }
 
 .section-pay .right-top th {
-  padding: 10px;
-  font-size: 16px;
+  padding: 10px; 
   background-color: #eee5da;
 }
 
 .section-pay .right-top td {
-  padding: 10px;
-  font-size: 16px;
+  padding: 10px; 
 }
 
 .section-pay .color-price {

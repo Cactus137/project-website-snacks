@@ -56,404 +56,411 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['id_role'] != 0) {
                 include "../model/discount_code.php";
                 ?>
                 <div>
-                    <?php switch ($_GET['action']) {
-                        case 'dashboard':
-                            include "./dashboard.php";
-                            break;
-                        case 'accounts':
-                            $getAccounts = getAllAccounts();
-                            $pathImg = "../assets/img/accounts/";
-                            include 'tables/accounts/accounts.php';
-                            break;
-                        case 'add_account':
-                            unset($_SESSION['error']);
-                            $getAllRoles = getAllRoles();
-                            $getAccounts = getAllAccounts();
+                    <?php
+                    if ($_GET['action']) {
+                        switch ($_GET['action']) {
+                            case 'dashboard':
+                                include "./dashboard.php";
+                                break;
+                            case 'accounts':
+                                $getAccounts = getAllAccounts();
+                                $pathImg = "../assets/img/accounts/";
+                                include 'tables/accounts/accounts.php';
+                                break;
+                            case 'add_account':
+                                unset($_SESSION['error']);
+                                $getAllRoles = getAllRoles();
+                                $getAccounts = getAllAccounts();
 
-                            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                                $username = $_POST['username'];
-                                $password = $_POST['password'];
-                                $fullname = $_POST['fullname'];
-                                $email = $_POST['email'];
-                                $address = $_POST['address'];
-                                $tel = $_POST['tel'];
-                                $id_role = $_POST['id_role'];
+                                if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                                    $username = $_POST['username'];
+                                    $password = $_POST['password'];
+                                    $fullname = $_POST['fullname'];
+                                    $email = $_POST['email'];
+                                    $address = $_POST['address'];
+                                    $tel = $_POST['tel'];
+                                    $id_role = $_POST['id_role'];
 
-                                if ($_FILES['avatar']['name'] != "") {
-                                    $avatar = $_FILES['avatar']['name'];
-                                    $target_dir = "../assets/img/accounts/";
-                                    $target_file = $target_dir . basename($_FILES["avatar"]["name"]);
-                                    move_uploaded_file($_FILES["avatar"]["tmp_name"], $target_file);
-                                } else {
-                                    $avatar = "profile.jpg";
-                                }
-
-                                $check_validate = [];
-                                $check_validate['check'] = true;
-                                if (!isset($username) || $username == "") {
-                                    $check_validate['username'] = "Tên tài khoản không được để trống";
-                                    $check_validate['check'] = false;
-                                }
-                                foreach ($getAccounts as $key => $value) {
-                                    if ($value['username'] == $username) {
-                                        $check_validate['username'] = "Tên tài khoản đã tồn tại";
-                                        $check_validate['check'] = false;
-                                        break;
+                                    if ($_FILES['avatar']['name'] != "") {
+                                        $avatar = $_FILES['avatar']['name'];
+                                        $target_dir = "../assets/img/accounts/";
+                                        $target_file = $target_dir . basename($_FILES["avatar"]["name"]);
+                                        move_uploaded_file($_FILES["avatar"]["tmp_name"], $target_file);
+                                    } else {
+                                        $avatar = "profile.jpg";
                                     }
-                                }
-                                if (strlen($password) < 8) {
-                                    $check_validate['password'] = "Mật khẩu phải có ít nhất 8 ký tự";
-                                    $check_validate['check'] = false;
-                                }
-                                $regex_email = "/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/";
-                                if (!preg_match($regex_email, $email)) {
-                                    $check_validate['email'] = "Email không hợp lệ";
-                                    $check_validate['check'] = false;
-                                }
 
-                                if ($check_validate['check'] == true) {
-                                    addAccount($username, $password, $fullname, $avatar, $email, $address, $tel, $id_role);
-                                    echo "<script>window.location.href = '?action=accounts';</script>";
-                                }
-                            }
-                            include 'tables/accounts/add_account.php';
-                            break;
-                        case 'edit_account':
-                            unset($_SESSION['error']);
-                            $getAllRoles = getAllRoles();
-                            $getAccountById = getAccountById($_GET['acc_id']);
-
-                            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                                $username = $_POST['username'];
-                                $password = $_POST['password'];
-                                $fullname = $_POST['fullname'];
-                                $email = $_POST['email'];
-                                $address = $_POST['address'];
-                                $tel = $_POST['tel'];
-                                $id_role = $_POST['id_role'];
-
-                                if ($_FILES['avatar']['name'] != "") {
-                                    $avatar = $_FILES['avatar']['name'];
-                                    $target_dir = "../assets/img/accounts/";
-                                    $target_file = $target_dir . basename($_FILES["avatar"]["name"]);
-                                    move_uploaded_file($_FILES["avatar"]["tmp_name"], $target_file);
-                                } else {
-                                    $avatar = $getAccountById['avatar'];
-                                }
-
-                                $check_validate = [];
-                                $check_validate['check'] = true;
-                                if (!isset($username) || $username == "") {
-                                    $check_validate['username'] = "Tên tài khoản không được để trống";
-                                    $check_validate['check'] = false;
-                                }
-                                foreach ($getAccounts as $key => $value) {
-                                    if ($value['username'] == $username) {
-                                        if ($getAccountById['username'] != $username) {
+                                    $check_validate = [];
+                                    $check_validate['check'] = true;
+                                    if (!isset($username) || $username == "") {
+                                        $check_validate['username'] = "Tên tài khoản không được để trống";
+                                        $check_validate['check'] = false;
+                                    }
+                                    foreach ($getAccounts as $key => $value) {
+                                        if ($value['username'] == $username) {
                                             $check_validate['username'] = "Tên tài khoản đã tồn tại";
                                             $check_validate['check'] = false;
                                             break;
                                         }
                                     }
-                                }
-                                if (strlen($password) < 8) {
-                                    $check_validate['password'] = "Mật khẩu phải có ít nhất 8 ký tự";
-                                    $check_validate['check'] = false;
-                                }
-                                $regex_email = "/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/";
-                                if (!preg_match($regex_email, $email)) {
-                                    $check_validate['email'] = "Email không hợp lệ";
-                                    $check_validate['check'] = false;
-                                }
+                                    if (strlen($password) < 8) {
+                                        $check_validate['password'] = "Mật khẩu phải có ít nhất 8 ký tự";
+                                        $check_validate['check'] = false;
+                                    }
+                                    $regex_email = "/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/";
+                                    if (!preg_match($regex_email, $email)) {
+                                        $check_validate['email'] = "Email không hợp lệ";
+                                        $check_validate['check'] = false;
+                                    }
 
-                                if ($check_validate['check'] == true) {
-                                    editAccount($_GET['acc_id'], $username, $password, $fullname, $avatar, $email, $address, $tel, $id_role);
-                                    echo "<script>window.location.href = '?action=accounts';</script>";
+                                    if ($check_validate['check'] == true) {
+                                        addAccount($username, $password, $fullname, $avatar, $email, $address, $tel, $id_role);
+                                        echo "<script>window.location.href = '?action=accounts';</script>";
+                                    }
                                 }
-                            }
-                            include 'tables/accounts/edit_account.php';
-                            break;
-                        case 'delete_account':
-                            deleteAccount($_GET['acc_id']);
-                            echo "<script>window.location.href = '?action=accounts';</script>";
-                            break;
-                        case 'forgot_password':
-                            if (isset($_POST['btn_submit'])) {
-                                $user = $_POST['username'];
-                                $email = $_POST['email'];
-                                $password = $_POST['password'];
-                                forgotPassword($user, $email, $password);
-                            }
-                            include 'tables/accounts/forgot_password.php';
-                            break;
-                        case 'categories':
-                            $list_categories = load_all_category();
-                            include 'tables/categories/categories.php';
-                            break;
-                        case 'add_category':
-                            if (isset($_POST['btn_edit']) && $_POST['btn_edit']) {
-                                $name_category = $_POST['name_category'];
-                                $image = $_FILES['image']['name'];
-                                $image_tmp = $_FILES['image']['tmp_name'];
-                                $image_size = $_FILES['image']['size'];
-                                $image_maxsize = 4 * 1024 * 1024;
-                                if ($image_size > $image_maxsize) {
-                                    $notificationERROR = 'File ảnh quá lớn vui lòng thử lại';
-                                } else {
-                                    move_uploaded_file($image_tmp, '../assets/img/categories/' . $image);
-                                    insert_category($name_category, $image);
-                                    $notification = 'Thêm thành công';
+                                include 'tables/accounts/add_account.php';
+                                break;
+                            case 'edit_account':
+                                unset($_SESSION['error']);
+                                $getAllRoles = getAllRoles();
+                                $getAccountById = getAccountById($_GET['acc_id']);
+
+                                if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                                    $username = $_POST['username'];
+                                    $password = $_POST['password'];
+                                    $fullname = $_POST['fullname'];
+                                    $email = $_POST['email'];
+                                    $address = $_POST['address'];
+                                    $tel = $_POST['tel'];
+                                    $id_role = $_POST['id_role'];
+
+                                    if ($_FILES['avatar']['name'] != "") {
+                                        $avatar = $_FILES['avatar']['name'];
+                                        $target_dir = "../assets/img/accounts/";
+                                        $target_file = $target_dir . basename($_FILES["avatar"]["name"]);
+                                        move_uploaded_file($_FILES["avatar"]["tmp_name"], $target_file);
+                                    } else {
+                                        $avatar = $getAccountById['avatar'];
+                                    }
+
+                                    $check_validate = [];
+                                    $check_validate['check'] = true;
+                                    if (!isset($username) || $username == "") {
+                                        $check_validate['username'] = "Tên tài khoản không được để trống";
+                                        $check_validate['check'] = false;
+                                    }
+                                    foreach ($getAccounts as $key => $value) {
+                                        if ($value['username'] == $username) {
+                                            if ($getAccountById['username'] != $username) {
+                                                $check_validate['username'] = "Tên tài khoản đã tồn tại";
+                                                $check_validate['check'] = false;
+                                                break;
+                                            }
+                                        }
+                                    }
+                                    if (strlen($password) < 8) {
+                                        $check_validate['password'] = "Mật khẩu phải có ít nhất 8 ký tự";
+                                        $check_validate['check'] = false;
+                                    }
+                                    $regex_email = "/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/";
+                                    if (!preg_match($regex_email, $email)) {
+                                        $check_validate['email'] = "Email không hợp lệ";
+                                        $check_validate['check'] = false;
+                                    }
+
+                                    if ($check_validate['check'] == true) {
+                                        editAccount($_GET['acc_id'], $username, $password, $fullname, $avatar, $email, $address, $tel, $id_role);
+                                        echo "<script>window.location.href = '?action=accounts';</script>";
+                                    }
                                 }
-                            }
-                            include 'tables/categories/add_category.php';
-                            break;
-                        case 'fix_category':
-                            if (isset($_GET['id']) && $_GET['id'] > 0) {
-                                $one_category = load_one_category($_GET['id']);
-                            }
-                            include 'tables/categories/edit_category.php';
-                            break;
-                        case 'update_category':
-                            if (isset($_POST['btn_edit']) && ($_POST['btn_edit'])) {
-                                $id = $_POST['id'];
-                                $name_category = $_POST['name_category'];
-                                $image = $_FILES['image']['name'];
-                                $image_tmp = $_FILES['image']['tmp_name'];
-                                $image_size = $_FILES['image']['size'];
-                                $image_maxsize = 4 * 1024 * 1024;
-                                if ($image_size > $image_maxsize) {
-                                    $notificationERROR = 'File ảnh quá lớn vui lòng thử lại';
-                                } else {
-                                    move_uploaded_file($image_tmp, '../assets/img/categories/' . $image);
-                                    update_category($id, $name_category, $image);
-                                    $notification = 'Thêm thành công';
+                                include 'tables/accounts/edit_account.php';
+                                break;
+                            case 'delete_account':
+                                deleteAccount($_GET['acc_id']);
+                                echo "<script>window.location.href = '?action=accounts';</script>";
+                                break;
+                            case 'forgot_password':
+                                if (isset($_POST['btn_submit'])) {
+                                    $user = $_POST['username'];
+                                    $email = $_POST['email'];
+                                    $password = $_POST['password'];
+                                    forgotPassword($user, $email, $password);
+                                }
+                                include 'tables/accounts/forgot_password.php';
+                                break;
+                            case 'categories':
+                                $list_categories = load_all_category();
+                                include 'tables/categories/categories.php';
+                                break;
+                            case 'add_category':
+                                if (isset($_POST['btn_edit']) && $_POST['btn_edit']) {
+                                    $name_category = $_POST['name_category'];
+                                    $image = $_FILES['image']['name'];
+                                    $image_tmp = $_FILES['image']['tmp_name'];
+                                    $image_size = $_FILES['image']['size'];
+                                    $image_maxsize = 4 * 1024 * 1024;
+                                    if ($image_size > $image_maxsize) {
+                                        $notificationERROR = 'File ảnh quá lớn vui lòng thử lại';
+                                    } else {
+                                        move_uploaded_file($image_tmp, '../assets/img/categories/' . $image);
+                                        insert_category($name_category, $image);
+                                        $notification = 'Thêm thành công';
+                                    }
+                                }
+                                include 'tables/categories/add_category.php';
+                                break;
+                            case 'fix_category':
+                                if (isset($_GET['id']) && $_GET['id'] > 0) {
+                                    $one_category = load_one_category($_GET['id']);
+                                }
+                                include 'tables/categories/edit_category.php';
+                                break;
+                            case 'update_category':
+                                if (isset($_POST['btn_edit']) && ($_POST['btn_edit'])) {
+                                    $id = $_POST['id'];
+                                    $name_category = $_POST['name_category'];
+                                    $image = $_FILES['image']['name'];
+                                    $image_tmp = $_FILES['image']['tmp_name'];
+                                    $image_size = $_FILES['image']['size'];
+                                    $image_maxsize = 4 * 1024 * 1024;
+                                    if ($image_size > $image_maxsize) {
+                                        $notificationERROR = 'File ảnh quá lớn vui lòng thử lại';
+                                    } else {
+                                        move_uploaded_file($image_tmp, '../assets/img/categories/' . $image);
+                                        update_category($id, $name_category, $image);
+                                        $notification = 'Thêm thành công';
+                                    }
+                                    $list_categories = load_all_category();
+                                    include 'tables/categories/categories.php';
+                                }
+                                break;
+                            case 'dlt_category':
+                                if (isset($_GET['id']) && ($_GET['id'] >= 1)) {
+                                    delete_category($_GET['id']);
                                 }
                                 $list_categories = load_all_category();
                                 include 'tables/categories/categories.php';
-                            }
-                            break;
-                        case 'dlt_category':
-                            if (isset($_GET['id']) && ($_GET['id'] >= 1)) {
-                                delete_category($_GET['id']);
-                            }
-                            $list_categories = load_all_category();
-                            include 'tables/categories/categories.php';
-                            break;
-                        case 'products':
-                            $list_all_product = load_all_product_category_variant();
-                            include 'tables/products/products.php';
-                            break;
-                        case 'add_product':
-                            if (isset($_POST['btn_edit']) && $_POST['btn_edit']) {
-                                // Products
-                                $name = $_POST['name'];
-                                $description = $_POST['description'];
-                                $id_category = $_POST['id_category'];
-                                $image = $_FILES['image']['name'];
-                                $image_tmp = $_FILES['image']['tmp_name'];
-                                $image_size = $_FILES['image']['size'];
-                                $image_maxsize = 4 * 1024 * 1024;
-                                // Product_Variant
-                                $quantityS = $_POST['quantityS'];
-                                $priceS = $_POST['priceS'];
-                                $quantityM = $_POST['quantityM'];
-                                $priceM = $_POST['priceM'];
-                                $quantityL = $_POST['quantityL'];
-                                $priceL = $_POST['priceL'];
-                                if ($image_size > $image_maxsize) {
-                                    $notification = 'File ảnh quá lớn vui lòng thử lại';
-                                } else {
-                                    move_uploaded_file($image_tmp, '../assets/img/products/' . $image);
-                                    insert_products($name, $description, $id_category, $image);
-                                    $getLatestProductsIdData = getLatestProductsId();
-                                    $id_sizeS = 1;
-                                    $id_sizeM = 2;
-                                    $id_sizeL = 3;
-                                    if ($getLatestProductsIdData) {
-                                        $getLatestProductsIdData = $getLatestProductsIdData['id'];
-                                        insert_product_variant($getLatestProductsIdData, $id_sizeS, $priceS, $quantityS);
-                                        insert_product_variant($getLatestProductsIdData, $id_sizeM, $priceM, $quantityM);
-                                        insert_product_variant($getLatestProductsIdData, $id_sizeL, $priceL, $quantityL);
-                                    }
-                                    $notification = 'Thêm thành công';
-                                }
-                            }
-                            $list_categories = load_all_category();
-                            include 'tables/products/add_product.php';
-                            break;
-                        case 'fix_product':
-                            if (isset($_GET['id']) && ($_GET['id'] > 0)) {
-                                $load_one_product = load_one_product($_GET['id']);
-                            }
-                            $list_categories = load_all_category();
-                            include 'tables/products/edit_product.php';
-                            break;
-                        case 'update_products':
-                            if (isset($_POST['btn_edit']) && ($_POST['btn_edit'])) {
-                                $id = $_POST['id'];
-                                $name = $_POST['name'];
-                                $id_category = $_POST['id_category'];
-                                $description = $_POST['description'];
-                                $image = $_FILES['image']['name'];
-                                $image_tmp = $_FILES['image']['tmp_name'];
-                                $image_size = $_FILES['image']['size'];
-                                $image_maxsize = 4 * 1024 * 1024;
-                                // product_variants
-                                $quantityS = $_POST['quantityS'];
-                                $priceS = $_POST['priceS'];
-                                $quantityM = $_POST['quantityM'];
-                                $priceM = $_POST['priceM'];
-                                $quantityL = $_POST['quantityL'];
-                                $priceL = $_POST['priceL'];
-                                if ($image_size > $image_maxsize) {
-                                    $notificationERROR = 'File ảnh quá lớn vui lòng thử lại';
-                                } else {
-                                    move_uploaded_file($image_tmp, '../assets/img/products/' . $image);
-                                    update_product($id, $name, $id_category, $description, $image);
-                                    $id_sizeS = 1;
-                                    $id_sizeM = 2;
-                                    $id_sizeL = 3;
-                                    update_product_variants($id, $id_sizeS, $priceS, $quantityS);
-                                    update_product_variants($id, $id_sizeM, $priceM, $quantityM);
-                                    update_product_variants($id, $id_sizeL, $priceL, $quantityL);
-                                }
-                                $list_categories = load_all_category();
+                                break;
+                            case 'products':
                                 $list_all_product = load_all_product_category_variant();
                                 include 'tables/products/products.php';
-                            }
-                            break;
-                        case 'dlt_product':
-                            if (isset($_GET['id']) && ($_GET['id'] >= 1)) {
-                                delete_product($_GET['id']);
-                                $id_sizeS = 1;
-                                $id_sizeM = 2;
-                                $id_sizeL = 3;
-                                delete_product_variants($_GET['id'], $id_sizeS);
-                                delete_product_variants($_GET['id'], $id_sizeM);
-                                delete_product_variants($_GET['id'], $id_sizeL);
-                            }
-                            $list_all_product = load_all_product_category_variant();
-                            include 'tables/products/products.php';
-                            break;
-                        case 'orders': 
-                            $getAllStatusOrder = getAllStatusOrder();
-                            
-                            if (isset($_POST['filter'])) { 
-                                $status = $_POST['status'];
-                                $listorder = fitterOrder($status); 
-                            } else {
+                                break;
+                            case 'add_product':
+                                if (isset($_POST['btn_edit']) && $_POST['btn_edit']) {
+                                    // Products
+                                    $name = $_POST['name'];
+                                    $description = $_POST['description'];
+                                    $id_category = $_POST['id_category'];
+                                    $image = $_FILES['image']['name'];
+                                    $image_tmp = $_FILES['image']['tmp_name'];
+                                    $image_size = $_FILES['image']['size'];
+                                    $image_maxsize = 4 * 1024 * 1024;
+                                    // Product_Variant
+                                    $quantityS = $_POST['quantityS'];
+                                    $priceS = $_POST['priceS'];
+                                    $quantityM = $_POST['quantityM'];
+                                    $priceM = $_POST['priceM'];
+                                    $quantityL = $_POST['quantityL'];
+                                    $priceL = $_POST['priceL'];
+                                    if ($image_size > $image_maxsize) {
+                                        $notification = 'File ảnh quá lớn vui lòng thử lại';
+                                    } else {
+                                        move_uploaded_file($image_tmp, '../assets/img/products/' . $image);
+                                        insert_products($name, $description, $id_category, $image);
+                                        $getLatestProductsIdData = getLatestProductsId();
+                                        $id_sizeS = 1;
+                                        $id_sizeM = 2;
+                                        $id_sizeL = 3;
+                                        if ($getLatestProductsIdData) {
+                                            $getLatestProductsIdData = $getLatestProductsIdData['id'];
+                                            insert_product_variant($getLatestProductsIdData, $id_sizeS, $priceS, $quantityS);
+                                            insert_product_variant($getLatestProductsIdData, $id_sizeM, $priceM, $quantityM);
+                                            insert_product_variant($getLatestProductsIdData, $id_sizeL, $priceL, $quantityL);
+                                        }
+                                        $notification = 'Thêm thành công';
+                                    }
+                                }
+                                $list_categories = load_all_category();
+                                include 'tables/products/add_product.php';
+                                break;
+                            case 'fix_product':
+                                if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+                                    $load_one_product = load_one_product($_GET['id']);
+                                }
+                                $list_categories = load_all_category();
+                                include 'tables/products/edit_product.php';
+                                break;
+                            case 'update_products':
+                                if (isset($_POST['btn_edit']) && ($_POST['btn_edit'])) {
+                                    $id = $_POST['id'];
+                                    $name = $_POST['name'];
+                                    $id_category = $_POST['id_category'];
+                                    $description = $_POST['description'];
+                                    $image = $_FILES['image']['name'];
+                                    $image_tmp = $_FILES['image']['tmp_name'];
+                                    $image_size = $_FILES['image']['size'];
+                                    $image_maxsize = 4 * 1024 * 1024;
+                                    // product_variants
+                                    $quantityS = $_POST['quantityS'];
+                                    $priceS = $_POST['priceS'];
+                                    $quantityM = $_POST['quantityM'];
+                                    $priceM = $_POST['priceM'];
+                                    $quantityL = $_POST['quantityL'];
+                                    $priceL = $_POST['priceL'];
+                                    if ($image_size > $image_maxsize) {
+                                        $notificationERROR = 'File ảnh quá lớn vui lòng thử lại';
+                                    } else {
+                                        move_uploaded_file($image_tmp, '../assets/img/products/' . $image);
+                                        update_product($id, $name, $id_category, $description, $image);
+                                        $id_sizeS = 1;
+                                        $id_sizeM = 2;
+                                        $id_sizeL = 3;
+                                        update_product_variants($id, $id_sizeS, $priceS, $quantityS);
+                                        update_product_variants($id, $id_sizeM, $priceM, $quantityM);
+                                        update_product_variants($id, $id_sizeL, $priceL, $quantityL);
+                                    }
+                                    $list_categories = load_all_category();
+                                    $list_all_product = load_all_product_category_variant();
+                                    include 'tables/products/products.php';
+                                }
+                                break;
+                            case 'dlt_product':
+                                if (isset($_GET['id']) && ($_GET['id'] >= 1)) {
+                                    delete_product($_GET['id']);
+                                    $id_sizeS = 1;
+                                    $id_sizeM = 2;
+                                    $id_sizeL = 3;
+                                    delete_product_variants($_GET['id'], $id_sizeS);
+                                    delete_product_variants($_GET['id'], $id_sizeM);
+                                    delete_product_variants($_GET['id'], $id_sizeL);
+                                }
+                                $list_all_product = load_all_product_category_variant();
+                                include 'tables/products/products.php';
+                                break;
+                            case 'orders':
+                                $getAllStatusOrder = getAllStatusOrder();
+
+                                if (isset($_POST['filter'])) {
+                                    $status = $_POST['status'];
+                                    $listorder = fitterOrder($status);
+                                } else {
+                                    $listorder = getAll_order();
+                                }
+
+                                include 'tables/orders/orders.php';
+                                break;
+                            case 'order_variants':
+
+                                if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+                                    $id = $_GET['id'];
+                                    $order_details = loadone_order_details($id);
+                                }
+
+                                include 'tables/orders/order_variants.php';
+                                break;
+                            case 'update_order':
+                                if (isset($_GET['id']) && ($_GET['id']) > 0) {
+                                    $order = loadone_order($_GET['id']);
+                                }
+                                include "tables/orders/edit_order.php";
+                            case 'edit_order':
+                                if (isset($_POST['btn_edit']) && ($_POST['btn_edit'])) {
+                                    $id_order = $_POST['id_order'];
+                                    $id_status = $_POST['id_status'];
+                                    order_update($id_order, $id_status);
+                                    echo "<script>window.location.href = '?action=orders';</script>";
+                                }
                                 $listorder = getAll_order();
-                            }
+                                break;
+                            case 'comments':
+                                $load_all_comments = load_all_comment();
+                                include 'tables/comments/comments.php';
+                                break;
+                            case 'dlt_comments':
+                                if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+                                    delete_comments($_GET['id']);
+                                }
+                                $load_all_comments = load_all_comment();
+                                include 'tables/comments/comments.php';
+                                break;
+                            case 'comments_detail':
+                                if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+                                    $load_all_comment_detail = load_all_comment_detail($_GET['id']);
+                                }
+                                include 'tables/comments/comments_detail.php';
+                                break;
+                            case 'dlt_comment_detail':
+                                if (isset($_GET['id']) && $_GET['id'] > 0) {
+                                    delete_comment_detail($_GET['id']);
+                                }
+                                $load_all_comments = load_all_comment();
+                                include 'tables/comments/comments.php';
+                                break;
+                            case 'discounts_code':
+                                $listcode = loadall_code();
+                                include 'tables/discounts_code/discounts_code.php';
+                                break;
+                            case 'add_discount_code':
+                                if (isset($_POST['newpro']) && ($_POST['newpro'])) {
+                                    $code_name = $_POST['code'];
+                                    $discount = $_POST['discount'];
+                                    $quantity = $_POST['quantity'];
+                                    $expiration_date = $_POST['expiration_date'];
+                                    insert_code($code_name, $discount, $quantity, $expiration_date);
+                                }
+                                include 'tables/discounts_code/add_discount_code.php';
+                                break;
+                            case 'delete_discount_code':
+                                if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+                                    $id = $_GET['id'];
+                                    delete_code($id);
+                                }
+                                $listcode = loadall_code();
+                                include 'tables/discounts_code/discounts_code.php';
 
-                            include 'tables/orders/orders.php';
-                            break;
-                        case 'order_variants':
+                                break;
+                            case 'update_discount_code':
+                                $code = loadone_code($_GET['id']);
+                                if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                                    $code_name = $_POST['code'];
+                                    $discount = $_POST['discount'];
+                                    $quantity = $_POST['quantity'];
+                                    $expiration_date = $_POST['expiration_date'];
+                                    update_code($_GET['id'], $code_name, $discount, $quantity, $expiration_date);
+                                    echo "<script>window.location.href = '?action=discounts_code';</script>";
+                                }
+                                include "tables/discounts_code/edit_discount_code.php";
+                                break;
+                            case 'revenues':
+                                // $getRevenues = getRevenues();
+                                $pathImg = "../assets/img/products/";
+                                $getCategories = load_all_category();
 
-                            if (isset($_GET['id']) && ($_GET['id'] > 0)) {
-                                $id = $_GET['id'];
-                                $order_details = loadone_order_details($id);  
-                            }
+                                if (isset($_POST['filter'])) {
+                                    $start = $_POST['startDate'];
+                                    $end = $_POST['endDate'];
+                                    $categoryId = $_POST['id_category'];
+                                    $getRevenues = getRevenues($start, $end, $categoryId);
+                                } else {
+                                    $getRevenues = getRevenues();
+                                }
 
-                            include 'tables/orders/order_variants.php';
-                            break;
-                        case 'update_order':
-                            if (isset($_GET['id']) && ($_GET['id']) > 0) {
-                                $order = loadone_order($_GET['id']);
-                            }
-                            include "tables/orders/edit_order.php";
-                        case 'edit_order':
-                            if (isset($_POST['btn_edit']) && ($_POST['btn_edit'])) {
-                                $id_order = $_POST['id_order'];
-                                $id_status = $_POST['id_status'];
-                                order_update($id_order, $id_status);
-                                echo "<script>window.location.href = '?action=orders';</script>";
-                            }
-                            $listorder = getAll_order();
-                            break;
-                        case 'comments':
-                            $load_all_comments = load_all_comment();
-                            include 'tables/comments/comments.php';
-                            break;
-                        case 'dlt_comments':
-                            if (isset($_GET['id']) && ($_GET['id'] > 0)) {
-                                delete_comments($_GET['id']);
-                            }
-                            $load_all_comments = load_all_comment();
-                            include 'tables/comments/comments.php';
-                            break;
-                        case 'comments_detail':
-                            if (isset($_GET['id']) && ($_GET['id'] > 0)) {
-                                $load_all_comment_detail = load_all_comment_detail($_GET['id']);
-                            }
-                            include 'tables/comments/comments_detail.php';
-                            break;
-                        case 'dlt_comment_detail':
-                            if (isset($_GET['id']) && $_GET['id'] > 0) {
-                                delete_comment_detail($_GET['id']);
-                            }
-                            $load_all_comments = load_all_comment();
-                            include 'tables/comments/comments.php';
-                            break;
-                        case 'discounts_code':
-                            $listcode = loadall_code();
-                            include 'tables/discounts_code/discounts_code.php';
-                            break;
-                        case 'add_discount_code':
-                            if (isset($_POST['newpro']) && ($_POST['newpro'])) {
-                                $code_name = $_POST['code'];
-                                $discount = $_POST['discount'];
-                                $quantity = $_POST['quantity'];
-                                $expiration_date = $_POST['expiration_date'];
-                                insert_code($code_name, $discount, $quantity, $expiration_date);
-                            }
-                            include 'tables/discounts_code/add_discount_code.php';
-                            break;
-                        case 'delete_discount_code':
-                            if (isset($_GET['id']) && ($_GET['id'] > 0)) {
-                                $id = $_GET['id'];
-                                delete_code($id);
-                            }
-                            $listcode = loadall_code();
-                            include 'tables/discounts_code/discounts_code.php';
+                                include 'tables/revenues/revenues.php';
+                                break;
+                            case 'logout':
+                                // xóa session user
+                                unset($_SESSION['user']);
+                                echo "<script>window.location.href = '../index.php';</script>";
+                                break;
+                            default:
+                                include "./dashboard.php";
+                                break;
+                        }
+                    } else {
+                        include "./dashboard.php";
+                    }
 
-                            break;
-                        case 'update_discount_code':
-                            $code = loadone_code($_GET['id']);
-                            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                                $code_name = $_POST['code'];
-                                $discount = $_POST['discount'];
-                                $quantity = $_POST['quantity'];
-                                $expiration_date = $_POST['expiration_date'];
-                                update_code($_GET['id'], $code_name, $discount, $quantity, $expiration_date);
-                                echo "<script>window.location.href = '?action=discounts_code';</script>";
-                            }
-                            include "tables/discounts_code/edit_discount_code.php";
-                            break;
-                        case 'revenues':
-                            // $getRevenues = getRevenues();
-                            $pathImg = "../assets/img/products/";
-                            $getCategories = load_all_category();
-
-                            if (isset($_POST['filter'])) {
-                                $start = $_POST['startDate'];
-                                $end = $_POST['endDate'];
-                                $categoryId = $_POST['id_category'];
-                                $getRevenues = getRevenues($start, $end, $categoryId);
-                            } else {
-                                $getRevenues = getRevenues();
-                            }
-
-                            include 'tables/revenues/revenues.php';
-                            break;
-                        case 'logout':
-                            // xóa session user
-                            unset($_SESSION['user']);
-                            echo "<script>window.location.href = '../index.php';</script>";
-                            break;
-                        default:
-                            include "./dashboard.php";
-                            break;
-                    } ?>
+                    ?>
                 </div>
                 <footer>
                     <?php include './layout/footer.php'; ?>

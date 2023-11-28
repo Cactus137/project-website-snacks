@@ -30,7 +30,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link  " href="?action=revenues">
+                <a class="nav-link  " href="index.php?action=revenues">
                     <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="fa-solid fa-chart-simple" style="color: #3A416F;"></i>
                     </div>
@@ -38,7 +38,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link  " href="?action=accounts">
+                <a class="nav-link  " href="index.php?action=accounts">
                     <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="fa-solid fa-users" style="color: #3A416F;"></i>
                     </div>
@@ -46,7 +46,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link  " href="?action=categories">
+                <a class="nav-link  " href="index.php?action=categories">
                     <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="fa-solid fa-tag" style="color: #3A416F;"></i>
                     </div>
@@ -54,7 +54,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link  " href="?action=products">
+                <a class="nav-link  " href="index.php?action=products">
                     <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="fa-brands fa-buffer" style="color: #3A416F;"></i>
                     </div>
@@ -62,7 +62,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link " href="?action=orders">
+                <a class="nav-link " href="index.php?action=orders">
                     <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="fa-solid fa-basket-shopping" style="color: #3A416F;"></i>
                     </div>
@@ -70,7 +70,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link  " href="?action=comments">
+                <a class="nav-link  " href="index.php?action=comments">
                     <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="fa-solid fa-comment" style="color: #3A416F;"></i>
                     </div>
@@ -78,7 +78,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link  " href="?action=discounts_code">
+                <a class="nav-link  " href="index.php?action=discounts_code">
                     <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="fa-solid fa-percent" style="color: #3A416F;"></i>
                     </div>

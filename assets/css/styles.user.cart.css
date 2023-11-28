@@ -1,32 +1,9 @@
 * {
   margin: 0;
-  padding: 0; 
+  padding: 0;
   font-family: "Lexend Deca", sans-serif;
-}
+}   
 
-form {
-  display: block;
-  margin-top: 0em;
-}
-.main {
-  display: block;
-  margin: 0 auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.container {
-  width: 100%;
-}
-
-.mt-20 {
-  margin-top: 20px;
-}
-
-.mb-10 {
-  margin-bottom: 10px;
-}
- 
 h4 {
   font-size: 20px;
   padding-top: 60px;
@@ -37,48 +14,46 @@ h4 {
   display: flex;
 }
 
+.viewcart {
+  margin-bottom: 50px;
+}
+
 .main .viewcart {
   margin-bottom: 50px;
 }
 .product-category-detail {
-  box-shadow: 0 0 5px 5px rgb(135, 126, 126);
+  box-shadow: 0 0 5px 5px rgb(214, 209, 209);
   border-radius: 10px;
   margin-bottom: 30px;
   display: flex;
-  zoom: 1;
   height: 250px;
+  justify-content: space-between;
 }
 .field-note {
   padding-right: 20px;
   padding-top: 20px;
   padding-left: 20px;
   border-radius: 10px;
-  box-shadow: 0 0 5px 5px rgb(135, 126, 126);
+  box-shadow: 0 0 5px 5px rgb(218, 211, 211);
   margin-left: 20px;
 }
 .product-category-detail .field-img {
-  width: 250px;
-  float: left;
+  width: 210px;
   margin-bottom: 50px;
   margin-right: 0;
-  position: relative;
   min-height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.product-category-detail .image {
-  padding-left: 30px;
-  padding-top: 30px;
-  width: 200px;
+.product-category-detail .image { 
+  width: 150px;
 }
-.cart { 
-  margin-top: 50px; 
-  margin-bottom: 50px; 
-}
-.product-category-detail .field-content {
-  overflow: visible;
-  padding-right: 100px;
-  overflow: hidden;
-}
+.cart {
+  margin-top: 50px;
+  margin-bottom: 50px;
+} 
 
 .product-category-detail h3 {
   font-size: 28px;
@@ -92,9 +67,9 @@ h4 {
 }
 .product-category-detail .qty {
   display: flex;
-  zoom: 1;
-  margin-top: 150px;
-  margin-right: 50px;
+  justify-content: center;
+  align-items: center;  
+  margin: 0 25px;
 }
 .qty button {
   width: 30px;
@@ -127,7 +102,7 @@ h4 {
 
 .price {
   font-size: 18px;
-  padding-top: 45px;
+  padding-top: 15px;
   color: #ffc501;
   font-weight: bold;
 }
@@ -156,27 +131,9 @@ h4 {
   padding-right: 15px;
   margin-bottom: 10px;
   font-weight: bold;
-}
-li {
-  padding-top: 5px;
-  display: flex;
-  padding-bottom: 10px;
-}
-
-.inner .pricee {
-  padding-left: 133px;
-}
-.pricee1 {
-  padding-left: 133px;
-}
-.pricee2 {
-  padding-left: 217px;
-}
-.pricee3 {
-  font-weight: bold;
-  padding-left: 125px;
-}
-.pr-nametong {
+} 
+.pr-name,
+.pr-price {
   padding-top: 5px;
   display: flex;
   padding-bottom: 10px;
@@ -230,4 +187,4 @@ li {
 .icon-delete a:hover {
   font-size: 25px;
   color: #70472b;
-}
+} 

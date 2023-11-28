@@ -4,28 +4,28 @@
   <form action="" method="post">
     <div class="section-pay">
       <div class="box-left">
-        <h3>Thông tin đặt hàng</h3> 
+        <h3>Thông tin đặt hàng</h3>
         <div class="letf-bottom">
           <div class="row mb-20">
             Họ và tên* <br />
-            <input type="text" name="fullname" value="<?= $getAccountById['fullname']?>" required />
+            <input type="text" name="fullname" value="<?= $getAccountById['fullname'] ?>" required />
           </div>
           <div class="row mb-20">
             Email* <br />
-            <input type="email" name="email" value="<?= $getAccountById['email']?>" required />
+            <input type="email" name="email" value="<?= $getAccountById['email'] ?>" required />
           </div>
           <div class="row mb-20">
             Số điện thoại* <br />
-            <input type="text" name="tel" value="<?= $getAccountById['tel']?>" required />
+            <input type="text" name="tel" value="<?= $getAccountById['tel'] ?>" required />
           </div>
           <div class="row mb-20">
             Địa chỉ* <br />
-            <input type="text" name="address" value="<?= $getAccountById['address']?>" required />
+            <input type="text" name="address" value="<?= $getAccountById['address'] ?>" required />
           </div>
           <div class="row mb-20">
             Ghi chú <br />
             <textarea name="notes"></textarea>
-          </div> 
+          </div>
         </div>
       </div>
       <div class="box-right">
@@ -38,51 +38,64 @@
               <th>Số lượng</th>
               <th>Thành tiền</th>
             </tr>
-            <?php 
-              for ($i = 0; $i < 5; $i++) { 
+            <?php
+            $temp_price = 0;
+            $fee = 50000;
+            $discount = 0;
+            foreach ($load_card as $card) {
+              extract($card);
+              $temp_price += $price * $quantity;
             ?>
-            <tr>
-              <td style="text-align: start;">
-                Italian Beef Burger 
-                <input type="hidden" name="id_product" value="">
-              </td>
-              <td class="color-price">
-                M
-                <input type="hidden" name="id_size" value="">
-              </td>
-              <td>
-                1
-                <input type="hidden" name="quantity" value="">
-              </td>
-              <td class="color-price">
-                50.000đ
-                <input type="hidden" name="total_amount_product" value="">
-              </td>
-            </tr> 
-            <?php } ?>
+              <tr>
+                <td style="text-align: start;">
+                  <?= $name_product ?>
+                  <input type="hidden" name="id_product" value="">
+                </td>
+                <td class="color-price">
+                  <?= $name_size ?>
+                  <input type="hidden" name="id_size" value="">
+                </td>
+                <td>
+                  <?= $quantity ?>
+                  <input type="hidden" name="quantity" value="">
+                </td>
+                <td class="color-price">
+                  <?= number_format($quantity + $price) ?>đ
+                  <input type="hidden" name="total_amount_product" value="">
+                </td>
+              </tr>
+            <?php
+            }
+            $total_amount  = $temp_price + $fee - $discount;
+            ?>
           </table>
         </div>
         <div class="right-bottom">
           <div class="order-detail">
-            <div class="total-price">
-              <p>Tạm tính</p>
-              <p>Phí vận chuyển</p>
-              <p>Giảm giá</p>
-              <p style="font-weight: 600; font-size: 17px">Tổng thanh toán</p>
-            </div>
-            <div class="btn-pay">
-              <p class="color-price">50.000đ</p>
-              <p class="color-price">50.000đ</p>
-              <p class="color-price">50.000đ</p>
-              <p class="color-price" style="font-weight: 600; font-size: 17px">50.000đ</p>
-              <input type="hidden" name="total_amount" value="">
-            </div>
-          </div> 
+            <table>
+              <tr>
+                <th scope="row">Tạm tính</th>
+                <td><?= number_format($temp_price); ?>đ</td> 
+              </tr>
+              <tr>
+                <th scope="row">Phí vận chuyển</th>
+                <td><?= number_format($fee); ?>đ</td> 
+              </tr>
+              <tr>
+                <th scope="row">Giảm giá</th>
+                <td><?= number_format($discount); ?>đ</td> 
+              </tr>
+              <tr>
+                <th scope="row">Tổng thanh toán</th>
+                <td><?= number_format($total_amount); ?>đ</td> 
+              </tr> 
+            </table>  
+          </div>
         </div>
       </div>
     </div>
-    <div class="confirm-oder mt-20"> 
-      <a href="?act=menu" class="letf-confirm" >Tiếp tục mua hàng</a>
+    <div class="confirm-oder mt-20">
+      <a href="?act=menu" class="letf-confirm">Tiếp tục mua hàng</a>
       <input type="submit" name="submit_order" value="Xác nhận mua hàng" class="right-confirm">
     </div>
   </form>

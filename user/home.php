@@ -31,10 +31,10 @@
         </div>
 
         <div class="bullets">
-            <a href="#s1">1</a>
-            <a href="#s2">2</a>
-            <a href="#s3">3</a>
-            <a href="#s4">4</a>
+            <a href="#s1"></a>
+            <a href="#s2"></a>
+            <a href="#s3"></a>
+            <a href="#s4"></a>
         </div>
 
     </div>

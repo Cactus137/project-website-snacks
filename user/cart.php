@@ -1,12 +1,23 @@
 <link rel="stylesheet" href="./assets/css/styles.user.cart.css">
+<style>
+    ul.list-options li {
+        padding-top: 5px;
+        display: flex;
+        padding-bottom: 10px;
+        justify-content: space-between;
+    }
+</style>
 <h2 class="cart ">GIỎ HÀNG CỦA TÔI</h2>
-<section class="main">
-    <form action="" method="post" enctype="multipart/form-data">
+<section>
+    <form action="?act=pay" method="post" enctype="multipart/form-data">
         <div class="viewcart">
             <div style="display: block;">
                 <?php
+                $total_price = 0;
+                $discount = $discount;
+                $fee = 0;
                 foreach ($load_card as $card) :
-                    extract($card);
+                    extract($card); 
                     $total_price += $price * $quantity;
                     $fee = 50000;
                 ?>
@@ -20,17 +31,18 @@
                                 <p class="size">Size: <?= $name_size ?></p>
                                 <p class="price"><?= number_format($price) . " VNĐ" ?></p>
                             </div>
-                            <div class="qty">
-                                <div class="q-inner">
-                                    <button class="btn-minute" type="button" disabled>-</button>
-                                    <span class="number">
-                                        <?= $quantity; ?>
-                                    </span>
-                                    <button class="btn-plus" type="button" disabled>+</button>
-                                </div>
-                                <div class="icon-delete"> 
-                                    <a href="index.php?act=delcart"><i class="fa-solid fa-trash-can"></i></a>
-                                </div>
+                        </div>
+                        <div class="qty">
+                            <div class="q-inner">
+                                <button class="btn-minute" type="button" disabled>-</button>
+                                <span name="number" class="number"><?= $quantity?></span>
+                                <input type="hidden" value="" name="quantity" id="quantityPro">
+                                <button class="btn-plus" type="button">+</button>
+                            </div>
+                            <div class="icon-delete">
+                                <a href="index.php?act=delcart&id_cart=<?=$id_cart?>" onclick="return confirm('Bạn có xác nhận xóa ?')" >
+                                    <i class="fa-solid fa-trash-can"></i>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -39,50 +51,87 @@
             <div class="field-note">
                 <form action="" method="post">
                     <span class="field-text">
-                        <p class="name">1 MÓN</p>
-                        <hr>
                         <p class="name">Bạn có Mã giảm giá?</p>
                         <input type="text" name="code_discount" placeholder="Mã giảm giá*" class="vorcher">
                         <input type="submit" name="btn_code_discount" id="" value="Áp dụng" class="sbvocher">
                         <hr>
                     </span>
                 </form>
-                <ul class="list-options">
+                <ul class="list-options" style="padding: 0;">
                     <li>
-                        <div class="pr-name">Tổng đơn hàng</div>
-                        <div class="inner">
-                            <span class="pricee"><?= number_format($total_price) ?>đ</span>
-
+                        <div class="pr-name[]">Tổng đơn hàng</div>
+                        <div class="pr-price[]">
+                            <?= number_format($total_price) ?>đ
                         </div>
                     </li>
                     <li>
-                        <div class="pr-name">Phí vận chuyển</div>
-                        <div class="inner">
-                            <span class="pricee2"><?= number_format($fee); ?>đ</span>
+                        <div class="pr-name[]">Phí vận chuyển</div>
+                        <div class="pr-price[]">
+                            <?= number_format($fee); ?>đ
                         </div>
                     </li>
                     <li>
-                        <div class="pr-name">Giảm giá</div>
-                        <div class="inner">
-                            <span class="pricee2"><?= number_format(($discount / 100) * $total_price); ?>đ</span>
+                        <div class="pr-name[]">Giảm giá</div>
+                        <div class="pr-price[]">
+                            <?= number_format(($discount / 100) * $total_price); ?>đ
+                            <input type="hidden" name="discount">
                         </div>
                     </li>
-                    <li>
-                        <div class="pr-nametong">Tổng thanh toán</div>
-                        <div class="inner">
-                            <span class="price3"><?php $total_amount = ($total_price + $fee) - $discount; echo number_format($total_amount) ?>đ</span>
+                    <li style="font-weight: bold;">
+                        <div class="pr-name[]">Tổng thanh toán</div>
+                        <div class="pr-price[]">
+                            <?php $total_amount = ($total_price + $fee) - $discount;
+                            echo number_format($total_amount) ?>đ
                         </div>
                     </li>
-
                 </ul>
                 <hr>
-
                 <div class="thanhtoan">
                     <a href="#" class="ttoan"><input type="submit" name="bill" id="" value="Thanh toán" class="tt"></a>
                 </div>
+            </div>
+        </div>
     </form>
+</section>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Get relevant elements
+        var minusButtons = document.querySelectorAll('.btn-minute');
+        var plusButtons = document.querySelectorAll('.btn-plus');
+        var quantityElements = document.querySelectorAll('.number');
+        var quantityPros = document.querySelectorAll('#quantityPro');
 
-    </div>
+        // Initial quantity value
+        var initialQuantity = 0;
+        // Function to update the quantity and enable/disable buttons
+        function updateQuantity(index) {
+            initialQuantity = quantityElements[index].textContent;
+            quantityElements[index].textContent = initialQuantity;
+            quantityPros[index].value = initialQuantity;
+            minusButtons[index].disabled = (initialQuantity === 1);
+        }
 
-    </div>
-    </main>
+        // Event listeners for minus buttons
+        minusButtons.forEach(function (button, index) {
+            button.addEventListener('click', function () {
+                if (initialQuantity > 1) {
+                    initialQuantity--;
+                    updateQuantity(index);
+                }
+            });
+        });
+
+        // Event listeners for plus buttons
+        plusButtons.forEach(function (button, index) {
+            button.addEventListener('click', function () {
+                initialQuantity++;
+                updateQuantity(index);
+            });
+        });
+
+        // Initial update for all products
+        quantityElements.forEach(function (_, index) {
+            updateQuantity(index);
+        });
+    });
+</script>

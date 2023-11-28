@@ -1,9 +1,9 @@
 <?php
-function load_card($id_account)
+function load_cart($id_account)
 {
     try {
         $sql = "SELECT 
-        c.id AS id_order,
+        c.id AS id_cart,
         p.name AS name_product,
         p.image AS image_product,
         s.name AS name_size,
@@ -31,7 +31,7 @@ function addToCard($id_account, $id_product_variants, $quantity)
         } else {
             $sql = "INSERT INTO cart (id_account, id_product_variants, quantity)
             VALUES ('$id_account', '$id_product_variants', '$quantity');";
-        }
+        } 
         return pdo_execute($sql);
     } catch (Exception $e) {
         echo $e->getMessage();
@@ -74,6 +74,15 @@ function getIdProductVariants($id_product, $id_size)
         $sql = "SELECT id  FROM product_variants
         WHERE id_product = $id_product AND id_size = $id_size;";
         return pdo_query_one($sql);
+    } catch (Exception $e) {
+        echo $e->getMessage();
+    }
+}
+
+function delCart($id_account, $id_cart) {
+    try {
+        $sql = "DELETE FROM cart WHERE id_account = $id_account AND id = $id_cart";
+        pdo_execute($sql);
     } catch (Exception $e) {
         echo $e->getMessage();
     }

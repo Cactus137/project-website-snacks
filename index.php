@@ -1,5 +1,5 @@
 <?php
-session_start(); 
+session_start();
 
 ?>
 <!doctype html>
@@ -37,9 +37,9 @@ session_start();
             include './model/accounts.php';
             include './model/products.php';
             include './model/categories.php';
-            // include './model/product_variants.php';
+            include './model/comments.php';
             include './model/orders.php';
-            include './model/carts.php'; 
+            include './model/carts.php';
             include './model/discount_code.php';
             $list_category_home = load_all_category_home();
 
@@ -186,26 +186,26 @@ session_start();
                         include 'user/forgot.php';
                         break;
                     case 'cart':
-                        $load_card = load_card($_SESSION['user']['id']); 
+                        $load_card = load_card($_SESSION['user']['id']);
                         if (isset($_POST['btn_code_discount'])) {
                             $code_discount = $_POST['code_discount'];
                             $check_code_discount = checkCodeDiscount($code_discount);
-                            $discount = $check_code_discount['discount']; 
+                            $discount = $check_code_discount['discount'];
                         }
                         include 'user/cart.php';
                         break;
                     case 'add_to_card':
-                        if (isset($_POST['addtocart'])){
+                        if (isset($_POST['addtocart'])) {
                             $id_account = $_SESSION['user']['id'];
-                            $quantity = $_POST['quantity']; 
+                            $quantity = $_POST['quantity'];
                             $id_product = $_POST['id_product'];
                             $id_size = $_POST['exp'];
                             $id_size = $id_size[0];
-                            $id_product_variants = getIdProductVariants($id_product, $id_size)['id']; 
-                            
+                            $id_product_variants = getIdProductVariants($id_product, $id_size)['id'];
+
                             addToCard($id_account, $id_product_variants, $quantity);
                         }
-                      break;
+                        break;
                     case 'list_search_products':
                         if (isset($_POST['keyw']) && ($_POST['keyw'] != '')) {
                             $keyw = $_POST['keyw'];
@@ -219,16 +219,43 @@ session_start();
                         if (isset($_GET['id']) && ($_GET['id'] > 0)) {
                             $id = $_GET['id'];
                             $one_product =  load_one_product($id);
-                            extract($one_product); 
+                            extract($one_product);
+                            $list_comments = load_all_comment_product($id);
+                            $count_comments = count_comments($id);
                             $id_category = $one_product[0]['id_category'];
                             $top4_product_similar = top4_similar($id_category);
+                        } else {
+                            include './user/home.php';
                         }
+                        
+                        include 'user/product_detail.php';
+                        break;
+
+                    case 'comment_user':
+                        if(isset($_POST['send']) && ($_POST['send'])){
+                            $content = $_POST['content'];
+                            $id_product = $_POST['id_product'];
+                            $id_account = $_SESSION['user']['id'];
+                            $comment_date = date('Y/m/d');
+
+                            insert_comment($content, $id_account, $id_product, $comment_date);
+
+                            $one_product =  load_one_product($id_product);
+                            extract($one_product);
+                            $list_comments = load_all_comment_product($id_product);
+                            $count_comments = count_comments($id_product);
+                            $id_category = $one_product[0]['id_category'];
+                            $top4_product_similar = top4_similar($id_category);
+
+                            
+                        }
+                        
                         include 'user/product_detail.php';
                         break;
 
 
                     case 'order':
-                        if (isset($_SESSION['user'])) { 
+                        if (isset($_SESSION['user'])) {
                             $getAllStatusOrder = getAllStatusOrder();
                             if (isset($_GET['status'])) {
                                 $id_status = $_GET['status'];
@@ -256,7 +283,7 @@ session_start();
 
                             // Code discount
 
-                            $date = new DateTime(); 
+                            $date = new DateTime();
                             date_default_timezone_set('Asia/Ho_Chi_Minh');
 
                             // Tạo một đối tượng DateTime

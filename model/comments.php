@@ -49,8 +49,16 @@ function load_all_comment_product($id)
     return $list_comments;
 }
 
-function insert_comment($content,$id_account,$id_product,$comment_date)
+function insert_comment($content, $id_account, $id_product, $comment_date)
 {
-    $sql = "INSERT INTO comments (id, content, id_account, id_product, comment_date)
+    $sql = "INSERT INTO comments (content, id_account, id_product, comment_date)
     VALUES ('$content','$id_account','$id_product','$comment_date')";
+    pdo_execute($sql);
+}
+
+function count_comments($id)
+{
+    $sql = "SELECT COUNT(content) AS count FROM comments WHERE id_product = $id";
+    $count_comments =  pdo_query($sql);
+    return $count_comments;
 }

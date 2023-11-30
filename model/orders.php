@@ -126,7 +126,7 @@ function fitterOrder($status = null)
     }
 }
 
-function getOrdersByAccount($id_account, $id_status)
+function getOrdersByAccount($id_account, $id_status = null)
 {
     try {
         $sql = "SELECT 
@@ -157,7 +157,7 @@ function getOrdersByAccount($id_account, $id_status)
     }
 }
 
-function getOrderDetailByAccount($id_order)
+function getOrderDetailByAccount($id_order, $id_account)
 {
     try {
         $sql = "SELECT  
@@ -174,7 +174,7 @@ function getOrderDetailByAccount($id_order)
     JOIN accounts a ON a.id = o.id_account
     JOIN order_status os ON o.id_status = os.id
     JOIN discount_codes dc ON dc.id = od.discount
-    WHERE o.id = $id_order 
+    WHERE o.id = $id_order AND o.id_account = $id_account 
     ORDER BY o.order_date ASC;";
         return pdo_query($sql);
     } catch (Exception $e) {
@@ -197,9 +197,47 @@ function getAllStatusOrder()
 function cancelOrder($id_order)
 {
     try {
-        $sql = "UPDATE orders SET id_status = 5 WHERE id = $id_order;";
-        // var_dump($sql);
-        // die;
+        $sql = "SELECT * FROM order_details WHERE id_order = $id_order;";
+        foreach (pdo_query($sql) as $orderDetail) {
+            $id_product_variants = $orderDetail['id_product_variants'];
+            $quantity = $orderDetail['quantity'];
+            updateQuantityProductVariants($id_product_variants, ($quantity * -1));
+        }
+        $sql2 = "UPDATE orders SET id_status = 5 WHERE id = $id_order;";
+        return pdo_execute($sql2);
+    } catch (Exception $e) {
+        echo $e->getMessage();
+    }
+}
+
+function addOrder($id_account, $id_status, $order_date)
+{
+    try {
+        $sql = "INSERT INTO orders(id_account, id_status, order_date) VALUES ($id_account, $id_status, '$order_date');";
+        return pdo_execute($sql);
+    } catch (Exception $e) {
+        echo $e->getMessage();
+    }
+}
+
+function getLastIdOrder()
+{
+    try {
+        $sql = "SELECT MAX(id) AS id FROM orders;";
+        return pdo_query_one($sql);
+    } catch (Exception $e) {
+        echo $e->getMessage();
+    }
+}
+
+function addOrderDetail($id_order, $id_product_variants, $quantity, $total_amount, $discount, $notes)
+{
+    try {
+        if ($discount == null) {
+            $sql = "INSERT INTO order_details(id_order, id_product_variants, quantity, total_amount, notes) VALUES ($id_order, $id_product_variants, $quantity, $total_amount, '$notes');";
+        }else {
+            $sql = "INSERT INTO order_details(id_order, id_product_variants, quantity, total_amount, discount, notes) VALUES ($id_order, $id_product_variants, $quantity, $total_amount, $discount, '$notes');";
+        }   
         return pdo_execute($sql);
     } catch (Exception $e) {
         echo $e->getMessage();

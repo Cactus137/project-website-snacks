@@ -125,4 +125,14 @@ function list_search_products($keyw)
     return $list_search_products;
 }
 
-
+function updateQuantityProductVariants($id_product_variants, $quantity) {
+    try {
+        $sql = "SELECT quantity FROM product_variants WHERE id = $id_product_variants";
+        $quantity_old = pdo_query_one($sql)['quantity'];
+        $quantity_new = $quantity_old - $quantity;
+        $sql = "UPDATE product_variants SET quantity = $quantity_new WHERE id = $id_product_variants";
+        pdo_execute($sql);
+    } catch (Exception $e) {
+        echo $e->getMessage();
+    }
+}

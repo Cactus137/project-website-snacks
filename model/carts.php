@@ -4,6 +4,7 @@ function load_cart($id_account)
     try {
         $sql = "SELECT 
         c.id AS id_cart,
+        c.id_product_variants AS id_product_variants,
         p.name AS name_product,
         p.image AS image_product,
         s.name AS name_size,

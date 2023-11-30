@@ -39,12 +39,14 @@
               <th>Thành tiền</th>
             </tr>
             <?php
-            $temp_price = 0;
+            $total_price = 0;
+            $discount = $discount;
             $fee = 50000;
-            $discount = 0;
+            $temp_price = 0;
             foreach ($load_card as $card) {
               extract($card);
-              $temp_price += $price * $quantity;
+              $temp_price = $price * $quantity;
+              $total_price += $temp_price;
             ?>
               <tr>
                 <td style="text-align: start;">
@@ -60,13 +62,12 @@
                   <input type="hidden" name="quantity" value="">
                 </td>
                 <td class="color-price">
-                  <?= number_format($quantity + $price) ?>đ
+                  <?= number_format($temp_price) ?>đ
                   <input type="hidden" name="total_amount_product" value="">
                 </td>
               </tr>
-            <?php
-            }
-            $total_amount  = $temp_price + $fee - $discount;
+            <?php }
+            $total_amount = $total_price + $fee - $discount;
             ?>
           </table>
         </div>
@@ -75,27 +76,29 @@
             <table>
               <tr>
                 <th scope="row">Tạm tính</th>
-                <td><?= number_format($temp_price); ?>đ</td> 
+                <td><?= number_format($total_price); ?>đ</td>
               </tr>
               <tr>
                 <th scope="row">Phí vận chuyển</th>
-                <td><?= number_format($fee); ?>đ</td> 
+                <td><?= number_format($fee); ?>đ</td>
               </tr>
               <tr>
                 <th scope="row">Giảm giá</th>
-                <td><?= number_format($discount); ?>đ</td> 
+                <td><?= number_format($discount); ?>đ</td>
               </tr>
               <tr>
                 <th scope="row">Tổng thanh toán</th>
-                <td><?= number_format($total_amount); ?>đ</td> 
-              </tr> 
-            </table>  
+                <td><?= number_format($total_amount); ?>đ</td>
+                <input type="hidden" name="total_amount" value="<?= $total_amount ?>">
+              </tr>
+            </table>
           </div>
         </div>
       </div>
     </div>
     <div class="confirm-oder mt-20">
       <a href="?act=menu" class="letf-confirm">Tiếp tục mua hàng</a>
+      <input type="hidden" name="id_code_discount" value="<?= $id_code_discount ?>">
       <input type="submit" name="submit_order" value="Xác nhận mua hàng" class="right-confirm">
     </div>
   </form>

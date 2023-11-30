@@ -54,11 +54,14 @@
         </div>
         <div>
             <?php
+            $total_amount = 0;
+            $price_product = 0;
+            $discount_product = 0;
+            $fee = 50000;
             foreach ($getOrdersByAccount as $order) :
-                $getOrderDetailByAccount = getOrderDetailByAccount($order['id_order']);
+                $getOrderDetailByAccount = getOrderDetailByAccount($order['id_order'], $_SESSION['user']['id']);
                 extract($order);
                 $price_product += ($price + $quantity);
-                $fee = 50000;
                 $discount_product = ($discount / 100) * $price_product;
                 $total_amount += $total_amount;
             ?>

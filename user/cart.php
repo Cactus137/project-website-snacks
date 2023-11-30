@@ -35,8 +35,9 @@
                             <div class="content">
                                 <div class="field-content">
                                     <h4><?= $name_product ?></h4>
-                                    <p class="size">Size: <?= $name_size ?></p>
-                                    <p class="price"><?= number_format($price) . " VNĐ" ?></p>
+                                    <p style="margin: 0;" class="size">Size: <?= $name_size ?></p>
+                                    <p style="margin: 0;" class="quantity">x <?= $quantity ?></p>
+                                    <p style="margin: 0;" class="price"><?= number_format($price) . " VNĐ" ?></p>
                                 </div>
                             </div>
                             <div class="qty">
@@ -56,7 +57,7 @@
                     </div>
                 <?php endforeach; ?>
             </div>
-            <div class="field-note">
+            <div class="field-note" style="max-height: 500px">
                 <form action="" method="post">
                     <span class="field-text">
                         <p class="name">Bạn có Mã giảm giá?</p>

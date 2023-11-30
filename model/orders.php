@@ -129,28 +129,12 @@ function fitterOrder($status = null)
 function getOrdersByAccount($id_account, $id_status = null)
 {
     try {
-        $sql = "SELECT 
-        o.id AS id_order,   
-        od.quantity AS quantity, 
-        pv.price AS price,
-        od.total_amount AS total_amount, 
-        dc.discount AS discount,
-        os.name AS name_status,
-        os.id AS id_status
-    FROM orders o 
-    JOIN order_details od ON o.id = od.id_order
-    JOIN product_variants pv ON od.id_product_variants = pv.id
-    JOIN products p ON p.id = pv.id_product
-    JOIN categories c ON c.id = p.id_category
-    JOIN sizes s ON s.id = pv.id_size
-    JOIN accounts a ON a.id = o.id_account
-    JOIN order_status os ON o.id_status = os.id
-    JOIN discount_codes dc ON dc.id = od.discount
-        WHERE o.id_account = $id_account";
+        $sql = "SELECT * 
+    FROM orders
+        WHERE id_account = $id_account";
         if ($id_status != null) {
-            $sql .= " AND o.id_status = $id_status";
+            $sql .= " AND id_status = $id_status";
         }
-        $sql .= " GROUP BY id_order;";
         return pdo_query($sql);
     } catch (Exception $e) {
         echo $e->getMessage();
@@ -164,6 +148,7 @@ function getOrderDetailByAccount($id_order, $id_account)
         p.image AS image_product,
         p.name AS name_product,
         s.name AS name_size,
+        pv.price AS price,
         od.quantity AS quantity 
     FROM orders o 
     JOIN order_details od ON o.id = od.id_order
@@ -235,9 +220,9 @@ function addOrderDetail($id_order, $id_product_variants, $quantity, $total_amoun
     try {
         if ($discount == null) {
             $sql = "INSERT INTO order_details(id_order, id_product_variants, quantity, total_amount, notes) VALUES ($id_order, $id_product_variants, $quantity, $total_amount, '$notes');";
-        }else {
+        } else {
             $sql = "INSERT INTO order_details(id_order, id_product_variants, quantity, total_amount, discount, notes) VALUES ($id_order, $id_product_variants, $quantity, $total_amount, $discount, '$notes');";
-        }    
+        }
         return pdo_execute($sql);
     } catch (Exception $e) {
         echo $e->getMessage();

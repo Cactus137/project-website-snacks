@@ -37,9 +37,9 @@
     <ul class="menu-nav m-0">
         <li><a href="index.php?act=home">Trang chủ</a></li>
         <li><a href="index.php?act=menu">Thực đơn</a></li>
-        <li><a href="index.php?act=pay">Mã giảm giá</a></li>
-        <li><a href="">Giới thiệu</a></li>
-        <li><a href="">Liên hệ</a></li>
+        <li><a href="#">Mã giảm giá</a></li>
+        <li><a href="#">Giới thiệu</a></li>
+        <li><a href="#">Liên hệ</a></li>
     </ul>
     <div class="icon-nav d-flex justify-content-between align-items-center">
         <div class="input-group me-3">

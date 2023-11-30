@@ -1,4 +1,3 @@
-
 <div class="container-fluid py-4">
     <div class="row">
         <div class="col-12">
@@ -14,13 +13,13 @@
                                     <div class="col-md-6 mb-4 d-flex align-items-center">
                                         <div class="form-outline w-100">
                                             <label for="fullname" class="form-label">Họ và tên</label>
-                                            <input readonly type="text" name="fullname" class="form-control form-control-sm" value="<?php echo $order['fullname']?>" placeholder="" id="fullname" />
+                                            <input readonly type="text" name="fullname" class="form-control form-control-sm" value="<?php echo $order['fullname'] ?>" placeholder="" id="fullname" />
                                         </div>
                                     </div>
                                     <div class="col-md-6 mb-4 d-flex align-items-center">
                                         <div class="form-outline w-100">
                                             <label class="form-label" for="email">Email</label>
-                                            <input readonly type="email" id="email" name="email" value="<?=$order['email'] ?>" placeholder="" class="form-control form-control-sm" />
+                                            <input readonly type="email" id="email" name="email" value="<?= $order['email'] ?>" placeholder="" class="form-control form-control-sm" />
                                         </div>
                                     </div>
                                 </div>
@@ -28,18 +27,21 @@
                                     <div class="col-md-6 mb-4 pb-2">
                                         <div class="form-outline">
                                             <label class="form-label" for="tel">Số điện thoại</label>
-                                            <input readonly type="text" id="tel" name="tel" value="<?=$order['tel'] ?>" placeholder="" class="form-control form-control-sm" />
+                                            <input readonly type="text" id="tel" name="tel" value="<?= $order['tel'] ?>" placeholder="" class="form-control form-control-sm" />
                                         </div>
                                     </div>
                                     <div class="col-md-6 mb-4 pb-2">
                                         <label class="form-label select-label">Trạng thái</label>
                                         <select name="id_status" class="select form-control form-control-sm">
-                                            <option  value="0" <?=($order['id_status'] == 0)?'selected':'' ?>>Chờ xác nhận</option>
-                                            <option value="1"<?=($order['id_status'] == 1)?'selected':'' ?>>Đã xác nhận</option>
-                                            <option value="2"<?=($order['id_status'] == 2)?'selected':'' ?>>Đang đóng gói</option>
-                                            <option value="3"<?=($order['id_status'] == 3)?'selected':'' ?>>Đang giao hàng</option>
-                                            <option value="4"<?=($order['id_status'] == 4)?'selected':'' ?>>Đã giao hàng</option>
-                                            <option value="5"<?=($order['id_status'] == 5)?'selected':'' ?>>Đã hủy</option>
+                                            <?php
+                                            $getAllStatusOrder = getAllStatusOrder();
+                                            foreach ($getAllStatusOrder as $value):
+                                                extract($value);
+                                            ?>
+                                            <option value="<?= $id ?>"<?= ($order['id_status'] == $id) ? 'selected' : '' ?> ><?= $name ?></option>
+                                            <?php 
+                                                endforeach;
+                                            ?>
                                         </select>
                                     </div>
                                 </div>
@@ -47,7 +49,7 @@
                                     <div class="col-12 mb-4 d-flex align-items-center">
                                         <div class="form-outline datepicker w-100">
                                             <label for="address" class="form-label">Địa chỉ</label>
-                                            <input readonly type="text" name="address" class="form-control form-control-sm" value="<?=$order['address'] ?>" placeholder="" id="address" />
+                                            <input readonly type="text" name="address" class="form-control form-control-sm" value="<?= $order['address'] ?>" placeholder="" id="address" />
                                         </div>
                                     </div>
                                 </div>
@@ -55,14 +57,14 @@
                                     <div class="col-12 mb-4 d-flex align-items-center">
                                         <div class="form-outline datepicker w-100">
                                             <label for="notet" class="form-label">Ghi chú</label>
-                                            <textarea readonly name="notes" cols="30" rows="3" class="form-control form-control-sm" ><?=$order['notes'] ?></textarea>
+                                            <textarea readonly name="notes" cols="30" rows="3" class="form-control form-control-sm"><?= $order['notes'] ?></textarea>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="button">
-                                <input type="hidden" name="id_order" id="" value="<?php echo $order['id_order'] ?>">
+                                    <input type="hidden" name="id_order" id="" value="<?php echo $order['id_order'] ?>">
                                     <a href="index.php?action=orders">
-                                    
+
                                         <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Hủy</button>
                                     </a>
                                     <input type="submit" name="btn_edit" class="btn" style="background-color: #17c1e8;" value="Xác nhận">

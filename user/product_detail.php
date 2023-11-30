@@ -41,9 +41,9 @@
                             ?>
                         </div>
                         <div class="qty">
-                            <div class="q-inner">
+                            <div class="q-inner" style="width: 100px;">
                                 <button class="btn-minute" type="button" disabled>-</button>
-                                <span name="number" class="number">1</span>
+                                <span name="number" class="number" style="display: flex; align-items: center; justify-content: center">1</span>
                                 <input type="hidden" name="quantity" id="quantityPro">
                                 <button class="btn-plus" type="button">+</button>
                             </div>
@@ -51,16 +51,26 @@
                                 <input type="submit" name="addtocart" value="Thêm vào giỏ hàng" class="add-pro"></a>
                             </div>
                         </div>
+                        <div class="error mt-3 text-danger">
+                            <?php 
+                                if (isset($_SESSION['error'])) {
+                                    foreach ($_SESSION['error'] as $item) {
+                                        echo $item;
+                                    }
+                                }else {
+                                    echo "";
+                                }
+                            ?>
+                        </div>
                     </div>
                 </div>
                 <?php
-                $list_comments = load_all_comment_product($id)
                 ?> 
                 <div class="comment"> 
                     <h4>Bình luận</h4>
                     <hr>
                     <div class="user-comment">
-                        <?php
+                        <?php 
                         foreach ($list_comments as $comment) {
                             extract($comment);
                         ?>

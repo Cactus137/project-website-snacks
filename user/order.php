@@ -56,14 +56,11 @@
             <?php
             $total_amount = 0;
             $price_product = 0;
-            $discount_product = 0;
-            $fee = 50000;
+            $fee = 50000; 
             foreach ($getOrdersByAccount as $order) :
-                $getOrderDetailByAccount = getOrderDetailByAccount($order['id_order'], $_SESSION['user']['id']);
+                $getOrderDetailByAccount = getOrderDetailByAccount($order['id'], $_SESSION['user']['id']);
                 extract($order);
-                $price_product += ($price + $quantity);
-                $discount_product = ($discount / 100) * $price_product;
-                $total_amount += $total_amount;
+                $price_product += ($price * $quantity); 
             ?>
                 <div class="row shadow p-3 mb-5" style="border-radius: 12px;">
                     <div class="d-flex justify-content-between mt-1">
@@ -80,7 +77,10 @@
                                         <div class="quantity">x<?= $quantity; ?> </div>
                                     </div>
                                 </div>
-                            <?php endforeach; ?>
+                            <?php endforeach;
+                            $discount_product = ($discount / 100) * $price_product;
+                            $total_amount = $price_product + $fee - $discount_product;
+                            ?>
                         </div>
                         <div class="col-1 d-flex justity-content-center align-items-center">
                             <div class="border-end h-100 ms-5" style="width: 2px;"></div>

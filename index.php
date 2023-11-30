@@ -255,16 +255,20 @@ session_start();
                         include 'user/pay.php';
                         break;
                     case 'add_to_card':
-                        if ($_SERVER['REQUEST_METHOD'] == 'POST') { 
-                            $id_account = $_SESSION['user']['id'];
-                            $quantity = $_POST['quantity'];
+                        if (isset($_POST['addtocart'])) {
                             $id_product = $_POST['id_product'];
-                            $id_size = $_POST['exp'];
-                            $id_size = $id_size[0]; 
-                            $id_product_variants = getIdProductVariants($id_product, $id_size)['id'];
-                            echo 
-                            addToCard($id_account, $id_product_variants, $quantity);
-                            echo "<script>window.location.href = '?act=cart';</script>";
+                            if (!isset($_POST['exp'])) {
+                                $_SESSION['error']['size'] = "Vui lòng chọn size sản phẩm!";
+                                echo "<script>window.location.href = '?act=product_detail&id=$id_product';</script>";
+                            } else {
+                                $id_account = $_SESSION['user']['id'];
+                                $quantity = $_POST['quantity'];
+                                $id_size = $_POST['exp'];
+                                $id_size = $id_size[0];
+                                $id_product_variants = getIdProductVariants($id_product, $id_size)['id'];
+                                addToCard($id_account, $id_product_variants, $quantity);
+                                echo "<script>window.location.href = '?act=cart';</script>";
+                            }
                         }
                         break;
                     case 'delcart':
@@ -285,9 +289,11 @@ session_start();
                         include 'user/products_list_search.php';
                         break;
                     case 'product_detail':
+                        
                         if (isset($_GET['id']) && ($_GET['id'] > 0)) {
                             $id = $_GET['id'];
                             $one_product =  load_one_product($id);
+                            $list_comments = load_all_comment_product($id);
                             extract($one_product);
                             $id_category = $one_product[0]['id_category'];
                             $top4_product_similar = top4_similar($id_category);
@@ -296,6 +302,8 @@ session_start();
                         break;
                     case 'comment_user':
                         if (isset($_POST['send']) && ($_POST['send'])) {
+                            echo "ofda";
+                            die;
                             $content = $_POST['content'];
                             $id_product = $_POST['id_product'];
                             $id_account = $_SESSION['user']['id'];

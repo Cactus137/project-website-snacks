@@ -237,7 +237,7 @@ function addOrderDetail($id_order, $id_product_variants, $quantity, $total_amoun
             $sql = "INSERT INTO order_details(id_order, id_product_variants, quantity, total_amount, notes) VALUES ($id_order, $id_product_variants, $quantity, $total_amount, '$notes');";
         }else {
             $sql = "INSERT INTO order_details(id_order, id_product_variants, quantity, total_amount, discount, notes) VALUES ($id_order, $id_product_variants, $quantity, $total_amount, $discount, '$notes');";
-        }   
+        }    
         return pdo_execute($sql);
     } catch (Exception $e) {
         echo $e->getMessage();

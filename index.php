@@ -197,7 +197,7 @@ session_start();
                                     $discount = 0;
                                     $id_code_discount = null;
                                 }
-                            }else {
+                            } else {
                                 $discount = 0;
                                 $id_code_discount = null;
                             }
@@ -217,9 +217,14 @@ session_start();
                         } else {
                             $discount = 0;
                             $id_code_discount = null;
-                        } 
+                        }
                         if (isset($_POST['submit_order'])) {
                             $notes = $_POST['notes'];
+                            if (isset($_POST['id_code_discount']) && ($_POST['id_code_discount'] != '')) {
+                                $id_code_discount = $_POST['id_code_discount'];
+                            } else {
+                                $id_code_discount = null;
+                            }
                             // Kiểm tra có nhập đủ thông tin không
                             // Kiểm tra có thay đổi thông tin không (nếu có thì cập nhật lại thông tin)
 
@@ -233,34 +238,31 @@ session_start();
                             $order_date = $date_now->format('Y-m-d');
                             $id_status = 0;
                             $id_account = $_SESSION['user']['id'];
-                            // Add order   ngày, status, id_account
+                            // Add order 
                             addOrder($id_account, $id_status, $order_date);
                             $id_order = getLastIdOrder()['id'];
-                            // Add order_detail id_order, id_product_variants, số lượng, giảm giá, tổng giá, notes.\
-                            if (isset($_POST['id_code_discount']) && ($_POST['id_code_discount'] != '')) {
-                                $id_code_discount = $_POST['id_code_discount'];
-                            } else {
-                                $id_code_discount = null;
-                            } 
+                            // Add order_detail 
                             foreach ($load_card as $card) {
                                 extract($card);
                                 $total_amount = $price * $quantity;
-                                $id_product_variants = $id_product_variants; 
+                                $id_product_variants = $id_product_variants;
                                 addOrderDetail($id_order, $id_product_variants, $quantity, $total_amount, $id_code_discount, $notes);
                                 updateQuantityProductVariants($id_product_variants, $quantity);
+                                delCart($_SESSION['user']['id'], "all");
                             }
                             echo "<script>window.location.href = '?act=order';</script>";
                         }
                         include 'user/pay.php';
                         break;
                     case 'add_to_card':
-                        if (isset($_POST['addtocart'])) {
+                        if ($_SERVER['REQUEST_METHOD'] == 'POST') { 
                             $id_account = $_SESSION['user']['id'];
                             $quantity = $_POST['quantity'];
                             $id_product = $_POST['id_product'];
                             $id_size = $_POST['exp'];
-                            $id_size = $id_size[0];
+                            $id_size = $id_size[0]; 
                             $id_product_variants = getIdProductVariants($id_product, $id_size)['id'];
+                            echo 
                             addToCard($id_account, $id_product_variants, $quantity);
                             echo "<script>window.location.href = '?act=cart';</script>";
                         }
@@ -287,17 +289,11 @@ session_start();
                             $id = $_GET['id'];
                             $one_product =  load_one_product($id);
                             extract($one_product);
-                            $list_comments = load_all_comment_product($id);
-                            $count_comments = count_comments($id);
                             $id_category = $one_product[0]['id_category'];
                             $top4_product_similar = top4_similar($id_category);
-                        } else {
-                            include './user/home.php';
                         }
-
                         include 'user/product_detail.php';
                         break;
-
                     case 'comment_user':
                         if (isset($_POST['send']) && ($_POST['send'])) {
                             $content = $_POST['content'];
@@ -322,7 +318,7 @@ session_start();
                             $id_status = null;
                             if (isset($_GET['status'])) {
                                 $id_status = $_GET['status'];
-                            } 
+                            }
                             $getOrdersByAccount = getOrdersByAccount($_SESSION['user']['id'], $id_status);
                             include 'user/order.php';
                         } else {
@@ -331,7 +327,7 @@ session_start();
                         break;
                     case 'cancel_order':
                         $id_order = $_GET['id_order'];
-                        cancelOrder($id_order); 
+                        cancelOrder($id_order);
                         echo "<script>window.location.href = '?act=order';</script>";
                         break;
                     case 'profile':

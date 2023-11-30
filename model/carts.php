@@ -32,7 +32,7 @@ function addToCard($id_account, $id_product_variants, $quantity)
         } else {
             $sql = "INSERT INTO cart (id_account, id_product_variants, quantity)
             VALUES ('$id_account', '$id_product_variants', '$quantity');";
-        } 
+        }
         return pdo_execute($sql);
     } catch (Exception $e) {
         echo $e->getMessage();
@@ -80,9 +80,14 @@ function getIdProductVariants($id_product, $id_size)
     }
 }
 
-function delCart($id_account, $id_cart) {
+function delCart($id_account, $id_cart)
+{
     try {
-        $sql = "DELETE FROM cart WHERE id_account = $id_account AND id = $id_cart";
+        if ($id_cart == "all") {
+            $sql = "DELETE FROM cart WHERE id_account = $id_account";
+        }else {
+            $sql = "DELETE FROM cart WHERE id_account = $id_account AND id = $id_cart";
+        }
         pdo_execute($sql);
     } catch (Exception $e) {
         echo $e->getMessage();

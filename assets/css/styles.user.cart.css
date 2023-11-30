@@ -16,6 +16,7 @@ h4 {
 
 .viewcart {
   margin-bottom: 50px;
+  justify-content: space-between;
 }
 
 .main .viewcart {
@@ -26,7 +27,7 @@ h4 {
   border-radius: 10px;
   margin-bottom: 30px;
   display: flex;
-  height: 250px;
+  height: 210px;
   justify-content: space-between;
 }
 .field-note {

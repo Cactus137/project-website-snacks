@@ -22,7 +22,6 @@
                 $total_price = 0;
                 $id_code_discount = $id_code_discount;
                 $discount = $discount;
-                $fee = 50000;
                 foreach ($load_card as $card) :
                     extract($card);
                     $total_price += $price * $quantity;
@@ -72,13 +71,7 @@
                         <div class="pr-price">
                             <?= number_format($total_price) ?>đ
                         </div>
-                    </li>
-                    <li>
-                        <div class="pr-name">Phí vận chuyển</div>
-                        <div class="pr-price">
-                            <?= number_format($fee); ?>đ
-                        </div>
-                    </li>
+                    </li> 
                     <li>
                         <div class="pr-name">Giảm giá</div>
                         <div class="pr-price">
@@ -89,7 +82,7 @@
                     <li style="font-weight: bold;">
                         <div class="pr-name">Tổng thanh toán</div>
                         <div class="pr-price">
-                            <?php $total_amount = ($total_price + $fee) - $discount_price;
+                            <?php $total_amount = $total_price - $discount_price;
                             echo number_format($total_amount) ?>đ
                         </div>
                     </li>

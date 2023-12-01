@@ -222,18 +222,14 @@ session_start();
                             $notes = $_POST['notes'];
                             if (isset($_POST['id_code_discount']) && ($_POST['id_code_discount'] != '')) {
                                 $id_code_discount = $_POST['id_code_discount'];
+                                $discount = checkDiscountCode($id_code_discount)['discount'];
                             } else {
                                 $id_code_discount = null;
                             }
-                            // Kiểm tra có nhập đủ thông tin không
-                            // Kiểm tra có thay đổi thông tin không (nếu có thì cập nhật lại thông tin)
-
                             $date = new DateTime();
                             date_default_timezone_set('Asia/Ho_Chi_Minh');
-
                             // Tạo một đối tượng DateTime
                             $date_now = new DateTime();
-
                             // Lấy ra ngày tháng năm ở định dạng Y-m-d
                             $order_date = $date_now->format('Y-m-d');
                             $id_status = 0;
@@ -244,12 +240,15 @@ session_start();
                             // Add order_detail 
                             foreach ($load_card as $card) {
                                 extract($card);
-                                $total_amount = $price * $quantity;
+                                $temp_price = $price * $quantity;
+                                $discount = $discount / 100 * $temp_price;
+                                $total_amount = $temp_price - $discount;
                                 $id_product_variants = $id_product_variants;
                                 addOrderDetail($id_order, $id_product_variants, $quantity, $total_amount, $id_code_discount, $notes);
                                 updateQuantityProductVariants($id_product_variants, $quantity);
-                                delCart($_SESSION['user']['id'], "all");
+                                $discount = 0;
                             }
+                            delCart($_SESSION['user']['id'], "all");
                             echo "<script>window.location.href = '?act=order';</script>";
                         }
                         include 'user/pay.php';
@@ -301,9 +300,7 @@ session_start();
                         include 'user/product_detail.php';
                         break;
                     case 'comment_user':
-                        if (isset($_POST['send']) && ($_POST['send'])) {
-                            echo "ofda";
-                            die;
+                        if (isset($_POST['send']) && ($_POST['send'])) { 
                             $content = $_POST['content'];
                             $id_product = $_POST['id_product'];
                             $id_account = $_SESSION['user']['id'];

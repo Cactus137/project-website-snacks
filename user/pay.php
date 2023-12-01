@@ -40,8 +40,7 @@
             </tr>
             <?php
             $total_price = 0;
-            $discount = $discount;
-            $fee = 50000;
+            $discount = $discount; 
             $temp_price = 0;
             foreach ($load_card as $card) {
               extract($card);
@@ -67,29 +66,24 @@
                 </td>
               </tr>
             <?php }
-            $total_amount = $total_price + $fee - $discount;
+            $total_amount = $total_price - $discount;
             ?>
           </table>
         </div>
         <div class="right-bottom">
           <div class="order-detail">
             <table>
-              <tr>
+              <tr style="height: 26px;">
                 <th scope="row">Tạm tính</th>
                 <td><?= number_format($total_price); ?>đ</td>
-              </tr>
-              <tr>
-                <th scope="row">Phí vận chuyển</th>
-                <td><?= number_format($fee); ?>đ</td>
-              </tr>
-              <tr>
+              </tr> 
+              <tr style="height: 26px;">
                 <th scope="row">Giảm giá</th>
                 <td><?= number_format($discount); ?>đ</td>
               </tr>
-              <tr>
+              <tr style="height: 26px;">
                 <th scope="row">Tổng thanh toán</th>
-                <td><?= number_format($total_amount); ?>đ</td>
-                <input type="hidden" name="total_amount" value="<?= $total_amount ?>">
+                <td><?= number_format($total_amount); ?>đ</td> 
               </tr>
             </table>
           </div>
@@ -102,4 +96,10 @@
       <input type="submit" name="submit_order" value="Xác nhận mua hàng" class="right-confirm">
     </div>
   </form>
+  <?php
+  if (isset($_SESSION['error'])) {
+    echo "<script>alert('" . $_SESSION['error'] . "')</script>";
+    unset($_SESSION['error']);
+  }
+  ?>
 </main>

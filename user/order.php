@@ -54,32 +54,37 @@
         </div>
         <div>
             <?php
-            $total_amount = 0;
-            $price_product = 0;
-            $fee = 50000; 
             foreach ($getOrdersByAccount as $order) :
-                $getOrderDetailByAccount = getOrderDetailByAccount($order['id'], $_SESSION['user']['id']);
-                extract($order);
-                $price_product += ($price * $quantity); 
+                $getOrderDetailByAccount = getOrderDetailByAccount($order['id_order']);
             ?>
                 <div class="row shadow p-3 mb-5" style="border-radius: 12px;">
                     <div class="d-flex justify-content-between mt-1">
                         <div class="col-6 p-0">
-                            <?php foreach ($getOrderDetailByAccount as $orderDetail) :
-                                extract($orderDetail);
+                            <?php
+                            $price_product = 0;
+                            $total_amount = 0;
+                            $discount_product = 0;
+                            foreach ($getOrderDetailByAccount as $orderDetail) :
+                                extract($orderDetail);  
+                                if (is_null($discount)) {
+                                    $discount_product = 0;
+                                } else {
+                                    $discount_product = checkDiscountCode($discount)['discount'];
+                                }
+                                $price_product += ($price * $quantity); 
                             ?>
                                 <div class="d-flex pb-3">
-                                    <div class="col-3">
+                                    <div class="col-5">
                                         <img src="<?= 'assets/img/products/' . $image_product ?>" alt="" style="height: 100px">
                                     </div>
-                                    <div class="col-9 ms-2 mt-4">
+                                    <div class="col-8 ms-2 mt-4">
                                         <div class="name pb-2 pt-0"><?= $name_product; ?> - Size: <?= $name_size ?></div>
                                         <div class="quantity">x<?= $quantity; ?> </div>
                                     </div>
                                 </div>
                             <?php endforeach;
-                            $discount_product = ($discount / 100) * $price_product;
-                            $total_amount = $price_product + $fee - $discount_product;
+                            $discount_product = $discount_product / 100 * $price_product;
+                            $total_amount = $price_product - $discount_product;
                             ?>
                         </div>
                         <div class="col-1 d-flex justity-content-center align-items-center">
@@ -91,11 +96,7 @@
                                     <div class="row d-flex justify-content-between">
                                         <div class="price_temp col text-start">Tổng tiền hàng</div>
                                         <div class="price_temp col text-end"><?= number_format($price_product); ?> VND</div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="price_temp col text-start">Phí vận chuyển</div>
-                                        <div class="price_temp col text-end"><?= number_format($fee); ?> VND</div>
-                                    </div>
+                                    </div> 
                                     <div class="row">
                                         <div class="price_temp col text-start">Giảm giá</div>
                                         <div class="price_temp col text-end"><?= number_format($discount_product); ?> VND</div>

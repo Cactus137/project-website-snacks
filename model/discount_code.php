@@ -33,3 +33,13 @@ function checkCodeDiscount($code)
     $code = pdo_query_one($sql);
     return $code;
 }
+
+function checkDiscountCode($id)
+{
+    try {
+        $sql = "SELECT * FROM discount_codes WHERE id = $id;";
+        return pdo_query_one($sql);
+    } catch (Exception $e) {
+        echo $e->getMessage();
+    }
+}

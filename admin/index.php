@@ -353,7 +353,12 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['id_role'] != 0) {
 
                                 if (isset($_GET['id']) && ($_GET['id'] > 0)) {
                                     $id = $_GET['id'];
-                                    $order_details = loadone_order_details($id);
+                                    $order_details = loadone_order_details($id); 
+                                    if (is_null($order_details[0]['discount'])) {
+                                        $discount_product = 0;
+                                    } else {
+                                        $discount_product = checkDiscountCode($order_details[0]['discount'])['discount'];
+                                    }
                                 }
 
                                 include 'tables/orders/order_variants.php';

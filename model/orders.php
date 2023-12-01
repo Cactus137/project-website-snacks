@@ -47,6 +47,7 @@ function loadone_order_details($id)
    	s.name AS name_size,
     od.quantity,
     od.total_amount,
+    a.avatar,
     a.username,
     a.fullname,
     a.email,
@@ -55,7 +56,7 @@ function loadone_order_details($id)
     od.notes,
     o.order_date,
     pv.price,
-    dc.discount
+    od.discount
     
     FROM orders o 
     JOIN order_details od ON o.id = od.id_order
@@ -63,8 +64,7 @@ function loadone_order_details($id)
     JOIN products p ON p.id = pv.id_product
     JOIN accounts a ON a.id = o.id_account
     JOIN order_status os ON o.id_status = os.id 
-    JOIN sizes s ON s.id = pv.id_size
-    JOIN discount_codes dc ON dc.id = od.discount
+    JOIN sizes s ON s.id = pv.id_size 
     where o.id = '$id'";
     $order_details = pdo_query($sql);
     return $order_details;
@@ -126,30 +126,36 @@ function fitterOrder($status = null)
     }
 }
 
-function getOrdersByAccount($id_account, $id_status = null)
+function getOrdersByAccount($id_account, $id_status)
 {
     try {
-        $sql = "SELECT * 
-    FROM orders
-        WHERE id_account = $id_account";
+        $sql = "SELECT 
+        o.id AS id_order 
+    FROM orders o  
+        WHERE o.id_account = $id_account";
         if ($id_status != null) {
-            $sql .= " AND id_status = $id_status";
-        }
+            $sql .= " AND o.id_status = $id_status";
+        } 
         return pdo_query($sql);
     } catch (Exception $e) {
         echo $e->getMessage();
     }
 }
 
-function getOrderDetailByAccount($id_order, $id_account)
+function getOrderDetailByAccount($id_order)
 {
     try {
         $sql = "SELECT  
+        o.id AS id_order,
         p.image AS image_product,
         p.name AS name_product,
         s.name AS name_size,
+        od.quantity AS quantity, 
         pv.price AS price,
-        od.quantity AS quantity 
+        od.total_amount AS total_amount, 
+        od.discount AS discount,
+        os.name AS name_status,
+        os.id AS id_status
     FROM orders o 
     JOIN order_details od ON o.id = od.id_order
     JOIN product_variants pv ON od.id_product_variants = pv.id
@@ -158,8 +164,8 @@ function getOrderDetailByAccount($id_order, $id_account)
     JOIN sizes s ON s.id = pv.id_size
     JOIN accounts a ON a.id = o.id_account
     JOIN order_status os ON o.id_status = os.id
-    JOIN discount_codes dc ON dc.id = od.discount
-    WHERE o.id = $id_order AND o.id_account = $id_account 
+    -- JOIN discount_codes dc ON dc.id = od.discount
+    WHERE o.id = $id_order 
     ORDER BY o.order_date ASC;";
         return pdo_query($sql);
     } catch (Exception $e) {
@@ -228,3 +234,4 @@ function addOrderDetail($id_order, $id_product_variants, $quantity, $total_amoun
         echo $e->getMessage();
     }
 }
+

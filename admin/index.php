@@ -372,7 +372,11 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['id_role'] != 0) {
                                 if (isset($_POST['btn_edit']) && ($_POST['btn_edit'])) {
                                     $id_order = $_POST['id_order'];
                                     $id_status = $_POST['id_status'];
-                                    order_update($id_order, $id_status);
+                                    if ($id_status == 5) {
+                                        cancelOrder($id_order);
+                                    }else {
+                                        order_update($id_order, $id_status);
+                                    }
                                     echo "<script>window.location.href = '?action=orders';</script>";
                                 }
                                 $listorder = getAll_order();

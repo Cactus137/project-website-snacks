@@ -34,7 +34,7 @@
                      <p class="text-sm font-weight-bold mb-0"><?= $quantity ?></p>
                    </td>
                    <td class="text-center p-1">
-                     <p class="text-sm font-weight-bold mb-0"><?= number_format($price * $quantity) ?> VNĐ</p>
+                     <p class="text-sm font-weight-bold mb-0"><?= number_format($price * $quantity) ?> VND</p>
                    </td>
                  </tr>
                <?php endforeach; ?>
@@ -109,13 +109,13 @@
                <tr>
                  <th class="text-secondary text-xxs font-weight-bolder opacity-7">Tạm tính</th>
                  <td>
-                   <p class="text-sm font-weight-bold mb-0 text-end"><?= number_format($temp_price); ?> VNĐ</p>
+                   <p class="text-sm font-weight-bold mb-0 text-end"><?= number_format($temp_price); ?> VND</p>
                  </td>
                </tr> 
                <tr>
                  <th class="text-secondary text-xxs font-weight-bolder opacity-7">Giảm giá</th>
                  <td>
-                   <p class="text-sm font-weight-bold mb-0 text-end"><?= number_format($temp_price * ($discount_product / 100)) ?> VNĐ</p>
+                   <p class="text-sm font-weight-bold mb-0 text-end"><?= number_format($temp_price * ($discount_product / 100)) ?> VND</p>
                  </td>
                </tr>
              </tbody>
@@ -128,7 +128,7 @@
                <tr>
                  <th class="text-secondary text-xxs font-weight-bolder opacity-7">Tổng thanh toán</th>
                  <td>
-                   <p class="text-sm font-weight-bold mb-0 text-end"><?= number_format($temp_price - ($temp_price * ($discount_product / 100))) ?> VNĐ</p>
+                   <p class="text-sm font-weight-bold mb-0 text-end"><?= number_format($temp_price - ($temp_price * ($discount_product / 100))) ?> VND</p>
                  </td>
                </tr>
            </table>

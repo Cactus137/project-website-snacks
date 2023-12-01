@@ -38,7 +38,7 @@
                                             foreach ($getAllStatusOrder as $value):
                                                 extract($value);
                                             ?>
-                                            <option value="<?= $id ?>"<?= ($order['id_status'] == $id) ? 'selected' : '' ?> ><?= $name ?></option>
+                                            <option value="<?= $id ?>"<?= ($order['id_status'] == $id) ? 'selected' : '' ?>><?= $name ?></option>
                                             <?php 
                                                 endforeach;
                                             ?>

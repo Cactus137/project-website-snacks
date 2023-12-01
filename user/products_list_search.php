@@ -20,7 +20,7 @@
                                 <a href="?act=product_detail&id=<?php echo $id_product ?>">
                                     <h4 class="mb-10"><?php echo $name ?></h4>
                                 </a>
-                                <p><?php echo number_format($price) ?>đ</p>
+                                <p><?php echo number_format($price) ?>VND</p>
                             </div>
                         </div>
                 <?php

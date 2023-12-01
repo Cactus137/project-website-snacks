@@ -36,7 +36,7 @@
                                     <h4><?= $name_product ?></h4>
                                     <p style="margin: 0;" class="size">Size: <?= $name_size ?></p>
                                     <p style="margin: 0;" class="quantity">x <?= $quantity ?></p>
-                                    <p style="margin: 0;" class="price"><?= number_format($price) . " VNĐ" ?></p>
+                                    <p style="margin: 0;" class="price"><?= number_format($price) . " VND" ?></p>
                                 </div>
                             </div>
                             <div class="qty">
@@ -69,21 +69,21 @@
                     <li>
                         <div class="pr-name">Tổng đơn hàng</div>
                         <div class="pr-price">
-                            <?= number_format($total_price) ?>đ
+                            <?= number_format($total_price) ?>VND
                         </div>
                     </li> 
                     <li>
                         <div class="pr-name">Giảm giá</div>
                         <div class="pr-price">
                             <?php $discount_price = (($discount / 100) * $total_price);
-                            echo number_format($discount_price) ?>đ
+                            echo number_format($discount_price) ?>VND
                         </div>
                     </li>
                     <li style="font-weight: bold;">
                         <div class="pr-name">Tổng thanh toán</div>
                         <div class="pr-price">
                             <?php $total_amount = $total_price - $discount_price;
-                            echo number_format($total_amount) ?>đ
+                            echo number_format($total_amount) ?>VND
                         </div>
                     </li>
                 </ul>

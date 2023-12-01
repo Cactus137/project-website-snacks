@@ -40,7 +40,7 @@ main .category-item a {
 main .category-item h6 {
   margin-top: 10px;
   font-weight: 600;
-  font-size: 18px;
+  font-size: 14px;
   width: 100px;
 }
 
@@ -48,19 +48,17 @@ main .category-item a:hover {
   color: #ffc501;
   transition: 0.3s;
 }
- 
+
 main .section-product {
   margin-top: 16px;
   padding: 20px;
 }
- 
 
 main .title-category {
   margin: 0 0 20px 0;
 }
 
-main .title-category h2 {
-  font-size: 30px;
+main .title-category h3 {
   display: inline;
   text-transform: uppercase;
 }
@@ -75,15 +73,17 @@ main .list-products {
 
 main .item-product {
   width: 275px;
-  height: 356px;
+  height: 330px;
   padding: 10px;
   text-align: center;
   background-color: #fff7efc0;
   border-radius: 10px;
+  display: grid;
+  grid-template-rows: 1fr 50px;
 }
 
 main .item-product img {
-  height: 190px;
+  height: 140px;
   object-fit: cover;
 }
 
@@ -92,14 +92,50 @@ main .item-product a {
   color: black;
 }
 
-main .item-product p {
+main .item-product p.content {
+  font-weight: bold;
+  font-size: 16px;
+  color: #000000;
+}
+
+main .item-product p.content:hover {
+  color: #ffc501 !important;
+  transition: 0.3s;
+}
+
+main .item-product p.sub-content {
   font-weight: 600;
-  font-size: 18px;
-  color: #ffc501;
+  font-size: 14px;
+  color: #7c7c7c;
+  margin-top: 15px;
+  width: 250px;
+  overflow: hidden;
+  position: relative;
+  line-height: 1.2em; /* Đặt line-height tùy thuộc vào kích thước phông chữ */
+  max-height: 2.4em; /* 2 dòng x line-height */
 } 
 
+main .item-product p.price-box {
+  font-weight: bold;
+  font-size: 18px;
+  color: #c31c1c;
+}
+
 main .item-product a:hover {
-  text-decoration: underline;
+  /* text-decoration: underline; */
+  color: #ffc501 !important;
 }
 
 /* END MAIN */
+#scrollToTopBtn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: block;
+  background-color: #ffc501;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  cursor: pointer;
+}

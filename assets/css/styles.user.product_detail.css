@@ -60,7 +60,7 @@ h4 {
 .main .product-detail {
   padding-top: 50px;
 }
-.content {
+.product .content {
   padding-right: 120px;
 }
 .file-content {
@@ -91,7 +91,7 @@ h4 {
   padding-top: 20px;
 }
 
-.add-comment h4{
+.add-comment h4 {
   color: red;
 }
 
@@ -117,37 +117,16 @@ h4 {
   display: flex;
   justify-content: space-between;
 } 
-.related {
-  width: 297px;
-  border-radius: 10px;
-  background-color: #f9f6f1;
-  border: 1px solid #f9f6f1;
-  margin-bottom: 50px;
-}
-.relad-img {
-  display: flex;
-  justify-content: center;
-}
 .user-comment {
   width: 100%;
   padding-top: 10px;
 }
-.rel-img {
-  margin-top: 20px;
-  margin-bottom: 20px;
-  width: 220px;
-  height: 220px;
-  border-radius: 12px;
-}
 .title-product {
-  padding-top: 20px; 
+  padding-top: 20px;
   font-weight: bold;
   font-size: 20px;
-}
-.text-relad p {
-  padding-top: 5px;
-  text-align: center;
-}
+} 
+
 input[type="radio"] {
   visibility: hidden;
   display: flex;
@@ -244,10 +223,59 @@ input:checked + label {
   border: 1px solid #ffc501;
   border-radius: 10px;
 }
- 
-.prices {
+
+.item-product {
+  width: 275px;
+  height: 330px;
+  padding: 10px;
+  text-align: center;
+  background-color: #fff7efc0;
+  border-radius: 10px;
+  display: grid;
+  grid-template-rows: 1fr 50px;
+  margin-bottom: 50px;
+}
+
+.item-product img {
+  height: 140px;
+  object-fit: cover;
+}
+
+.item-product a {
+  text-decoration: none;
+  color: black;
+}
+
+.item-product p.content {
+  font-weight: bold;
+  font-size: 16px;
+  color: #000000;
+}
+
+.item-product p.content:hover {
+  color: #ffc501 !important;
+  transition: 0.3s;
+}
+
+.item-product p.sub-content {
+  font-weight: 600;
+  font-size: 14px;
+  color: #7c7c7c;
+  margin-top: 15px;
+  width: 250px;
+  overflow: hidden;
+  position: relative;
+  line-height: 1.2em; /* Đặt line-height tùy thuộc vào kích thước phông chữ */
+  max-height: 2.4em; /* 2 dòng x line-height */
+} 
+
+.item-product p.price-box {
+  font-weight: bold;
   font-size: 18px;
-  padding-top: 25px;
-  color: #ffc501;
-  font-weight: bold; 
+  color: #c31c1c;
+}
+
+.item-product a:hover {
+  /* text-decoration: underline; */
+  color: #ffc501 !important;
 }

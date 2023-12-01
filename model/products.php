@@ -97,7 +97,7 @@ function delete_product_variants($id, $id_size)
 function list_products($id_category)
 {
     $sql = "SELECT products.id AS id_product, products.name AS name_product,
-    products.image AS image_product, product_variants.price 
+    products.image AS image_product, product_variants.price, products.description
     FROM products
     INNER JOIN categories ON categories.id = products.id_category
     INNER JOIN product_variants ON products.id = product_variants.id_product
@@ -108,7 +108,8 @@ function list_products($id_category)
 
 function top4_similar($id_category)
 {
-    $sql = "SELECT * FROM products
+    $sql = "SELECT products.id AS id_product, products.name AS name_product,
+    products.image AS image_product, product_variants.price, products.description FROM products
     INNER JOIN product_variants ON product_variants.id_product = products.id
     WHERE  products.id_category = $id_category AND product_variants.id_size = 1  ORDER BY products.id DESC LIMIT 4";
     $top4_product_similar = pdo_query($sql);

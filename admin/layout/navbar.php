@@ -16,7 +16,7 @@
                 <li class="nav-item dropdown mx-3">
                     <a class="nav-link dropdown-toggle" href="#" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
                         <span class="mr-2 d-none d-lg-inline text-gray-600 small pe-2">Le Van Thanh</span>
-                        <img class="img-profile rounded-circle" src="assets/img/team-2.jpg" width="30px">
+                        <img class="img-profile rounded-circle" src="<?= '../assets/img/accounts/' . $_SESSION['user']['avatar']?>" height="30px" width="30px">
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
                         <li>

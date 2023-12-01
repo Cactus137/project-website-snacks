@@ -293,6 +293,7 @@ session_start();
                             $id = $_GET['id'];
                             $one_product =  load_one_product($id);
                             $list_comments = load_all_comment_product($id);
+                            $count_comments = count_comments($id);
                             extract($one_product);
                             $id_category = $one_product[0]['id_category'];
                             $top4_product_similar = top4_similar($id_category);
@@ -300,22 +301,23 @@ session_start();
                         include 'user/product_detail.php';
                         break;
                     case 'comment_user':
-                        if (isset($_POST['send']) && ($_POST['send'])) { 
+                        if (isset($_POST['send']) && ($_POST['send'])) {
                             $content = $_POST['content'];
                             $id_product = $_POST['id_product'];
-                            $id_account = $_SESSION['user']['id'];
-                            $comment_date = date('Y/m/d');
+                            $id_account = $_SESSION['user']['id']; 
 
-                            insert_comment($content, $id_account, $id_product, $comment_date);
+                            $date = new DateTime();
+                            date_default_timezone_set('Asia/Ho_Chi_Minh');
+                            $date_now = new DateTime();
+                            $comment_date = $date_now->format('Y-m-d');
 
-                            $one_product =  load_one_product($id_product);
-                            extract($one_product);
-                            $list_comments = load_all_comment_product($id_product);
-                            $count_comments = count_comments($id_product);
-                            $id_category = $one_product[0]['id_category'];
-                            $top4_product_similar = top4_similar($id_category);
+                            if (empty($content)) {
+                                $_SESSION['error']['content'] = 'Bạn chưa nhập nội dung bình luận';
+                            } else { 
+                                insert_comment($content, $id_account, $id_product, $comment_date);
+                            }
+                            echo "<script>window.location.href = '?act=product_detail&id=$id_product';</script>";
                         }
-                        include 'user/product_detail.php';
                         break;
                     case 'order':
                         if (isset($_SESSION['user'])) {

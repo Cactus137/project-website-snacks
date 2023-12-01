@@ -61,7 +61,7 @@
                   <input type="hidden" name="quantity" value="">
                 </td>
                 <td class="color-price">
-                  <?= number_format($temp_price) ?>đ
+                  <?= number_format($temp_price) ?>VND
                   <input type="hidden" name="total_amount_product" value="">
                 </td>
               </tr>
@@ -75,15 +75,15 @@
             <table>
               <tr style="height: 26px;">
                 <th scope="row">Tạm tính</th>
-                <td><?= number_format($total_price); ?>đ</td>
+                <td><?= number_format($total_price); ?>VND</td>
               </tr> 
               <tr style="height: 26px;">
                 <th scope="row">Giảm giá</th>
-                <td><?= number_format($discount); ?>đ</td>
+                <td><?= number_format($discount); ?>VND</td>
               </tr>
               <tr style="height: 26px;">
                 <th scope="row">Tổng thanh toán</th>
-                <td><?= number_format($total_amount); ?>đ</td> 
+                <td><?= number_format($total_amount); ?>VND</td> 
               </tr>
             </table>
           </div>

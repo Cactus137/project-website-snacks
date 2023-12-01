@@ -8,22 +8,41 @@ $getCountOrders = count(getAllOrders());
 $year = date('Y');
 $oldYear = $year - 1;
 $getRevenuesByNewMonth = getRevenuesByMonth($year);
-
-$name_months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-
-foreach ($name_months as $index => $name_months) {
-    ${$name_months} = $getRevenuesByNewMonth[$index]['total_revenue'] ?? 0;
-    echo "<script> var " . $name_months . " = " . ${$name_months} . ";</script>";
-}
-
 $getRevenuesByOldMonth = getRevenuesByMonth($oldYear);
 
-$name_old_months = ['oldJan', 'oldFeb', 'oldMar', 'oldApr', 'oldMay', 'oldJun', 'oldJul', 'oldAug', 'oldSep', 'oldOct', 'oldNov', 'oldDec'];
-
-foreach ($name_old_months as $index => $name_old_months) {
-    ${$name_old_months} = $getRevenuesByOldMonth[$index]['total_revenue'] ?? 0;
-    echo "<script> var " . $name_old_months . " = " . ${$name_old_months} . ";</script>";
+$name_months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+$revenues_months = [];
+$revenues_old_months = [];
+for ($i = 0; $i < 12; $i++) {
+    $revenues_months[$i] = 0;
+    $revenues_old_months[$i] = 0;
 }
+
+foreach ($getRevenuesByNewMonth as $revenue) {
+    extract($revenue);
+    $order_month = $order_month;
+    $total_revenue = $total_revenue;
+    for ($i = 0; $i < 12; $i++) {
+        if ($order_month == $i + 1) {
+            $revenues_months[$i] = $total_revenue;
+        }
+    }
+}
+foreach ($getRevenuesByOldMonth as $revenue) {
+    extract($revenue);
+    $order_month = $order_month;
+    $total_revenue = $total_revenue;
+    for ($i = 0; $i < 12; $i++) {
+        if ($order_month == $i + 1) {
+            $revenues_old_months[$i] = $total_revenue;
+        }
+    }
+}
+
+echo "<script> var revenues_months = " . json_encode($revenues_months) . ";</script>";
+echo "<script> var revenues_old_months = " . json_encode($revenues_old_months) . ";</script>";
+
+
 ?>
 <div class="container-fluid py-4 pb-0">
     <div class="row">
@@ -311,7 +330,7 @@ foreach ($name_old_months as $index => $name_old_months) {
 
     <script src="./assets/js/plugins/chartjs.min.js"></script>
 
-    <script>
+    <script> 
         var ctx = document.getElementById("chart-bars").getContext("2d");
 
         new Chart(ctx, {
@@ -325,7 +344,7 @@ foreach ($name_old_months as $index => $name_old_months) {
                     borderRadius: 4,
                     borderSkipped: false,
                     backgroundColor: "#fff",
-                    data: [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec],
+                    data: revenues_months,
                     maxBarThickness: 6
                 }, ],
             },
@@ -406,7 +425,7 @@ foreach ($name_old_months as $index => $name_old_months) {
                         borderWidth: 3,
                         backgroundColor: gradientStroke1,
                         fill: true,
-                        data: [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec],
+                        data: revenues_months,
                         maxBarThickness: 6
 
                     },
@@ -419,7 +438,7 @@ foreach ($name_old_months as $index => $name_old_months) {
                         borderWidth: 3,
                         backgroundColor: gradientStroke2,
                         fill: true,
-                        data: [oldJan, oldFeb, oldMar, oldApr, oldMay, oldJun, oldJul, oldAug, oldSep, oldOct, oldNov, oldDec],
+                        data: revenues_old_months,
                         maxBarThickness: 6
                     },
                 ],
@@ -479,5 +498,5 @@ foreach ($name_old_months as $index => $name_old_months) {
                     },
                 },
             },
-        });
+        }); 
     </script>

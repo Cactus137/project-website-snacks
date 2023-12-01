@@ -14,9 +14,9 @@
       </div>
     <?php
     }
-    ?>    
+    ?>
   </div>
-  
+
   <!-- LIST PRODUCTS -->
   <div class="section-product">
     <?php
@@ -25,7 +25,7 @@
       <div class="wrap-list-products" id="<?php echo $category['name_category'] ?>">
 
         <div class="title-category">
-          <h2><?php echo $category['name_category'] ?></h2>
+          <h3><?php echo $category['name_category'] ?></h3>
         </div>
         <div class="list-products">
           <?php
@@ -34,12 +34,15 @@
             extract($product);
           ?>
             <div class="item-product">
-              <a href="?act=product_detail&id=<?php echo $id_product ?>"><img src="<?php echo 'assets/img/products/' . $image_product ?>" alt="" /></a>
               <div class="info mt-15">
+                <a href="?act=product_detail&id=<?php echo $id_product ?>"><img src="<?php echo 'assets/img/products/' . $image_product ?>" alt="" /></a>
                 <a href="?act=product_detail&id=<?php echo $id_product ?>">
-                  <p class="mb-10 text-dark"><?php echo $name_product ?></p>
+                  <p class="mb-10 content"><?php echo $name_product ?></p>
                 </a>
-                <p class="price-box"><?php echo number_format($price) ?>đ</p>
+                <p class="mb-10 sub-content"><?php echo $description ?></p>
+              </div>
+              <div class="price">
+                <p class="price-box"><?php echo number_format($price) ?> VND</p>
               </div>
             </div>
           <?php
@@ -51,4 +54,12 @@
     }
     ?>
   </div>
+  <button id="scrollToTopBtn" onclick="scrollToTop()"><i class="fa-solid fa-arrow-up"></i></button>
 </section>
+<script>
+  // When the user clicks on the button, scroll to the top of the document
+  function scrollToTop() {
+    document.body.scrollTop = 0; // For Safari
+    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE, and Opera
+  }
+</script>

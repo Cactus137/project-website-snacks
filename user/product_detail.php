@@ -11,34 +11,19 @@
                         <div class="file-content">
                             <h4><?php echo $one_product[0]['name'] ?></h4>
                             <input type="hidden" name="id_product" value="<?= $one_product[0]['id_product'] ?>">
-
-                            <p class="price"><?php
-                                                if ($one_product[2]['price'] > 0) {
-                                                    echo number_format($one_product[0]['price']) . ' VND - ' . number_format($one_product[2]['price']) . ' VND';
-                                                } else {
-                                                    echo number_format($one_product[0]['price']) . ' VND  ';
-                                                }
-                                                ?></p>
+                            <p class="price"><?php echo number_format($one_product[0]['price']) . ' VND  '; ?></p>
                             <p class="conect"><?php echo $one_product[0]['description'] ?></p>
                         </div>
                         <div class="table-size">
                             <div class="size-name">
                                 <p class="name-size">Size</p>
                             </div>
-                            <?php if ($one_product[0]['quantity'] > 0) { ?>
-                                <input type="radio" value="1" name="exp[]" id="<?php echo $one_product[0]['id_size'] ?>">
-                                <label for="1"><?php echo $one_product[0]['size'] ?></label>
-                            <?php }
-                            if ($one_product[1]['quantity'] > 0) { ?>
-                                <input type="radio" value="2" name="exp[]" id="<?php echo $one_product[1]['id_size'] ?>">
-                                <label for="2"><?php echo $one_product[1]['size'] ?></label>
-                            <?php }
-                            if ($one_product[2]['quantity'] > 0) { ?>
-                                <input type="radio" value="3" name="exp[]" id="<?php echo $one_product[2]['id_size'] ?>">
-                                <label for="3"><?php echo $one_product[2]['size'] ?></label>
-                            <?php
-                            }
-                            ?>
+                            <input type="radio" value="1" name="exp[]" id="<?php echo $one_product[0]['id_size'] ?>">
+                            <label for="1"><?php echo $one_product[0]['size'] ?></label>
+                            <input type="radio" value="2" name="exp[]" id="<?php echo $one_product[1]['id_size'] ?>">
+                            <label for="2"><?php echo $one_product[1]['size'] ?></label>
+                            <input type="radio" value="3" name="exp[]" id="<?php echo $one_product[2]['id_size'] ?>">
+                            <label for="3"><?php echo $one_product[2]['size'] ?></label>
                         </div>
                         <div class="ntf-quantity" style="margin: 25px 0 5px 0; color: #646464;">
                             <span class="quantity_product"></span>

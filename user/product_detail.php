@@ -34,7 +34,7 @@
                                 <span name="number" class="number" style="display: flex; align-items: center; justify-content: center">1</span>
                                 <input type="hidden" name="quantity" id="quantityPro">
                                 <button class="btn-plus" type="button">+</button>
-                            </div>
+                            </div> 
                             <div class="add">
                                 <input type="submit" name="addtocart" value="Thêm vào giỏ hàng" class="add-pro"></a>
                             </div>

@@ -40,6 +40,9 @@
                             }
                             ?>
                         </div>
+                        <div class="ntf-quantity" style="margin: 25px 0 5px 0; color: #646464;">
+                            <span class="quantity_product"></span>
+                        </div>
                         <div class="qty">
                             <div class="q-inner" style="width: 100px;">
                                 <button class="btn-minute" type="button" disabled>-</button>
@@ -150,10 +153,52 @@
         // Initial quantity value
         var quantity = 1;
         var quantityE;
+        var maxQuantity = 0;
+        // PRICE PRODUCT
+        var priceS = '<?= number_format($one_product[0]['price']) ?>';
+        var priceM = '<?= number_format($one_product[1]['price']) ?>';
+        var priceL = '<?= number_format($one_product[2]['price']) ?>';
+        var quantityS = '<?= $one_product[0]['quantity'] ?>';
+        var quantityM = '<?= $one_product[1]['quantity'] ?>';
+        var quantityL = '<?= $one_product[2]['quantity'] ?>';
+
+        var price = document.querySelector('.price');
+        var quantity_product = document.querySelector('.quantity_product');
+        var radioS = document.getElementById('1');
+        var radioM = document.getElementById('2');
+        var radioL = document.getElementById('3');
+        radioS.onclick = function() {
+            price.textContent = priceS + ' VND';
+            quantity_product.textContent = quantityS + ' sản phẩm có sẵn';
+            maxQuantity = quantityS;
+            if (quantityElement.textContent > quantityS) {
+                quantityElement.textContent = quantityS;
+                quantityPro.value = quantityS;
+            }
+        }
+
+        radioM.onclick = function() {
+            price.textContent = priceM + ' VND';
+            quantity_product.textContent = quantityM + ' sản phẩm có sẵn';
+            maxQuantity = quantityM;
+            if (quantityElement.textContent > quantityM) {
+                quantityElement.textContent = quantityM;
+                quantityPro.value = quantityM;
+            }
+        }
+
+        radioL.onclick = function() {
+            price.textContent = priceL + ' VND';
+            quantity_product.textContent = quantityL + ' sản phẩm có sẵn';
+            maxQuantity = quantityL;
+            if (quantityElement.textContent > quantityL) {
+                quantityElement.textContent = quantityL;
+                quantityPro.value = quantityL;
+            }
+        }
 
         // Function to update the quantity and enable/disable buttons
         function updateQuantity() {
-
             quantityElement.textContent = quantity;
             quantityPro.value = quantity;
             minusButton.disabled = (quantity === 1);
@@ -170,46 +215,13 @@
 
         // Event listener for the plus button
         plusButton.addEventListener('click', function() {
-            quantity++;
-            updateQuantity();
+            if (quantity < maxQuantity) { // Kiểm tra nếu số lượng chưa đạt đến giới hạn tối đa
+                quantity++;
+                updateQuantity();
+            }
         });
 
         // Initial update
         updateQuantity();
-
-        // PRICE PRODUCT
-        var priceS = '<?= number_format($one_product[0]['price']) ?>';
-        var priceM = '<?= number_format($one_product[1]['price']) ?>';
-        var priceL = '<?= number_format($one_product[2]['price']) ?>';
-
-        var price = document.querySelector('.price');
-
-        var radioS = document.getElementById('1');
-        var radioM = document.getElementById('2');
-        var radioL = document.getElementById('3');
-        radioS.onclick = function() {
-            price.textContent = priceS + ' VND';
-        }
-
-        radioM.onclick = function() {
-            price.textContent = priceM + ' VND';
-        }
-
-        radioL.onclick = function() {
-            price.textContent = priceL + ' VND';
-        }
     });
-
-    // var addProduct = document.querySelector('.add-pro');
-    var size = document.querySelectorAll('.exp');
-
-    // addProduct.onclick = function() {
-    //     if (size[0].checked) {
-    //         console.log(quantityS);
-    //     } else if (size[1].checked) {
-    //         console.log(quantityM);
-    //     } else if (size[2].checked) {
-    //         console.log(quantityL);
-    //     }
-    // }
 </script>

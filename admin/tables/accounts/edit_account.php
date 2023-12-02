@@ -56,7 +56,13 @@
                                         </div>
                                     </div>
                                     <span class="text-danger error col-md-6 mb-4 d-flex align-items-centercol-md-6 mb-4 d-flex align-items-center">
-
+                                        <?php
+                                        if (isset($_SESSION['error']['fullname'])) {
+                                            echo $_SESSION['error']['fullname'];
+                                        } else {
+                                            echo "";
+                                        }
+                                        ?>
                                     </span>
                                     <span class="text-danger error col-md-6 mb-4 d-flex align-items-centercol-md-6 mb-4 d-flex align-items-center">
                                         <?php
@@ -68,7 +74,6 @@
                                         ?>
                                     </span>
                                 </div>
-
                                 <div class="row">
                                     <div class="col-12 mb-4 d-flex align-items-center">
                                         <div class="form-outline datepicker w-100">
@@ -76,8 +81,16 @@
                                             <input type="text" id="address" name="address" value="<?= $getAccountById['address'] ?>" placeholder="" class="form-control form-control-sm" />
                                         </div>
                                     </div>
+                                    <span class="text-danger error col-md-6 mb-4 d-flex align-items-centercol-md-6 mb-4 d-flex align-items-center">
+                                        <?php
+                                        if (isset($_SESSION['error']['address'])) {
+                                            echo $_SESSION['error']['address'];
+                                        } else {
+                                            echo "";
+                                        }
+                                        ?>
+                                    </span>
                                 </div>
-
                                 <div class="row">
                                     <div class="col-md-6 mb-2 pb-2">
                                         <div class="form-outline">
@@ -89,10 +102,21 @@
                                         <label class="form-label select-label">Vai trò</label>
                                         <select name="id_role" class="select form-control form-control-sm">
                                             <?php foreach ($getAllRoles as $key => $value) : ?>
-                                                <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
+                                                <option value="<?= $value['id'] ?>"<?= $value['id'] == $getAccountById['id_role'] ? "selected" : ""?>><?= $value['name'] ?></option>
                                             <?php endforeach; ?>
                                         </select>
                                     </div>
+                                    <span class="text-danger error col-md-6 mb-4 d-flex align-items-centercol-md-6 mb-4 d-flex align-items-center">
+                                        <?php
+                                        if (isset($_SESSION['error']['tel'])) {
+                                            echo $_SESSION['error']['tel'];
+                                        } else {
+                                            echo "";
+                                        }
+                                        ?>
+                                    </span>
+                                    <span class="text-danger error col-md-6 mb-4 d-flex align-items-centercol-md-6 mb-4 d-flex align-items-center">
+                                    </span>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12 mb-2 pb-2">

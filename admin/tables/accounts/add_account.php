@@ -56,7 +56,13 @@
                                         </div>
                                     </div>
                                     <span class="text-danger error col-md-6 mb-4 d-flex align-items-centercol-md-6 mb-4 d-flex align-items-center">
-
+                                        <?php
+                                        if (isset($_SESSION['error']['fullname'])) {
+                                            echo $_SESSION['error']['fullname'];
+                                        } else {
+                                            echo "";
+                                        }
+                                        ?>
                                     </span>
                                     <span class="text-danger error col-md-6 mb-4 d-flex align-items-centercol-md-6 mb-4 d-flex align-items-center">
                                         <?php
@@ -76,6 +82,15 @@
                                             <input type="text" id="address" name="address" value="" placeholder="" class="form-control form-control-sm" />
                                         </div>
                                     </div>
+                                    <span class="text-danger error col-md-6 mb-4 d-flex align-items-centercol-md-6 mb-4 d-flex align-items-center">
+                                        <?php
+                                        if (isset($_SESSION['error']['address'])) {
+                                            echo $_SESSION['error']['address'];
+                                        } else {
+                                            echo "";
+                                        }
+                                        ?>
+                                    </span>
                                 </div>
 
                                 <div class="row">
@@ -89,10 +104,21 @@
                                         <label class="form-label select-label">Vai trò</label>
                                         <select name="id_role" class="select form-control form-control-sm">
                                             <?php foreach ($getAllRoles as $key => $value) : ?>
-                                                <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
+                                                <option value="<?= $value['id'] ?>"<?= $value['id'] == 1 ? "selected" : ""?>><?= $value['name'] ?></option>
                                             <?php endforeach; ?>
                                         </select>
                                     </div>
+                                    <span class="text-danger error col-md-6 mb-4 d-flex align-items-centercol-md-6 mb-4 d-flex align-items-center">
+                                        <?php
+                                        if (isset($_SESSION['error']['tel'])) {
+                                            echo $_SESSION['error']['tel'];
+                                        } else {
+                                            echo "";
+                                        }
+                                        ?>
+                                    </span>
+                                    <span class="text-danger error col-md-6 mb-4 d-flex align-items-centercol-md-6 mb-4 d-flex align-items-center">
+                                    </span>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12 mb-2 pb-2">

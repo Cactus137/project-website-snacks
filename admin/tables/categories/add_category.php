@@ -30,19 +30,16 @@
                                         <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Hủy</button>
                                     </a>
                                     <input type="submit" name="btn_edit" class="btn" style="background-color: #17c1e8;" value="Xác nhận">
-                                </div>
-                                <span class="text-danger error col-md-6 mb-4 d-flex align-items-centercol-md-6 mb-4 d-flex align-items-center">
-                                    <?php
-                                    if (isset($_SESSION['notification']['error'])) {
-                                        echo $_SESSION['notification']['error'];
-                                    } else if (isset($_SESSION['notification']['success'])) {
-                                        echo $_SESSION['notification']['success'];
-                                    } else{
-                                        echo "";
-                                    } 
-                                    unset($_SESSION['nofication']);
-                                    ?> 
-                                </span>
+                                </div> 
+                                <?php
+                                if (isset($_SESSION['nofication']['error'])) {
+                                    echo "<span class='text-danger'>" . $_SESSION['nofication']['error'] . "</span>";
+                                } else if (isset($_SESSION['nofication']['success'])) {
+                                    echo "<span class='text-success'>" . $_SESSION['nofication']['success'] . "</span>";
+                                } else {
+                                    echo "";
+                                }
+                                ?>
                             </div>
                         </div>
                     </form>

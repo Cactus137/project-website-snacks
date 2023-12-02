@@ -89,15 +89,7 @@ function loadall_order_variants($id_order)
 }
 function order_update($id_order, $id_status)
 {
-    $sql = "UPDATE orders o
-    JOIN order_status os ON o.id_status = os.id
-    JOIN order_details od ON o.id = od.id_order
-    JOIN product_variants pv ON od.id_product_variants = pv.id
-    JOIN products p ON pv.id_product = p.id
-    JOIN accounts a ON o.id_account = a.id
-    JOIN sizes s ON pv.id_size = s.id
-    SET o.id_status = '$id_status'
-    WHERE o.id_order = '$id_order';";
+    $sql = "UPDATE orders SET id_status = '$id_status' WHERE id = '$id_order'"; 
     pdo_execute($sql);
 }
 

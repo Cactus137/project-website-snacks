@@ -31,15 +31,18 @@
                                     </a>
                                     <input type="submit" name="btn_edit" class="btn" style="background-color: #17c1e8;" value="Xác nhận">
                                 </div>
-                                <?php
-                                    if(isset($notificationERROR) && ($notificationERROR != "")){
-                                        echo $notificationERROR;
-                                    }
-
-                                    if(isset($notification) && ($notification != '')){
-                                        echo $notification;
-                                    }
-                                ?>
+                                <span class="text-danger error col-md-6 mb-4 d-flex align-items-centercol-md-6 mb-4 d-flex align-items-center">
+                                    <?php
+                                    if (isset($_SESSION['notification']['error'])) {
+                                        echo $_SESSION['notification']['error'];
+                                    } else if (isset($_SESSION['notification']['success'])) {
+                                        echo $_SESSION['notification']['success'];
+                                    } else{
+                                        echo "";
+                                    } 
+                                    unset($_SESSION['nofication']);
+                                    ?> 
+                                </span>
                             </div>
                         </div>
                     </form>

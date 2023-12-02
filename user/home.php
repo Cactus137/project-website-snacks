@@ -38,23 +38,25 @@
         </div>
 
     </div>
-    <h1 style="margin-top: 15px">Menu của chúng tôi</h1>
-    <div class="wrap-menu mb-10">
-        <?php
-        foreach ($list_category_home as $category) {
-            extract($category);
-        ?>
-            <div class="menu-item">
-                <a href="?act=menu&name=#<?php echo $name_category ?>">
-                    <img src="<?php echo 'assets/img/categories/' . $image ?>" alt="">
-                </a>
-                <a href="?act=menu&name=#<?php echo $name_category ?>">
-                    <h3><?php echo $name_category ?></h3>
-                </a>
-            </div>
-        <?php
-        }
-        ?>
+    <div class="background-menu">
+        <h1 style="padding-top: 15px">Menu của chúng tôi</h1>
+        <div class="wrap-menu mb-10">
+            <?php
+            foreach ($list_category_home as $category) {
+                extract($category);
+            ?>
+                <div class="menu-item">
+                    <a href="?act=menu&name=#<?php echo $name_category ?>">
+                        <img src="<?php echo 'assets/img/categories/' . $image ?>" alt="">
+                    </a>
+                    <a href="?act=menu&name=#<?php echo $name_category ?>" >
+                        <h3 style="padding-top: 10px;"><?php echo $name_category ?></h3>
+                    </a>
+                </div>
+            <?php
+            }
+            ?>
+        </div>
     </div>
     <div class="map mt-5 pt-5">
         <h3 class="mb-5">Địa chỉ cửa hàng</h3>

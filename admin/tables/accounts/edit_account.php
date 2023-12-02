@@ -13,19 +13,19 @@
                                     <div class="col-md-6 mb-2 d-flex align-items-center">
                                         <div class="form-outline w-100">
                                             <label for="username" class="form-label">Tên tài khoản</label>
-                                            <input type="text" name="username" class="form-control form-control-sm" value="<?= $getAccountById['username']?>" placeholder="" id="username" />
+                                            <input type="text" name="username" class="form-control form-control-sm" value="<?= $getAccountById['username'] ?>" placeholder="" id="username" />
                                         </div>
                                     </div>
                                     <div class="col-md-6 mb-2 d-flex align-items-center">
                                         <div class="form-outline w-100">
                                             <label class="form-label" for="password">Mật khẩu</label>
-                                            <input type="text" id="password" name="password" value="<?= $getAccountById['password']?>" placeholder="" class="form-control form-control-sm" />
+                                            <input type="text" id="password" name="password" value="<?= $getAccountById['password'] ?>" placeholder="" class="form-control form-control-sm" />
                                         </div>
                                     </div>
                                     <span class="text-danger error col-md-6 mb-4 d-flex align-items-centercol-md-6 mb-4 d-flex align-items-center">
                                         <?php
-                                        if ($check_validate['username'] != '') {
-                                            echo $check_validate['username'];
+                                        if (isset($_SESSION['error']['username'])) {
+                                            echo $_SESSION['error']['username'];
                                         } else {
                                             echo "";
                                         }
@@ -33,8 +33,8 @@
                                     </span>
                                     <span class="text-danger error col-md-6 mb-4 d-flex align-items-centercol-md-6 mb-4 d-flex align-items-center">
                                         <?php
-                                        if ($check_validate['password'] != '') {
-                                            echo $check_validate['password'];
+                                        if (isset($_SESSION['error']['password'])) {
+                                            echo $_SESSION['error']['password'];
                                         } else {
                                             echo "";
                                         }
@@ -46,13 +46,13 @@
                                     <div class="col-md-6 mb-2 d-flex align-items-center">
                                         <div class="form-outline w-100">
                                             <label for="fullname" class="form-label">Họ và tên</label>
-                                            <input type="text" name="fullname" class="form-control form-control-sm" value="<?= $getAccountById['fullname']?>" placeholder="" id="fullname" />
+                                            <input type="text" name="fullname" class="form-control form-control-sm" value="<?= $getAccountById['fullname'] ?>" placeholder="" id="fullname" />
                                         </div>
                                     </div>
                                     <div class="col-md-6 mb-2 d-flex align-items-center">
                                         <div class="form-outline w-100">
                                             <label class="form-label" for="email">Email</label>
-                                            <input type="text" id="email" name="email" value="<?= $getAccountById['email']?>" placeholder="" class="form-control form-control-sm" />
+                                            <input type="text" id="email" name="email" value="<?= $getAccountById['email'] ?>" placeholder="" class="form-control form-control-sm" />
                                         </div>
                                     </div>
                                     <span class="text-danger error col-md-6 mb-4 d-flex align-items-centercol-md-6 mb-4 d-flex align-items-center">
@@ -60,8 +60,8 @@
                                     </span>
                                     <span class="text-danger error col-md-6 mb-4 d-flex align-items-centercol-md-6 mb-4 d-flex align-items-center">
                                         <?php
-                                        if ($check_validate['email'] != '') {
-                                            echo $check_validate['email'];
+                                        if (isset($_SESSION['error']['email'])) {
+                                            echo $_SESSION['error']['email'];
                                         } else {
                                             echo "";
                                         }
@@ -73,7 +73,7 @@
                                     <div class="col-12 mb-4 d-flex align-items-center">
                                         <div class="form-outline datepicker w-100">
                                             <label for="address" class="form-label">Địa chỉ</label>
-                                            <input type="text" id="address" name="address" value="<?= $getAccountById['address']?>" placeholder="" class="form-control form-control-sm" />
+                                            <input type="text" id="address" name="address" value="<?= $getAccountById['address'] ?>" placeholder="" class="form-control form-control-sm" />
                                         </div>
                                     </div>
                                 </div>
@@ -82,7 +82,7 @@
                                     <div class="col-md-6 mb-2 pb-2">
                                         <div class="form-outline">
                                             <label class="form-label" for="tel">Số điện thoại</label>
-                                            <input type="text" id="tel" name="tel" value="<?= $getAccountById['tel']?>" minlength="10" placeholder="" class="form-control form-control-sm" />
+                                            <input type="text" id="tel" name="tel" value="<?= $getAccountById['tel'] ?>" minlength="10" placeholder="" class="form-control form-control-sm" />
                                         </div>
                                     </div>
                                     <div class="col-md-6 mb-2 pb-2">

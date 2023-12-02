@@ -68,7 +68,7 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['id_role'] != 0) {
                                 include 'tables/accounts/accounts.php';
                                 break;
                             case 'add_account':
-                                unset($_SESSION['error']); 
+                                unset($_SESSION['error']);
                                 $getAllRoles = getAllRoles();
                                 $getAccounts = getAllAccounts();
 
@@ -92,7 +92,7 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['id_role'] != 0) {
 
                                     $_SESSION['error']['check'] = true; // check validate [true: không lỗi | false: có lỗi
                                     if (!isset($username) || $username == "") {
-                                        $_SESSION['error']['username'] = "Tên tài khoản không được để trống"; 
+                                        $_SESSION['error']['username'] = "Tên tài khoản không được để trống";
                                         $_SESSION['error']['check'] = false;
                                     }
                                     foreach ($getAccounts as $key => $value) {
@@ -141,33 +141,31 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['id_role'] != 0) {
                                     } else {
                                         $avatar = $getAccountById['avatar'];
                                     }
-
-                                    $check_validate = [];
-                                    $check_validate['check'] = true;
+                                    $_SESSION['error']['check'] = true;
                                     if (!isset($username) || $username == "") {
-                                        $check_validate['username'] = "Tên tài khoản không được để trống";
-                                        $check_validate['check'] = false;
+                                        $_SESSION['error']['username'] = "Tên tài khoản không được để trống";
+                                        $_SESSION['error']['check'] = false;
                                     }
                                     foreach ($getAccounts as $key => $value) {
                                         if ($value['username'] == $username) {
                                             if ($getAccountById['username'] != $username) {
-                                                $check_validate['username'] = "Tên tài khoản đã tồn tại";
-                                                $check_validate['check'] = false;
+                                                $_SESSION['error']['username'] = "Tên tài khoản đã tồn tại";
+                                                $_SESSION['error']['check'] = false;
                                                 break;
                                             }
                                         }
                                     }
                                     if (strlen($password) < 8) {
-                                        $check_validate['password'] = "Mật khẩu phải có ít nhất 8 ký tự";
-                                        $check_validate['check'] = false;
+                                        $_SESSION['error']['password'] = "Mật khẩu phải có ít nhất 8 ký tự";
+                                        $_SESSION['error']['check'] = false;
                                     }
                                     $regex_email = "/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/";
                                     if (!preg_match($regex_email, $email)) {
-                                        $check_validate['email'] = "Email không hợp lệ";
-                                        $check_validate['check'] = false;
+                                        $_SESSION['error']['email'] = "Email không hợp lệ";
+                                        $_SESSION['error']['check'] = false;
                                     }
 
-                                    if ($check_validate['check'] == true) {
+                                    if ($_SESSION['error']['check'] == true) {
                                         editAccount($_GET['acc_id'], $username, $password, $fullname, $avatar, $email, $address, $tel, $id_role);
                                         echo "<script>window.location.href = '?action=accounts';</script>";
                                     }
@@ -192,18 +190,22 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['id_role'] != 0) {
                                 include 'tables/categories/categories.php';
                                 break;
                             case 'add_category':
-                                if (isset($_POST['btn_edit']) && $_POST['btn_edit']) {
-                                    $name_category = $_POST['name_category'];
-                                    $image = $_FILES['image']['name'];
-                                    $image_tmp = $_FILES['image']['tmp_name'];
-                                    $image_size = $_FILES['image']['size'];
-                                    $image_maxsize = 4 * 1024 * 1024;
-                                    if ($image_size > $image_maxsize) {
-                                        $notificationERROR = 'File ảnh quá lớn vui lòng thử lại';
+                                if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                                    if (isset($_POST['name_category']) && ($_POST['name_category'] != '')) {
+                                        $name_category = $_POST['name_category'];
+                                        $image = $_FILES['image']['name'];
+                                        $image_tmp = $_FILES['image']['tmp_name'];
+                                        $image_size = $_FILES['image']['size'];
+                                        $image_maxsize = 4 * 1024 * 1024;
+                                        if ($image_size > $image_maxsize) {
+                                            $_SESSION['nofication']['error'] = 'File ảnh quá lớn vui lòng thử lại';
+                                        } else {
+                                            move_uploaded_file($image_tmp, '../assets/img/categories/' . $image);
+                                            insert_category($name_category, $image);
+                                            $_SESSION['nofication']['success'] = 'Thêm thành công';
+                                        }
                                     } else {
-                                        move_uploaded_file($image_tmp, '../assets/img/categories/' . $image);
-                                        insert_category($name_category, $image);
-                                        $notification = 'Thêm thành công';
+                                        $_SESSION['nofication']['error'] = 'Tên danh mục không được để trống';
                                     }
                                 }
                                 include 'tables/categories/add_category.php';

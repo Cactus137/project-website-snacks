@@ -38,7 +38,7 @@ function delete_category($id)
 // USER
 function load_all_category_home()
 {
-    $sql = "SELECT * FROM categories WHERE 1 ORDER BY id ASC LIMIT 0,6";
+    $sql = "SELECT * FROM categories WHERE 1 ORDER BY id ASC";
     $list_category_home =  pdo_query($sql);
     return $list_category_home;
 }

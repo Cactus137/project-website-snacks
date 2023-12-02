@@ -30,7 +30,7 @@
         text-align: center;
     }
 </style>
-<div class="d-flex justify-content-between">
+<div class="d-flex justify-content-around">
     <div class="col-md-3 shadow text-center nav-bar-order">
         <div class="user mt-5">
             <img width="200px" height="200px" style="background-position: center;" class="rounded-circle object-fit-cover" src="<?= 'assets/img/accounts/' . $_SESSION['user']['avatar']; ?>" id="photo" alt="photo">

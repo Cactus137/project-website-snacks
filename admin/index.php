@@ -68,7 +68,7 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['id_role'] != 0) {
                                 include 'tables/accounts/accounts.php';
                                 break;
                             case 'add_account':
-                                unset($_SESSION['error']);
+                                unset($_SESSION['error']); 
                                 $getAllRoles = getAllRoles();
                                 $getAccounts = getAllAccounts();
 
@@ -90,30 +90,29 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['id_role'] != 0) {
                                         $avatar = "profile.jpg";
                                     }
 
-                                    $check_validate = [];
-                                    $check_validate['check'] = true;
+                                    $_SESSION['error']['check'] = true; // check validate [true: không lỗi | false: có lỗi
                                     if (!isset($username) || $username == "") {
-                                        $check_validate['username'] = "Tên tài khoản không được để trống";
-                                        $check_validate['check'] = false;
+                                        $_SESSION['error']['username'] = "Tên tài khoản không được để trống"; 
+                                        $_SESSION['error']['check'] = false;
                                     }
                                     foreach ($getAccounts as $key => $value) {
                                         if ($value['username'] == $username) {
-                                            $check_validate['username'] = "Tên tài khoản đã tồn tại";
-                                            $check_validate['check'] = false;
+                                            $_SESSION['error']['username'] = "Tên tài khoản đã tồn tại";
+                                            $_SESSION['error']['check'] = false;
                                             break;
                                         }
                                     }
                                     if (strlen($password) < 8) {
-                                        $check_validate['password'] = "Mật khẩu phải có ít nhất 8 ký tự";
-                                        $check_validate['check'] = false;
+                                        $_SESSION['error']['password'] = "Mật khẩu phải có ít nhất 8 ký tự";
+                                        $_SESSION['error']['check'] = false;
                                     }
                                     $regex_email = "/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/";
                                     if (!preg_match($regex_email, $email)) {
-                                        $check_validate['email'] = "Email không hợp lệ";
-                                        $check_validate['check'] = false;
+                                        $_SESSION['error']['email'] = "Email không hợp lệ";
+                                        $_SESSION['error']['check'] = false;
                                     }
 
-                                    if ($check_validate['check'] == true) {
+                                    if ($_SESSION['error']['check'] == true) {
                                         addAccount($username, $password, $fullname, $avatar, $email, $address, $tel, $id_role);
                                         echo "<script>window.location.href = '?action=accounts';</script>";
                                     }
@@ -353,7 +352,7 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['id_role'] != 0) {
 
                                 if (isset($_GET['id']) && ($_GET['id'] > 0)) {
                                     $id = $_GET['id'];
-                                    $order_details = loadone_order_details($id); 
+                                    $order_details = loadone_order_details($id);
                                     if (is_null($order_details[0]['discount'])) {
                                         $discount_product = 0;
                                     } else {
@@ -374,7 +373,7 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['id_role'] != 0) {
                                     $id_status = $_POST['id_status'];
                                     if ($id_status == 5) {
                                         cancelOrder($id_order);
-                                    }else {
+                                    } else {
                                         order_update($id_order, $id_status);
                                     }
                                     echo "<script>window.location.href = '?action=orders';</script>";

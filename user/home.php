@@ -38,7 +38,7 @@
         </div>
 
     </div>
-    <h1>Menu của chúng tôi</h1>
+    <h1 style="margin-top: 15px">Menu của chúng tôi</h1>
     <div class="wrap-menu mb-10">
         <?php
         foreach ($list_category_home as $category) {
@@ -67,7 +67,7 @@
             <div class="col-md-3 text-start ms-5">
                 <div class="item-info d-flex">
                     <i class="fa-solid fa-location-dot me-2 mt-1"></i>
-                    <p>Tòa nhà FPT Polytechnic,13 <br>
+                    <p>Tòa nhà FPT Polytechnic, 13 <br>
                         phố Trịnh Văn Bô, phường<br>
                         Phương Canh, quận Nam Từ<br>
                         Liêm, TP Hà Nội </p>

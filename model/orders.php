@@ -89,14 +89,15 @@ function loadall_order_variants($id_order)
 }
 function order_update($id_order, $id_status)
 {
-    $sql = " UPDATE orders 
-    join order_status on orders.id_status = order_status.id
-    join order_details on orders.id = order_details.id_order
-    join product_variants on order_details.id_product_variants = product_variants.id
-    join products on product_variants.id_product = products.id
-    JOIN accounts on orders.id_account = accounts.id
-    join sizes on product_variants.id_size = sizes.id   
-    SET orders.id_status = '$id_status' WHERE id_order='$id_order'";
+    $sql = "UPDATE orders o
+    JOIN order_status os ON o.id_status = os.id
+    JOIN order_details od ON o.id = od.id_order
+    JOIN product_variants pv ON od.id_product_variants = pv.id
+    JOIN products p ON pv.id_product = p.id
+    JOIN accounts a ON o.id_account = a.id
+    JOIN sizes s ON pv.id_size = s.id
+    SET o.id_status = '$id_status'
+    WHERE o.id_order = '$id_order';";
     pdo_execute($sql);
 }
 
@@ -135,7 +136,7 @@ function getOrdersByAccount($id_account, $id_status)
         WHERE o.id_account = $id_account";
         if ($id_status != null) {
             $sql .= " AND o.id_status = $id_status";
-        } 
+        }
         return pdo_query($sql);
     } catch (Exception $e) {
         echo $e->getMessage();
@@ -234,4 +235,3 @@ function addOrderDetail($id_order, $id_product_variants, $quantity, $total_amoun
         echo $e->getMessage();
     }
 }
-

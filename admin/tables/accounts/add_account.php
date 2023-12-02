@@ -24,8 +24,8 @@
                                     </div>
                                     <span class="text-danger error col-md-6 mb-4 d-flex align-items-centercol-md-6 mb-4 d-flex align-items-center">
                                         <?php
-                                        if ($check_validate['username'] != '') {
-                                            echo $check_validate['username'];
+                                        if (isset($_SESSION['error']['username'])) {
+                                            echo $_SESSION['error']['username'];
                                         } else {
                                             echo "";
                                         }
@@ -33,8 +33,8 @@
                                     </span>
                                     <span class="text-danger error col-md-6 mb-4 d-flex align-items-centercol-md-6 mb-4 d-flex align-items-center">
                                         <?php
-                                        if ($check_validate['password'] != '') {
-                                            echo $check_validate['password'];
+                                        if (isset($_SESSION['error']['password'])) {
+                                            echo $_SESSION['error']['password'];
                                         } else {
                                             echo "";
                                         }
@@ -60,8 +60,8 @@
                                     </span>
                                     <span class="text-danger error col-md-6 mb-4 d-flex align-items-centercol-md-6 mb-4 d-flex align-items-center">
                                         <?php
-                                        if ($check_validate['email'] != '') {
-                                            echo $check_validate['email'];
+                                        if (isset($_SESSION['error']['email'])) {
+                                            echo $_SESSION['error']['email'];
                                         } else {
                                             echo "";
                                         }

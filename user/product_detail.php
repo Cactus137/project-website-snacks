@@ -117,7 +117,7 @@
                 <h4 class="pro-cx">Sản phẩm liên quan</h4>
                 <div class="sum-relad">
                     <?php
-                    foreach ($top4_product_similar as $row) {
+                    foreach ($similar_product as $row) {
                         extract($row);
                     ?>
                         <div class="item-product">
@@ -131,11 +131,13 @@
                             <div class="price">
                                 <p class="price-box"><?php echo number_format($price) ?> VND</p>
                             </div>
-                        </div> 
+                        </div>
                     <?php } ?>
                 </div>
             </div>
+        </div>
     </main>
+    <?php include 'scroll.php'; ?>
 </section>
 <script>
     document.addEventListener("DOMContentLoaded", function() {

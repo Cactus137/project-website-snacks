@@ -124,18 +124,5 @@ main .item-product p.price-box {
 main .item-product a:hover {
   /* text-decoration: underline; */
   color: #ffc501 !important;
-}
+} 
 
-/* END MAIN */
-#scrollToTopBtn {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  display: block;
-  background-color: #ffc501;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  padding: 10px 15px;
-  cursor: pointer;
-}

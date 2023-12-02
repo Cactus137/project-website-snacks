@@ -296,7 +296,7 @@ session_start();
                             $count_comments = count_comments($id);
                             extract($one_product);
                             $id_category = $one_product[0]['id_category'];
-                            $top4_product_similar = top4_similar($id_category);
+                            $similar_product = similar_product($id_category);
                         }
                         include 'user/product_detail.php';
                         break;

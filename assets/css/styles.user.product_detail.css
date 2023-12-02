@@ -114,9 +114,12 @@ h4 {
   background-color: #ffc501;
 }
 .sum-relad {
-  display: flex;
-  justify-content: space-between;
-} 
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: 1em;
+  row-gap: 1em;
+  grid-gap: 0 69px;
+}
 .user-comment {
   width: 100%;
   padding-top: 10px;
@@ -125,7 +128,7 @@ h4 {
   padding-top: 20px;
   font-weight: bold;
   font-size: 20px;
-} 
+}
 
 input[type="radio"] {
   visibility: hidden;
@@ -265,9 +268,9 @@ input:checked + label {
   width: 250px;
   overflow: hidden;
   position: relative;
-  line-height: 1.2em; /* Đặt line-height tùy thuộc vào kích thước phông chữ */
-  max-height: 2.4em; /* 2 dòng x line-height */
-} 
+  line-height: 1.2em;
+  max-height: 2.4em;
+}
 
 .item-product p.price-box {
   font-weight: bold;

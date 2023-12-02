@@ -1,33 +1,4 @@
 <?php
-// function getRevenuesByProduct()
-// {
-//     try {
-//         $sql = "SELECT
-//         p.image,
-//         p.id AS product_id,
-//         p.name AS product_name,
-//         SUM(od.total_amount) AS total_revenue
-//     FROM
-//         products p
-//     JOIN
-//         product_variants pv ON p.id = pv.id_product
-//     JOIN
-//         order_details od ON pv.id = od.id_product_variants
-//     JOIN
-//         orders o ON od.id_order = o.id
-//     WHERE
-//         o.id_status = 4 -- Chỉ lấy các đơn hàng đã giao hàng
-//     GROUP BY
-//         p.id
-//     ORDER BY
-//         total_revenue DESC;";
-
-//         return pdo_query($sql);
-//     } catch (Exception $e) {
-//         echo $e->getMessage();
-//     }
-// }
-
 function getRevenues($start = "", $end = "", $categoryId = 0)
 {
     try {
@@ -115,5 +86,3 @@ function getStatusOrder($id)
         echo $e->getMessage();
     }
 }
-
-

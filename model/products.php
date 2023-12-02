@@ -34,10 +34,10 @@ function insert_product_variant($getLatestProductsIdData, $id_size, $price, $qua
 
 function load_all_product_category_variant()
 {
-    $sql = "SELECT products.id AS id ,products.image AS image ,products.name AS name_product, categories.name_category
-        FROM products 
-        INNER JOIN categories ON products.id_category = categories.id
-        ORDER BY products.id DESC";
+    $sql = "SELECT p.id AS id ,p.image AS image ,p.name AS name_product, c.name_category
+        FROM products p
+        INNER JOIN categories c ON p.id_category = c.id
+        ORDER BY p.id DESC";
     $list_all_product = pdo_query($sql);
     return $list_all_product;
 }
@@ -55,12 +55,22 @@ function quantity($id_pro)
 
 function load_one_product($id)
 {
-    $sql = "SELECT products.id AS id_product, products.id_category AS id_category, 
-        products.name AS name, products.image AS image, products.description AS description, 
-        product_variants.quantity AS quantity, product_variants.price, sizes.id AS id_size, sizes.name AS size FROM products
-        INNER JOIN product_variants ON product_variants.id_product = products.id 
-        INNER JOIN sizes ON sizes.id = product_variants.id_size WHERE products.id=$id 
+    $sql = "SELECT 
+            p.id AS id_product, 
+            p.id_category AS id_category, 
+            p.name AS name, 
+            p.image AS image, 
+            p.description AS description, 
+            pv.quantity AS quantity, 
+            pv.price, 
+            sizes.id AS id_size, 
+            sizes.name AS size 
+        FROM products p
+        INNER JOIN product_variants pv ON pv.id_product = p.id 
+        INNER JOIN sizes ON sizes.id = pv.id_size 
+        WHERE p.id = $id
         ORDER BY sizes.id ASC";
+        
     $load_one_product = pdo_query($sql);
     return $load_one_product;
 }
@@ -96,22 +106,30 @@ function delete_product_variants($id, $id_size)
 // USER
 function list_products($id_category)
 {
-    $sql = "SELECT products.id AS id_product, products.name AS name_product,
-    products.image AS image_product, product_variants.price, products.description
-    FROM products
-    INNER JOIN categories ON categories.id = products.id_category
-    INNER JOIN product_variants ON products.id = product_variants.id_product
-    WHERE id_size = 1 AND products.id_category = $id_category";
+    $sql = "SELECT 
+    p.id AS id_product, 
+    p.name AS name_product,
+    p.image AS image_product, 
+    pv.price, 
+    p.description 
+    FROM products p 
+    INNER JOIN product_variants pv ON pv.id_product = p.id
+    WHERE id_size = 1 AND p.id_category = $id_category";
     $list_products = pdo_query($sql);
     return $list_products;
 }
 
-function top4_similar($id_category)
+function similar_product($id_category)
 {
-    $sql = "SELECT products.id AS id_product, products.name AS name_product,
-    products.image AS image_product, product_variants.price, products.description FROM products
-    INNER JOIN product_variants ON product_variants.id_product = products.id
-    WHERE  products.id_category = $id_category AND product_variants.id_size = 1  ORDER BY products.id DESC LIMIT 4";
+    $sql = "SELECT 
+    p.id AS id_product, 
+    p.name AS name_product,
+    p.image AS image_product, 
+    pv.price, 
+    p.description 
+    FROM products p 
+    INNER JOIN product_variants pv ON pv.id_product = p.id
+    WHERE  p.id_category = $id_category AND pv.id_size = 1  ORDER BY p.id DESC";
     $top4_product_similar = pdo_query($sql);
     return $top4_product_similar;
 }
@@ -119,14 +137,21 @@ function top4_similar($id_category)
 
 function list_search_products($keyw)
 {
-    $sql = 'SELECT * FROM products
-    INNER JOIN product_variants ON product_variants.id_product = products.id
-    WHERE products.name LIKE "%' . $keyw . '%" AND product_variants.id_size = 1 ORDER BY products.id DESC ';
+    $sql = 'SELECT 
+    p.id AS id_product, 
+    p.name AS name_product,
+    p.image AS image_product, 
+    pv.price, 
+    p.description 
+    FROM products p 
+    INNER JOIN product_variants pv ON pv.id_product = p.id
+    WHERE p.name LIKE "%' . $keyw . '%" AND pv.id_size = 1 ORDER BY p.id DESC ';
     $list_search_products = pdo_query($sql);
     return $list_search_products;
 }
 
-function updateQuantityProductVariants($id_product_variants, $quantity) {
+function updateQuantityProductVariants($id_product_variants, $quantity)
+{
     try {
         $sql = "SELECT quantity FROM product_variants WHERE id = $id_product_variants";
         $quantity_old = pdo_query_one($sql)['quantity'];

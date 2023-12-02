@@ -10,16 +10,16 @@
 
         <div class="slider">
             <div style="background:#5b8;">
-                <img src="assets/img/banners/banner1.png" alt="">
+                <img src="assets/img/banners/banner1.png" alt="" height="500px">
             </div>
             <div style="background:#85b;">
-                <img src="assets/img/banners/banner1.png" alt="">
+                <img src="assets/img/banners/banner2.png" alt="" height="500px">
             </div>
             <div style="background:#e95;">
-                <img src="assets/img/banners/banner1.png" alt="">
+                <img src="assets/img/banners/banner3.png" alt="" height="500px">
             </div>
             <div style="background:#e59;">
-                <img src="assets/img/banners/banner1.png" alt="">
+                <img src="assets/img/banners/banner4.png" alt="" height="500px">
             </div>
         </div>
 

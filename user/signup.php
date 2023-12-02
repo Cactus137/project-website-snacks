@@ -17,7 +17,7 @@
     <div class="row d-flex justify-content-between">
         <div class="col-md-5">
             <div class="background-image">
-                <img src="assets/img/banners/banner.jpg" alt="">
+                <img src="assets/img/banners/bannerLogin.jpg" alt="">
             </div>
         </div>
         <div class="col-md-6 d-flex align-items-center">

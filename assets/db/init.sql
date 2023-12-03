@@ -2,17 +2,17 @@ CREATE DATABASE project_website_snacks;
 
 USE project_website_snacks; 
 
- -- phpMyAdmin SQL Dump
+-- phpMyAdmin SQL Dump
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 26, 2023 at 02:07 PM
+-- Generation Time: Dec 03, 2023 at 09:16 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION; 
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -77,9 +77,7 @@ INSERT INTO `cart` (`id`, `id_product_variants`, `id_account`, `quantity`) VALUE
 (5, 20, 2, 2),
 (6, 25, 2, 1),
 (7, 30, 2, 3),
-(8, 35, 3, 2),
-(9, 40, 3, 1),
-(10, 45, 3, 4);
+(19, 16, 3, 1);
 
 -- --------------------------------------------------------
 
@@ -230,31 +228,41 @@ CREATE TABLE `orders` (
   `id` int(11) NOT NULL,
   `order_date` date NOT NULL,
   `id_status` int(11) DEFAULT 1,
-  `id_account` int(11) NOT NULL DEFAULT 1
+  `id_account` int(11) NOT NULL DEFAULT 1,
+  `notes` text NOT NULL,
+  `fullname` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `tel` varchar(10) NOT NULL,
+  `address` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`id`, `order_date`, `id_status`, `id_account`) VALUES
-(1, '2023-03-13', 2, 1),
-(2, '2023-10-22', 0, 2),
-(3, '2023-07-17', 0, 3),
-(4, '2023-05-22', 5, 1),
-(5, '2023-05-31', 1, 2),
-(6, '2022-12-30', 5, 3),
-(7, '2023-11-05', 0, 1),
-(8, '2023-05-04', 5, 2),
-(9, '2023-04-04', 5, 3),
-(10, '2023-05-13', 4, 1),
-(11, '2023-02-22', 4, 2),
-(13, '2023-04-25', 1, 1),
-(14, '2023-06-24', 0, 2),
-(16, '2023-06-05', 5, 1),
-(17, '2023-07-26', 0, 2),
-(19, '2023-08-30', 0, 1),
-(20, '2023-06-13', 2, 2);
+INSERT INTO `orders` (`id`, `order_date`, `id_status`, `id_account`, `notes`, `fullname`, `email`, `tel`, `address`) VALUES
+(1, '2023-03-13', 2, 1, 'Đơn hàng quan trọng, đừng trì hoãn! ', 'User One', 'user1@example.com', '1234567890', '123 Main St, City'),
+(2, '2023-10-22', 0, 2, 'Giao hàng càng sớm càng tốt. ', 'User Two', 'user2@example.com', '9876543210', '456 Elm St, Town'),
+(3, '2023-07-17', 0, 3, 'Giao hàng càng sớm càng tốt. ', 'Le Van Thanh', 'Blackwhilee04@gmail.com', '234234', '7 ngách 126 Ng. 14 P. Mễ Trì Hạ, Mễ Trì, Từ Liêm, Hà Nội, Việt Nam'),
+(4, '2023-05-22', 5, 1, 'Đơn hàng quan trọng, đừng trì hoãn! ', 'User One', 'user1@example.com', '1234567890', '123 Main St, City'),
+(5, '2023-05-31', 1, 2, 'Đơn hàng quan trọng, đừng trì hoãn! ', 'User Two', 'user2@example.com', '9876543210', '456 Elm St, Town'),
+(6, '2022-12-30', 5, 3, 'Giao hàng càng sớm càng tốt. ', 'Le Van Thanh', 'Blackwhilee04@gmail.com', '234234', '7 ngách 126 Ng. 14 P. Mễ Trì Hạ, Mễ Trì, Từ Liêm, Hà Nội, Việt Nam'),
+(7, '2023-11-05', 0, 1, 'Đơn hàng quan trọng, đừng trì hoãn! ', 'User One', 'user1@example.com', '1234567890', '123 Main St, City'),
+(8, '2023-05-04', 5, 2, 'Giao hàng càng sớm càng tốt. ', 'User Two', 'user2@example.com', '9876543210', '456 Elm St, Town'),
+(9, '2023-04-04', 5, 3, 'Giao hàng càng sớm càng tốt. ', 'Le Van Thanh', 'Blackwhilee04@gmail.com', '234234', '7 ngách 126 Ng. 14 P. Mễ Trì Hạ, Mễ Trì, Từ Liêm, Hà Nội, Việt Nam'),
+(10, '2023-05-13', 4, 1, 'Đơn hàng quan trọng, đừng trì hoãn! ', 'User One', 'user1@example.com', '1234567890', '123 Main St, City'),
+(11, '2023-02-22', 4, 2, 'Giao hàng càng sớm càng tốt. ', 'User Two', 'user2@example.com', '9876543210', '456 Elm St, Town'),
+(13, '2023-04-25', 1, 1, 'Đơn hàng quan trọng, đừng trì hoãn! ', 'User One', 'user1@example.com', '1234567890', '123 Main St, City'),
+(14, '2023-06-24', 0, 2, 'Giao hàng càng sớm càng tốt. ', 'User Two', 'user2@example.com', '9876543210', '456 Elm St, Town'),
+(16, '2023-06-05', 5, 1, 'Đơn hàng quan trọng, đừng trì hoãn! ', 'User One', 'user1@example.com', '1234567890', '123 Main St, City'),
+(17, '2023-07-26', 0, 2, 'Giao hàng càng sớm càng tốt. ', 'User Two', 'user2@example.com', '9876543210', '456 Elm St, Town'),
+(19, '2023-08-30', 0, 1, 'Giao hàng càng sớm càng tốt. ', 'User One', 'user1@example.com', '1234567890', '123 Main St, City'),
+(20, '2023-06-13', 2, 2, 'Đơn hàng quan trọng, đừng trì hoãn! ', 'User Two', 'user2@example.com', '9876543210', '456 Elm St, Town'),
+(21, '2023-12-03', 0, 3, 'Đơn hàng quan trọng, đừng trì hoãn! ', 'Le Van Thanh', 'Blackwhilee04@gmail.com', '234234', '7 ngách 126 Ng. 14 P. Mễ Trì Hạ, Mễ Trì, Từ Liêm, Hà Nội, Việt Nam'),
+(22, '2023-12-03', 3, 3, 'Giao hàng càng sớm càng tốt. ', 'Le Van Thanh', 'Blackwhilee04@gmail.com', '234234', '7 ngách 126 Ng. 14 P. Mễ Trì Hạ, Mễ Trì, Từ Liêm, Hà Nội, Việt Nam'),
+(23, '2023-12-03', 4, 3, 'Để hàng ngoài cửa giúp tôi. ', 'Le Van Thanh', 'Blackwhilee04@gmail.com', '234234', '7 ngách 126 Ng. 14 P. Mễ Trì Hạ, Mễ Trì, Từ Liêm, Hà Nội, Việt Nam'),
+(24, '2023-12-03', 0, 3, 'Đơn hàng quan trọng, đừng trì hoãn! ', 'Le Van Thanh', 'Blackwhilee04@gmail.com', '234234', '7 ngách 126 Ng. 14 P. Mễ Trì Hạ, Mễ Trì, Từ Liêm, Hà Nội, Việt Nam'),
+(25, '2023-12-03', 0, 3, 'Đơn hàng quan trọng, đừng trì hoãn! ', 'Le Van Thanh', 'Blackwhilee04@gmail.com', '234234', '7 ngách 126 Ng. 14 P. Mễ Trì Hạ, Mễ Trì, Từ Liêm, Hà Nội, Việt Nam');
 
 -- --------------------------------------------------------
 
@@ -268,35 +276,42 @@ CREATE TABLE `order_details` (
   `id_product_variants` int(11) NOT NULL DEFAULT 1,
   `quantity` int(11) NOT NULL,
   `discount` int(11) DEFAULT NULL,
-  `total_amount` int(11) DEFAULT NULL,
-  `notes` text DEFAULT NULL
+  `total_amount` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `order_details`
 --
 
-INSERT INTO `order_details` (`id`, `id_order`, `id_product_variants`, `quantity`, `discount`, `total_amount`, `notes`) VALUES
-(1, 1, 1, 2, 1, 200000, 'Ghi chú đơn hàng 1'),
-(2, 1, 2, 1, 2, 150000, 'Ghi chú đơn hàng 1'),
-(3, 2, 3, 3, 3, 300000, 'Ghi chú đơn hàng 2'),
-(4, 2, 4, 1, 4, 100000, 'Ghi chú đơn hàng 2'),
-(5, 3, 5, 2, 5, 250000, 'Ghi chú đơn hàng 3'),
-(6, 3, 6, 1, 6, 120000, 'Ghi chú đơn hàng 3'),
-(7, 4, 7, 3, 7, 280000, 'Ghi chú đơn hàng 4'),
-(8, 4, 8, 2, 8, 180000, 'Ghi chú đơn hàng 4'),
-(9, 5, 9, 1, 9, 100000, 'Ghi chú đơn hàng 5'),
-(10, 5, 10, 4, 10, 400000, 'Ghi chú đơn hàng 5'),
-(11, 6, 11, 2, 11, 220000, 'Ghi chú đơn hàng 6'),
-(12, 6, 53, 1, 12, 130000, 'Ghi chú đơn hàng 6'),
-(13, 7, 13, 3, 12, 270000, 'Ghi chú đơn hàng 7'),
-(14, 7, 14, 1, 13, 110000, 'Ghi chú đơn hàng 7'),
-(15, 8, 15, 2, 14, 200000, 'Ghi chú đơn hàng 8'),
-(16, 8, 16, 1, 15, 140000, 'Ghi chú đơn hàng 8'),
-(17, 9, 17, 1, 16, 120000, 'Ghi chú đơn hàng 9'),
-(18, 9, 48, 2, 17, 180000, 'Ghi chú đơn hàng 9'),
-(19, 10, 19, 3, 18, 240000, 'Ghi chú đơn hàng 10'),
-(20, 10, 20, 1, 18, 90000, 'Ghi chú đơn hàng 10');
+INSERT INTO `order_details` (`id`, `id_order`, `id_product_variants`, `quantity`, `discount`, `total_amount`) VALUES
+(1, 1, 1, 2, 1, 200000),
+(2, 1, 2, 1, 2, 150000),
+(3, 2, 3, 3, 3, 300000),
+(4, 2, 4, 1, 4, 100000),
+(5, 3, 5, 2, 5, 250000),
+(6, 3, 6, 1, 6, 120000),
+(7, 4, 7, 3, 7, 280000),
+(8, 4, 8, 2, 8, 180000),
+(9, 5, 9, 1, 9, 100000),
+(10, 5, 10, 4, 10, 400000),
+(11, 6, 11, 2, 11, 220000),
+(12, 6, 53, 1, 12, 130000),
+(13, 7, 13, 3, 12, 270000),
+(14, 7, 14, 1, 13, 110000),
+(15, 8, 15, 2, 14, 200000),
+(16, 8, 16, 1, 15, 140000),
+(17, 9, 17, 1, 16, 120000),
+(18, 9, 48, 2, 17, 180000),
+(19, 10, 19, 3, 18, 240000),
+(20, 10, 20, 1, 18, 90000),
+(21, 21, 18, 5, 13, 495000),
+(22, 22, 16, 1, NULL, 70000),
+(23, 23, 7, 6, NULL, 360000),
+(24, 23, 82, 1, NULL, 70000),
+(25, 24, 1, 29, 13, 1566000),
+(26, 24, 2, 3, 13, 240000),
+(27, 25, 16, 1, NULL, 70000),
+(28, 25, 19, 1, NULL, 50000);
 
 -- --------------------------------------------------------
 
@@ -389,13 +404,13 @@ CREATE TABLE `product_variants` (
 --
 
 INSERT INTO `product_variants` (`id`, `id_product`, `id_size`, `price`, `quantity`) VALUES
-(1, 1, 1, 60000, 29),
-(2, 1, 2, 80000, 94),
+(1, 1, 1, 60000, 0),
+(2, 1, 2, 80000, 91),
 (3, 1, 3, 100000, 100),
 (4, 2, 1, 60000, 27),
 (5, 2, 2, 80000, 100),
 (6, 2, 3, 100000, 43),
-(7, 3, 1, 60000, 89),
+(7, 3, 1, 60000, 83),
 (8, 3, 2, 80000, 32),
 (9, 3, 3, 100000, 68),
 (10, 4, 1, 60000, 51),
@@ -404,10 +419,10 @@ INSERT INTO `product_variants` (`id`, `id_product`, `id_size`, `price`, `quantit
 (13, 5, 1, 70000, 15),
 (14, 5, 2, 90000, 10),
 (15, 5, 3, 110000, 86),
-(16, 6, 1, 70000, 28),
+(16, 6, 1, 70000, 26),
 (17, 6, 2, 90000, 53),
-(18, 6, 3, 110000, 83),
-(19, 7, 1, 50000, 62),
+(18, 6, 3, 110000, 78),
+(19, 7, 1, 50000, 61),
 (20, 7, 2, 70000, 53),
 (21, 7, 3, 90000, 71),
 (22, 8, 1, 70000, 92),
@@ -422,23 +437,23 @@ INSERT INTO `product_variants` (`id`, `id_product`, `id_size`, `price`, `quantit
 (31, 11, 1, 60000, 28),
 (32, 11, 2, 80000, 58),
 (33, 11, 3, 100000, 12),
-(35, 12, 1, 60000, 61),
 (34, 12, 2, 0, 0),
+(35, 12, 1, 60000, 61),
 (36, 12, 3, 0, 0),
-(38, 13, 1, 80000, 61),
 (37, 13, 2, 0, 0),
+(38, 13, 1, 80000, 61),
 (39, 13, 3, 0, 0),
-(41, 14, 1, 80000, 87),
 (40, 14, 2, 0, 0),
+(41, 14, 1, 80000, 87),
 (42, 14, 3, 0, 0),
-(44, 15, 1, 70000, 37),
 (43, 15, 2, 0, 0),
+(44, 15, 1, 70000, 37),
 (45, 15, 3, 0, 0),
 (46, 16, 1, 60000, 81),
 (47, 16, 2, 80000, 38),
 (48, 16, 3, 100000, 29),
-(50, 17, 1, 80000, 11),
 (49, 17, 2, 0, 0),
+(50, 17, 1, 80000, 11),
 (51, 17, 3, 0, 0),
 (52, 18, 1, 60000, 48),
 (53, 18, 2, 80000, 11),
@@ -470,7 +485,7 @@ INSERT INTO `product_variants` (`id`, `id_product`, `id_size`, `price`, `quantit
 (79, 27, 1, 70000, 17),
 (80, 27, 2, 90000, 87),
 (81, 27, 3, 110000, 14),
-(82, 28, 1, 70000, 71),
+(82, 28, 1, 70000, 70),
 (83, 28, 2, 90000, 30),
 (84, 28, 3, 110000, 18),
 (85, 29, 1, 50000, 81),
@@ -620,7 +635,7 @@ ALTER TABLE `accounts`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -644,13 +659,13 @@ ALTER TABLE `discount_codes`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `order_details`
 --
 ALTER TABLE `order_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `products`

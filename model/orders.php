@@ -50,12 +50,12 @@ function loadone_order_details($id)
     od.total_amount,
     a.avatar,
     a.username,
-    a.fullname,
-    a.email,
-    a.tel,
-    a.address,
-    od.notes,
+    o.fullname,
+    o.email,
+    o.tel,
     o.order_date,
+    o.address,
+    o.notes,
     pv.price,
     od.discount
     
@@ -72,7 +72,7 @@ function loadone_order_details($id)
 }
 function loadone_order($id)
 {
-    $sql = "SELECT * FROM `order_details` JOIN orders ON order_details.id_order = orders.id JOIN accounts ON orders.id_account = accounts.id WHERE order_details.id_order = '$id'";
+    $sql = "SELECT * FROM orders WHERE id = '$id'"; 
     $order = pdo_query_one($sql);
     return $order;
 }
@@ -90,7 +90,7 @@ function loadall_order_variants($id_order)
 }
 function order_update($id_order, $id_status)
 {
-    $sql = "UPDATE orders SET id_status = '$id_status' WHERE id = '$id_order'"; 
+    $sql = "UPDATE orders SET id_status = '$id_status' WHERE id = '$id_order'";  
     pdo_execute($sql);
 }
 
@@ -216,13 +216,13 @@ function getLastIdOrder()
     }
 }
 
-function addOrderDetail($id_order, $id_product_variants, $quantity, $total_amount, $discount, $notes)
+function addOrderDetail($id_order, $id_product_variants, $quantity, $total_amount, $discount)
 {
     try {
         if ($discount == null) {
-            $sql = "INSERT INTO order_details(id_order, id_product_variants, quantity, total_amount, notes) VALUES ($id_order, $id_product_variants, $quantity, $total_amount, '$notes');";
+            $sql = "INSERT INTO order_details(id_order, id_product_variants, quantity, total_amount) VALUES ($id_order, $id_product_variants, $quantity, $total_amount);";
         } else {
-            $sql = "INSERT INTO order_details(id_order, id_product_variants, quantity, total_amount, discount, notes) VALUES ($id_order, $id_product_variants, $quantity, $total_amount, $discount, '$notes');";
+            $sql = "INSERT INTO order_details(id_order, id_product_variants, quantity, total_amount, discount) VALUES ($id_order, $id_product_variants, $quantity, $total_amount, $discount);";
         }
         return pdo_execute($sql);
     } catch (Exception $e) {

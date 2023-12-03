@@ -8,20 +8,40 @@
         <div class="letf-bottom">
           <div class="row mb-20">
             Họ và tên* <br />
-            <input type="text" name="fullname" value="<?= $getAccountById['fullname'] ?>" required />
+            <input type="text" name="fullname" value="<?= $getAccountById['fullname'] ?>" />
           </div>
+          <?php
+          if (isset($_SESSION['error']['fullname'])) {
+            echo "<div class='text-danger row mb-20'>" . $_SESSION['error']['fullname'] . "</div>";
+          } 
+          ?>
           <div class="row mb-20">
             Email* <br />
-            <input type="email" name="email" value="<?= $getAccountById['email'] ?>" required />
+            <input type="email" name="email" value="<?= $getAccountById['email'] ?>" />
           </div>
+          <?php 
+          if (isset($_SESSION['error']['email'])) {
+            echo "<div class='text-danger row mb-20'>" . $_SESSION['error']['email'] . "</div>";
+          } 
+          ?>
           <div class="row mb-20">
             Số điện thoại* <br />
-            <input type="text" name="tel" value="<?= $getAccountById['tel'] ?>" required />
+            <input type="text" name="tel" value="<?= $getAccountById['tel'] ?>" />
           </div>
+          <?php 
+          if (isset($_SESSION['error']['tel'])) {
+            echo "<div class='text-danger row mb-20'>" . $_SESSION['error']['tel'] . "</div>";
+          }
+          ?>
           <div class="row mb-20">
             Địa chỉ* <br />
-            <input type="text" name="address" value="<?= $getAccountById['address'] ?>" required />
+            <input type="text" name="address" value="<?= $getAccountById['address'] ?>" />
           </div>
+          <?php 
+          if (isset($_SESSION['error']['address'])) {
+            echo "<div class='text-danger row mb-20'>" . $_SESSION['error']['address'] . "</div>";
+          }
+          ?>
           <div class="row mb-20">
             Ghi chú <br />
             <textarea name="notes"></textarea>
@@ -40,7 +60,7 @@
             </tr>
             <?php
             $total_price = 0;
-            $discount = $discount; 
+            $discount = $discount;
             $temp_price = 0;
             foreach ($load_card as $card) {
               extract($card);
@@ -74,16 +94,16 @@
           <div class="order-detail">
             <table>
               <tr style="height: 26px;">
-                <th scope="row">Tạm tính</th>
-                <td><?= number_format($total_price); ?>VND</td>
-              </tr> 
-              <tr style="height: 26px;">
-                <th scope="row">Giảm giá</th>
-                <td><?= number_format($discount); ?>VND</td>
+                <th style="text-align: start;" scope="row">Tạm tính</th>
+                <td style="text-align: end;"><?= number_format($total_price); ?>VND</td>
               </tr>
               <tr style="height: 26px;">
-                <th scope="row">Tổng thanh toán</th>
-                <td><?= number_format($total_amount); ?>VND</td> 
+                <th style="text-align: start;" scope="row">Giảm giá</th>
+                <td style="text-align: end;"><?= number_format($discount); ?>VND</td>
+              </tr>
+              <tr style="height: 26px;">
+                <th style="text-align: start;" scope="row">Tổng thanh toán</th>
+                <td style="text-align: end;"><?= number_format($total_amount); ?>VND</td>
               </tr>
             </table>
           </div>

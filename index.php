@@ -111,6 +111,7 @@ session_start();
                                         if ($value['username'] == $username) {
                                             $_SESSION['error']['username'] = 'Tên đăng nhập đã tồn tại';
                                         }
+                                        break;
                                     }
                                 }
                             }
@@ -120,6 +121,13 @@ session_start();
                                 $regex_email = "/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/";
                                 if (!preg_match($regex_email, $email)) {
                                     $_SESSION['error']['email'] = 'Email không hợp lệ';
+                                } else {
+                                    foreach ($user_check as $key => $value) {
+                                        if (mb_strtolower($value['email']) == mb_strtolower($email)) {
+                                            $_SESSION['error']['email'] = 'Email đã tồn tại';
+                                        }
+                                        break;
+                                    }
                                 }
                             }
                             if (empty($password)) {
@@ -208,6 +216,7 @@ session_start();
                         include 'user/cart.php';
                         break;
                     case 'pay':
+                        unset($_SESSION['error']);
                         $getAccountById = getAccountById($_SESSION['user']['id']);
                         $load_card = load_cart($_SESSION['user']['id']);
                         // Code discount
@@ -219,37 +228,76 @@ session_start();
                             $id_code_discount = null;
                         }
                         if (isset($_POST['submit_order'])) {
+                            $fullname = $_POST['fullname'];
+                            $email = $_POST['email'];
+                            $tel = $_POST['tel'];
+                            $address = $_POST['address'];
                             $notes = $_POST['notes'];
+                            // Code discount
                             if (isset($_POST['id_code_discount']) && ($_POST['id_code_discount'] != '')) {
                                 $id_code_discount = $_POST['id_code_discount'];
                                 $discount = checkDiscountCode($id_code_discount)['discount'];
                             } else {
                                 $id_code_discount = null;
                             }
+                            // Tạo một đối tượng DateTime
                             $date = new DateTime();
                             date_default_timezone_set('Asia/Ho_Chi_Minh');
-                            // Tạo một đối tượng DateTime
                             $date_now = new DateTime();
                             // Lấy ra ngày tháng năm ở định dạng Y-m-d
                             $order_date = $date_now->format('Y-m-d');
                             $id_status = 0;
                             $id_account = $_SESSION['user']['id'];
-                            // Add order 
-                            addOrder($id_account, $id_status, $order_date);
-                            $id_order = getLastIdOrder()['id'];
-                            // Add order_detail 
-                            foreach ($load_card as $card) {
-                                extract($card);
-                                $temp_price = $price * $quantity;
-                                $discount = $discount / 100 * $temp_price;
-                                $total_amount = $temp_price - $discount;
-                                $id_product_variants = $id_product_variants;
-                                addOrderDetail($id_order, $id_product_variants, $quantity, $total_amount, $id_code_discount, $notes);
-                                updateQuantityProductVariants($id_product_variants, $quantity);
-                                $discount = 0;
+                            
+                            // Validate dữ liệu
+                            if (empty($fullname)) {
+                                $_SESSION['error']['fullname'] = 'Bạn chưa nhập họ tên';
+                                $_SESSION['error']['check'] = false;
                             }
-                            delCart($_SESSION['user']['id'], "all");
-                            echo "<script>window.location.href = '?act=order';</script>";
+                            if (empty($email)) {
+                                $_SESSION['error']['email'] = 'Bạn chưa nhập email';
+                                $_SESSION['error']['check'] = false;
+                            } else {
+                                $regex_email = "/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/";
+                                if (!preg_match($regex_email, $email)) {
+                                    $_SESSION['error']['email'] = 'Email không hợp lệ';
+                                    $_SESSION['error']['check'] = false;
+                                }
+                            }
+                            if (empty($tel)) {
+                                $_SESSION['error']['tel'] = 'Bạn chưa nhập số điện thoại';
+                                $_SESSION['error']['check'] = false;
+                            } else {
+                                $regex_tel = "/^[0-9]{10,11}$/";
+                                if (!preg_match($regex_tel, $tel)) {
+                                    $_SESSION['error']['tel'] = 'Số điện thoại không hợp lệ';
+                                    $_SESSION['error']['check'] = false;
+                                }
+                            }
+                            if (empty($address)) {
+                                $_SESSION['error']['address'] = 'Bạn chưa nhập địa chỉ';
+                                $_SESSION['error']['check'] = false;
+                            }
+
+                            if ($_SESSION['error']['check'] == true) {
+                                // Add order 
+                                addOrder($id_account, $id_status, $order_date);
+                                $id_order = getLastIdOrder()['id'];
+                                // Add order_detail 
+                                foreach ($load_card as $card) {
+                                    extract($card);
+                                    $temp_price = $price * $quantity;
+                                    $discount = $discount / 100 * $temp_price;
+                                    $total_amount = $temp_price - $discount;
+                                    $id_product_variants = $id_product_variants;
+                                    addOrderDetail($id_order, $id_product_variants, $quantity, $total_amount, $id_code_discount, $notes);
+                                    updateQuantityProductVariants($id_product_variants, $quantity);
+                                    $discount = 0;
+                                }
+                                delCart($_SESSION['user']['id'], "all");
+                                echo "<script>window.location.href = '?act=order';</script>";
+                            }
+                            
                         }
                         include 'user/pay.php';
                         break;
@@ -271,7 +319,7 @@ session_start();
                                 if ($checkQuantityProductCart) {
                                     $quantityCheck = $quantity + $checkQuantityProductCart['quantity'];
                                     if (getProductVariants($id_product_variants)['quantity'] < $quantityCheck) {
-                                        $_SESSION['error']['quantity'] = "Số lượng sản phẩm không đủ!<br> Giỏ hàng của bạn đã tồn tại ". $checkQuantityProductCart['quantity'] ." sản phẩm này";
+                                        $_SESSION['error']['quantity'] = "Số lượng sản phẩm không đủ!<br> Giỏ hàng của bạn đã tồn tại " . $checkQuantityProductCart['quantity'] . " sản phẩm này";
                                         echo "<script>window.location.href = '?act=product_detail&id=$id_product';</script>";
                                     } else {
                                         addToCard($id_account, $id_product_variants, $quantity, $checkQuantityProductCart);

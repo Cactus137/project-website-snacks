@@ -13,13 +13,13 @@
                                     <div class="col-md-6 mb-4 d-flex align-items-center">
                                         <div class="form-outline w-100">
                                             <label for="fullname" class="form-label">Họ và tên</label>
-                                            <input readonly type="text" name="fullname" class="form-control form-control-sm" value="<?php echo $order['fullname'] ?>" placeholder="" id="fullname" />
+                                            <input readonly type="text" name="fullname" class="form-control form-control-sm" value="<?php echo $fullname ?>" placeholder="" id="fullname" />
                                         </div>
                                     </div>
                                     <div class="col-md-6 mb-4 d-flex align-items-center">
                                         <div class="form-outline w-100">
                                             <label class="form-label" for="email">Email</label>
-                                            <input readonly type="email" id="email" name="email" value="<?= $order['email'] ?>" placeholder="" class="form-control form-control-sm" />
+                                            <input readonly type="email" id="email" name="email" value="<?= $email ?>" placeholder="" class="form-control form-control-sm" />
                                         </div>
                                     </div>
                                 </div>
@@ -27,21 +27,17 @@
                                     <div class="col-md-6 mb-4 pb-2">
                                         <div class="form-outline">
                                             <label class="form-label" for="tel">Số điện thoại</label>
-                                            <input readonly type="text" id="tel" name="tel" value="<?= $order['tel'] ?>" placeholder="" class="form-control form-control-sm" />
+                                            <input readonly type="text" id="tel" name="tel" value="<?= $tel ?>" placeholder="" class="form-control form-control-sm" />
                                         </div>
                                     </div>
                                     <div class="col-md-6 mb-4 pb-2">
-                                        <label class="form-label select-label">Trạng thái</label>
+                                        <label class="form-label select-label">Trạng thái</label> 
                                         <select name="id_status" class="select form-control form-control-sm">
                                             <?php
                                             $getAllStatusOrder = getAllStatusOrder();
-                                            foreach ($getAllStatusOrder as $value):
-                                                extract($value);
-                                            ?>
-                                            <option value="<?= $id ?>"<?= ($order['id_status'] == $id) ? 'selected' : '' ?>><?= $name ?></option>
-                                            <?php 
-                                                endforeach;
-                                            ?>
+                                            foreach ($getAllStatusOrder as $key) : ?>
+                                                <option value="<?= $key['id'] ?>" <?= $key['id'] == $id_status ? "selected" : "" ?>><?= $key['name'] ?></option>
+                                            <?php endforeach; ?>
                                         </select>
                                     </div>
                                 </div>
@@ -49,7 +45,7 @@
                                     <div class="col-12 mb-4 d-flex align-items-center">
                                         <div class="form-outline datepicker w-100">
                                             <label for="address" class="form-label">Địa chỉ</label>
-                                            <input readonly type="text" name="address" class="form-control form-control-sm" value="<?= $order['address'] ?>" placeholder="" id="address" />
+                                            <input readonly type="text" name="address" class="form-control form-control-sm" value="<?= $address ?>" placeholder="" id="address" />
                                         </div>
                                     </div>
                                 </div>
@@ -57,12 +53,12 @@
                                     <div class="col-12 mb-4 d-flex align-items-center">
                                         <div class="form-outline datepicker w-100">
                                             <label for="notet" class="form-label">Ghi chú</label>
-                                            <textarea readonly name="notes" cols="30" rows="3" class="form-control form-control-sm"><?= $order['notes'] ?></textarea>
+                                            <textarea readonly name="notes" cols="30" rows="3" class="form-control form-control-sm"><?= $notes ?></textarea>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="button">
-                                    <input type="hidden" name="id_order" id="" value="<?php echo $order['id_order'] ?>">
+                                    <input type="hidden" name="id_order" id="" value="<?php echo $id ?>">
                                     <a href="index.php?action=orders">
 
                                         <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Hủy</button>

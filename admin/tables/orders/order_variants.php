@@ -17,10 +17,10 @@
                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7">Giá</th>
                </tr>
                <?php
-               $temp_price = 0;
+                $temp_price = 0;
                 foreach ($order_details as $order_detail) :
                   extract($order_detail);
-                  $temp_price += $quantity * $price; 
+                  $temp_price += $quantity * $price;
                 ?>
                  <tr>
                    <td class="p-1 d-flex align-items-center">
@@ -72,12 +72,7 @@
              <tr>
                <th class="text-secondary text-xxs font-weight-bolder opacity-7">Ghi chú đơn hàng </th>
                <td class="p-2">
-                 <?php
-                  foreach ($order_details as $order_detail) :
-                    extract($order_detail);
-                  ?>
-                   <p class="text-sm font-weight-bold mb-0 text-end"><?= $notes ?></p>
-                 <?php endforeach; ?>
+                 <p class="text-sm font-weight-bold mb-0 text-end"><?= $notes ?></p>
                </td>
              </tr>
            </table>
@@ -89,7 +84,7 @@
            <!-- User -->
            <div class="d-flex p-3">
              <div>
-               <img src="<?= '../assets/img/accounts/' . $avatar?>" class="avatar me-3">
+               <img src="<?= '../assets/img/accounts/' . $avatar ?>" class="avatar me-3">
              </div>
              <div class="d-flex flex-column justify-content-center">
                <h6 class="mb-0 text-sm"><?= $username ?></h6>
@@ -111,7 +106,7 @@
                  <td>
                    <p class="text-sm font-weight-bold mb-0 text-end"><?= number_format($temp_price); ?> VND</p>
                  </td>
-               </tr> 
+               </tr>
                <tr>
                  <th class="text-secondary text-xxs font-weight-bolder opacity-7">Giảm giá</th>
                  <td>

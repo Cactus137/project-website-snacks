@@ -30,7 +30,7 @@
                         <div class="field-img">
                             <img src="<?= "assets/img/products/" . $image_product; ?>" alt="" class="image">
                         </div>
-                        <div class="box" style="display: flex; justify-content: space-between; width: 100%; margin-left: 15px"> 
+                        <div class="box" style="display: flex; justify-content: space-between; width: 100%; margin-left: 15px">
                             <div class="content">
                                 <div class="field-content">
                                     <h4><?= $name_product ?></h4>
@@ -60,8 +60,10 @@
                 <form action="" method="post">
                     <span class="field-text">
                         <p class="name">Bạn có Mã giảm giá?</p>
-                        <input type="text" name="code_discount" placeholder="Mã giảm giá*" class="vorcher">
-                        <input type="submit" name="btn_code_discount" id="" value="Áp dụng" class="sbvocher">
+                        <div class="box-code" style="display: flex;">
+                            <input type="text" name="code_discount" placeholder="Mã giảm giá*" class="vorcher" style="height: 40px; margin-right: 15px">
+                            <input type="submit" name="btn_code_discount" id="" value="Áp dụng" class="sbvocher" style="height: 40px;">
+                        </div>
                         <hr>
                     </span>
                 </form>
@@ -71,7 +73,7 @@
                         <div class="pr-price">
                             <?= number_format($total_price) ?>VND
                         </div>
-                    </li> 
+                    </li>
                     <li>
                         <div class="pr-name">Giảm giá</div>
                         <div class="pr-price">

@@ -421,12 +421,13 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['id_role'] != 0) {
                             case 'update_order':
                                 if (isset($_GET['id']) && ($_GET['id']) > 0) {
                                     $order = loadone_order($_GET['id']);
+                                    extract($order);
                                 }
                                 include "tables/orders/edit_order.php";
                             case 'edit_order':
                                 if (isset($_POST['btn_edit']) && ($_POST['btn_edit'])) {
                                     $id_order = $_POST['id_order'];
-                                    $id_status = $_POST['id_status'];
+                                    $id_status = $_POST['id_status']; 
                                     if ($id_status == 5) {
                                         cancelOrder($id_order);
                                     } else {

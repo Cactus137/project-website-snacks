@@ -24,7 +24,8 @@ function getAll_order()
     JOIN products p ON p.id = pv.id_product
     JOIN accounts a ON a.id = o.id_account
     JOIN order_status os ON o.id_status = os.id
-    GROUP BY id;";
+    GROUP BY id
+    ORDER BY o.id DESC;";
     $listorder = pdo_query($sql);
     return $listorder;
 }
@@ -112,7 +113,7 @@ function fitterOrder($status = null)
         if ($status != null) {
             $sql .= " WHERE os.id = $status";
         }
-        $sql .= " GROUP BY id;";
+        $sql .= " GROUP BY id ORDER BY o.id DESC;";
         return pdo_query($sql);
     } catch (Exception $e) {
         echo $e->getMessage();
@@ -129,6 +130,7 @@ function getOrdersByAccount($id_account, $id_status)
         if ($id_status != null) {
             $sql .= " AND o.id_status = $id_status";
         }
+        $sql .= " ORDER BY o.id DESC;";
         return pdo_query($sql);
     } catch (Exception $e) {
         echo $e->getMessage();
@@ -159,7 +161,7 @@ function getOrderDetailByAccount($id_order)
     JOIN order_status os ON o.id_status = os.id
     -- JOIN discount_codes dc ON dc.id = od.discount
     WHERE o.id = $id_order 
-    ORDER BY o.order_date ASC;";
+    ORDER BY o.id ASC;";
         return pdo_query($sql);
     } catch (Exception $e) {
         echo $e->getMessage();

@@ -43,6 +43,10 @@
                             <?php
                             if (isset($_SESSION['error']['size'])) {
                                 echo '<p class="text-danger">' . $_SESSION['error']['size'] . '</p>';
+                                unset($_SESSION['error']['size']);
+                            } else if (isset($_SESSION['error']['quantity'])) {
+                                echo '<p class="text-danger">' . $_SESSION['error']['quantity'] . '</p>';
+                                unset($_SESSION['error']['quantity']);
                             } else {
                                 echo "";
                             }

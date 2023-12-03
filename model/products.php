@@ -162,3 +162,12 @@ function updateQuantityProductVariants($id_product_variants, $quantity)
         echo $e->getMessage();
     }
 }
+
+function getProductVariants ($id_product_variants) {
+    try {
+        $sql = "SELECT * FROM product_variants WHERE id = $id_product_variants";
+        return pdo_query_one($sql);
+    } catch (Exception $e) {
+        echo $e->getMessage();
+    }
+}

@@ -21,11 +21,9 @@ function load_cart($id_account)
         echo $e->getMessage();
     }
 }
-function addToCard($id_account, $id_product_variants, $quantity)
+function addToCard($id_account, $id_product_variants, $quantity, $checkQuantityProductCart)
 {
     try {
-        $checkQuantityProductCart = checkQuantityProductCart($id_account, $id_product_variants);
-
         if ($checkQuantityProductCart) {
             $quantity = $checkQuantityProductCart['quantity'] + $quantity;
             $sql = "UPDATE cart SET quantity = '$quantity' WHERE id_account = '$id_account' and id_product_variants = '$id_product_variants'";

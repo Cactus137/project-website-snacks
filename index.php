@@ -254,6 +254,7 @@ session_start();
                         include 'user/pay.php';
                         break;
                     case 'add_to_card':
+
                         if (isset($_POST['addtocart'])) {
                             $id_product = $_POST['id_product'];
                             if (!isset($_POST['exp'])) {
@@ -265,8 +266,21 @@ session_start();
                                 $id_size = $_POST['exp'];
                                 $id_size = $id_size[0];
                                 $id_product_variants = getIdProductVariants($id_product, $id_size)['id'];
-                                addToCard($id_account, $id_product_variants, $quantity);
-                                echo "<script>window.location.href = '?act=cart';</script>";
+
+                                $checkQuantityProductCart = checkQuantityProductCart($id_account, $id_product_variants);
+                                if ($checkQuantityProductCart) {
+                                    $quantityCheck = $quantity + $checkQuantityProductCart['quantity'];
+                                    if (getProductVariants($id_product_variants)['quantity'] < $quantityCheck) {
+                                        $_SESSION['error']['quantity'] = "Số lượng sản phẩm không đủ!<br> Giỏ hàng của bạn đã tồn tại ". $checkQuantityProductCart['quantity'] ." sản phẩm này";
+                                        echo "<script>window.location.href = '?act=product_detail&id=$id_product';</script>";
+                                    } else {
+                                        addToCard($id_account, $id_product_variants, $quantity, $checkQuantityProductCart);
+                                        echo "<script>window.location.href = '?act=cart';</script>";
+                                    }
+                                } else {
+                                    addToCard($id_account, $id_product_variants, $quantity, $checkQuantityProductCart);
+                                    echo "<script>window.location.href = '?act=cart';</script>";
+                                }
                             }
                         }
                         break;
@@ -288,7 +302,6 @@ session_start();
                         include 'user/products_list_search.php';
                         break;
                     case 'product_detail':
-                        
                         if (isset($_GET['id']) && ($_GET['id'] > 0)) {
                             $id = $_GET['id'];
                             $one_product =  load_one_product($id);
@@ -304,7 +317,7 @@ session_start();
                         if (isset($_POST['send']) && ($_POST['send'])) {
                             $content = $_POST['content'];
                             $id_product = $_POST['id_product'];
-                            $id_account = $_SESSION['user']['id']; 
+                            $id_account = $_SESSION['user']['id'];
 
                             $date = new DateTime();
                             date_default_timezone_set('Asia/Ho_Chi_Minh');
@@ -313,7 +326,7 @@ session_start();
 
                             if (empty($content)) {
                                 $_SESSION['error']['content'] = 'Bạn chưa nhập nội dung bình luận';
-                            } else { 
+                            } else {
                                 insert_comment($content, $id_account, $id_product, $comment_date);
                             }
                             echo "<script>window.location.href = '?act=product_detail&id=$id_product';</script>";

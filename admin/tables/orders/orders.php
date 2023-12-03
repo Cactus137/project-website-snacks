@@ -29,7 +29,7 @@
             <table class="table align-items-center justify-content-between mb-0">
 
               <tr>
-                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">STT</th>
+                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Mã đơn hàng</th>
                 <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">account</th>
                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7">date</th>
                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7">Status</th>

@@ -1,43 +1,32 @@
 <link rel="stylesheet" href="./assets/css/styles.user.home.css">
+
 <main class="mb-5 pb-5" style="width: 100%;">
-    <div class="CSSgal">
 
-        <!-- Don't wrap targets in parent -->
-        <s id="s1"></s>
-        <s id="s2"></s>
-        <s id="s3"></s>
-        <s id="s4"></s>
-
-        <div class="slider">
-            <div style="background:#5b8;">
-                <img src="assets/img/banners/banner1.png" alt="" height="500px">
-            </div>
-            <div style="background:#85b;">
-                <img src="assets/img/banners/banner2.png" alt="" height="500px">
-            </div>
-            <div style="background:#e95;">
-                <img src="assets/img/banners/banner3.png" alt="" height="500px">
-            </div>
-            <div style="background:#e59;">
-                <img src="assets/img/banners/banner4.png" alt="" height="500px">
-            </div>
+    <div class="slideshow-container">
+        <div class="mySlides">
+            <img src="assets/img/banners/banner1.png" style="width: 100%;">
+        </div>
+        <div class="mySlides">
+            <img src="assets/img/banners/banner2.png" style="width: 100%;">
         </div>
 
-        <div class="prevNext">
-            <div><a href="#s4"></a><a href="#s2"></a></div>
-            <div><a href="#s1"></a><a href="#s3"></a></div>
-            <div><a href="#s2"></a><a href="#s4"></a></div>
-            <div><a href="#s3"></a><a href="#s1"></a></div>
+        <div class="mySlides">
+            <img src="assets/img/banners/banner3.png" style="width: 100%;">
         </div>
 
-        <div class="bullets">
-            <a href="#s1"></a>
-            <a href="#s2"></a>
-            <a href="#s3"></a>
-            <a href="#s4"></a>
+        <div class="mySlides">
+            <img src="assets/img/banners/banner4.png" style="width: 100%;">
         </div>
-
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        <div class="index-bottom">
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+            <span class="dot" onclick="currentSlide(4)"></span>
+        </div>
     </div>
+
     <div class="background-menu">
         <h1 style="padding-top: 15px">Menu của chúng tôi</h1>
         <div class="wrap-menu mb-10">
@@ -49,7 +38,7 @@
                     <a href="?act=menu&name=#<?php echo $name_category ?>">
                         <img src="<?php echo 'assets/img/categories/' . $image ?>" alt="">
                     </a>
-                    <a href="?act=menu&name=#<?php echo $name_category ?>" >
+                    <a href="?act=menu&name=#<?php echo $name_category ?>">
                         <h3 style="padding-top: 10px;"><?php echo $name_category ?></h3>
                     </a>
                 </div>
@@ -87,3 +76,38 @@
     </div>
 </main>
 <?php include 'scroll.php'; ?>
+
+<script>
+    /* Slideshow JavaScript */
+    var slideIndex = 1;
+    showSlides(slideIndex);
+
+    function plusSlides(n) {
+        showSlides(slideIndex += n);
+    }
+
+    function currentSlide(n) {
+        showSlides(slideIndex = n);
+    }
+
+    function showSlides(n) {
+        var i;
+        var slides = document.getElementsByClassName("mySlides");
+        var dots = document.getElementsByClassName("dot");
+        if (n > slides.length) {
+            slideIndex = 1
+        }
+        if (n < 1) {
+            slideIndex = slides.length
+        };
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].classList.remove("active");
+        }
+        slides[slideIndex - 1].style.display = "block";
+        dots[slideIndex - 1].classList.add("active");
+    }
+    /* Slideshow JavaScript */
+</script>

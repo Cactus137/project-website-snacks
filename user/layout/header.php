@@ -37,7 +37,7 @@
     <ul class="menu-nav m-0">
         <li><a href="index.php?act=home">Trang chủ</a></li>
         <li><a href="index.php?act=menu">Thực đơn</a></li>
-        <li><a href="#">Mã giảm giá</a></li>
+        <li><a href="index.php?act=article">Tin tức</a></li>
         <li><a href="#">Giới thiệu</a></li>
         <li><a href="#">Liên hệ</a></li>
     </ul>

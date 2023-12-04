@@ -425,6 +425,9 @@ session_start();
                             echo "<script>window.location.href = '?act=login';</script>";
                         }
                         break;
+                    case 'article' :
+                        include './user/article/index.php';
+                        break;
                     default:
                         include './user/home.php';
                         break;

@@ -65,13 +65,13 @@
                             $total_amount = 0;
                             $discount_product = 0;
                             foreach ($getOrderDetailByAccount as $orderDetail) :
-                                extract($orderDetail);  
+                                extract($orderDetail);
                                 if (is_null($discount)) {
                                     $discount_product = 0;
                                 } else {
                                     $discount_product = checkDiscountCode($discount)['discount'];
                                 }
-                                $price_product += ($price * $quantity); 
+                                $price_product += ($price * $quantity);
                             ?>
                                 <div class="d-flex pb-3">
                                     <div class="col-5">
@@ -87,26 +87,24 @@
                             $total_amount = $price_product - $discount_product;
                             ?>
                         </div>
-                        <div class="col-1 d-flex justity-content-center align-items-center">
-                            <div class="border-end h-100 ms-5" style="width: 2px;"></div>
+                        <div class="col-1 d-flex justity-content-center align-items-center border-end">
                         </div>
                         <div class=" col-5 mt-3 align-items-center">
-                            <div class="box">
-                                <div class="col">
-                                    <div class="row d-flex justify-content-between">
+                            <div class="box" style="font-size: 15px;">
+                                <div class="col ms-4">
+                                    <div class="row mb-3">
                                         <div class="price_temp col text-start">Tổng tiền hàng</div>
                                         <div class="price_temp col text-end"><?= number_format($price_product); ?> VND</div>
-                                    </div> 
-                                    <div class="row">
+                                    </div>
+                                    <div class="row mb-3">
                                         <div class="price_temp col text-start">Giảm giá</div>
                                         <div class="price_temp col text-end"><?= number_format($discount_product); ?> VND</div>
                                     </div>
-                                </div>
-                                <div class="col d-flex justify-content-between align-items-center mt-2">
-                                    <div class="col text-start fw-bold">Thành tiền</div>
-                                    <div class="col text-end fw-bold"><?= number_format($total_amount) ?> VND</div>
-                                </div>
-
+                                    <div class="row mb-3">
+                                        <div class="price_temp col text-start fw-bold">Thành tiền</div>
+                                        <div class="price_temp col text-end fw-bold"><?= number_format($total_amount) ?> VND</div>
+                                    </div>
+                                </div> 
                             </div>
                         </div>
                     </div>

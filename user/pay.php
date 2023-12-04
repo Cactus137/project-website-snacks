@@ -115,11 +115,5 @@
       <input type="hidden" name="id_code_discount" value="<?= $id_code_discount ?>">
       <input type="submit" name="submit_order" value="Xác nhận mua hàng" class="right-confirm">
     </div>
-  </form>
-  <?php
-  if (isset($_SESSION['error'])) {
-    echo "<script>alert('" . $_SESSION['error'] . "')</script>";
-    unset($_SESSION['error']);
-  }
-  ?>
+  </form> 
 </main>

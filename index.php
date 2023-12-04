@@ -233,7 +233,6 @@ session_start();
                             $tel = $_POST['tel'];
                             $address = $_POST['address'];
                             $notes = $_POST['notes'];
-                            // Code discount
                             if (isset($_POST['id_code_discount']) && ($_POST['id_code_discount'] != '')) {
                                 $id_code_discount = $_POST['id_code_discount'];
                                 $discount = checkDiscountCode($id_code_discount)['discount'];
@@ -248,34 +247,35 @@ session_start();
                             $order_date = $date_now->format('Y-m-d');
                             $id_status = 0;
                             $id_account = $_SESSION['user']['id'];
-                            
+
                             // Validate dữ liệu
+                            $_SESSION['error']['check'] = true;
                             if (empty($fullname)) {
                                 $_SESSION['error']['fullname'] = 'Bạn chưa nhập họ tên';
                                 $_SESSION['error']['check'] = false;
                             }
-                            if (empty($email)) {
+                            if (!isset($email) || $email == "") {
                                 $_SESSION['error']['email'] = 'Bạn chưa nhập email';
                                 $_SESSION['error']['check'] = false;
                             } else {
                                 $regex_email = "/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/";
                                 if (!preg_match($regex_email, $email)) {
-                                    $_SESSION['error']['email'] = 'Email không hợp lệ';
+                                    $_SESSION['error']['email'] = "Email không hợp lệ";
                                     $_SESSION['error']['check'] = false;
                                 }
                             }
-                            if (empty($tel)) {
-                                $_SESSION['error']['tel'] = 'Bạn chưa nhập số điện thoại';
+                            if (!isset($tel) || $tel == "") {
+                                $_SESSION['error']['tel'] = "Số điện thoại không được để trống";
                                 $_SESSION['error']['check'] = false;
-                            } else {
-                                $regex_tel = "/^[0-9]{10,11}$/";
-                                if (!preg_match($regex_tel, $tel)) {
-                                    $_SESSION['error']['tel'] = 'Số điện thoại không hợp lệ';
+                            } else { 
+                                if ((strlen($tel) != 10) || !is_numeric($tel)) {
+                                    $_SESSION['error']['tel'] = "Số điện thoại không hợp lệ";
                                     $_SESSION['error']['check'] = false;
                                 }
                             }
-                            if (empty($address)) {
-                                $_SESSION['error']['address'] = 'Bạn chưa nhập địa chỉ';
+                            
+                            if (!isset($address) || $address == "") {
+                                $_SESSION['error']['address'] = "Địa chỉ không được để trống";
                                 $_SESSION['error']['check'] = false;
                             }
 
@@ -297,7 +297,6 @@ session_start();
                                 delCart($_SESSION['user']['id'], "all");
                                 echo "<script>window.location.href = '?act=order';</script>";
                             }
-                            
                         }
                         include 'user/pay.php';
                         break;
@@ -425,7 +424,7 @@ session_start();
                             echo "<script>window.location.href = '?act=login';</script>";
                         }
                         break;
-                    case 'article' :
+                    case 'article':
                         include './user/article/index.php';
                         break;
                     default:

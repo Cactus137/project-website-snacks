@@ -5,81 +5,11 @@
             <div class="card" style="width: 18rem;">
                 <img src="..." class="card-img-top" alt="...">
                 <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="">Xem thêm</a>
+                    <h5 class="card-title">Black Friday Sale: Ăn ngon, tiết kiệm cùng Fast Food</h5>
+                    <p class="card-text">Bạn đang tìm kiếm một nơi để thưởng thức những món ăn nhanh ngon miệng, đầy đủ dinh dưỡng và giá cả hợp lý? Bạn muốn tận hưởng không khí lễ hội và nhận được những ưu đãi hấp dẫn? Bạn không thể bỏ qua cơ hội vàng này từ Fast Food - cửa hàng bán đồ ăn nhanh hàng đầu tại Việt Nam.</p>
+                    <a href="?act=article&data=pp1" class="">Xem thêm</a>
                 </div>
             </div>
-        </div> 
-        <div class="col mb-4">
-            <div class="card" style="width: 18rem;">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="">Xem thêm</a>
-                </div>
-            </div>
-        </div> 
-        <div class="col mb-4">
-            <div class="card" style="width: 18rem;">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="">Xem thêm</a>
-                </div>
-            </div>
-        </div> 
-        <div class="col mb-4">
-            <div class="card" style="width: 18rem;">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="">Xem thêm</a>
-                </div>
-            </div>
-        </div> 
-        <div class="col mb-4">
-            <div class="card" style="width: 18rem;">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="">Xem thêm</a>
-                </div>
-            </div>
-        </div> 
-        <div class="col mb-4">
-            <div class="card" style="width: 18rem;">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="">Xem thêm</a>
-                </div>
-            </div>
-        </div> 
-        <div class="col mb-4">
-            <div class="card" style="width: 18rem;">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="">Xem thêm</a>
-                </div>
-            </div>
-        </div> 
-        <div class="col mb-4">
-            <div class="card" style="width: 18rem;">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="">Xem thêm</a>
-                </div>
-            </div>
-        </div> 
+        </div>  
     </div>
 </section>

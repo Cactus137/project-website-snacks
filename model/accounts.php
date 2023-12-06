@@ -1,6 +1,6 @@
 <?php
 function getAllAccounts()
-{
+{ 
     try {
         $sql = " SELECT * FROM accounts ORDER BY id DESC;";
         return pdo_query($sql);

@@ -24,7 +24,7 @@ function getAll_order()
     JOIN products p ON p.id = pv.id_product
     JOIN accounts a ON a.id = o.id_account
     JOIN order_status os ON o.id_status = os.id
-    GROUP BY id
+    GROUP BY id 
     ORDER BY o.id DESC;";
     $listorder = pdo_query($sql);
     return $listorder;

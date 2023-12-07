@@ -1,26 +1,10 @@
 CREATE DATABASE project_website_snacks;
 
-USE project_website_snacks; 
-
--- phpMyAdmin SQL Dump
--- version 5.2.1
--- https://www.phpmyadmin.net/
---
--- Host: localhost
--- Generation Time: Dec 03, 2023 at 09:16 AM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+USE project_website_snacks;  
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
+SET time_zone = "+00:00"; 
 --
 -- Database: `project_website_snacks`
 --
@@ -238,31 +222,86 @@ CREATE TABLE `orders` (
 
 --
 -- Dumping data for table `orders`
---
+-- 
 
-INSERT INTO `orders` (`id`, `order_date`, `id_status`, `id_account`, `notes`, `fullname`, `email`, `tel`, `address`) VALUES
-(1, '2023-03-13', 2, 1, 'Đơn hàng quan trọng, đừng trì hoãn! ', 'User One', 'user1@example.com', '1234567890', '123 Main St, City'),
-(2, '2023-10-22', 0, 2, 'Giao hàng càng sớm càng tốt. ', 'User Two', 'user2@example.com', '9876543210', '456 Elm St, Town'),
-(3, '2023-07-17', 0, 3, 'Giao hàng càng sớm càng tốt. ', 'Le Van Thanh', 'Blackwhilee04@gmail.com', '234234', '7 ngách 126 Ng. 14 P. Mễ Trì Hạ, Mễ Trì, Từ Liêm, Hà Nội, Việt Nam'),
-(4, '2023-05-22', 5, 1, 'Đơn hàng quan trọng, đừng trì hoãn! ', 'User One', 'user1@example.com', '1234567890', '123 Main St, City'),
-(5, '2023-05-31', 1, 2, 'Đơn hàng quan trọng, đừng trì hoãn! ', 'User Two', 'user2@example.com', '9876543210', '456 Elm St, Town'),
-(6, '2022-12-30', 5, 3, 'Giao hàng càng sớm càng tốt. ', 'Le Van Thanh', 'Blackwhilee04@gmail.com', '234234', '7 ngách 126 Ng. 14 P. Mễ Trì Hạ, Mễ Trì, Từ Liêm, Hà Nội, Việt Nam'),
-(7, '2023-11-05', 0, 1, 'Đơn hàng quan trọng, đừng trì hoãn! ', 'User One', 'user1@example.com', '1234567890', '123 Main St, City'),
-(8, '2023-05-04', 5, 2, 'Giao hàng càng sớm càng tốt. ', 'User Two', 'user2@example.com', '9876543210', '456 Elm St, Town'),
-(9, '2023-04-04', 5, 3, 'Giao hàng càng sớm càng tốt. ', 'Le Van Thanh', 'Blackwhilee04@gmail.com', '234234', '7 ngách 126 Ng. 14 P. Mễ Trì Hạ, Mễ Trì, Từ Liêm, Hà Nội, Việt Nam'),
-(10, '2023-05-13', 4, 1, 'Đơn hàng quan trọng, đừng trì hoãn! ', 'User One', 'user1@example.com', '1234567890', '123 Main St, City'),
-(11, '2023-02-22', 4, 2, 'Giao hàng càng sớm càng tốt. ', 'User Two', 'user2@example.com', '9876543210', '456 Elm St, Town'),
-(13, '2023-04-25', 1, 1, 'Đơn hàng quan trọng, đừng trì hoãn! ', 'User One', 'user1@example.com', '1234567890', '123 Main St, City'),
-(14, '2023-06-24', 0, 2, 'Giao hàng càng sớm càng tốt. ', 'User Two', 'user2@example.com', '9876543210', '456 Elm St, Town'),
-(16, '2023-06-05', 5, 1, 'Đơn hàng quan trọng, đừng trì hoãn! ', 'User One', 'user1@example.com', '1234567890', '123 Main St, City'),
-(17, '2023-07-26', 0, 2, 'Giao hàng càng sớm càng tốt. ', 'User Two', 'user2@example.com', '9876543210', '456 Elm St, Town'),
-(19, '2023-08-30', 0, 1, 'Giao hàng càng sớm càng tốt. ', 'User One', 'user1@example.com', '1234567890', '123 Main St, City'),
-(20, '2023-06-13', 2, 2, 'Đơn hàng quan trọng, đừng trì hoãn! ', 'User Two', 'user2@example.com', '9876543210', '456 Elm St, Town'),
-(21, '2023-12-03', 0, 3, 'Đơn hàng quan trọng, đừng trì hoãn! ', 'Le Van Thanh', 'Blackwhilee04@gmail.com', '234234', '7 ngách 126 Ng. 14 P. Mễ Trì Hạ, Mễ Trì, Từ Liêm, Hà Nội, Việt Nam'),
-(22, '2023-12-03', 3, 3, 'Giao hàng càng sớm càng tốt. ', 'Le Van Thanh', 'Blackwhilee04@gmail.com', '234234', '7 ngách 126 Ng. 14 P. Mễ Trì Hạ, Mễ Trì, Từ Liêm, Hà Nội, Việt Nam'),
-(23, '2023-12-03', 4, 3, 'Để hàng ngoài cửa giúp tôi. ', 'Le Van Thanh', 'Blackwhilee04@gmail.com', '234234', '7 ngách 126 Ng. 14 P. Mễ Trì Hạ, Mễ Trì, Từ Liêm, Hà Nội, Việt Nam'),
-(24, '2023-12-03', 0, 3, 'Đơn hàng quan trọng, đừng trì hoãn! ', 'Le Van Thanh', 'Blackwhilee04@gmail.com', '234234', '7 ngách 126 Ng. 14 P. Mễ Trì Hạ, Mễ Trì, Từ Liêm, Hà Nội, Việt Nam'),
-(25, '2023-12-03', 0, 3, 'Đơn hàng quan trọng, đừng trì hoãn! ', 'Le Van Thanh', 'Blackwhilee04@gmail.com', '234234', '7 ngách 126 Ng. 14 P. Mễ Trì Hạ, Mễ Trì, Từ Liêm, Hà Nội, Việt Nam');
+INSERT INTO `orders` (`id`, `order_date`, `id_status`, `id_account`, `notes`, `fullname`, `email`, `tel`, `address`)
+VALUES
+(1, '2023-01-05', 1, 1, 'Giao hàng tận nơi', 'Khách Hàng A', 'customerA@example.com', '1234567890', '123 Main St, City'),
+(2, '2023-01-15', 2, 2, 'Giao hàng đến văn phòng', 'Khách Hàng B', 'customerB@example.com', '9876543210', '456 Elm St, Town'),
+
+(3, '2023-02-10', 1, 1, 'Giao hàng tận nơi', 'Khách Hàng A', 'customerA@example.com', '1234567890', '123 Main St, City'),
+(4, '2023-02-20', 2, 2, 'Giao hàng đến văn phòng', 'Khách Hàng B', 'customerB@example.com', '9876543210', '456 Elm St, Town'),
+
+(5, '2023-03-08', 1, 1, 'Giao hàng tận nơi', 'Khách Hàng A', 'customerA@example.com', '1234567890', '123 Main St, City'),
+(6, '2023-03-18', 2, 2, 'Giao hàng đến văn phòng', 'Khách Hàng B', 'customerB@example.com', '9876543210', '456 Elm St, Town'),
+
+(7, '2023-04-05', 1, 1, 'Giao hàng tận nơi', 'Khách Hàng A', 'customerA@example.com', '1234567890', '123 Main St, City'),
+(8, '2023-04-15', 2, 2, 'Giao hàng đến văn phòng', 'Khách Hàng B', 'customerB@example.com', '9876543210', '456 Elm St, Town'),
+
+(9, '2023-05-12', 1, 1, 'Giao hàng tận nơi', 'Khách Hàng A', 'customerA@example.com', '1234567890', '123 Main St, City'),
+(10, '2023-05-22', 2, 2, 'Giao hàng đến văn phòng', 'Khách Hàng B', 'customerB@example.com', '9876543210', '456 Elm St, Town'),
+
+(11, '2023-06-05', 1, 1, 'Giao hàng tận nơi', 'Khách Hàng A', 'customerA@example.com', '1234567890', '123 Main St, City'),
+(12, '2023-06-15', 2, 2, 'Giao hàng đến văn phòng', 'Khách Hàng B', 'customerB@example.com', '9876543210', '456 Elm St, Town'),
+
+(13, '2023-07-10', 1, 1, 'Giao hàng tận nơi', 'Khách Hàng A', 'customerA@example.com', '1234567890', '123 Main St, City'),
+(14, '2023-07-20', 2, 2, 'Giao hàng đến văn phòng', 'Khách Hàng B', 'customerB@example.com', '9876543210', '456 Elm St, Town'),
+ 
+(15, '2023-08-08', 1, 1, 'Giao hàng tận nơi', 'Khách Hàng A', 'customerA@example.com', '1234567890', '123 Main St, City'),
+(16, '2023-08-18', 2, 2, 'Giao hàng đến văn phòng', 'Khách Hàng B', 'customerB@example.com', '9876543210', '456 Elm St, Town'),
+ 
+(17, '2023-09-05', 1, 1, 'Giao hàng tận nơi', 'Khách Hàng A', 'customerA@example.com', '1234567890', '123 Main St, City'),
+(18, '2023-09-15', 2, 2, 'Giao hàng đến văn phòng', 'Khách Hàng B', 'customerB@example.com', '9876543210', '456 Elm St, Town'),
+ 
+(19, '2023-10-10', 1, 1, 'Giao hàng tận nơi', 'Khách Hàng A', 'customerA@example.com', '1234567890', '123 Main St, City'),
+(20, '2023-10-20', 2, 2, 'Giao hàng đến văn phòng', 'Khách Hàng B', 'customerB@example.com', '9876543210', '456 Elm St, Town'),
+ 
+(21, '2023-11-08', 1, 1, 'Giao hàng tận nơi', 'Khách Hàng A', 'customerA@example.com', '1234567890', '123 Main St, City'),
+(22, '2023-11-18', 2, 2, 'Giao hàng đến văn phòng', 'Khách Hàng B', 'customerB@example.com', '9876543210', '456 Elm St, Town'),
+ 
+(23, '2023-12-05', 1, 1, 'Giao hàng tận nơi', 'Khách Hàng A', 'customerA@example.com', '1234567890', '123 Main St, City'),
+(24, '2023-12-15', 2, 2, 'Giao hàng đến văn phòng', 'Khách Hàng B', 'customerB@example.com', '9876543210', '456 Elm St, Town'),
+
+(25, '2022-01-05', 1, 1, 'Giao hàng tận nơi', 'Khách Hàng A', 'customerA@example.com', '1234567890', '123 Main St, City'),
+(26, '2022-01-15', 2, 2, 'Giao hàng đến văn phòng', 'Khách Hàng B', 'customerB@example.com', '9876543210', '456 Elm St, Town'),
+ 
+(27, '2022-02-10', 1, 1, 'Giao hàng tận nơi', 'Khách Hàng A', 'customerA@example.com', '1234567890', '123 Main St, City'),
+(28, '2022-02-20', 2, 2, 'Giao hàng đến văn phòng', 'Khách Hàng B', 'customerB@example.com', '9876543210', '456 Elm St, Town'),
+ 
+(29, '2022-03-08', 1, 1, 'Giao hàng tận nơi', 'Khách Hàng A', 'customerA@example.com', '1234567890', '123 Main St, City'),
+(30, '2022-03-18', 2, 2, 'Giao hàng đến văn phòng', 'Khách Hàng B', 'customerB@example.com', '9876543210', '456 Elm St, Town'),
+ 
+(31, '2022-04-05', 1, 1, 'Giao hàng tận nơi', 'Khách Hàng A', 'customerA@example.com', '1234567890', '123 Main St, City'),
+(32, '2022-04-15', 2, 2, 'Giao hàng đến văn phòng', 'Khách Hàng B', 'customerB@example.com', '9876543210', '456 Elm St, Town'),
+
+(33, '2022-05-12', 1, 1, 'Giao hàng tận nơi', 'Khách Hàng A', 'customerA@example.com', '1234567890', '123 Main St, City'),
+(34, '2022-05-22', 2, 2, 'Giao hàng đến văn phòng', 'Khách Hàng B', 'customerB@example.com', '9876543210', '456 Elm St, Town'),
+
+(35, '2022-06-08', 1, 1, 'Giao hàng tận nơi', 'Khách Hàng A', 'customerA@example.com', '1234567890', '123 Main St, City'),
+(36, '2022-06-18', 2, 2, 'Giao hàng đến văn phòng', 'Khách Hàng B', 'customerB@example.com', '9876543210', '456 Elm St, Town'),
+
+(37, '2022-07-05', 1, 1, 'Giao hàng tận nơi', 'Khách Hàng A', 'customerA@example.com', '1234567890', '123 Main St, City'),
+(38, '2022-07-15', 2, 2, 'Giao hàng đến văn phòng', 'Khách Hàng B', 'customerB@example.com', '9876543210', '456 Elm St, Town'),
+
+(39, '2022-08-12', 1, 1, 'Giao hàng tận nơi', 'Khách Hàng A', 'customerA@example.com', '1234567890', '123 Main St, City'),
+(40, '2022-08-22', 2, 2, 'Giao hàng đến văn phòng', 'Khách Hàng B', 'customerB@example.com', '9876543210', '456 Elm St, Town'),
+
+(41, '2022-09-08', 1, 1, 'Giao hàng tận nơi', 'Khách Hàng A', 'customerA@example.com', '1234567890', '123 Main St, City'),
+(42, '2022-09-18', 2, 2, 'Giao hàng đến văn phòng', 'Khách Hàng B', 'customerB@example.com', '9876543210', '456 Elm St, Town'),
+
+(43, '2022-10-05', 1, 1, 'Giao hàng tận nơi', 'Khách Hàng A', 'customerA@example.com', '1234567890', '123 Main St, City'),
+(44, '2022-10-15', 2, 2, 'Giao hàng đến văn phòng', 'Khách Hàng B', 'customerB@example.com', '9876543210', '456 Elm St, Town'),
+(45, '2022-10-25', 1, 1, 'Giao hàng tận nơi', 'Khách Hàng A', 'customerA@example.com', '1234567890', '123 Main St, City'),
+(46, '2022-10-30', 2, 2, 'Giao hàng đến văn phòng', 'Khách Hàng B', 'customerB@example.com', '9876543210', '456 Elm St, Town'),
+(47, '2022-11-05', 1, 1, 'Giao hàng tận nơi', 'Khách Hàng A', 'customerA@example.com', '1234567890', '123 Main St, City'),
+(48, '2022-11-15', 2, 2, 'Giao hàng đến văn phòng', 'Khách Hàng B', 'customerB@example.com', '9876543210', '456 Elm St, Town'),
+(49, '2022-11-25', 1, 1, 'Giao hàng tận nơi', 'Khách Hàng A', 'customerA@example.com', '1234567890', '123 Main St, City'),
+(50, '2022-11-30', 2, 2, 'Giao hàng đến văn phòng', 'Khách Hàng B', 'customerB@example.com', '9876543210', '456 Elm St, Town'),
+
+(51, '2022-12-05', 1, 1, 'Giao hàng tận nơi', 'Khách Hàng A', 'customerA@example.com', '1234567890', '123 Main St, City'),
+(52, '2022-12-15', 2, 2, 'Giao hàng đến văn phòng', 'Khách Hàng B', 'customerB@example.com', '9876543210', '456 Elm St, Town'),
+(53, '2022-12-25', 1, 1, 'Giao hàng tận nơi', 'Khách Hàng A', 'customerA@example.com', '1234567890', '123 Main St, City'),
+(54, '2022-12-30', 2, 2, 'Giao hàng đến văn phòng', 'Khách Hàng B', 'customerB@example.com', '9876543210', '456 Elm St, Town');
 
 -- --------------------------------------------------------
 
@@ -282,37 +321,141 @@ CREATE TABLE `order_details` (
 --
 -- Dumping data for table `order_details`
 --
+  
 
-INSERT INTO `order_details` (`id`, `id_order`, `id_product_variants`, `quantity`, `discount`, `total_amount`) VALUES
-(1, 1, 1, 2, 1, 200000),
-(2, 1, 2, 1, 2, 150000),
-(3, 2, 3, 3, 3, 300000),
-(4, 2, 4, 1, 4, 100000),
-(5, 3, 5, 2, 5, 250000),
-(6, 3, 6, 1, 6, 120000),
-(7, 4, 7, 3, 7, 280000),
-(8, 4, 8, 2, 8, 180000),
-(9, 5, 9, 1, 9, 100000),
-(10, 5, 10, 4, 10, 400000),
-(11, 6, 11, 2, 11, 220000),
-(12, 6, 53, 1, 12, 130000),
-(13, 7, 13, 3, 12, 270000),
-(14, 7, 14, 1, 13, 110000),
-(15, 8, 15, 2, 14, 200000),
-(16, 8, 16, 1, 15, 140000),
-(17, 9, 17, 1, 16, 120000),
-(18, 9, 48, 2, 17, 180000),
-(19, 10, 19, 3, 18, 240000),
-(20, 10, 20, 1, 18, 90000),
-(21, 21, 18, 5, 13, 495000),
-(22, 22, 16, 1, NULL, 70000),
-(23, 23, 7, 6, NULL, 360000),
-(24, 23, 82, 1, NULL, 70000),
-(25, 24, 1, 29, 13, 1566000),
-(26, 24, 2, 3, 13, 240000),
-(27, 25, 16, 1, NULL, 70000),
-(28, 25, 19, 1, NULL, 50000);
+INSERT INTO `order_details` (`id`, `id_order`, `id_product_variants`, `quantity`, `discount`, `total_amount`)
+VALUES
+(1, 1, 1, 2, 1, 120000),
+(2, 1, 3, 1, 2, 100000),
+(3, 2, 5, 3, 10, 240000),
+(4, 2, 9, 1, 5, 95000),
 
+(5, 3, 12, 1, 3, 60000),
+(6, 3, 18, 2, 15, 170000),
+(7, 4, 6, 2, 4, 140000),
+(8, 4, 15, 1, 5, 90000),
+
+(9, 5, 1, 2, 6, 120000),
+(10, 5, 3, 1, 7, 100000),
+(11, 6, 5, 3, 10, 240000),
+(12, 6, 9, 1, 5, 95000),
+
+(13, 7, 12, 1, 7, 60000),
+(14, 7, 18, 2, 15, 170000),
+(15, 8, 6, 2, 8, 140000),
+(16, 8, 15, 1, 10, 90000),
+
+(17, 9, 9, 2, 11, 160000),
+(18, 9, 14, 1, 5, 95000),
+(19, 10, 3, 3, 12, 240000),
+(20, 10, 8, 1, 5, 80000), 
+
+(21, 11, 1, 2, 14, 120000),
+(22, 11, 3, 1, 15, 100000),
+(23, 12, 5, 3, 16, 240000),
+(24, 12, 9, 1, 5, 95000),
+
+(25, 13, 12, 1, 1, 60000),
+(26, 13, 18, 2, 15, 170000),
+(27, 14, 6, 2, 1, 140000),
+(28, 14, 15, 1, 10, 90000),
+
+(29, 15, 1, 2, 8, 120000),
+(30, 15, 3, 1, 8, 100000),
+(31, 16, 5, 3, 10, 240000),
+(32, 16, 9, 1, 5, 95000),
+
+(33, 17, 12, 1, 9, 60000),
+(34, 17, 18, 2, 15, 170000),
+(35, 18, 6, 2, 9, 140000),
+(36, 18, 15, 1, 10, 90000),
+ 
+(37, 19, 1, 2, 7, 120000),
+(38, 19, 3, 1, 7, 100000),
+(39, 20, 5, 3, 10, 240000),
+(40, 20, 9, 1, 5, 95000),
+ 
+(41, 21, 12, 1, 7, 60000),
+(42, 21, 18, 2, 15, 170000),
+(43, 22, 6, 2, 7, 140000),
+(44, 22, 15, 1, 10, 90000),
+ 
+(45, 23, 1, 2, 8, 120000),
+(46, 23, 3, 1, 4, 100000),
+(47, 24, 5, 3, 10, 240000),
+(48, 24, 9, 1, 5, 95000),
+
+(49, 25, 12, 1, 4, 60000),
+(50, 25, 18, 2, 15, 170000),
+(51, 26, 6, 2, 4, 140000),
+(52, 26, 15, 1, 10, 90000),
+ 
+(53, 27, 1, 2, 4, 120000),
+(54, 27, 3, 1, 4, 100000),
+(55, 28, 5, 3, 10, 240000),
+(56, 28, 9, 1, 5, 95000),
+ 
+(57, 29, 12, 1, 4, 60000),
+(58, 29, 18, 2, 15, 170000),
+(59, 30, 6, 2, 5, 140000),
+(60, 30, 15, 1, 10, 90000),
+ 
+(61, 31, 1, 2, 9, 120000),
+(62, 31, 3, 1, 9, 100000),
+(63, 32, 5, 3, 10, 240000),
+(64, 32, 9, 1, 5, 95000),
+
+(65, 33, 9, 2, 9, 160000),
+(66, 33, 14, 1, 5, 95000),
+(67, 34, 3, 3, 10, 240000),
+(68, 34, 8, 1, 9, 80000),
+ 
+(69, 35, 1, 2, 9, 120000),
+(70, 35, 3, 1, 9, 100000),
+(71, 36, 5, 3, 10, 240000),
+(72, 36, 9, 1, 5, 95000),
+ 
+(73, 37, 12, 1, 9, 60000),
+(74, 37, 18, 2, 15, 170000),
+(75, 38, 6, 2, 9, 140000),
+(76, 38, 15, 1, 10, 90000),
+ 
+(77, 39, 1, 2, 9, 120000),
+(78, 39, 3, 1, 3, 100000),
+(79, 40, 5, 3, 10, 240000),
+(80, 40, 9, 1, 5, 95000),
+ 
+(81, 41, 12, 1, 3, 60000),
+(82, 41, 18, 2, 15, 170000),
+(83, 42, 6, 2, 3, 140000),
+(84, 42, 15, 1, 10, 90000),
+
+(85, 43, 9, 2, 3, 160000),
+(86, 43, 14, 1, 5, 95000),
+(87, 44, 3, 3, 10, 240000),
+(88, 44, 8, 1, 2, 80000),
+(89, 45, 1, 2, 2, 120000),
+(90, 45, 3, 1, 2, 100000),
+(91, 46, 5, 3, 10, 240000),
+(92, 46, 9, 1, 5, 95000),
+ 
+(93, 47, 12, 1, 12, 60000),
+(94, 47, 18, 2, 15, 170000),
+(95, 48, 6, 2, 12, 140000),
+(96, 48, 15, 1, 10, 90000),
+(97, 49, 1, 2, 12, 120000),
+(98, 49, 3, 1, 12, 100000),
+(99, 50, 5, 3, 10, 240000),
+(100, 50, 9, 1, 5, 95000),
+ 
+(101, 51, 12, 1, 12, 60000),
+(102, 51, 18, 2, 15, 170000),
+(103, 52, 6, 2, 12, 140000),
+(104, 52, 15, 1, 10, 90000),
+(105, 53, 1, 2, 11, 120000),
+(106, 53, 3, 1, 11, 100000),
+(107, 54, 5, 3, 10, 240000),
+(108, 54, 9, 1, 5, 95000);
 -- --------------------------------------------------------
 
 --
@@ -724,14 +867,12 @@ ALTER TABLE `order_details`
 ALTER TABLE `products`
   ADD CONSTRAINT `products_ibfk_1` FOREIGN KEY (`id_category`) REFERENCES `categories` (`id`) ON DELETE CASCADE;
 
+
 --
 -- Constraints for table `product_variants`
 --
 ALTER TABLE `product_variants`
   ADD CONSTRAINT `id_product` FOREIGN KEY (`id_product`) REFERENCES `products` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `id_size` FOREIGN KEY (`id_size`) REFERENCES `sizes` (`id`) ON DELETE CASCADE;
-COMMIT;
+COMMIT; 
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -57,7 +57,7 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['id_role'] != 0) {
                 ?>
                 <div>
                     <?php
-                    if ($_GET['action']) {
+                    if (isset($_GET['action'])) {
                         switch ($_GET['action']) {
                             case 'dashboard':
                                 include "./dashboard.php";

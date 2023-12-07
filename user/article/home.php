@@ -10,7 +10,7 @@
     <div class="row row-cols-4">
         <div class="col mb-4">
             <div class="card" style="width: 18rem;">
-                <img src="assets/img/articles/blackfridaylackfriday.jpg" class="card-img-top" alt="...">
+                <a href="?act=article&data=pp1"><img src="assets/img/articles/blackfridaylackfriday.jpg" class="card-img-top" alt="..."></a>
                 <div class="card-body">
                     <h5 class="card-title">Black Friday Sale: Ăn ngon, tiết kiệm cùng Fast Food</h5>
                     <p class="card-text">Bạn đang tìm kiếm một nơi để thưởng thức những món ăn nhanh ngon miệng, đầy đủ dinh dưỡng và giá cả hợp lý? Bạn muốn tận hưởng không khí lễ hội và nhận được những ưu đãi hấp dẫn? Bạn không thể bỏ qua cơ hội vàng này từ Fast Food - cửa hàng bán đồ ăn nhanh hàng đầu tại Việt Nam.</p>

@@ -43,7 +43,7 @@ session_start();
             include './model/discount_code.php';
             $list_category_home = load_all_category_home();
 
-            if ($_GET['act']) {
+            if (isset($_GET['act'])) {
                 switch ($_GET['act']) {
                     case 'home':
                         include './user/home.php';
@@ -55,26 +55,14 @@ session_start();
                         // xóa session error
                         unset($_SESSION['error']);
                         // kiểm tra phương thức gửi form đi
-                        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                        if (isset($_POST['btn-login'])) {
                             $username = $_POST['username'];
                             $password = $_POST['password'];
-                            // kiểm tra dữ liệu
-                            if (empty($username)) {
-                                $_SESSION['error']['username'] = 'Bạn chưa nhập tên đăng nhập';
+                            $check_login = getAccountByUsername($username);
+
+                            if (empty($check_login)) {
+                                $_SESSION['error']['login'] = 'Tên đăng nhập hoặc mật khẩu không chính xác';
                             } else {
-                                if (strlen($username) < 6) {
-                                    $_SESSION['error']['username'] = 'Tên đăng nhập phải có ít nhất 6 ký tự';
-                                }
-                            }
-                            if (empty($password)) {
-                                $_SESSION['error']['password'] = 'Bạn chưa nhập mật khẩu';
-                            } else {
-                                if (strlen($password) < 6) {
-                                    $_SESSION['error']['password'] = 'Mật khẩu phải có ít nhất 6 ký tự';
-                                }
-                            }
-                            if (empty($_SESSION['error'])) {
-                                $check_login = getAccountByUsername($username);
                                 if ($username == $check_login['username'] && $password == $check_login['password']) {
                                     $_SESSION['user'] = $check_login;
                                     if ($check_login['role'] == 0) {
@@ -90,7 +78,6 @@ session_start();
                         include 'user/login.php';
                         break;
                     case 'signup':
-                        // xóa session error
                         unset($_SESSION['error']);
                         // kiểm tra phương thức gửi form đi
                         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -98,59 +85,60 @@ session_start();
                             $email = $_POST['email'];
                             $password = $_POST['password'];
                             $re_password = $_POST['re_password'];
-                            $access_policy = $_POST['access_policy'];
                             // kiểm tra dữ liệu
-                            if (empty($username)) {
-                                $_SESSION['error']['username'] = 'Bạn chưa nhập tên đăng nhập';
-                            } else {
-                                if (strlen($username) < 6) {
-                                    $_SESSION['error']['username'] = 'Tên đăng nhập phải có ít nhất 6 ký tự';
-                                } else {
-                                    $user_check = getAllAccounts();
-                                    foreach ($user_check as $key => $value) {
-                                        if ($value['username'] == $username) {
-                                            $_SESSION['error']['username'] = 'Tên đăng nhập đã tồn tại';
-                                        }
-                                        break;
-                                    }
-                                }
-                            }
-                            if (empty($email)) {
-                                $_SESSION['error']['email'] = 'Bạn chưa nhập email';
-                            } else {
-                                $regex_email = "/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/";
-                                if (!preg_match($regex_email, $email)) {
-                                    $_SESSION['error']['email'] = 'Email không hợp lệ';
-                                } else {
-                                    foreach ($user_check as $key => $value) {
-                                        if (mb_strtolower($value['email']) == mb_strtolower($email)) {
-                                            $_SESSION['error']['email'] = 'Email đã tồn tại';
-                                        }
-                                        break;
-                                    }
-                                }
-                            }
-                            if (empty($password)) {
-                                $_SESSION['error']['password'] = 'Bạn chưa nhập mật khẩu';
-                            } else {
-                                if (strlen($password) < 6) {
-                                    $_SESSION['error']['password'] = 'Mật khẩu phải có ít nhất 6 ký tự';
-                                }
-                            }
-                            if (empty($re_password)) {
-                                $_SESSION['error']['re_password'] = 'Bạn chưa nhập lại mật khẩu';
-                            } else {
-                                if ($password != $re_password) {
-                                    $_SESSION['error']['re_password'] = 'Mật khẩu nhập lại không khớp';
-                                }
-                            }
-                            if (empty($access_policy)) {
+                            if (empty($_POST['access_policy'])) {
                                 $_SESSION['error']['access_policy'] = 'Bạn chưa đồng ý với điều khoản sử dụng';
-                            }
-                            if (empty($_SESSION['error'])) {
-                                signup($username, $email, $password);
-                                $_SESSION['success'] = 'Đăng ký thành công';
-                                echo "<script>window.location.href = '?act=login';</script>";
+                            } else {
+                                if (empty($username)) {
+                                    $_SESSION['error']['username'] = 'Bạn chưa nhập tên đăng nhập';
+                                } else {
+                                    if (strlen($username) < 6) {
+                                        $_SESSION['error']['username'] = 'Tên đăng nhập phải có ít nhất 6 ký tự';
+                                    } else {
+                                        $user_check = getAllAccounts();
+                                        foreach ($user_check as $key => $value) {
+                                            if ($value['username'] == $username) {
+                                                $_SESSION['error']['username'] = 'Tên đăng nhập đã tồn tại';
+                                            }
+                                            break;
+                                        }
+                                    }
+                                }
+                                if (empty($email)) {
+                                    $_SESSION['error']['email'] = 'Bạn chưa nhập email';
+                                } else {
+                                    $regex_email = "/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/";
+                                    if (!preg_match($regex_email, $email)) {
+                                        $_SESSION['error']['email'] = 'Email không hợp lệ';
+                                    } else {
+                                        foreach ($user_check as $key => $value) {
+                                            if (mb_strtolower($value['email']) == mb_strtolower($email)) {
+                                                $_SESSION['error']['email'] = 'Email đã tồn tại';
+                                            }
+                                            break;
+                                        }
+                                    }
+                                }
+                                if (empty($password)) {
+                                    $_SESSION['error']['password'] = 'Bạn chưa nhập mật khẩu';
+                                } else {
+                                    if (strlen($password) < 6) {
+                                        $_SESSION['error']['password'] = 'Mật khẩu phải có ít nhất 6 ký tự';
+                                    }
+                                }
+                                if (empty($re_password)) {
+                                    $_SESSION['error']['re_password'] = 'Bạn chưa nhập lại mật khẩu';
+                                } else {
+                                    if ($password != $re_password) {
+                                        $_SESSION['error']['re_password'] = 'Mật khẩu nhập lại không khớp';
+                                    }
+                                }
+
+                                if (empty($_SESSION['error'])) {
+                                    signup($username, $email, $password);
+                                    $_SESSION['success'] = 'Đăng ký thành công';
+                                    echo "<script>window.location.href = '?act=login';</script>";
+                                }
                             }
                         }
                         include 'user/signup.php';
@@ -182,7 +170,7 @@ session_start();
                                     if (strtolower($value['email']) == strtolower($email)) {
                                         $password = $value['password'];
                                         forgotPassword($value['username'], $email, $password);
-                                        $_SESSION['success'] = 'Mật khẩu mới đã được gửi vào email của bạn';
+                                        $_SESSION['success'] = 'Mật khẩu đã được gửi vào email của bạn';
                                         unset($_SESSION['error']);
                                         break;
                                     } else {
@@ -215,97 +203,100 @@ session_start();
                                 $discount = 0;
                             }
                             include 'user/cart.php';
-                        }else {
-                            echo "<script>window.location.href = '?act=home';</script>";
+                        } else {
+                            echo "<script>window.location.href = '/project-website-snacks/user/404.php';</script>";
                         }
                         break;
                     case 'pay':
-                        unset($_SESSION['error']);
-                        $getAccountById = getAccountById($_SESSION['user']['id']);
-                        $load_card = load_cart($_SESSION['user']['id']);
-                        // Code discount
-                        if (isset($_POST['discount'])) {
-                            $discount = $_POST['discount'];
-                            $id_code_discount = $_POST['id_code_discount'];
-                        } else {
-                            $discount = 0;
-                            $id_code_discount = null;
-                        }
-                        if (isset($_POST['submit_order'])) {
-                            $fullname = $_POST['fullname'];
-                            $email = $_POST['email'];
-                            $tel = $_POST['tel'];
-                            $address = $_POST['address'];
-                            $notes = $_POST['notes'];
-                            if (isset($_POST['id_code_discount']) && ($_POST['id_code_discount'] != '')) {
+                        if (isset($_SESSION['user'])) {
+                            unset($_SESSION['error']);
+                            $getAccountById = getAccountById($_SESSION['user']['id']);
+                            $load_card = load_cart($_SESSION['user']['id']);
+                            // Code discount
+                            if (isset($_POST['discount'])) {
+                                $discount = $_POST['discount'];
                                 $id_code_discount = $_POST['id_code_discount'];
-                                $discount = checkDiscountCode($id_code_discount)['discount'];
                             } else {
+                                $discount = 0;
                                 $id_code_discount = null;
                             }
-                            // Tạo một đối tượng DateTime
-                            $date = new DateTime();
-                            date_default_timezone_set('Asia/Ho_Chi_Minh');
-                            $date_now = new DateTime();
-                            // Lấy ra ngày tháng năm ở định dạng Y-m-d
-                            $order_date = $date_now->format('Y-m-d');
-                            $id_status = 0;
-                            $id_account = $_SESSION['user']['id'];
+                            if (isset($_POST['submit_order'])) {
+                                $fullname = $_POST['fullname'];
+                                $email = $_POST['email'];
+                                $tel = $_POST['tel'];
+                                $address = $_POST['address'];
+                                $notes = $_POST['notes']; 
+                                if (isset($_POST['id_code_discount']) && ($_POST['id_code_discount'] != '')) {
+                                    $id_code_discount = $_POST['id_code_discount'];
+                                    $discount = checkDiscountCode($id_code_discount)['discount'];
+                                } else {
+                                    $id_code_discount = null;
+                                }
+                                // Tạo một đối tượng DateTime
+                                $date = new DateTime();
+                                date_default_timezone_set('Asia/Ho_Chi_Minh');
+                                $date_now = new DateTime();
+                                // Lấy ra ngày tháng năm ở định dạng Y-m-d
+                                $order_date = $date_now->format('Y-m-d');
+                                $id_status = 0;
+                                $id_account = $_SESSION['user']['id'];
 
-                            // Validate dữ liệu
-                            $_SESSION['error']['check'] = true;
-                            if (empty($fullname)) {
-                                $_SESSION['error']['fullname'] = 'Bạn chưa nhập họ tên';
-                                $_SESSION['error']['check'] = false;
-                            }
-                            if (!isset($email) || $email == "") {
-                                $_SESSION['error']['email'] = 'Bạn chưa nhập email';
-                                $_SESSION['error']['check'] = false;
-                            } else {
-                                $regex_email = "/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/";
-                                if (!preg_match($regex_email, $email)) {
-                                    $_SESSION['error']['email'] = "Email không hợp lệ";
+                                // Validate dữ liệu
+                                $_SESSION['error']['check'] = true;
+                                if (empty($fullname)) {
+                                    $_SESSION['error']['fullname'] = 'Bạn chưa nhập họ tên';
                                     $_SESSION['error']['check'] = false;
                                 }
-                            }
-                            if (!isset($tel) || $tel == "") {
-                                $_SESSION['error']['tel'] = "Số điện thoại không được để trống";
-                                $_SESSION['error']['check'] = false;
-                            } else { 
-                                if ((strlen($tel) != 10) || !is_numeric($tel)) {
-                                    $_SESSION['error']['tel'] = "Số điện thoại không hợp lệ";
+                                if (!isset($email) || $email == "") {
+                                    $_SESSION['error']['email'] = 'Bạn chưa nhập email';
+                                    $_SESSION['error']['check'] = false;
+                                } else {
+                                    $regex_email = "/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/";
+                                    if (!preg_match($regex_email, $email)) {
+                                        $_SESSION['error']['email'] = "Email không hợp lệ";
+                                        $_SESSION['error']['check'] = false;
+                                    }
+                                }
+                                if (!isset($tel) || $tel == "") {
+                                    $_SESSION['error']['tel'] = "Số điện thoại không được để trống";
+                                    $_SESSION['error']['check'] = false;
+                                } else {
+                                    if ((strlen($tel) != 10) || !is_numeric($tel)) {
+                                        $_SESSION['error']['tel'] = "Số điện thoại không hợp lệ";
+                                        $_SESSION['error']['check'] = false;
+                                    }
+                                }
+
+                                if (!isset($address) || $address == "") {
+                                    $_SESSION['error']['address'] = "Địa chỉ không được để trống";
                                     $_SESSION['error']['check'] = false;
                                 }
-                            }
-                            
-                            if (!isset($address) || $address == "") {
-                                $_SESSION['error']['address'] = "Địa chỉ không được để trống";
-                                $_SESSION['error']['check'] = false;
-                            }
 
-                            if ($_SESSION['error']['check'] == true) {
-                                // Add order 
-                                addOrder($id_account, $id_status, $order_date);
-                                $id_order = getLastIdOrder()['id'];
-                                // Add order_detail 
-                                foreach ($load_card as $card) {
-                                    extract($card);
-                                    $temp_price = $price * $quantity;
-                                    $discount = $discount / 100 * $temp_price;
-                                    $total_amount = $temp_price - $discount;
-                                    $id_product_variants = $id_product_variants;
-                                    addOrderDetail($id_order, $id_product_variants, $quantity, $total_amount, $id_code_discount, $notes);
-                                    updateQuantityProductVariants($id_product_variants, $quantity);
-                                    $discount = 0;
+                                if ($_SESSION['error']['check'] == true) {
+                                    // Add order  
+                                    addOrder($id_account, $id_status, $order_date, $fullname, $email, $tel, $address, $notes);
+                                    $id_order = getLastIdOrder()['id'];
+                                    // Add order_detail 
+                                    foreach ($load_card as $card) {
+                                        extract($card);
+                                        $temp_price = $price * $quantity;
+                                        $discount = $discount / 100 * $temp_price;
+                                        $total_amount = $temp_price - $discount;
+                                        $id_product_variants = $id_product_variants;
+                                        addOrderDetail($id_order, $id_product_variants, $quantity, $total_amount, $id_code_discount, $notes);
+                                        updateQuantityProductVariants($id_product_variants, $quantity);
+                                        $discount = 0;
+                                    }
+                                    delCart($_SESSION['user']['id'], "all");
+                                    echo "<script>window.location.href = '?act=order';</script>";
                                 }
-                                delCart($_SESSION['user']['id'], "all");
-                                echo "<script>window.location.href = '?act=order';</script>";
                             }
+                            include 'user/pay.php';
+                        } else {
+                            echo "<script>window.location.href = '/project-website-snacks/user/404.php';</script>";
                         }
-                        include 'user/pay.php';
                         break;
                     case 'add_to_card':
-
                         if (isset($_POST['addtocart'])) {
                             $id_product = $_POST['id_product'];
                             if (!isset($_POST['exp'])) {
@@ -318,19 +309,24 @@ session_start();
                                 $id_size = $id_size[0];
                                 $id_product_variants = getIdProductVariants($id_product, $id_size)['id'];
 
-                                $checkQuantityProductCart = checkQuantityProductCart($id_account, $id_product_variants);
-                                if ($checkQuantityProductCart) {
-                                    $quantityCheck = $quantity + $checkQuantityProductCart['quantity'];
-                                    if (getProductVariants($id_product_variants)['quantity'] < $quantityCheck) {
-                                        $_SESSION['error']['quantity'] = "Số lượng sản phẩm không đủ!<br> Giỏ hàng của bạn đã tồn tại " . $checkQuantityProductCart['quantity'] . " sản phẩm này";
-                                        echo "<script>window.location.href = '?act=product_detail&id=$id_product';</script>";
+                                if (getProductVariants($id_product_variants)['quantity'] == 0) {
+                                    $_SESSION['error']['quantity'] = "Size này đã hết hàng! Vui lòng chọn size sản phẩm khác";
+                                    echo "<script>window.location.href = '?act=product_detail&id=$id_product';</script>";
+                                } else {
+                                    $checkQuantityProductCart = checkQuantityProductCart($id_account, $id_product_variants);
+                                    if ($checkQuantityProductCart) {
+                                        $quantityCheck = $quantity + $checkQuantityProductCart['quantity'];
+                                        if (getProductVariants($id_product_variants)['quantity'] < $quantityCheck) {
+                                            $_SESSION['error']['quantity'] = "Số lượng sản phẩm không đủ!<br> Giỏ hàng của bạn đã tồn tại " . $checkQuantityProductCart['quantity'] . " sản phẩm này";
+                                            echo "<script>window.location.href = '?act=product_detail&id=$id_product';</script>";
+                                        } else {
+                                            addToCard($id_account, $id_product_variants, $quantity, $checkQuantityProductCart);
+                                            echo "<script>window.location.href = '?act=cart';</script>";
+                                        }
                                     } else {
                                         addToCard($id_account, $id_product_variants, $quantity, $checkQuantityProductCart);
                                         echo "<script>window.location.href = '?act=cart';</script>";
                                     }
-                                } else {
-                                    addToCard($id_account, $id_product_variants, $quantity, $checkQuantityProductCart);
-                                    echo "<script>window.location.href = '?act=cart';</script>";
                                 }
                             }
                         }
@@ -393,7 +389,7 @@ session_start();
                             $getOrdersByAccount = getOrdersByAccount($_SESSION['user']['id'], $id_status);
                             include 'user/order.php';
                         } else {
-                            echo "<script>window.location.href = '?act=login';</script>";
+                            echo "<script>window.location.href = '/project-website-snacks/user/404.php';</script>";
                         }
                         break;
                     case 'cancel_order':
@@ -425,7 +421,7 @@ session_start();
                             }
                             include 'user/profile.php';
                         } else {
-                            echo "<script>window.location.href = '?act=login';</script>";
+                            echo "<script>window.location.href = '/project-website-snacks/user/404.php';</script>";
                         }
                         break;
                     case 'article':
@@ -441,7 +437,6 @@ session_start();
             ?>
         </div>
     </main>
-
     <!-- Start footer -->
     <?php include './user/layout/footer.php'; ?>
     <!-- End footer  -->

@@ -195,11 +195,12 @@ function cancelOrder($id_order)
         echo $e->getMessage();
     }
 }
+ 
 
-function addOrder($id_account, $id_status, $order_date)
+function addOrder($id_account, $id_status, $order_date, $fullname, $email, $tel, $address, $notes)
 {
     try {
-        $sql = "INSERT INTO orders(id_account, id_status, order_date) VALUES ($id_account, $id_status, '$order_date');";
+        $sql = "INSERT INTO orders(id_account, id_status, order_date, fullname, email, tel, address, notes) VALUES ($id_account, $id_status, '$order_date', '$fullname', '$email', '$tel', '$address', '$notes');";
         return pdo_execute($sql);
     } catch (Exception $e) {
         echo $e->getMessage();

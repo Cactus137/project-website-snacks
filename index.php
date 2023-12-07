@@ -194,26 +194,30 @@ session_start();
                         include 'user/forgot.php';
                         break;
                     case 'cart':
-                        $load_card = load_cart($_SESSION['user']['id']);
-                        if (isset($_POST['btn_code_discount'])) {
-                            $code_discount = $_POST['code_discount'];
-                            if ($code_discount != '' || $code_discount != null) {
-                                if ($code_discount == checkCodeDiscount($code_discount)['code'] && checkCodeDiscount($code_discount)['quantity'] > 0) {
-                                    $discount = checkCodeDiscount($code_discount)['discount'];
-                                    $id_code_discount = checkCodeDiscount($code_discount)['id'];
+                        if (isset($_SESSION['user'])) {
+                            $load_card = load_cart($_SESSION['user']['id']);
+                            if (isset($_POST['btn_code_discount'])) {
+                                $code_discount = $_POST['code_discount'];
+                                if ($code_discount != '' || $code_discount != null) {
+                                    if ($code_discount == checkCodeDiscount($code_discount)['code'] && checkCodeDiscount($code_discount)['quantity'] > 0) {
+                                        $discount = checkCodeDiscount($code_discount)['discount'];
+                                        $id_code_discount = checkCodeDiscount($code_discount)['id'];
+                                    } else {
+                                        $discount = 0;
+                                        $id_code_discount = null;
+                                    }
                                 } else {
                                     $discount = 0;
                                     $id_code_discount = null;
                                 }
                             } else {
-                                $discount = 0;
                                 $id_code_discount = null;
+                                $discount = 0;
                             }
-                        } else {
-                            $id_code_discount = null;
-                            $discount = 0;
+                            include 'user/cart.php';
+                        }else {
+                            echo "<script>window.location.href = '?act=home';</script>";
                         }
-                        include 'user/cart.php';
                         break;
                     case 'pay':
                         unset($_SESSION['error']);

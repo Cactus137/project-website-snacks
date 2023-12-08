@@ -182,25 +182,49 @@ session_start();
                         include 'user/forgot.php';
                         break;
                     case 'cart':
+                        unset($_SESSION['error']);
                         if (isset($_SESSION['user'])) {
                             $load_card = load_cart($_SESSION['user']['id']);
                             if (isset($_POST['btn_code_discount'])) {
                                 $code_discount = $_POST['code_discount'];
+                                $_SESSION['error']['check'] = true;
                                 if ($code_discount != '' || $code_discount != null) {
-                                    if ($code_discount == checkCodeDiscount($code_discount)['code'] && checkCodeDiscount($code_discount)['quantity'] > 0) {
-                                        $discount = checkCodeDiscount($code_discount)['discount'];
-                                        $id_code_discount = checkCodeDiscount($code_discount)['id'];
+                                    if ($code_discount == checkCodeDiscount($code_discount)['code']) {
+                                        if (checkCodeDiscount($code_discount)['quantity'] > 0) {
+                                            // Tạo một đối tượng DateTime
+                                            $date = new DateTime();
+                                            date_default_timezone_set('Asia/Ho_Chi_Minh');
+                                            $date_now = new DateTime();
+                                            // Lấy ra ngày tháng năm ở định dạng Y-m-d
+                                            $code_discount_date = $date_now->format('Y-m-d');
+                                            if ($code_discount_date > checkCodeDiscount($code_discount)['expiration_date']) {
+                                                $_SESSION['error']['code_discount'] = 'Mã giảm giá đã hết hạn';
+                                                $_SESSION['error']['check'] = false;
+                                            } else {
+                                                $discount = checkCodeDiscount($code_discount)['discount'];
+                                                $id_code_discount = checkCodeDiscount($code_discount)['id'];
+                                                $_SESSION['id_code_discount'] = $id_code_discount;
+                                            }
+                                        } else {
+                                            $_SESSION['error']['code_discount'] = 'Mã giảm giá đã hết lượt sử dụng';
+                                            $_SESSION['error']['check'] = false;
+                                        }
                                     } else {
-                                        $discount = 0;
-                                        $id_code_discount = null;
+                                        $_SESSION['error']['code_discount'] = 'Mã giảm giá không hợp lệ';
+                                        $_SESSION['error']['check'] = false;
                                     }
                                 } else {
-                                    $discount = 0;
-                                    $id_code_discount = null;
+                                    $_SESSION['error']['code_discount'] = 'Bạn chưa nhập mã giảm giá';
+                                    $_SESSION['error']['check'] = false;
                                 }
                             } else {
+                                $_SESSION['error']['check'] = false;
+                            }
+
+                            if ($_SESSION['error']['check'] == false) {
                                 $id_code_discount = null;
                                 $discount = 0;
+                                $_SESSION['id_code_discount'] = $id_code_discount;
                             }
                             include 'user/cart.php';
                         } else {
@@ -212,21 +236,24 @@ session_start();
                             unset($_SESSION['error']);
                             $getAccountById = getAccountById($_SESSION['user']['id']);
                             $load_card = load_cart($_SESSION['user']['id']);
-                            // Code discount
-                            if (isset($_POST['discount'])) {
-                                $discount = $_POST['discount'];
-                                $id_code_discount = $_POST['id_code_discount'];
+                            if ($load_card == null) {
+                                echo "<script>window.location.href = '?act=cart';</script>";
+                            }
+                            // Code discount 
+                            if ($_SESSION['id_code_discount'] != null) {
+                                $id_code_discount = $_SESSION['id_code_discount'];
+                                $discount = checkDiscountCode($id_code_discount)['discount'];
                             } else {
-                                $discount = 0;
                                 $id_code_discount = null;
+                                $discount = 0;
                             }
                             if (isset($_POST['submit_order'])) {
                                 $fullname = $_POST['fullname'];
                                 $email = $_POST['email'];
                                 $tel = $_POST['tel'];
                                 $address = $_POST['address'];
-                                $notes = $_POST['notes']; 
-                                if (isset($_POST['id_code_discount']) && ($_POST['id_code_discount'] != '')) {
+                                $notes = $_POST['notes'];
+                                if (isset($_POST['id_code_discount']) && $_POST['id_code_discount'] != "") {
                                     $id_code_discount = $_POST['id_code_discount'];
                                     $discount = checkDiscountCode($id_code_discount)['discount'];
                                 } else {
@@ -287,6 +314,11 @@ session_start();
                                         updateQuantityProductVariants($id_product_variants, $quantity);
                                         $discount = 0;
                                     }
+                                    // Update code discount
+                                    if ($id_code_discount != null) {
+                                        updateCodeDiscount($id_code_discount);
+                                    }
+                                    // Delete cart
                                     delCart($_SESSION['user']['id'], "all");
                                     echo "<script>window.location.href = '?act=order';</script>";
                                 }
@@ -399,7 +431,9 @@ session_start();
                         break;
                     case 'profile':
                         if (isset($_SESSION['user'])) {
+                            unset($_SESSION['error']);
                             $getAccountById = getAccountById($_SESSION['user']['id']);
+                            $getAccounts = getAllAccounts();
                             if (isset($_POST['btn_edit'])) {
                                 $id = $_SESSION['user']['id'];
                                 $username = $_POST['username'];
@@ -407,17 +441,52 @@ session_start();
                                 $fullname = $_POST['fullname'];
                                 $tel = $_POST['tel'];
                                 $address = $_POST['address'];
-
-                                if ($_FILES['avatar']['name'] != "") {
-                                    $avatar = $_FILES['avatar']['name'];
-                                    $target_dir = "assets/img/accounts/";
-                                    $target_file = $target_dir . basename($_FILES["avatar"]["name"]);
-                                    move_uploaded_file($_FILES["avatar"]["tmp_name"], $target_file);
-                                } else {
-                                    $avatar = $getAccountById['avatar'];
+                                $_SESSION['error']['check'] = true;
+                                // Validate dữ liệu                                
+                                if ((strlen($tel) != 10) || !is_numeric($tel)) {
+                                    $_SESSION['error']['tel'] = "Số điện thoại không hợp lệ";
+                                    $_SESSION['error']['check'] = false;
                                 }
-                                updateProfile($id, $username, $email, $fullname, $avatar, $address, $tel);
-                                echo "<script>window.location.href = '?act=profile';</script>";
+
+                                $regex_email = "/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/";
+                                if (!preg_match($regex_email, $email)) {
+                                    $_SESSION['error']['email'] = "Email không hợp lệ";
+                                    $_SESSION['error']['check'] = false;
+                                }
+                                foreach ($getAccounts as $key => $value) {
+                                    if ($value['email'] == $email) {
+                                        if ($getAccountById['email'] != $email) {
+                                            $_SESSION['error']['email'] = "Email đã tồn tại";
+                                            $_SESSION['error']['check'] = false;
+                                            break;
+                                        }
+                                    }
+                                }
+
+                                foreach ($getAccounts as $key => $value) {
+                                    if ($value['username'] == $username) {
+                                        if ($getAccountById['username'] != $username) {
+                                            $_SESSION['error']['username'] = "Tên tài khoản đã tồn tại";
+                                            $_SESSION['error']['check'] = false;
+                                            break;
+                                        }
+                                    }
+                                }
+
+                                if ($_SESSION['error']['check'] == true) {
+                                    if ($_FILES['avatar']['name'] != "") {
+                                        $avatar = $_FILES['avatar']['name'];
+                                        $target_dir = "assets/img/accounts/";
+                                        $target_file = $target_dir . basename($_FILES["avatar"]["name"]);
+                                        move_uploaded_file($_FILES["avatar"]["tmp_name"], $target_file);
+                                    } else {
+                                        $avatar = $getAccountById['avatar'];
+                                    }
+
+
+                                    updateProfile($id, $username, $email, $fullname, $avatar, $address, $tel);
+                                    echo "<script>window.location.href = '?act=profile';</script>";
+                                }
                             }
                             include 'user/profile.php';
                         } else {

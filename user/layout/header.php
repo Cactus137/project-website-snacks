@@ -54,7 +54,7 @@
             <a href="index.php?act=cart"><i class="fa-solid fa-cart-shopping"></i></a>
         <?php } ?>
         <div class="dropdown">
-            <a href=""><i class="fa-solid fa-user"></i></a>
+            <a href="<?= isset($_SESSION['user']) ? "index.php?act=profile" : "index.php?act=login" ?>"><i class="fa-solid fa-user"></i></a>
             <div class="dropdown-content">
                 <?php if (!isset($_SESSION['user'])) { ?>
                     <a class="dropdown-item  mx-0 my-1 p-0" href="index.php?act=login"><i class="fa-solid fa-user pe-2"></i>Đăng nhập</a>

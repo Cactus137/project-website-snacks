@@ -39,13 +39,7 @@
                                     <p style="margin: 0;" class="price"><?= number_format($price) . " VND" ?></p>
                                 </div>
                             </div>
-                            <div class="qty">
-                                <!-- <div class="q-inner">
-                                <button class="btn-minute" type="button" disabled>-</button>
-                                <span name="number" class="number"><?= $quantity ?></span>
-                                <input type="hidden" value="" name="quantity" id="quantityPro">
-                                <button class="btn-plus" type="button">+</button>
-                            </div> -->
+                            <div class="qty"> 
                                 <div class="icon-delete">
                                     <a href="index.php?act=delcart&id_cart=<?= $id_cart ?>" onclick="return confirm('Bạn có xác nhận xóa ?')">
                                         <i class="fa-solid fa-trash-can"></i>
@@ -64,6 +58,15 @@
                             <input type="text" name="code_discount" placeholder="Mã giảm giá*" class="vorcher" style="height: 40px; margin-right: 15px">
                             <input type="submit" name="btn_code_discount" id="" value="Áp dụng" class="sbvocher" style="height: 40px;">
                         </div>
+                        <span class="text-danger error mb-4 ">
+                            <?php
+                                if (isset($_SESSION['error']['code_discount'])) {
+                                    echo $_SESSION['error']['code_discount'];
+                                } else {
+                                    echo "";
+                                }
+                            ?>
+                        </span>
                         <hr>
                     </span>
                 </form>
@@ -91,9 +94,7 @@
                 </ul>
                 <hr>
                 <form action="?act=pay" method="post" enctype="multipart/form-data">
-                    <div class="pay">
-                        <input type="hidden" name="discount" value="<?= $discount_price ?>">
-                        <input type="hidden" name="id_code_discount" value="<?= $id_code_discount ?>">
+                    <div class="pay"> 
                         <a class="pay"><input type="submit" name="bill" id="" value="Thanh toán" class="tt"></a>
                     </div>
                 </form>

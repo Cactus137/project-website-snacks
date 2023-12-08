@@ -5,8 +5,8 @@
         text-overflow: ellipsis;
     }
 </style>
-<section class="container">
-    <h2 class="title-article text-uppercase text-center my-5">Tin tức & bài viết</h2>
+<section class="container"> 
+    <h2 class="title-article text-uppercase text-center my-5" style="font-weight: bold;">Tin tức & bài viết</h2>
     <div class="row row-cols-4">
         <div class="col mb-4">
             <div class="card" style="width: 18rem;">

@@ -493,6 +493,40 @@ session_start();
                             echo "<script>window.location.href = '/project-website-snacks/user/404.php';</script>";
                         }
                         break;
+                    case 'contact':
+                        unset($_SESSION['error']); 
+                        unset($_SESSION['status']);
+                        if (isset($_POST['send'])) {
+                            $name = $_POST['username'];
+                            $email = $_POST['email'];
+                            $message = $_POST['content']; 
+
+                            $_SESSION['error']['check'] = true;
+                            if (empty($name)) {
+                                $_SESSION['error']['username'] = 'Bạn chưa nhập họ tên';
+                                $_SESSION['error']['check'] = false;
+                            }
+                            if (empty($email)) {
+                                $_SESSION['error']['email'] = 'Bạn chưa nhập email';
+                                $_SESSION['error']['check'] = false;
+                            } else {
+                                $regex_email = "/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/";
+                                if (!preg_match($regex_email, $email)) {
+                                    $_SESSION['error']['email'] = "Email không hợp lệ";
+                                    $_SESSION['error']['check'] = false;
+                                }
+                            }
+                            if (empty($message)) {
+                                $_SESSION['error']['content'] = 'Bạn chưa nhập nội dung';
+                                $_SESSION['error']['check'] = false;
+                            }
+
+                            if ($_SESSION['error']['check'] == true) {
+                                contact($name, $email, $message);
+                            } 
+                        }
+                        include './user/contact.php';
+                        break;
                     case 'article':
                         include './user/article/index.php';
                         break;

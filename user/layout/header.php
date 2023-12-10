@@ -39,7 +39,7 @@
         <li><a href="index.php?act=menu">Thực đơn</a></li>
         <li><a href="index.php?act=article">Tin tức</a></li>
         <li><a href="#">Giới thiệu</a></li>
-        <li><a href="#">Liên hệ</a></li>
+        <li><a href="index.php?act=contact">Liên hệ</a></li>
     </ul>
     <div class="icon-nav d-flex justify-content-between align-items-center">
         <div class="input-group me-3">

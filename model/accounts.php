@@ -1,6 +1,6 @@
 <?php
 function getAllAccounts()
-{ 
+{
     try {
         $sql = " SELECT * FROM accounts ORDER BY id DESC;";
         return pdo_query($sql);
@@ -129,25 +129,19 @@ function forgotPassword($user, $email, $password)
 
     try {
         //Server settings
-        $mail->SMTPDebug = PHPMailer\PHPMailer\SMTP::DEBUG_OFF;                      //Enable verbose debug output
-        $mail->isSMTP();                                            //Send using SMTP
-        $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
-        $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-        $mail->Username   = 'anhdo13072004@gmail.com';                     //SMTP username
-        $mail->Password   = 'jfoh cejs vmjp hdop';                               //SMTP password
-        $mail->SMTPSecure = PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
-        $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
-
+        $mail->SMTPDebug = PHPMailer\PHPMailer\SMTP::DEBUG_OFF;
+        $mail->isSMTP();
+        $mail->Host       = 'smtp.gmail.com';
+        $mail->SMTPAuth   = true;
+        $mail->Username   = 'anhdo13072004@gmail.com';
+        $mail->Password   = 'jfoh cejs vmjp hdop';
+        $mail->SMTPSecure = PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_SMTPS;
+        $mail->Port       = 465;
         //Recipients
         $mail->setFrom('anhdo13072004@gmail.com', 'Mailer');
-        $mail->addAddress($email, $user);     //Add a recipient  
-
-        //Attachments
-        // $mail->addAttachment('user/form_forgot_password.php');         //Add attachments
-        // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
-
+        $mail->addAddress($email, $user);
         //Content
-        $mail->isHTML(true);                                  //Set email format to HTML
+        $mail->isHTML(true);
         $mail->Subject = '=?UTF-8?B?' . base64_encode('[FastFood] Khôi phục mật khẩu') . '?=';
         $mail->Body = '   
       <h1>Fass Food</h1>
@@ -161,10 +155,7 @@ function forgotPassword($user, $email, $password)
       </p>
       <p>Trân trọng</p>  
         ';
-        // $mail->AltBody = 'Day la mat khau cua ban:' . $password;
-
         $mail->send();
-        // echo 'Gui email thanh cong';
     } catch (Exception $e) {
         echo "Loi gui email. Mailer Error: {$mail->ErrorInfo}";
     }
@@ -177,5 +168,35 @@ function updateProfile($id, $username, $email, $fullname, $avatar, $address, $te
         pdo_execute($sql);
     } catch (Exception $e) {
         echo $e->getMessage();
+    }
+}
+
+function contact($name, $email, $message)
+{
+    require './assets//PHPMailer/src/Exception.php';
+    require './assets//PHPMailer/src/PHPMailer.php';
+    require './assets//PHPMailer/src/SMTP.php';
+
+    $mail = new PHPMailer\PHPMailer\PHPMailer(true);
+
+    try {
+        //Server settings
+        $mail->SMTPDebug = PHPMailer\PHPMailer\SMTP::DEBUG_OFF;
+        $mail->isSMTP();
+        $mail->Host       = 'smtp.gmail.com';
+        $mail->SMTPAuth   = true;
+        $mail->Username   = 'anhdo13072004@gmail.com';
+        $mail->Password   = 'jfoh cejs vmjp hdop';
+        $mail->SMTPSecure = PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_SMTPS;
+        $mail->Port       = 465;
+        //Recipients
+        $mail->setFrom($email, $name);
+        $mail->addAddress('anhdo13072004@gmail.com');
+        //Content 
+        $mail->Subject = '=?UTF-8?B?' . base64_encode('Liên hệ từ khách hàng') . '?=';
+        $mail->Body    = "Tên khách hàng: $name\nEmail: $email\n\nNội dung:\n$message";
+        $mail->send();
+    } catch (Exception $e) {
+        echo "Loi gui email. Mailer Error: {$mail->ErrorInfo}";
     }
 }

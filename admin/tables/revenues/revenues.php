@@ -61,7 +61,7 @@
                                     </td>
 
                                     <td class="text-center p-2">
-                                        <p class="text-sm font-weight-bold mb-0"><?= $total_revenue ?></p>
+                                        <p class="text-sm font-weight-bold mb-0"><?= number_format($total_revenue) . " VND" ?></p>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>

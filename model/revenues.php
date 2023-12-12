@@ -18,7 +18,7 @@ function getRevenues($start = "", $end = "", $categoryId = 0)
         JOIN
             orders o ON od.id_order = o.id
         WHERE
-            o.id_status = 4";
+            o.id_status = 4 AND YEAR(o.order_date) = YEAR(CURDATE())";
 
         if ($categoryId != 0) {
             $sql .= " AND c.id = $categoryId";

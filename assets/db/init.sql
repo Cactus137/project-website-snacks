@@ -7,7 +7,7 @@ USE project_website_snacks;
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 12, 2023 at 02:40 AM
+-- Generation Time: Dec 12, 2023 at 06:13 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -480,22 +480,22 @@ CREATE TABLE `products` (
 
 INSERT INTO `products` (`id`, `name`, `image`, `description`, `id_category`) VALUES
 (1, 'BURGER GÀ GIÒN CAY', 'BURGER GÀ GIÒN CAY.png', 'Burger Gà Giòn Cay', 1),
-(2, 'GÀ BBQ (1 miếng)', 'GÀ BBQ (1 miếng) .png', 'Gà BBQ (1 miếng)', 3),
-(3, 'GÀ GIÒN CRISPY ', 'GÀ GIÒN CRISPY .png', 'Gà Giòn Crispy', 3),
-(4, 'Mix Wing 6pcs ', 'Mix Wing 6pcs .png', 'Mix Wing 6pcs', 3),
-(5, 'Mix Wing 4pcs ', 'Mix Wing 4pcs .png', 'Mix Wing 4pcs', 3),
+(2, 'GÀ BBQ (1 miếng)', 'GÀ BBQ (1 miếng).png', 'Gà BBQ (1 miếng)', 3),
+(3, 'GÀ GIÒN CRISPY ', 'GÀ GIÒN CRISPY.png', 'Gà Giòn Crispy', 3),
+(4, 'Mix Wing 6pcs ', 'Mix Wing 6pcs.png', 'Mix Wing 6pcs', 3),
+(5, 'Mix Wing 4pcs ', 'Mix Wing 4pcs.png', 'Mix Wing 4pcs', 3),
 (6, 'BURGER CÁ', 'BURGER CÁ.png', 'Burger Cá', 1),
-(7, 'BURGER BÒ NƯỚNG HÀNH CHIÊN ', 'BURGER BÒ NƯỚNG HÀNH CHIÊN .png', 'Burger Bò Nướng Hành Chiên', 1),
-(8, 'BURGER BÒ NƯỚNG WHOPPER JR ', 'BURGER BÒ NƯỚNG WHOPPER JR .png', 'Burger Bò Nướng Whopper Jr', 1),
-(9, 'BURGER GÀ NƯỚNG ', 'BURGER GÀ NƯỚNG .png', 'Burger Gà Nướng', 1),
+(7, 'BURGER BÒ NƯỚNG HÀNH CHIÊN ', 'BURGER BÒ NƯỚNG HÀNH CHIÊN.png', 'Burger Bò Nướng Hành Chiên', 1),
+(8, 'BURGER BÒ NƯỚNG WHOPPER JR ', 'BURGER BÒ NƯỚNG WHOPPER JR.png', 'Burger Bò Nướng Whopper Jr', 1),
+(9, 'BURGER GÀ NƯỚNG ', 'BURGER GÀ NƯỚNG.png', 'Burger Gà Nướng', 1),
 (10, 'BURGER BÒ TẮM PHÔ MAI', 'BURGER BÒ TẮM PHÔ MAI.png', 'Burger Bò Tắm Phô Mai', 1),
-(11, 'BURGER BÒ THỊT HEO XÔNG KHÓI ', 'BURGER BÒ THỊT HEO XÔNG KHÓI .png', 'Burger Bò Thịt Heo Xông Khói', 1),
-(12, 'COMBO BURGER CÁ ', 'COMBO BURGER CÁ .png', '1 Burger Cá + 1 Khoai Tây Chiên + 1 Nước ngọt', 2),
-(13, 'COMBO BURGER GÀ PHÔ MAI SỐT BBQ ', 'COMBO BURGER GÀ PHÔ MAI SỐT BBQ .png', '1 Burger Gà Phô Mai Sốt BBQ + 1 Khoai tây chiên + 1 Nước ngọt', 2),
-(14, 'COMBO BURGER BÒ NƯỚNG HÀNH CHIÊN ', 'COMBO BURGER BÒ NƯỚNG HÀNH CHIÊN .png', '1 Burger Bò Nướng Hành Chiên + 1 Khoai Tây Chiên + 1 Nước ngọt', 2),
-(15, 'COMBO BURGER BÒ PHÔ MAI ', 'COMBO BURGER BÒ PHÔ MAI .png', '1 Burger Bò Phô Mai + 1 Khoai Tây Chiên + 1 Nước ngọt', 2),
-(16, 'COMBO BURGER BÒ NƯỚNG WHOPPER JR', 'COMBO BURGER BÒ NƯỚNG WHOPPER JR. .png', '1 Burger Bò Nướng Whopper Jr + 1 Khoai Tây Chiên + 1 Nước ngọt.', 2),
-(17, 'COMBO BURGER GÀ GIÒN CAY ', 'COMBO BURGER GÀ GIÒN CAY .png', '1 Burger Gà Giòn Cay + 1 Khoai Tây Chiên + 1 Nước ngọt', 2),
+(11, 'BURGER BÒ THỊT HEO XÔNG KHÓI ', 'BURGER BÒ THỊT HEO XÔNG KHÓI.png', 'Burger Bò Thịt Heo Xông Khói', 1),
+(12, 'COMBO BURGER CÁ ', 'COMBO BURGER CÁ.png', '1 Burger Cá + 1 Khoai Tây Chiên + 1 Nước ngọt', 2),
+(13, 'COMBO BURGER GÀ PHÔ MAI SỐT BBQ ', 'COMBO BURGER GÀ PHÔ MAI SỐT BBQ.png', '1 Burger Gà Phô Mai Sốt BBQ + 1 Khoai tây chiên + 1 Nước ngọt', 2),
+(14, 'COMBO BURGER BÒ NƯỚNG HÀNH CHIÊN ', 'COMBO BURGER BÒ NƯỚNG HÀNH CHIÊN.png', '1 Burger Bò Nướng Hành Chiên + 1 Khoai Tây Chiên + 1 Nước ngọt', 2),
+(15, 'COMBO BURGER BÒ PHÔ MAI ', 'COMBO BURGER BÒ PHÔ MAI.png', '1 Burger Bò Phô Mai + 1 Khoai Tây Chiên + 1 Nước ngọt', 2),
+(16, 'COMBO BURGER BÒ NƯỚNG WHOPPER JR', 'COMBO BURGER BÒ NƯỚNG WHOPPER JR..png', '1 Burger Bò Nướng Whopper Jr + 1 Khoai Tây Chiên + 1 Nước ngọt.', 2),
+(17, 'COMBO BURGER GÀ GIÒN CAY ', 'COMBO BURGER GÀ GIÒN CAY.png', '1 Burger Gà Giòn Cay + 1 Khoai Tây Chiên + 1 Nước ngọt', 2),
 (18, 'MILO', 'MILO.png', 'MILO', 6),
 (19, 'DASANI', 'DASANI.png', 'DASANI', 6),
 (20, 'NESTEA', 'NESTEA.png', 'NESTEA', 6),
@@ -503,7 +503,7 @@ INSERT INTO `products` (`id`, `name`, `image`, `description`, `id_category`) VAL
 (22, 'COCACOLA', 'COCACOLA.png', 'COCACOLA', 6),
 (23, 'PEPSI', 'PEPSI.png', 'PEPSI', 6),
 (24, 'KHOAI TÂY CHIÊN', 'KHOAI TÂY CHIÊN.png', 'KHOAI TÂY CHIÊN', 5),
-(25, 'KHOAI TÂY TẮM PHÔ MAI ', 'KHOAI TÂY TẮM PHÔ MAI .png', 'KHOAI TÂY TẮM PHÔ MAI', 5),
+(25, 'KHOAI TÂY TẮM PHÔ MAI ', 'KHOAI TÂY TẮM PHÔ MAI.png', 'KHOAI TÂY TẮM PHÔ MAI', 5),
 (26, 'Mỳ Ý Tôm Sốt Kem Cà Chua', 'Mỳ Ý Tôm Sốt Kem Cà Chua.png', 'Sự tươi ngon của tôm kết hợp với sốt kem cà chua.', 4),
 (27, 'Mỳ Ý Cay Xúc Xích', 'Mỳ Ý Cay Xúc Xích.png', 'Mỳ Ý rán với xúc xích cay, thảo mộc, ngò gai và húng quế Ý.', 4),
 (28, 'Mì Ý Pesto', 'Mì Ý Pesto.png', 'Các loại nguyên liệu hải sản hảo hạng: Tôm, mực hoà quyện trên nền sốt Pesto xanh đậm vị, thơm hương đặc trưng từ lá húng tây – mang đậm nét truyền thống ẩm thực Ý.', 4),

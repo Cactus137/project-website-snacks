@@ -39,7 +39,7 @@
         <li><a href="index.php?act=menu">Thực đơn</a></li>
         <li><a href="index.php?act=article">Tin tức</a></li>
         <li><a href="#">Giới thiệu</a></li>
-        <li><a href="#">Liên hệ</a></li>
+        <li><a href="index.php?act=contact">Liên hệ</a></li>
     </ul>
     <div class="icon-nav d-flex justify-content-between align-items-center">
         <div class="input-group me-3">
@@ -54,7 +54,7 @@
             <a href="index.php?act=cart"><i class="fa-solid fa-cart-shopping"></i></a>
         <?php } ?>
         <div class="dropdown">
-            <a href=""><i class="fa-solid fa-user"></i></a>
+            <a href="<?= isset($_SESSION['user']) ? "index.php?act=profile" : "index.php?act=login" ?>"><i class="fa-solid fa-user"></i></a>
             <div class="dropdown-content">
                 <?php if (!isset($_SESSION['user'])) { ?>
                     <a class="dropdown-item  mx-0 my-1 p-0" href="index.php?act=login"><i class="fa-solid fa-user pe-2"></i>Đăng nhập</a>

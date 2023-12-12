@@ -4,9 +4,9 @@
     <p class="content1">
         Chỉ trong hai ngày 24 và 25 tháng 11, Fast Food sẽ mang đến cho bạn chương trình khuyến mãi đặc biệt nhất trong năm: Black Friday Sale. Bạn sẽ có cơ hội mua được những món ăn nhanh yêu thích của mình với mức giá siêu rẻ. Nhập những mã giảm giá sau khi thanh toán để nhận được ưu đãi lớn từ Fast Food: <br>
 
-        Mã BLACK20: Giảm 20% cho đơn hàng từ 100.000 đồng trở lên.<br>
-        Mã BLACK30: Giảm 30% cho đơn hàng từ 200.000 đồng trở lên.<br>
-        Mã BLACK50: Giảm 50% cho đơn hàng từ 500.000 đồng trở lên.<br>
+        Mã BLACK20: Giảm 20% cho tất cả đơn hàng.<br>
+        Mã BLACK30: Giảm 30% cho tất cả đơn hàng.<br>
+        Mã BLACK50: Giảm 50% cho tất cả đơn hàng.<br>
         Đừng bỏ lỡ cơ hội này, hãy đến ngay Fast Food để thưởng thức những món ăn nhanh ngon nhất, tiết kiệm nhất và nhận được những quà tặng bất ngờ. Fast Food luôn sẵn sàng phục vụ bạn với thực đơn đa dạng, chất lượng cao và dịch vụ tận tình. Hãy nhanh tay, số lượng có hạn!
     </p>
     <strong>Những món ăn nhanh nổi bật tại Fast Food</strong>

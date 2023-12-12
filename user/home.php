@@ -69,7 +69,7 @@
                 </div>
                 <div class="item-info d-flex">
                     <i class="fa-solid fa-envelope me-2 mt-1"></i>
-                    <p>Email: fastfood@gmail.com</p>
+                    <p>Email: anhdo13072004@gmail.com</p>
                 </div>
             </div>
         </div>

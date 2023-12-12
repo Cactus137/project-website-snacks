@@ -59,8 +59,7 @@
               <th>Thành tiền</th>
             </tr>
             <?php
-            $total_price = 0;
-            $discount = $discount;
+            $total_price = 0; 
             $temp_price = 0;
             foreach ($load_card as $card) {
               extract($card);
@@ -86,6 +85,7 @@
                 </td>
               </tr>
             <?php }
+            $discount = $total_price * $discount / 100;
             $total_amount = $total_price - $discount;
             ?>
           </table>

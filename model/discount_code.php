@@ -43,3 +43,9 @@ function checkDiscountCode($id)
         echo $e->getMessage();
     }
 }
+
+function updateCodeDiscount($id)
+{
+    $sql = "UPDATE discount_codes SET quantity = quantity - 1 WHERE id = $id;";
+    pdo_execute($sql);
+}

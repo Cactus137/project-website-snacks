@@ -111,7 +111,7 @@ function getLoyalCustomers()
             a.id
         ORDER BY 
             total_amount DESC
-        LIMIT 10;";
+        LIMIT 5;";
 
         return pdo_query($sql);
     } catch (Exception $e) {

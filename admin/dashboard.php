@@ -184,7 +184,6 @@ echo "<script> var revenues_old_months = " . json_encode($revenues_old_months) .
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tài khoản</th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Đã chi tiêu</th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Hạng</th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Completion</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -196,7 +195,7 @@ echo "<script> var revenues_old_months = " . json_encode($revenues_old_months) .
                                         <td>
                                             <div class="d-flex px-2 py-1">
                                                 <div>
-                                                    <img src="./assets/img/team-2.jpg" class="avatar avatar-sm me-3" alt="xd">
+                                                    <img src="../assets/img/accounts/<?=$avatar?>" class="avatar avatar-sm me-3" alt="xd">
                                                 </div>
                                                 <div class="d-flex flex-column justify-content-center">
                                                     <h6 class="mb-0 text-sm"><?= $username ?></h6>
@@ -215,38 +214,7 @@ echo "<script> var revenues_old_months = " . json_encode($revenues_old_months) .
                                                 else echo "Đồng";
                                                 ?>
                                             </span>
-                                        </td>
-                                        <td class="align-middle">
-                                            <div class="progress-wrapper w-50 mx-auto">
-                                                <div class="progress-info">
-                                                    <div class="progress-percentage">
-                                                        <span class="text-xs font-weight-bold">
-                                                            <?php
-                                                            $percentDiamond =
-                                                                $percentGold = $total_amount / 5000000 * 100;
-                                                            $percentSilver = $total_amount / 1000000 * 100;
-                                                            $percentBronze = $total_amount / 1000000 * 100;
-
-                                                            if ($total_amount > 10000000) {
-                                                                $percent = $total_amount / 10000000 * 100;
-                                                            } else if ($total_amount > 5000000) {
-                                                                $percent = $total_amount / 5000000 * 100;
-                                                            } else if ($total_amount > 1000000) {
-                                                                $percent = $total_amount / 1000000 * 100;
-                                                            } else {
-                                                                $percent = $total_amount / 1000000 * 100;
-                                                            }
-
-                                                            echo round($percent, 2) . "%";
-                                                            ?>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                                <div class="progress">
-                                                    <div class="progress-bar bg-gradient-info w-<?= round($percent, 2) ?>" role="progressbar" aria-valuenow="<?= round($percent, 2) ?>" aria-valuemin="0" aria-valuemax="100"></div>
-                                                </div>
-                                            </div>
-                                        </td>
+                                        </td> 
                                     </tr>
                                 <?php endforeach; ?>
                             </tbody>

@@ -9,3 +9,7 @@ Cơ sở dữ liệu của dự án được lưu trữ trong tệp `assets/db/i
 ## Tác Giả
 
 Le Van Thanh và 2 thành viên khác.
+
+## Note
+
+Đây không phải bản gốc

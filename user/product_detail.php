@@ -184,8 +184,7 @@
                 quantityElement.textContent = quantityL;
                 quantityPro.value = quantityL;
             }
-        }
-
+        } 
         // Function to update the quantity and enable/disable buttons
         function updateQuantity() {
             quantityElement.textContent = quantity;
@@ -204,7 +203,7 @@
 
         // Event listener for the plus button
         plusButton.addEventListener('click', function() {
-            if (quantity < maxQuantity) { // Kiểm tra nếu số lượng chưa đạt đến giới hạn tối đa
+            if (quantity < maxQuantity) {  
                 quantity++;
                 updateQuantity();
             }

@@ -2,10 +2,7 @@
 
 <main class="mb-5 pb-5" style="width: 100%;">
 
-    <div class="slideshow-container">
-        <div class="mySlides">
-            <img src="assets/img/banners/banner1.png" style="width: 100%;">
-        </div>
+    <div class="slideshow-container"> 
         <div class="mySlides">
             <img src="assets/img/banners/banner2.png" style="width: 100%;">
         </div>
@@ -23,7 +20,6 @@
             <span class="dot" onclick="currentSlide(1)"></span>
             <span class="dot" onclick="currentSlide(2)"></span>
             <span class="dot" onclick="currentSlide(3)"></span>
-            <span class="dot" onclick="currentSlide(4)"></span>
         </div>
     </div>
 

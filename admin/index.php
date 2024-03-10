@@ -15,6 +15,8 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['id_role'] != 0) {
     <title>
         Trang quản trị
     </title>
+    <!-- Icon -->
+    <link rel="icon" href="./assets/img/logo/logo.png" type="image/x-icon">
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
     <!-- Nucleo Icons -->
@@ -264,7 +266,7 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['id_role'] != 0) {
                                 }
                                 include 'tables/categories/add_category.php';
                                 break;
-                            case 'fix_category': 
+                            case 'fix_category':
                                 if (isset($_GET['id']) && $_GET['id'] > 0) {
                                     $one_category = load_one_category($_GET['id']);
                                 }
@@ -285,9 +287,9 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['id_role'] != 0) {
                                         move_uploaded_file($image_tmp, '../assets/img/categories/' . $image);
                                         update_category($id, $name_category, $image);
                                         $_SESSION['nofication']['success'] = 'Cập nhật thành công';
-                                    } 
+                                    }
                                     include 'tables/categories/categories.php';
-                                } 
+                                }
                                 break;
                             case 'dlt_category':
                                 if (isset($_GET['id']) && ($_GET['id'] >= 1)) {
@@ -427,7 +429,7 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['id_role'] != 0) {
                             case 'edit_order':
                                 if (isset($_POST['btn_edit']) && ($_POST['btn_edit'])) {
                                     $id_order = $_POST['id_order'];
-                                    $id_status = $_POST['id_status']; 
+                                    $id_status = $_POST['id_status'];
                                     if ($id_status == 5) {
                                         cancelOrder($id_order);
                                     } else {

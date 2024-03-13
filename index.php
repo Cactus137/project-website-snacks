@@ -233,7 +233,7 @@ session_start();
                             $email = $_POST['email'];
                             $tel = $_POST['tel'];
                             $address = $_POST['address'];
-                            $notes = $_POST['notes'];
+                            $notes = $_POST['notes'] ?? null;
                             if (isset($_POST['id_code_discount']) && ($_POST['id_code_discount'] != '')) {
                                 $id_code_discount = $_POST['id_code_discount'];
                                 $discount = checkDiscountCode($id_code_discount)['discount'];
@@ -282,7 +282,7 @@ session_start();
 
                             if ($_SESSION['error']['check'] == true) {
                                 // Add order 
-                                addOrder($id_account, $id_status, $order_date);
+                                addOrder($order_date, $id_status, $id_account, $notes, $fullname, $email, $tel, $address);
                                 $id_order = getLastIdOrder()['id'];
                                 // Add order_detail 
                                 foreach ($load_card as $card) {

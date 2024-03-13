@@ -8,7 +8,7 @@ Cơ sở dữ liệu của dự án được lưu trữ trong tệp `assets/db/i
 
 ## Tài khoản admin
 
-Username: @Cactus137
+Username: @Cactus137.
 Password: @Cactus137
 
 ## Tác Giả

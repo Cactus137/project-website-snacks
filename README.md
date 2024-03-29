@@ -13,8 +13,8 @@ Password: @Cactus137
 
 ## Tài khoản client
 
-zthanh13 : zthanh13 
-team1project1 : 12345678
+zthanh13 : zthanh13 Hoặc team1project1 : 12345678
+
 ## Author
 
 ## Note 
